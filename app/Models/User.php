@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -35,21 +36,26 @@ class User extends Authenticatable
 
     public function bookings()
     {
-        $this->hasMany(Booking::class);
+        return $this->hasMany(Booking::class);
     }
 
     public function reviews()
     {
-        $this->hasMany(Review::class);
+        return $this->hasMany(Review::class);
     }
 
     public function likes()
     {
-        $this->hasMany(Like::class);
+        return $this->hasMany(Like::class);
     }
 
     public function bankAccounts()
     {
-        $this->hasMany(BankAccount::class);
+        return $this->hasMany(BankAccount::class);
     }
+
+    public function setPasswordAttribute($value)
+    {
+        return $this->attributes['password'] = Hash::make($value);
+    } 
 }

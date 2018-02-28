@@ -13,11 +13,136 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => config('setting.password_test'),
+        'description' => $faker->paragraph(2),
+        'avatar' => $faker->image($dir = '/tmp', $width = 320, $height = 240),
         'remember_token' => str_random(10),
+        'is_admin' => false,
+    ];
+});
+
+
+$factory->define(App\Models\BankAccount::class, function (Faker $faker) {
+    return [
+        'user_id' => App\Models\User::all()->random()->id,
+        'card_number' => $faker->creditCardNumber(),
+        'bank_name' => implode('', $faker->words(2)),
+    ];
+});
+
+
+$factory->define(App\Models\Category::class, function (Faker $faker) {
+    return [
+        'name' => implode('', $faker->words(2)),
+        'parent_id' => config('setting.parent_id'),
+    ];
+});
+
+$factory->define(App\Models\Tour::class, function (Faker $faker) {
+    return [
+        'category_id' => App\Models\Category::where('parent_id', '<>', config('setting.parent_id'))->get()->random()->id,
+        'name' => implode('', $faker->words(2)),
+        'description' => $faker->paragraph(2),
+        'place' => $faker->sentence(),
+        'hotel' => $faker->sentence(),
+        'time_start' => $faker->dateTime(),
+        'time_finish' => $faker->dateTime(),
+        'participants_min' => $faker->numberBetween(2, 5),
+        'participants_max' => $faker->numberBetween(10, 15),
+        'price' => $faker->numberBetween(1, 10) * 1000000,
+        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+    ];
+});
+
+$factory->define(App\Models\News::class, function (Faker $faker) {
+    return [
+        'tour_id' => App\Models\Tour::all()->random()->id,
+        'title' => $faker->sentence(),
+        'content' => $faker->paragraph(2),
+        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+    ];
+});
+
+$factory->define(App\Models\ActivityDate::class, function (Faker $faker) {
+    return [
+        'tour_id' => App\Models\Tour::all()->random()->id,
+        'content' => $faker->paragraph(2),
+        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+    ];
+});
+
+$factory->define(App\Models\Service::class, function (Faker $faker) {
+    return [
+        'activity_date_id' => App\Models\ActivityDate::all()->random()->id,
+        'name' => $faker->sentence(),
+        'content' => $faker->paragraph(2),
+        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+        'type' => (rand(0, 1)) ? 'food' : 'place',
+    ];
+});
+
+$factory->define(App\Models\Review::class, function (Faker $faker) {
+    
+    $foodRate = $faker->randomFloat(1, 0, 5);
+    $placeRate = $faker->randomFloat(1, 0, 5);
+    $serviceRate = $faker->randomFloat(1, 0, 5);
+
+    return [
+        'tour_id' => App\Models\Tour::all()->random()->id,
+        'user_id' => $faker->numberBetween(1, 20),
+        'food_rate' => $foodRate,
+        'place_rate' => $placeRate,
+        'service_rate' => $serviceRate,
+        'total_rate' => ($foodRate + $placeRate + $serviceRate) / 3,
+        'content' => $faker->paragraph(2),
+    ];
+});
+
+$factory->define(App\Models\Comment::class, function (Faker $faker) {
+    
+    if (rand(0, 1)) {
+        $type = 'review';
+        $id = App\Models\Review::all()->random()->id;
+    } else {
+        $type = 'tour';
+        $id = App\Models\Tour::all()->random()->id;
+    }
+
+    return [
+        'name' => implode('', $faker->words(2)),
+        'content' => $faker->paragraph(2),
+        'parent_id' => config('setting.parent_id'),
+        'commentable_id' => $id,
+        'commentable_type' => $type,
+    ];
+});
+
+$factory->define(App\Models\Booking::class, function (Faker $faker) {
+    
+    $tourId = App\Models\Tour::all()->random()->id;
+    $numOfPeople = $faker->numberBetween(5, 10);
+    $price = App\Models\Tour::where('id', $tourId)->first()->price * $numOfPeople;
+    $timesPayment = rand(1, 3);
+    $paymented = $price * (rand(1, $timesPayment) / $timesPayment);
+    $debt = $price - $paymented;
+
+    return [
+        'tour_id' => $tourId,
+        'user_id' => App\Models\User::all()->random()->id,
+        'number_of_people' => $numOfPeople,
+        'status' => $faker->numberBetween(1, 3),
+        'paymented' => $paymented,
+        'debt' => $debt,
+        'times_payment' => $timesPayment,
+    ];
+});
+
+$factory->define(App\Models\TimesPayment::class, function (Faker $faker) {
+    return [
+        'booking_id' => App\Models\Booking::all()->random()->id,
     ];
 });
