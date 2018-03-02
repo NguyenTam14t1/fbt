@@ -24,8 +24,12 @@
                     <div class="container">
                         <div class="headerTopNav">
                             <ul class="headerTopNavbar">
-                                <li class="active"><a href=""><i class="fa fa-phone" aria-hidden="true"></i>@lang('lang.phone_contact')</a></li>
-                                <li class="active"><a href="mailTo:support@startravel.com"><i class="fa fa-envelope" aria-hidden="true"></i>@lang('lang.email_contact')</a></li>
+                                <li class="active">
+                                    {!! html_entity_decode(Html::link('', '<i class="fa fa-phone" aria-hidden="true"></i>' . trans('lang.phone_contact'))) !!}
+                                </li>
+                                <li class="active">
+                                    {!! html_entity_decode(Html::link('http://mailTo:support@startravel.com', '<i class="fa fa-envelope" aria-hidden="true"></i>' . trans('lang.email_contact'))) !!}
+                                </li>
                             </ul>
                             <ul class="headerTopNavbar navbar-right">
                                 <li class="active language-select">
@@ -34,9 +38,25 @@
                                         <option value="vi">@lang('lang.vietnamese')</option>
                                     </select>
                                 </li>
-                                <li class="active login-register">
-                                    <a href="" data-toggle="modal" data-target="#login" class="user-login"><i class="fa fa-sign-in" aria-hidden="true"></i>@lang('lang.login')</a><a href="" data-toggle="modal" data-target="#signup" class="user-register"><i class="fa fa-user-plus" aria-hidden="true"></i>@lang('lang.register')</a>
-                                </li>
+                                @auth
+                                    <li class="active dropdown account-dropdown">
+                                        {!! html_entity_decode(Html::link('#', '<span><img src="" class="avatar"></span><strong>' . str_limit(Auth::user()->name, 7) . '</strong><span class="caret"></span>', ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'aria-haspopup' => 'true'])) !!}
+                                        <ul class="dropdown-menu account-menu">
+                                            <li>
+                                                {{ Html::link('', trans('lang.my_profile')) }}
+                                            </li>
+                                            <li>
+                                                {{ Html::link(route('home'), trans('lang.logout'), ['onclick' => 'event.preventDefault(); document.getElementById("logout-form").submit();']) }}
+                                                {{ Form::open(['route' => 'logout', 'id' => 'logout-form']) }}
+                                                {{ Form::close() }}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="active login-register">
+                                        {!! html_entity_decode(Html::link('#', '<i class="fa fa-sign-in" aria-hidden="true"></i>' . trans('lang.login'), ['class' => 'user-login', 'data-toggle' => 'modal', 'data-target' => '#login'])) !!}{!! html_entity_decode(Html::link('#', '<i class="fa fa-user-plus" aria-hidden="true"></i>' . trans('lang.signup'), ['class' => 'user-register', 'data-toggle' => 'modal', 'data-target' => '#signup'])) !!}
+                                    </li>
+                                 @endauth
                             </ul>
                         </div>
                     </div><!-- /.container -->
@@ -50,47 +70,47 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.html"></a>
+                            {{ Html::link(route('home'), '', ['class' => 'navbar-brand']) }}
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown singleDrop active">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">@lang('lang.home')</a>
+                                <li class="singleDrop active">
+                                    {{ Html::link(route('home'), trans('lang.home')) }}
                                 </li>
                                 <li class="dropdown megaDropMenu ">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">@lang('lang.tour')</a>
+                                    {{ Html::link('', trans('lang.tour'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-delay' => '300', 'data-close-others' => 'true', 'aria-expanded' => 'false']) }}
                                     <ul class="row dropdown-menu">
                                         <li class="col-sm-3 col-xs-12">
                                             <ul class="list-unstyled">
                                                 <li>@lang('lang.tour')</li>
-                                                <li class=""><a href="">@lang('lang.tour')</a></li>
-                                                <li class=""><a href="">@lang('lang.tour')</a></li>
-                                                <li class=""><a href="">@lang('lang.tour')</a></li>
+                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
+                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
+                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
                                             </ul>
                                         </li>
                                         <li class="col-sm-3 col-xs-12">
                                             <ul class="list-unstyled">
                                                 <li>@lang('lang.tour')</li>
-                                                <li class=""><a href="">@lang('lang.tour')</a></li>
-                                                <li class=""><a href="">@lang('lang.tour')</a></li>
-                                                <li class=""><a href="">@lang('lang.tour')</a></li>
+                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
+                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
+                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown singleDrop ">
-                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@lang('lang.tour')</a>
+                                    {{ Html::link('', trans('lang.tour'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-delay' => '300', 'data-close-others' => 'true', 'aria-expanded' => 'false']) }}
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>@lang('lang.tour')</li>
-                                        <li class=""><a href="">@lang('lang.tour')</a></li>
-                                        <li class=""><a href="">@lang('lang.tour')</a></li>
-                                        <li class=""><a href="">@lang('lang.tour')</a></li>
+                                        <li>{{ Html::link('', trans('lang.tour')) }}</li>
+                                        <li>{{ Html::link('', trans('lang.tour')) }}</li>
+                                        <li>{{ Html::link('', trans('lang.tour')) }}</li>
                                     </ul>
                                 </li>
                                 <li class="dropdown searchBox">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                                    {!! html_entity_decode(Html::link('#', '<span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span>', ['class' => 'dropdow-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false'])) !!}
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
                                             <span class="input-group">

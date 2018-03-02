@@ -5,7 +5,7 @@
                         <div class="row">
                             <div class="col-sm-3 col-xs-12">
                                 <div class="footerContent">
-                                    <a href="index.html" class="footer-logo"><img src="templates/bookingtour/img/logo-color-sm.png" alt="footer-logo"></a>
+                                    {!! html_entity_decode(Html::link(route('home'), Html::image(config('setting.footer_logo'), 'footer-logo'), ['class' => 'footer-logo'])) !!}
                                     <p>@lang('lang.about_text')</p>
                                 </div>
                             </div>
@@ -22,25 +22,25 @@
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <div class="footerContent imgGallery">
-                                    <h5>Gallery</h5>
+                                    <h5>@lang('lang.gallery')</h5>
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="fancybox-pop" href=""><img src="templates/bookingtour/img/tour_img_default.jpg" alt="image"></a>
+                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="fancybox-pop" href=""><img src="templates/bookingtour/img/tour_img_default.jpg" alt="image"></a>
+                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="fancybox-pop" href=""><img src="templates/bookingtour/img/tour_img_default.jpg" alt="image"></a>
+                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="fancybox-pop" href=""><img src="templates/bookingtour/img/tour_img_default.jpg" alt="image"></a>
+                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="fancybox-pop" href=""><img src="templates/bookingtour/img/tour_img_default.jpg" alt="image"></a>
+                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="fancybox-pop" href=""><img src="templates/bookingtour/img/tour_img_default.jpg" alt="image"></a>
+                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -54,11 +54,21 @@
                                         <span class="input-group-addon" id="basic-addon21"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
                                     </div>
                                     <ul class="list-inline">
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                                        <li>
+                                            {{ Html::link('', '', ['class' => 'fa fa-facebook']) }}
+                                        </li>
+                                        <li>
+                                            {{ Html::link('', '', ['class' => 'fa fa-twitter']) }}
+                                        </li>
+                                        <li>
+                                            {{ Html::link('', '', ['class' => 'fa fa-google-plus']) }}
+                                        </li>
+                                        <li>
+                                            {{ Html::link('', '', ['class' => 'fa fa-pinterest-p']) }}
+                                        </li>
+                                        <li>
+                                            {{ Html::link('', '', ['class' => 'fa fa-vimeo']) }}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -70,10 +80,18 @@
                         <div class="row">
                             <div class="col-sm-6 col-sm-push-6 col-xs-12">
                                 <ul class="list-inline">
-                                    <li><a href="#">@lang('lang.privacy_policy')</a></li>
-                                    <li><a href="#">@lang('lang.about_us')</a></li>
-                                    <li><a href="#">@lang('lang.support')</a></li>
-                                    <li><a href="#">@lang('lang.news')</a></li>
+                                    <li>
+                                        {{ Html::link('', trans('lang.privacy_policy')) }}
+                                    </li>
+                                    <li>
+                                        {{ Html::link('', trans('lang.about_us')) }}
+                                    </li>
+                                    <li>
+                                        {{ Html::link('', trans('lang.support')) }}
+                                    </li>
+                                    <li>
+                                        {{ Html::link('', trans('lang.news')) }}
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-sm-6 col-sm-pull-6 col-xs-12">
@@ -86,8 +104,12 @@
                 </div>
             </footer>
         </div>
+        
+        @include('auth.login')
+        @include('auth.register')
 
         {{ Html::script('js/app.js') }}
         {{ Html::script('templates/bookingtour/js/custom.js') }}
+        {{ Html::script('templates/bookingtour/js/script.js') }}
     </body>
 </html>

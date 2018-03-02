@@ -9317,3 +9317,74 @@ header {
     background: -webkit-linear-gradient(#cbf5c0, #92dc41 40%, #60bb31);
     color: #333 !important;
 }
+
+.danger {
+    color: red;
+}
+
+.reset-header {
+    padding: 40px 60px 10px 60px !important;
+}
+.reset-body {
+    padding: 10px 60px 40px 60px !important;
+}
+.modal-reset {
+    margin: 50px auto;
+}
+
+@media(min-width:768px) {
+    .signupLoging .modal-reset {
+        width: 600px;
+    }
+}
+
+.alert-reset-mail {
+    margin: 0 40px 10px 40px;
+}
+
+body, .signupLoging {
+    padding-right: 0 !important;
+}
+
+/*account-menu*/
+
+.account-dropdown {
+    bottom: 4px;
+    margin: 0 20px 0 10px;
+}
+
+.logout-form {
+    display: none;
+}
+
+.account-menu {
+    background: #f6f6f6;
+    color: #333;
+    min-width: 10px;
+    width: 110px;
+    left: 16px !important;
+}
+
+.account-menu li {
+    width: 100%;
+    padding: 0 !important; 
+}
+
+.account-menu li a {
+    display: block;
+    width: 100%;
+    padding: 5px 15px; 
+}
+
+.account-menu li a:hover {
+    text-decoration: none;
+    background-color: #bdbcbc;
+    color: #333 !important;
+}
+
+.avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
