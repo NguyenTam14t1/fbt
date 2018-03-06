@@ -12,9 +12,11 @@
         
         <!-- CUSTOM CSS -->
         {{ Html::style('templates/bookingtour/css/style.css') }}
+        {{ Html::style('templates/bookingtour/css/activity-date.css') }}
 
         <!-- FAVICON -->
         {{ Html::favicon('templates/bookingtour/img/favicon.png') }}
+
     </head>
     <body class="body-wrapper  changeHeader ">
         <div class="main-wrapper">

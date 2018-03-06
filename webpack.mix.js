@@ -15,5 +15,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .js('resources/assets/templates/bookingtour/js/custom.js', 'public/templates/bookingtour/js/custom.js')
    .js('resources/assets/templates/bookingtour/js/script.js', 'public/templates/bookingtour/js/script.js')
+   .js('resources/assets/templates/bookingtour/js/activity-date.js', 'public/templates/bookingtour/js/activity-date.js')
    .styles('resources/assets/templates/bookingtour/css/style.css', 'public/templates/bookingtour/css/style.css')
-   .copyDirectory('resources/assets/templates/bookingtour/images', 'public/templates/bookingtour/img');
+   .styles('resources/assets/templates/bookingtour/css/activity-date.css', 'public/templates/bookingtour/css/activity-date.css')
+   .copyDirectory('resources/assets/templates/bookingtour/images', 'public/templates/bookingtour/img')
+   .copy('resources/assets/templates/bookingtour/js/modernizr.custom.js', 'public/templates/bookingtour/js/modernizr.custom.js');

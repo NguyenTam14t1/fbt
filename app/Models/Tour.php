@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Tour extends Model
 {
@@ -20,6 +21,11 @@ class Tour extends Model
         'picture',
     ];
 
+    protected $append = [
+        'time_start_format',
+        'time_finish_format',
+        'price_child'
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -49,4 +55,18 @@ class Tour extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function getTimeStartFormatAttribute() {
+        return Carbon::parse($this->attributes['time_start'])->format('d/m/Y');
+    }
+
+    public function getTimeFinishFormatAttribute() {
+        return Carbon::parse($this->attributes['time_finish'])->format('d/m/Y');
+    }
+
+    public function getPriceChildAttribute() {
+        $price_child = floor($this->attributes['price'] / 2);
+        
+        return $price_child;
+    }    
 }   

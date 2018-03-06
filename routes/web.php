@@ -14,3 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::resource('/tour', 'Client\ToursController', [
+    'as' => 'client',
+]);

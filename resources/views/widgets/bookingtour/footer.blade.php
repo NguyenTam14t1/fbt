@@ -109,6 +109,9 @@
         @include('auth.register')
 
         {{ Html::script('js/app.js') }}
+        {{ Html::script('templates/bookingtour/js/modernizr.custom.js') }}
+        {{ Html::script('templates/bookingtour/js/activity-date.js') }}
+
         {{ Html::script('templates/bookingtour/js/custom.js') }}
         {{ Html::script('templates/bookingtour/js/script.js') }}
     </body>
