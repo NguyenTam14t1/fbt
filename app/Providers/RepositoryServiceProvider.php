@@ -24,7 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Repositories\Contracts\TourRepositoryInterface',
+            'App\Repositories\Contracts\TourInterface',
             'App\Repositories\Eloquents\EloquentTourRepository'
         );
     }

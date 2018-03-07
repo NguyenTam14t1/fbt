@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Tour;
-use App\Repositories\Contracts\TourRepositoryInterface;
+use App\Repositories\Contracts\TourInterface;
+use Auth;
+
 
 class ToursController extends Controller
 {
     protected $tourRepository;
+    protected $reviewRepository;
 
-    public function __construct(TourRepositoryInterface $tourRepository)
+    public function __construct(TourInterface $tourRepository)
     {
         $this->tourRepository = $tourRepository;
     }
@@ -55,9 +57,11 @@ class ToursController extends Controller
      */
     public function show($id)
     {
-        $tour = $this->tourRepository->getById($id);
+        $data['tour'] = $this->tourRepository->getById($id);
+        $data = $this->tourRepository->getRate($id, $data);
+        $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
         
-        return view('bookingtour.tour-detail', compact(['tour']));
+        return view('bookingtour.tour-detail', compact(['data']));
     }
 
     /**
@@ -92,5 +96,33 @@ class ToursController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function review(Request $request)
+    {
+        $dataRq = $request->only([
+            'tour_id',
+            'place_rate', 
+            'food_rate', 
+            'service_rate', 
+            'total_rate', 
+            'content'
+        ]);
+
+        $this->tourRepository->addNewReviewFromUser(Auth::user()->id, $dataRq);
+        $data['tour'] = $this->tourRepository->getById($dataRq['tour_id']);
+        $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
+        $data = $this->tourRepository->getRate($dataRq['tour_id'], $data);
+
+        return view('bookingtour.ajax.review', compact(['data']));;
+    }
+
+    public function reviewShow(Request $request)
+    {
+        $data['tour'] = $this->tourRepository->getById($request->tour_id);
+        $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
+        $data = $this->tourRepository->getRate($request->tour_id, $data);
+
+        return view('bookingtour.ajax.review', compact(['data']));
     }
 }

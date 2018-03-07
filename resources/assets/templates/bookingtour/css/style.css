@@ -4825,6 +4825,7 @@ header {
     color: #222;
     font-weight: 400;
     margin-bottom: 30px;
+    margin-top: 30px;
     text-transform: uppercase;
 }
 .review-aria .reviewContent .reviewTitle span {
@@ -4833,10 +4834,11 @@ header {
     margin-left: 10px;
 }
 .review-aria .reviewContent .reviewMedia .media-left img {
-    width: 76px;
-    height: 76px;
+    width: 100px;
+    height: 100px;
     border-radius: 3px;
     margin-right: 25px;
+    border-radius: 8px;
 }
 .review-aria .reviewContent .reviewMedia .media-body h5 {
     font-size: 15px;
@@ -9533,5 +9535,268 @@ label.star-service:before {
 
 /*page-title*/
 .page-title-1 {
-    background-image:url(/templates/bookingtour/img/page-title/page-title-bg5.jpg);
+    background-image:url(/templates/bookingtour/img/page-title/page-title-bg1.jpg);
+}
+
+/*program day detail*/
+.design-process-section .text-align-center {
+    line-height: 25px;
+    margin-bottom: 12px;
+}
+
+.design-process-content {
+    border: 1px solid #e9e9e9;
+    position: relative;
+    padding: 16px 30px 30px 30px;
+}
+
+.design-process-content img {
+    border-radius: 10px;
+}
+
+.process-model {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    max-width: 900px;
+    margin: 20px auto 26px;
+    border: none;
+    z-index: 0;
+}
+.process-model li::after {
+    background: #e5e5e5 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    margin: 0 auto;
+    position: absolute;
+    right: -30px;
+    top: 33px;
+    width: 86%;
+    z-index: -1;
+}
+
+.process-model li.visited::after {
+    background: #5cb85c;
+}
+
+.process-model li:last-child::after {
+    width: 0;
+}
+
+.process-model li {
+    display: inline-block;
+    width: 13%;
+    text-align: center;
+    float: none;
+}
+
+.nav-tabs.process-model > li.active > a, .nav-tabs.process-model > li.active > a:hover, .nav-tabs.process-model > li.active > a:focus, .process-model li a:hover, .process-model li a:focus {
+    border: none;
+    background: transparent;
+
+}
+
+.process-model li a {
+    padding: 0;
+    border: none;
+    color: #606060;
+}
+
+.process-model li.active,
+.process-model li.visited {
+    color: #5cb85c;
+}
+
+.process-model li.active a,
+.process-model li.active a:hover,
+.process-model li.active a:focus,
+.process-model li.visited a,
+.process-model li.visited a:hover,
+.process-model li.visited a:focus {
+    color: #5cb85c;
+}
+
+.process-model li.active p,
+.process-model li.visited p {
+    font-weight: 600;
+}
+
+.process-model li i {
+    display: block;
+    height: 68px;
+    width: 68px;
+    text-align: center;
+    margin: 0 auto;
+    background: #f5f6f7;
+    border: 2px solid #e5e5e5;
+    line-height: 65px;
+    font-size: 30px;
+    border-radius: 50%;
+}
+
+.process-model li.active i, .process-model li.visited i  {
+    background: #fff;
+    border-color: #5cb85c;
+}
+
+.process-model li p {
+    font-size: 14px;
+    margin-top: 11px;
+}
+
+.process-model.contact-us-tab li.visited a, .process-model.contact-us-tab li.visited p {
+    color: #606060!important;
+    font-weight: normal
+}
+
+.process-model.contact-us-tab li::after  {
+    display: none; 
+}
+
+.process-model.contact-us-tab li.visited i {
+    border-color: #e5e5e5; 
+}
+
+@media screen and (max-width: 768px) {
+    .more-icon-preocess.process-model li span {
+        font-size: 23px;
+        height: 50px;
+        line-height: 46px;
+        width: 50px;
+    }
+    .more-icon-preocess.process-model li::after {
+        top: 18px;
+    }
+    .process-model li i {
+        height: 40px;
+        width: 40px;
+        line-height: 37px;
+        font-size: 18px;
+    } 
+}
+
+@media screen and (max-width: 480px) { 
+    .more-icon-preocess.process-model li span {
+        font-size: 16px;
+        height: 35px;
+        line-height: 32px;
+        width: 35px;
+    }
+    .more-icon-preocess.process-model li p {
+        font-size: 8px;
+    }
+    .more-icon-preocess.process-model li::after {
+        top: 16px;
+    }
+    .process-model li i {
+        height: 35px;
+        width: 35px;
+        line-height: 32px;
+        font-size: 15px;
+    }
+    .process-model.more-icon-preocess {
+        text-align: center;
+    }  
+}
+
+.media-heading {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+    font-family: 'Playfair Display', serif;
+}
+
+.header-service {
+    border: 1px solid #eee;
+    background-color: #f5f5f5;
+    color: #222;
+    border-bottom-color: #f5f5f5;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: inline-block !important;
+    padding: 10px 20px;
+    font-size: 23px !important;
+    font-weight: 0 !important;
+    text-transform: capitalize;
+}
+
+.content-service {
+    padding: 2% 2% !important;
+    border: 1px solid #eee;
+    background-color: #f5f5f5;
+    color: #222;
+    border-bottom-color: #f5f5f5;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    margin: 0;
+}
+
+.program-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+/*review paginate*/
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus{
+    z-index: 3;
+    color: #fff;
+    border-color: #ff891e;
+    background-color: #ff891e;
+    cursor: default;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+    color: #777777;
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 4px;
+    border-color: #dedede;
+    padding: 0 20px;
+    color: #737272;
+    outline: 0;
+    font-weight: bold;
+    opacity: 0.5;
+}
+
+.paginationCenter .pagination li:first-child a, .paginationCenter .pagination li:last-child a, .paginationCenter .pagination li a {
+    background-color: #f1f1f1;
+    border-color: #dedede;
+    border: solid 1px #dedede;
+    border-radius: 4px;
+    color: #737272;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.paginationCenter .pagination li a:hover {
+    color: #888888;
+    background-color: #eae8e8;
+    border-color: #dedede;
+    opacity: 1;
+}
+
+.buttonTransparent:hover, .paginationCenter .pagination li:first-child a:hover, .paginationCenter .pagination li:last-child a:hover, .isotopeFilters ul.filter>li a:hover {
+    color: #888888;
+    background-color: #eae8e8;
+    border-color: #dedede;
+    opacity: 1;
+}
+
+#review-content {
+    font-size: 18px;
+}
+
+.review-list {
+    border: 1px solid #cccccb;
+    padding: 2% 4%;
+    border-radius: 8px;
+    margin-top: 15px;
+    background-color: #f3f3f3;
 }
