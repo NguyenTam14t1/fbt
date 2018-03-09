@@ -53,7 +53,7 @@ $factory->define(App\Models\Tour::class, function (Faker $faker) {
         'time_finish' => $faker->dateTime(),
         'participants_min' => $faker->numberBetween(2, 5),
         'participants_max' => $faker->numberBetween(10, 15),
-        'price' => $faker->numberBetween(1, 10) * 1000000,
+        'price' => $faker->numberBetween(1, 9) * 100,
         'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
     ];
 });
@@ -70,6 +70,7 @@ $factory->define(App\Models\News::class, function (Faker $faker) {
 $factory->define(App\Models\ActivityDate::class, function (Faker $faker) {
     return [
         'tour_id' => App\Models\Tour::all()->random()->id,
+        'title' => $faker->sentence(),
         'content' => $faker->paragraph(2),
         'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
     ];
@@ -87,9 +88,9 @@ $factory->define(App\Models\Service::class, function (Faker $faker) {
 
 $factory->define(App\Models\Review::class, function (Faker $faker) {
     
-    $foodRate = $faker->randomFloat(1, 0, 5);
-    $placeRate = $faker->randomFloat(1, 0, 5);
-    $serviceRate = $faker->randomFloat(1, 0, 5);
+    $foodRate = $faker->numberBetween(1, 5);
+    $placeRate = $faker->numberBetween(1, 5);
+    $serviceRate = $faker->numberBetween(1, 5);
 
     return [
         'tour_id' => App\Models\Tour::all()->random()->id,

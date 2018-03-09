@@ -63,5 +63,7 @@
         'leave_review' => 'Leave Your Review',
         'comment' => 'Comment',
         'submit' => 'Submit',
-        'day' => 'Day',
+        'day' => 'Day ',
+        'want_rate' => 'Don\'t forget rate it!',
+        'review_here' => 'Write something cool here!',
     ];

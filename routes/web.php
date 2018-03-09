@@ -18,3 +18,13 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/tour', 'Client\ToursController', [
     'as' => 'client',
 ]);
+
+Route::post('/review', [
+    'uses' => 'Client\ToursController@review',
+    'as' => 'review',
+]);
+
+Route::post('/review/paginate', [
+    'uses' => 'Client\ToursController@reviewShow',
+    'as' => 'reviewPaginate',
+]);

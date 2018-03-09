@@ -6,6 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@lang('lang.travel_tour')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @routes
         
         <!-- PLUGINS CSS STYLE -->
         {{ Html::style('css/app.css') }}
@@ -17,6 +19,7 @@
         <!-- FAVICON -->
         {{ Html::favicon('templates/bookingtour/img/favicon.png') }}
 
+        {{ Html::script('js/app.js') }}
     </head>
     <body class="body-wrapper  changeHeader ">
         <div class="main-wrapper">
