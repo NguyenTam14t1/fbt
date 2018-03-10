@@ -148,6 +148,11 @@ $(document).ready(function () {
 
     $('.decrease-btn').click(function () {
         var val = parseInt($(this).next().prop('value'));
+        
+        if ($(this).next().hasClass('adult') && (val <= 1)) {
+            return false;
+        }
+
         if (!val) {
             return false;
         }
@@ -276,6 +281,49 @@ $(document).ready(function () {
             },
         });
 
+        return false;
+    });
+
+    // booking step
+    $('#booking-btn').click(function () {
+        var adults = $('.adult').val();
+        var children = $('.child').val();
+        $.ajax({
+            method: 'POST',
+            url: route('selectParticipant'),
+            data: {
+                adults: adults,
+                children: children, 
+            }, 
+            success: function (data) {}
+        });
+
+    });
+
+    $('#step1-btn').click(function () {
+        $('#personal-info-form').submit();
+        return false;
+    });
+
+    $('#send-again-btn').click(function () {
+        var adults = $('#paticipants').attr('adults');
+        var children = $('#paticipants').attr('children');
+        $.ajax({
+            method: 'POST',
+            url: route('selectParticipant'),
+            data: {
+                adults: adults,
+                children: children, 
+            }, 
+            success: function (data) {
+                location.reload();
+            }
+        });
+        return false;
+    });
+
+    $('#continue-payment-btn').click(function () {
+        $('#payment-continue-form').submit();
         return false;
     });
 });

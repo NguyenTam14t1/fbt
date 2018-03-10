@@ -6,6 +6,7 @@ use App\Repositories\Eloquents\EloquentRepository;
 use App\Repositories\Contracts\TourInterface;
 use App\Models\Tour;
 use App\Models\Review;
+use App\Models\Booking;
 use Exception;
 use Date;
 
@@ -62,5 +63,12 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
         $data['user_id'] = $userId;
 
         return Review::create($data);
+    }
+
+    public function addNewBookingFromUser($userId, array $data)
+    {
+        $data['user_id'] = $userId;
+
+        return Booking::create($data);
     }
 }

@@ -28,3 +28,22 @@ Route::post('/review/paginate', [
     'uses' => 'Client\ToursController@reviewShow',
     'as' => 'reviewPaginate',
 ]);
+
+Route::post('/selectParticipant', [
+    'uses' => 'Client\BookingController@selectParticipant',
+    'as' => 'selectParticipant',
+]);
+
+Route::resource('tour.booking', 'Client\BookingController', [
+    'as' => 'client',
+]);
+
+Route::get('/booking/confirm/{code}', [
+    'uses' => 'Client\BookingController@confirmRequest',
+    'as' => 'confirm',
+]);
+
+Route::post('/payment', [
+    'uses' => 'Client\BookingController@payment',
+    'as' => 'payment',
+]);

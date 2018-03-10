@@ -14,4 +14,6 @@ interface TourInterface
     public function getReviews(Tour $tour);
 
     public function addNewReviewFromUser($userId, array $data);
+
+    public function addNewBookingFromUser($userId, array $data);
 }

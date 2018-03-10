@@ -75,7 +75,7 @@
         @foreach ($data['reviews'] as $review)
             <li class="media review-list">
                 <div class="media-left">
-                    {!! html_entity_decode(Html::link('#', Html::image('', 'image-avatar', ['class' => 'media-object']))) !!}
+                    {!! html_entity_decode(Html::link('#', Html::image($review->user->avatar_path, 'image-avatar', ['class' => 'media-object']))) !!}
                 </div>
                 <div class="media-body">
                     <h5 class="media-heading">{{ $review->user->name }}</h5>

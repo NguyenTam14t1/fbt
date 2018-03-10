@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hash;
+use File;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = [
+        'avatar_path'
+    ];
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);
@@ -57,5 +62,16 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         return $this->attributes['password'] = Hash::make($value);
-    } 
+    }
+
+     public function getAvatarPathAttribute()
+    {
+        $pathFile = config('setting.avatar_upload_folder') . $this->attributes['avatar'];
+        
+        if (!File::exists(public_path($pathFile)) || empty($this->attributes['avatar'])) {
+            return config('setting.avatar_default_img');
+        }
+
+        return config('setting.avatar_upload_folder') . $this->attributes['avatar']; 
+    }
 }
