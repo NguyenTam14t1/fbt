@@ -30,13 +30,13 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active">
-                                {{ Html::image(config('setting.tour_default_img') , 'First slide') }}
+                                {{ Html::image($data['tour']->picture_path , 'First slide') }}
                             </div>
                             <div class="item ">
-                                {{ Html::image(config('setting.tour_default_img') , 'Second slide') }}
+                                {{ Html::image($data['tour']->picture_path , 'Second slide') }}
                             </div>
                             <div class="item ">
-                                {{ Html::image(config('setting.tour_default_img') , 'Third slide') }}
+                                {{ Html::image($data['tour']->picture_path , 'Third slide') }}
                             </div>
                         </div>
                         {!! html_entity_decode(Html::link('#package-carousel', '<span class="glyphicon glyphicon-menu-left"></span>', ['class' => 'left carousel-control' ,'data-slide' => 'prev'])) !!}
@@ -98,7 +98,7 @@
                                                 <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">@lang('lang.date_start'):</label>
                                                 <div class="col-md-7 col-sm-12 col-xs-7 datepickerWrap">
                                                     <div class="input-group date ed-datepicker" data-provide="datepicker">
-                                                        {{ Form::text('date-start', $data['tour']->time_start_format, ['class' => 'form-control', 'readonly' => 'readonly']) }}
+                                                        {{ Form::text('date_start', $data['tour']->time_start_format, ['class' => 'form-control', 'readonly' => 'readonly']) }}
                                                         <div class="input-group-addon">
                                                             <span class="fa fa-calendar"></span>
                                                         </div>
@@ -109,7 +109,7 @@
                                                 <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">@lang('lang.date_finish'):</label>
                                                 <div class="col-md-7 col-sm-12 col-xs-7 datepickerWrap">
                                                     <div class="input-group date ed-datepicker filterDate" data-provide="datepicker">
-                                                        {{ Form::text('date-finish', $data['tour']->time_finish_format, ['class' => 'form-control', 'readonly' => 'readonly']) }}
+                                                        {{ Form::text('date_finish', $data['tour']->time_finish_format, ['class' => 'form-control', 'readonly' => 'readonly']) }}
                                                         <div class="input-group-addon">
                                                             <span class="fa fa-calendar"></span>
                                                         </div>
@@ -133,7 +133,7 @@
                                                 <div class="col-md-5 col-sm-12 col-xs-7 datepickerWrap">
                                                     <div class="count-input">
                                                         {{ Html::link('', '-', ['class' => 'incr-btn decrease-btn', 'data-action' => 'decrease']) }}
-                                                        {{ Form::text('quantity', 1, ['class' => 'quantity adult']) }}
+                                                        {{ Form::text('quantity_adults', 1, ['class' => 'quantity adult']) }}
                                                         {{ Html::link('', '+', ['class' => 'incr-btn increase-btn', 'data-action' => 'increase']) }}
                                                     </div>
                                                 </div>
@@ -146,25 +146,22 @@
                                                 <div class="col-md-5 col-sm-12 col-xs-7 datepickerWrap">
                                                     <div class="count-input">
                                                         {{ Html::link('', '-', ['class' => 'incr-btn decrease-btn', 'data-action' => 'decrease']) }}
-                                                        {{ Form::text('quantity', 0, ['class' => 'quantity child']) }}
+                                                        {{ Form::text('quantity_children', 0, ['class' => 'quantity child']) }}
                                                         {{ Html::link('', '+', ['class' => 'incr-btn increase-btn', 'data-action' => 'increase']) }}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 col-xs-12">
                                                     <p class="price" value="{{ $data['tour']->price_child }}">${{ $data['tour']->price_child }}</p>
                                                 </div>
-                                                <div class="col-md-5 col-sm-12 col-xs-12">
-                                                    <p class="message-total-people" value="{{ trans('lang.message_total_people') }}"></p>
-                                                </div>
                                             </div>
                                             <div class="totalCost">
                                                 <div class="col-xs-8 totalCostLeft">
                                                     <p>@lang('lang.total_cost'):</p>
                                                 </div>
-                                                <div class="col-xs-4 totalCostRight" value="{{ $data['tour']->price }}">${{ $data['tour']->price }}</div>
+                                                <div name="price" class="col-xs-4 totalCostRight" value="{{ $data['tour']->price }}">${{ $data['tour']->price }}</div>
                                             </div>
                                             <div class="col-sm-12">
-                                                {!! html_entity_decode(Html::link('#', trans('lang.check_now') . '<i class="fa fa-angle-right" aria-hidden="true"></i>', ['class' => 'btn btn-block buttonTransparent '])) !!}
+                                                {!! html_entity_decode(Html::link(route('client.tour.booking.index', $data['tour']->id), trans('lang.check_now') . '<i class="fa fa-angle-right" aria-hidden="true"></i>', ['class' => 'btn btn-block buttonTransparent ', 'id' => 'booking-btn'])) !!}
                                             </div>
                                         {{ Form::close() }}
                                     </div>
@@ -245,7 +242,7 @@
                                                         <div class="col-md-6">   
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    {!! html::image($service->picture_path, 'image-place', ['class' => 'media-object']) !!}
+                                                                    {{ Html::image($service->picture_path, 'image-place', ['class' => 'media-object']) }}
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <p class="media-heading">{{ $service->name }}</p>
@@ -263,7 +260,7 @@
                                                         <div class="col-md-6">
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    {!! html::image($service->picture_path, 'image-food', ['class' => 'media-object']) !!}
+                                                                    {{ Html::image($service->picture_path, 'image-food', ['class' => 'media-object']) }}
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <p class="media-heading">{{ $service->name }}</p>
@@ -365,7 +362,7 @@
                             @foreach ($data['reviews'] as $review)
                                 <li class="media review-list">
                                     <div class="media-left">
-                                        {!! html_entity_decode(Html::link('#', Html::image('', 'image-avatar', ['class' => 'media-object']))) !!}
+                                        {!! html_entity_decode(Html::link('#', Html::image($review->user->avatar_path, 'image-avatar', ['class' => 'media-object']))) !!}
                                     </div>
                                     <div class="media-body">
                                         <h5 class="media-heading">{{ $review->user->name }}</h5>

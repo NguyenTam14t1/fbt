@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use File;
 
 class Tour extends Model
 {
@@ -21,10 +22,11 @@ class Tour extends Model
         'picture',
     ];
 
-    protected $append = [
+    protected $appends = [
         'time_start_format',
         'time_finish_format',
-        'price_child'
+        'price_child',
+        'picture_path',
     ];
     public function category()
     {
@@ -69,4 +71,15 @@ class Tour extends Model
         
         return $price_child;
     }    
+
+    public function getPicturePathAttribute()
+    {
+        $pathFile = config('setting.tour_upload_folder') . $this->attributes['picture'];
+        
+        if (!File::exists(public_path($pathFile)) || empty($this->attributes['picture'])) {
+            return config('setting.tour_default_img');
+        }
+
+        return config('setting.tour_upload_folder') . $this->attributes['picture']; 
+    }
 }   

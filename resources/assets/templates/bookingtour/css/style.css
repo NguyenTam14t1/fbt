@@ -9722,7 +9722,7 @@ label.star-service:before {
     text-transform: capitalize;
 }
 
-.content-service {
+.content-service, .content-food {
     padding: 2% 2% !important;
     border: 1px solid #eee;
     background-color: #f5f5f5;
@@ -9782,7 +9782,7 @@ label.star-service:before {
     opacity: 1;
 }
 
-.buttonTransparent:hover, .paginationCenter .pagination li:first-child a:hover, .paginationCenter .pagination li:last-child a:hover, .isotopeFilters ul.filter>li a:hover {
+.pagination .buttonTransparent:hover, .paginationCenter .pagination li:first-child a:hover, .paginationCenter .pagination li:last-child a:hover, .isotopeFilters ul.filter>li a:hover {
     color: #888888;
     background-color: #eae8e8;
     border-color: #dedede;
@@ -9799,4 +9799,92 @@ label.star-service:before {
     border-radius: 8px;
     margin-top: 15px;
     background-color: #f3f3f3;
+}
+
+.sending-access {
+    padding: 2% 3% 2% 8%;
+    font-size: 17px;
+    position: relative;
+    min-height: 90px;
+    margin-bottom: 50px;
+    background-image: url(../img/booking/alert-check.png);
+    background-position: 0 0;
+    background-size: 50px 90px;
+    background-repeat: no-repeat;
+    border-color: #08880b;
+}
+
+.sending-access .close {
+    opacity: 0.6 !important;
+    top: 7px;
+    right: -20px;
+}
+
+
+@media (max-width:992px) {
+    .sending-error .close {
+        right: -13px !important;
+    }
+    .sending-access .close {
+        top: 14px !important;
+    }
+
+}
+
+@media (max-width:768px) {
+    .sending-access, .sending-error {
+        font-size: 14px;
+        padding: 2% 3% !important;
+        background-image: none;
+    }
+
+    .sending-access .close {
+        opacity: 0.6 !important;
+        top: 26px !important;
+        right: -6px !important;
+    }
+
+    .sending-error .close {
+        right: -9px !important;
+        top: -1px !important;
+    }
+
+    .sending-error i {
+        display: none !important;
+    }
+}
+
+.sending-error {
+    padding: 0% 3% 0% 0%;
+    font-size: 17px;
+    border-color: #c83629;
+}
+
+.sending-error i {
+    width: 50px;
+    height: auto;
+    line-height: 75px;
+    text-align: center;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-right: 20px;
+    display: inline-block;
+    background-color: #c72828;
+}
+
+.sending-error .close {
+    top: 24px;
+}
+
+.progress-group {
+    border-bottom: 0;
+}
+
+.btn-group-mail {
+    margin-bottom: 5%;
+}
+
+#payment-btn {
+    margin-top: 40px !important;
 }
