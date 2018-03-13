@@ -30,4 +30,6 @@ return [
     'discover_icon' => '/templates/bookingtour/img/booking/discover.jpg',
     'visa_icon' => '/templates/bookingtour/img/booking/visa.jpg',
     'paypal_icon' => '/templates/bookingtour/img/booking/paypal.jpg',
+    'deadline_booking_minutes' => 5 * 1440,
+    'logo_small' => '/templates/bookingtour/img/favicon.png',
 ];

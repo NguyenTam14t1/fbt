@@ -69,4 +69,9 @@ class RegisterController extends Controller
             'password' => $data['password'],
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        return redirect()->back();
+    }
 }
