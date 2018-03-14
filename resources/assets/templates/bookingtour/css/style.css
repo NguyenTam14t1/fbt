@@ -1268,16 +1268,16 @@ a:focus {
     display: block;
     width: 100%;
     position: absolute;
-    left: 20px;
+    left: 16px;
     bottom: 80px;
 }
 @media(min-width:480px) {
     .rating.homePage {
-    bottom: 0;
+    bottom: 74px;
 }
 }@media(min-width:768px) {
     .rating.homePage {
-    bottom: 130px;
+    bottom: 75px;
 }
 }@media(min-width:992px) {
     .rating.homePage {
@@ -1285,7 +1285,7 @@ a:focus {
 }
 }@media(min-width:1200px) {
     .rating.homePage {
-    bottom: 50px;
+    bottom: 77px;
 }
 }.rating.homePage li {
     padding: 0;
@@ -1512,7 +1512,7 @@ a:focus {
     text-indent: 0;
 }
 .searchTour .sbToggle {
-    background: url(../plugins/selectbox/images/arrow-down-1.png) no-repeat 0 0;
+    background: url(/templates/plugins/selectbox/images/arrow-down-1.png) no-repeat 0 0;
     height: 5px;
     right: 4px;
     top: 22px;
@@ -1565,7 +1565,7 @@ a:focus {
     text-indent: 0;
 }
 .searchFilter .sbToggle {
-    background: url(../plugins/selectbox/images/arrow-down-2.png) no-repeat 0 0;
+    background: url(/templates/plugins/selectbox/images/arrow-down-2.png) no-repeat 0 0;
     height: 5px;
     right: 4px;
     top: 22px;
@@ -1618,7 +1618,7 @@ a:focus {
     text-indent: 12px;
 }
 .bookingDrop .sbToggle {
-    background: url(../plugins/selectbox/images/booking-drop.png) no-repeat 0 0;
+    background: url(/templates/plugins/selectbox/images/booking-drop.png) no-repeat 0 0;
     height: 45px;
     right: 0;
     top: 0;
@@ -1671,7 +1671,7 @@ a:focus {
     text-indent: 20px;
 }
 .primaryDrop .sbToggle {
-    background: url(../plugins/selectbox/images/primary-drop.png) no-repeat 0 0;
+    background: url(/templates/plugins/selectbox/images/primary-drop.png) no-repeat 0 0;
     height: 6px;
     right: 20px;
     top: 21px;
@@ -1724,7 +1724,7 @@ a:focus {
     text-indent: 20px;
 }
 .lightDrop .sbToggle {
-    background: url(../plugins/selectbox/images/light-drop.png) no-repeat 0 0;
+    background: url(/templates/plugins/selectbox/images/light-drop.png) no-repeat 0 0;
     height: 6px;
     right: 20px;
     top: 21px;
@@ -1778,7 +1778,7 @@ a:focus {
     text-indent: 20px;
 }
 .transparentDrop .sbToggle {
-    background: url(../plugins/selectbox/images/light-drop.png) no-repeat 0 0;
+    background: url(/templates/plugins/selectbox/images/light-drop.png) no-repeat 0 0;
     height: 6px;
     right: 20px;
     top: 21px;
@@ -1823,7 +1823,7 @@ a:focus {
     font-family: montserrat, sans-serif;
 }
 .searchHotel .sbHolder .sbToggle {
-    background-image: url(../plugins/selectbox/images/primary-drop.png);
+    background-image: url(/templates/plugins/selectbox/images/primary-drop.png);
     background-repeat: no-repeat;
     top: 19px;
 }
@@ -4333,7 +4333,7 @@ header {
     margin-bottom: -3px!important;
 }
 .promotionWrapper {
-    background-image: url(../img/home/promotion/promotion-1.jpg);
+    background-image: url(../img/home-page-1.jpg);
     background-attachment: fixed;
     width: 100%;
     background-size: cover;
@@ -4914,7 +4914,7 @@ header {
     width: 178px;
 }
 }.selectbox-sidebar .sbHolder .sbToggle {
-    background: url(../plugins/selectbox/images/arrow-down-1.png) no-repeat;
+    background: url(/templates/plugins/selectbox/images/arrow-down-1.png) no-repeat;
     z-index: -5;
 }
 .selectbox-sidebar .sbHolder .sbSelector {
@@ -6168,7 +6168,7 @@ header {
     width: 220px;
 }
 }.searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbToggle {
-    background-image: url(../plugins/selectbox/images/arrow-down-2.png);
+    background-image: url(/templates/plugins/selectbox/images/arrow-down-2.png);
     background-repeat: no-repeat;
 }
 .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbSelector {
@@ -6855,7 +6855,7 @@ header {
 }
 }.sort-by-section .sort-select-box .sbHolder .sbToggle {
     top: 20px;
-    background: url(../plugins/selectbox/images/light-drop.png) no-repeat;
+    background: url(/templates/plugins/selectbox/images/light-drop.png) no-repeat;
 }
 .sort-by-section .sort-select-box .sbHolder .sbSelector {
     line-height: 45px;
@@ -10044,4 +10044,140 @@ label.star-service:before {
 
 .view-booking-btn {
     margin-top: 8%;
+}
+
+@media(max-width:767px) {
+    .navbar-nav>li.active a:after,
+    .navbar-nav>li.active a:hover:after {
+        width: 0
+    }
+}
+
+@media(min-width:768px) {
+    .navbar-nav>li.active a:after,
+    .navbar-nav>li.active a:hover:after {
+        width: 100%
+    }
+}
+
+@media(max-width:767px) {
+    .navbar-nav>li.active a:after {
+        width: 0
+    }
+}
+
+@media(min-width:768px) {
+    .navbar-nav>li.active a:after {
+        width: 30%
+    }
+}
+
+@media(max-width:767px) {
+    .navbar-nav>li.open a:hover:after {
+        width: 0
+    }
+}
+
+@media(min-width:768px) {
+    .navbar-nav>li.open a:hover:after {
+        width: 100%
+    }
+}
+
+.navbar-fixed-top {
+    top: 35px;
+    border-width: 0 0 1px;
+}
+
+.lightHeader {
+    top: 0px !important;
+}
+
+.singlePackage .carousel {
+    margin-bottom: 0px;
+}
+
+.popular-section {
+    padding-top: 70px;
+}
+
+.popular-section .thumbnail, .tour-package .thumbnail {
+    background-color: #fff;
+    border: 2px solid #f1f1f1;
+}
+
+.tour-package {
+    padding-bottom: 47px;
+    padding-top: 47px;
+}
+
+.benifitsContent {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+@media (max-width: 768px) {
+    .amazingHtoleSection {
+        height: 460px;
+        padding-top: 60px;
+    }
+}
+
+.item img {
+    max-width: 100% !important;
+    height: 600px !important;
+}
+
+.tour-show img {
+    height: 200px !important;
+}
+
+.slide-control {
+    opacity: 0.2 !important;
+}
+
+.slide-control:hover {
+    opacity: 1 !important;
+}
+
+.slide-content {
+    bottom: 8%;
+}
+
+.slide-content h1 {
+    color: #fff;
+    font-size: 35px;
+    text-shadow: 3px 2px 4px #000000;
+}
+
+.slide-content p {
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+@media only screen and (max-width: 768px) {
+    .slide-content h1 {
+        font-size: 22px !important;
+    }
+
+    .slide-content p {
+        font-size: 15px !important;
+    }
+}
+.thumbnail.deals .caption p {
+    margin-bottom: 28px;
+}
+
+.detailsInfo span {
+    display: block !important;
+    text-align: left;
+    margin: 7px 0;
+}
+
+.news-show {
+    background-image: url(/templates/bookingtour/img/home-page-4.jpg) !important;
 }

@@ -23,4 +23,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .copy('resources/assets/templates/bookingtour/js/modernizr.custom.js', 'public/templates/bookingtour/js/modernizr.custom.js')
    .styles('resources/assets/templates/admin/css/normalize.css', 'public/templates/admin/css/normalize.css')
    .styles('resources/assets/templates/admin/css/style.css', 'public/templates/admin/css/style.css')
-   .js('resources/assets/templates/admin/js/plugins.js', 'public/templates/admin/js/plugins.js');
+   .js('resources/assets/templates/admin/js/plugins.js', 'public/templates/admin/js/plugins.js')
+   .copyDirectory('resources/assets/templates/plugins', 'public/templates/plugins');

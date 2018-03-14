@@ -37,5 +37,15 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\BookingInterface',
             'App\Repositories\Eloquents\EloquentBookingRepository'
         );
+           
+        $this->app->bind(
+            'App\Repositories\Contracts\CategoryInterface',
+            'App\Repositories\Eloquents\EloquentCategoryRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\NewsInterface',
+            'App\Repositories\Eloquents\EloquentNewsRepository'
+        );
     }
 }
