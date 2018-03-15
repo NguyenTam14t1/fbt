@@ -27,5 +27,15 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\TourInterface',
             'App\Repositories\Eloquents\EloquentTourRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\UserInterface',
+            'App\Repositories\Eloquents\EloquentUserRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\BookingInterface',
+            'App\Repositories\Eloquents\EloquentBookingRepository'
+        );
     }
 }

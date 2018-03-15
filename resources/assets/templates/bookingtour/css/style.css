@@ -9888,3 +9888,160 @@ label.star-service:before {
 #payment-btn {
     margin-top: 40px !important;
 }
+
+.col-xs-15 {
+    width: 100%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-15 {
+        width: 50%;
+        float: left;
+    }
+
+    .col-sm1-15 {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+.block-panel {
+    padding: 30px 20px 20px 20px !important;
+}
+
+.block-header {
+    margin-top: 18px;
+}
+
+.block-content {
+    margin-top: 20px;
+}
+
+.recentActivityContent {
+    background-color: #ecebeb;
+}
+
+.bg-purple-b {
+    background-color: #6a42c1;
+}
+.bg-purple-c {
+    background-color: #774adc;
+}
+
+.packageTd ul li p {
+    text-transform: capitalize !important;
+}
+
+.tour-image-recent {
+    padding: 1.5% 3% !important;
+}
+
+.tour-image-recent img {
+    width: 90px;
+    height: 70px;
+}
+
+.iconTd .br-0 {
+    border-color: #e25a5a !important;
+    color: #e25a5a !important;
+}
+
+.iconTd .br-1 {
+    border-color: #1ab3e8 !important;
+    color: #1ab3e8 !important;
+}
+
+.iconTd .br-2 {
+    border-color: #1cd066 !important;
+    color: #1cd066 !important;
+}
+
+.iconTd .br-3 {
+    border-color: #ff891e !important;
+    color: #ff891e !important;
+}
+
+.iconTd .br-4 {
+    border-color: #774adc !important;
+    color: #774adc !important;
+}
+
+.icon-status-0:after {
+    font-family: FontAwesome;
+    content: "\f00d";
+    font-style: normal;
+}
+
+.icon-status-1:after {
+    font-family: FontAwesome;
+    content: "\f0e0";
+    font-style: normal;
+}
+
+.icon-status-2:after {
+    font-family: FontAwesome;
+    content: "\f00c";
+    font-style: normal;
+}
+
+.icon-status-3:after {
+    font-family: FontAwesome;
+    content: "\f155";
+    font-style: normal;
+}
+
+.icon-status-4:after {
+    font-family: FontAwesome;
+    content: "\f072";
+    font-style: normal;
+}      
+
+.view-btn {
+    background-color: #ff891e !important;
+    border: 2px solid #ff891e !important;
+    color: #fff;
+    text-transform: capitalize;
+    line-height: 30px;
+}
+
+.view-btn:hover {
+    background-color: #fff !important;
+    color: #ff891e;
+}
+
+.view-booking {
+    padding-top: 50px;
+}
+.status-block-0 {
+    background-color: #e25a5a !important;
+    left: 127% !important;
+    color: #fff !important;
+    border-color: #e25a5a !important;
+}
+
+.status-block-0 i, .status-block-4 i {
+    color: #fff !important;
+}
+
+.status-block-4 {
+    background-color: #774adc !important;
+    left: 127% !important;
+    color: #fff !important;
+    border-color: #774adc !important;
+}
+
+.view-booking-btn {
+    margin-top: 8%;
+}

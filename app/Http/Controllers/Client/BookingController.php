@@ -5,21 +5,27 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TourInterface;
+use App\Repositories\Contracts\BookingInterface;
 use Session;
 use App\Http\Requests\InfoBookingRequest;
-use App\Models\Booking;
 use Auth;
-use Mail;
 use Exception;
 use Carbon\Carbon;
+use App\Traits\ProcessOnClient;
 
 class BookingController extends Controller
 {
-    protected $tourRepository;
+    use ProcessOnClient;
 
-    public function __construct(TourInterface $tourRepository)
-    {
+    protected $tourRepository;
+    protected $bookingRepository;
+
+    public function __construct(
+        TourInterface $tourRepository, 
+        BookingInterface $bookingRepository
+    ) {
         $this->tourRepository = $tourRepository;
+        $this->bookingRepository = $bookingRepository;
     }
     /**
      * Display a listing of the resource.
@@ -95,7 +101,7 @@ class BookingController extends Controller
             $data['confirm_code'] = Session::get('confirm');
             $data['tour'] = $tour;
             
-            $this->sendingMail($data, 'daikahemvang@gmail.com');
+            $this->sendingMail($data, Auth::user()->email);
             $message = trans('lang.send_mail_success_1') . str_limit(Auth::user()->email, 6, '******') . trans('lang.send_mail_success_2');
             Session::flash('send_success', $message);
         } catch (Exception $e) {
@@ -111,22 +117,14 @@ class BookingController extends Controller
         $request->session()->put('children', $request->children);
     }
 
-    public function sendingMail(array $data, $mailTo) {
-        $mData = ['data' => $data];
-        
-        Mail::send('bookingtour.mail-form', $mData, function($message) use ($mailTo) {
-            $message->to($mailTo, 'Guest');
-            $message->subject('Booking Tour Request Confirmation');
-            $message->from(config('mail.username'),'Travel Tour');
-        });
-    }
-
     public function confirmRequest($code)
     {
-        $booking = Booking::where('confirm_code', $code);
+        $this->updatebookingByTime($this->bookingRepository);
+        $booking = $this->bookingRepository->getBookingByConfirm($code);
+        
         if ($booking->count()) {
             $booking = $booking->first();
-            
+
             if ($booking->status != config('setting.booking_wait_confirm')) {
                 return redirect()->route('404');
             }
@@ -135,27 +133,27 @@ class BookingController extends Controller
             $data['confirm_code'] = '';
             $time_created = new Carbon($booking->created_at);
             $time_now = Carbon::now();
-            $minute_diff = $time_created->diffInMinutes($time_now);
+            $deadline_confirm = $time_created->addMinutes(config('setting.deadline_confirm_minutes')); 
                 
-            if ($minute_diff > config('setting.deadline_confirm_minutes')) {
+            if ($deadline_confirm->lte($time_now)) {
                 $data['status'] = config('setting.booking_cancel');
-                $booking->update($data);
+                $this->bookingRepository->update($booking->id, $data);
 
                 return redirect()->route('404');
             } else {
                 $data['status'] = config('setting.booking_confirmed');
-                $booking->update($data);
+                $this->bookingRepository->update($booking->id, $data);
 
                 return view('bookingtour.booking-2-2', compact('booking'));
             }
         }
         
-        return redirect()->route('404');
+        return redirect()->route('client.user.index');
     }
 
     public function payment(Request $request)
     {
-        $booking = Booking::find($request->booking);
+        $booking = $this->bookingRepository->getById($request->booking);
         
         return view('bookingtour.booking-3', compact('booking'));
     }
