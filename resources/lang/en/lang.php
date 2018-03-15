@@ -42,7 +42,7 @@
         'send_mail_reset' => 'Send Password Reset Link',
         'gallery' => 'Gallery',
         'my_profile' => 'My profile',
-        'logout' => 'Logout',
+        'logout' => ' Logout',
         'places' => 'Places',
         'foods' => 'Foods',
         'services' => 'Services',
@@ -145,4 +145,5 @@
         'cancel_success' => 'Success: You have been cancled this tour!',
         'cancel_error' => 'Error: Cancel failed!',
         'welcome' => 'Welcome to',
+        'travel_admin' => 'Star Travel Admin',
     ];

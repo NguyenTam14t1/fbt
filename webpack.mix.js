@@ -20,4 +20,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .styles('resources/assets/templates/bookingtour/css/activity-date.css', 'public/templates/bookingtour/css/activity-date.css')
    .styles('resources/assets/templates/bookingtour/css/mail-form.css', 'public/templates/bookingtour/css/mail-form.css')
    .copyDirectory('resources/assets/templates/bookingtour/images', 'public/templates/bookingtour/img')
-   .copy('resources/assets/templates/bookingtour/js/modernizr.custom.js', 'public/templates/bookingtour/js/modernizr.custom.js');
+   .copy('resources/assets/templates/bookingtour/js/modernizr.custom.js', 'public/templates/bookingtour/js/modernizr.custom.js')
+   .styles('resources/assets/templates/admin/css/normalize.css', 'public/templates/admin/css/normalize.css')
+   .styles('resources/assets/templates/admin/css/style.css', 'public/templates/admin/css/style.css')
+   .js('resources/assets/templates/admin/js/plugins.js', 'public/templates/admin/js/plugins.js');

@@ -41,7 +41,7 @@ abstract class EloquentRepository implements RepositoryInterface
     public function update($id, array $data)
     {
         try {
-            $record = $this->model->findOrFail($data);
+            $record = $this->model->findOrFail($id);
             $record->update($data);
 
             return true;    

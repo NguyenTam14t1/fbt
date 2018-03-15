@@ -29,21 +29,31 @@ Route::post('/review/paginate', [
     'as' => 'reviewPaginate',
 ]);
 
-Route::post('/selectParticipant', [
-    'uses' => 'Client\BookingController@selectParticipant',
-    'as' => 'selectParticipant',
-]);
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/selectParticipant', [
+        'uses' => 'Client\BookingController@selectParticipant',
+        'as' => 'selectParticipant',
+    ]);
+    
+    Route::resource('tour.booking', 'Client\BookingController', [
+        'as' => 'client',
+    ]);
 
-Route::resource('tour.booking', 'Client\BookingController', [
-    'as' => 'client',
-]);
+    Route::post('/payment', [
+        'uses' => 'Client\BookingController@payment',
+        'as' => 'payment',
+    ]);
+
+    Route::resource('/user', 'Client\UserController', [
+        'as' => 'client',
+    ]);
+
+    Route::resource('user.manager', 'Client\ManagerController', [
+        'as' => 'client',
+    ]);
+});
 
 Route::get('/booking/confirm/{code}', [
     'uses' => 'Client\BookingController@confirmRequest',
     'as' => 'confirm',
-]);
-
-Route::post('/payment', [
-    'uses' => 'Client\BookingController@payment',
-    'as' => 'payment',
 ]);

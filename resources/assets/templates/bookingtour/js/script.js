@@ -326,4 +326,25 @@ $(document).ready(function () {
         $('#payment-continue-form').submit();
         return false;
     });
+
+    // check authenticate
+    if ($('#login-request').length) {
+        $('.user-login').click();
+    }
+
+    // view manager booking
+    $('#update-booking-btn').click(function () {
+        $('#update-booking-form').submit();
+        return false;
+    });
+
+    $('#send-mail-again-btn').click(function () {
+        $('#send-mail-again-form').submit();
+        return false;
+    });
+    
+    $('#cancel-btn').click(function () {
+        $('#cancel-form').submit();
+        return false;
+    });
 });

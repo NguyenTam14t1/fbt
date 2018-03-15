@@ -22,6 +22,9 @@
         {{ Html::script('js/app.js') }}
     </head>
     <body class="body-wrapper  changeHeader ">
+        @if (Session::has('login_request'))
+            {{ Form::hidden('login', 'login', ['id' => 'login-request']) }}
+        @endif
         <div class="main-wrapper">
             <!-- HEADER -->
             <header>
@@ -130,3 +133,4 @@
                     </div>
                 </nav>
             </header>
+        }
