@@ -32,4 +32,10 @@ return [
     'paypal_icon' => '/templates/bookingtour/img/booking/paypal.jpg',
     'deadline_booking_minutes' => 5 * 1440,
     'logo_small' => '/templates/bookingtour/img/favicon.png',
+    'new_tour_show' => 5,
+    'popular_tour_show' => 6,
+    'category_tour_show' => 6,
+    'news_random_show' => 3,
+    'news_upload_folder' => '/uploads/news/',
+    'news_default_img' => '/templates/bookingtour/img/news_default_img.jpg',
 ];

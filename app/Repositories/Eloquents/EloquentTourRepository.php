@@ -71,4 +71,19 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
 
         return Booking::create($data);
     }
+
+    public function getNewTours($limit = 0)
+    {
+        return $this->model->orderBy('created_at', 'desc')->limit($limit)->get();
+    }
+
+    public function getPopularTours($limit = 0)
+    {
+        return $this->model->withCount('bookings')->orderBy('bookings_count', 'desc')->limit($limit)->get();
+    }
+
+    public function getToursOfCategory(array $categoriesId, $limit = 0)
+    {
+        return $this->model->whereIn('category_id', $categoriesId)->inRandomOrder()->limit($limit)->get();
+    }
 }
