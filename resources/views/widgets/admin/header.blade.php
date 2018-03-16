@@ -13,6 +13,8 @@
         {{ Html::style('templates/admin/css/normalize.css') }}
         {{ Html::style('css/app.css') }}
         {{ Html::script('js/app.js') }}
+        {{ Html::style('templates/plugins/datepicker/datepicker.css') }}
+        {{ Html::style(asset('/templates/plugins/animate/animate.min.css')) }}
         {{ Html::style('templates/admin/css/style.css') }}
     </head>
     <body>
@@ -26,23 +28,23 @@
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            {!! html_entity_decode(Html::link('', '<i class="menu-icon fa fa-dashboard"></i>' . trans('lang.dashboard'))) !!}
+                            {!! html_entity_decode(Html::link('#', '<i class="menu-icon fa fa-dashboard"></i>' . trans('lang.dashboard'))) !!}
                         </li>
                         <h3 class="menu-title">@lang('lang.manager')</h3>
                         <li class="menu-item-has-children dropdown">
-                            {!! html_entity_decode(Html::link('', '<i class="menu-icon fa fa-user"></i>' . trans('lang.users'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'])) !!}
+                            {!! html_entity_decode(Html::link('#', '<i class="menu-icon fa fa-user"></i>' . trans('lang.users'))) !!}
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            {!! html_entity_decode(Html::link('', '<i class="menu-icon fa fa-tasks"></i>' . trans('lang.categories'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'])) !!}
+                            {!! html_entity_decode(Html::link('#', '<i class="menu-icon fa fa-tasks"></i>' . trans('lang.categories'))) !!}
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            {!! html_entity_decode(Html::link('', '<i class="menu-icon fa fa-plane"></i>' . trans('lang.tours'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'])) !!}
+                            {!! html_entity_decode(Html::link(route('admin.tour.index'), '<i class="menu-icon fa fa-plane"></i>' . trans('lang.tours'))) !!}
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            {!! html_entity_decode(Html::link('', '<i class="menu-icon fa fa-comment-o"></i>' . trans('lang.bookings'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'])) !!}
+                            {!! html_entity_decode(Html::link(route('admin.booking.index'), '<i class="menu-icon fa fa-comment-o"></i>' . trans('lang.bookings'))) !!}
                         </li>
                         <li class="menu-item-has-children dropdown">
-                            {!! html_entity_decode(Html::link('', '<i class="menu-icon fa fa-usd"></i>' . trans('lang.revenues'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'])) !!}
+                            {!! html_entity_decode(Html::link('#', '<i class="menu-icon fa fa-usd"></i>' . trans('lang.revenues'))) !!}
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->

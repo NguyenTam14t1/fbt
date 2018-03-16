@@ -27,6 +27,7 @@ class Booking extends Model
 
     protected $appends = [
         'updated_time',
+        'status_text',
     ];
 
     public function timesPayments()
@@ -46,5 +47,28 @@ class Booking extends Model
 
     public function getUpdatedTimeAttribute() {
         return Carbon::parse($this->attributes['updated_at'])->format('l\, F j, Y');
+    }
+
+    public function getStatusTextAttribute() {
+        switch ($this->attributes['status']) {
+            case config('setting.booking_cancel'):
+                return trans('lang.canceled');        
+                break;
+            case config('setting.booking_wait_confirm'):
+                return trans('lang.waiting');
+                break;
+            case config('setting.booking_confirmed'):
+                return trans('lang.confirmed');
+                break;
+            case config('setting.booking_paymented'):
+                return trans('lang.paymented');
+                break;
+            case config('setting.booking_finished'):
+                return trans('lang.finished');
+                break;
+            default:
+                return false;
+                break;
+        }
     }
 }
