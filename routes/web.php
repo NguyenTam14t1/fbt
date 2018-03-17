@@ -51,9 +51,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('user.manager', 'Client\ManagerController', [
         'as' => 'client',
     ]);
+
 });
 
 Route::get('/booking/confirm/{code}', [
     'uses' => 'Client\BookingController@confirmRequest',
     'as' => 'confirm',
+]);
+
+
+Route::post('/booking/paginate', [
+    'uses' => 'Client\ManagerController@bookingShow',
+    'as' => 'bookingPaginate',
 ]);

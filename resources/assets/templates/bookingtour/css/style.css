@@ -8226,6 +8226,7 @@ header {
 }
 .dashboardMenu {
     background: #262a2e;
+    margin-top: 99px;
 }
 .dashboardMenu .navbar {
     margin: 0;
@@ -8703,7 +8704,7 @@ header {
     border: 1px solid;
     border-radius: 50%;
     text-align: center;
-    margin: 0 7px;
+    margin: 0 20px 0 0;
 }
 .recentActivitySection .listingsTable .rowItem .iconTd .icon.br-orange {
     border-color: #ff891e;
@@ -9536,6 +9537,7 @@ label.star-service:before {
 /*page-title*/
 .page-title-1 {
     background-image:url(/templates/bookingtour/img/page-title/page-title-bg1.jpg);
+    margin-top: 99px;
 }
 
 /*program day detail*/
@@ -10180,4 +10182,17 @@ label.star-service:before {
 
 .news-show {
     background-image: url(/templates/bookingtour/img/home-page-4.jpg) !important;
+}
+
+.paginationBooking {
+    padding-top: 32px !important;
+}
+
+/*change header*/
+.lightHeader1 {
+    top: 42px !important;
+}
+
+.lightHeader2 {
+    top: 0px !important;
 }

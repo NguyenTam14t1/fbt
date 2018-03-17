@@ -38,4 +38,5 @@ return [
     'news_random_show' => 3,
     'news_upload_folder' => '/uploads/news/',
     'news_default_img' => '/templates/bookingtour/img/news_default_img.jpg',
+    'booking_all' => 5,
 ];

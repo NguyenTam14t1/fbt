@@ -29,7 +29,7 @@
                             </div>
                             <p class="block-content">@lang('lang.tour_cancel')</p>
                         </div>
-                        <a href="" class="btn btn-content bg-red-b">@lang('lang.view_detail')<i class="fa fa-long-arrow-right"></i></a>
+                        <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_cancel')]) }}" class="btn btn-content bg-red-b">@lang('lang.view_detail')<i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-15 col-sm-15 col-xs-15">
@@ -45,7 +45,7 @@
                             </div>
                             <p class="block-content">@lang('lang.tour_wait_confirm')</p>
                         </div>
-                        <a href="" class="btn btn-content bg-blue-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
+                        <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_wait_confirm')]) }}" class="btn btn-content bg-blue-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-15 col-sm-15 col-xs-15">
@@ -61,7 +61,7 @@
                             </div>
                             <p class="block-content">@lang('lang.tour_confirmed')</p>
                         </div>
-                        <a href="" class="btn btn-content bg-green-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
+                        <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_confirmed')]) }}" class="btn btn-content bg-green-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-15 col-sm-15 col-xs-15">
@@ -77,7 +77,7 @@
                             </div>
                             <p class="block-content">@lang('lang.tour_paymented')</p>
                         </div>
-                        <a href="" class="btn btn-content bg-orange-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
+                        <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_paymented')]) }}" class="btn btn-content bg-orange-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-md-15 col-sm1-15 col-xs-15">
@@ -93,7 +93,7 @@
                             </div>
                             <p class="block-content">@lang('lang.tour_finished')</p>
                         </div>
-                        <a href="" class="btn btn-content bg-purple-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
+                        <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_finished')]) }}" class="btn btn-content bg-purple-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

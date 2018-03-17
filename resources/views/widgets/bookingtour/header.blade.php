@@ -24,7 +24,7 @@
         {{ Html::favicon('templates/bookingtour/img/favicon.png') }}
 
     </head>
-    <body class="body-wrapper  changeHeader ">
+    <body class="body-wrapper @yield('change-header')">
         @if (Session::has('login_request'))
             {{ Form::hidden('login', 'login', ['id' => 'login-request']) }}
         @endif
@@ -53,7 +53,7 @@
                                     {!! html_entity_decode(Html::link('#', '<span><img src="" class="avatar"></span><strong>' . str_limit(Auth::user()->name, 7) . '</strong><span class="caret"></span>', ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'aria-haspopup' => 'true'])) !!}
                                     <ul class="dropdown-menu account-menu">
                                         <li>
-                                            {{ Html::link('', trans('lang.my_profile')) }}
+                                            {{ Html::link(route('client.user.index'), trans('lang.dashboard')) }}
                                         </li>
                                         <li>
                                             {{ Html::link(route('home'), trans('lang.logout'), ['onclick' => 'event.preventDefault(); document.getElementById("logout-form").submit();']) }}
@@ -72,7 +72,7 @@
                 </div><!-- /.container -->
             </section>
             <header>
-                <nav class="navbar navbar-default navbar-main navbar-fixed-top" role="navigation">
+                <nav class="navbar navbar-default navbar-main navbar-fixed-top @yield('header-type')" role="navigation">
                     
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -137,4 +137,3 @@
                     </div>
                 </nav>
             </header>
-        }

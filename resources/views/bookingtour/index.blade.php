@@ -1,5 +1,7 @@
 @extends ('widgets.bookingtour.master')
 
+@section ('change-header', 'changeHeader')
+
 @section ('content')
     @include('widgets.bookingtour.slider')
     <section class="mainContentSection packagesSection popular-section">

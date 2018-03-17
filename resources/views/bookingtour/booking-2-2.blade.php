@@ -1,5 +1,8 @@
 @extends('widgets.bookingtour.master')
 
+@section('change-header', 'changeHeader1')
+@section('header-type', 'lightHeader lightHeader1')
+
 @section('content')
     <!-- PAGE TITLE -->
     <section class="pageTitle page-title-1">
@@ -59,7 +62,7 @@
                         <div class="buttonArea btn-group-mail">
                             <ul class="list-inline">
                                 <li>
-                                    {{ Html::link('#', trans('lang.my_booking'), ['class' => 'btn buttonTransparent']) }}
+                                    {{ Html::link(route('client.user.index'), trans('lang.my_booking'), ['class' => 'btn buttonTransparent']) }}
                                 </li>
                                 <li>
                                     {{ Html::link(route('client.tour.show', $booking->tour->id), trans('lang.payment_later'), ['class' => 'btn buttonTransparent']) }}

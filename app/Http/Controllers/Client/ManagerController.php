@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\BookingInterface;
+use App\Repositories\Contracts\UserInterface;
 use App\Models\Booking;
 use Exception;
 use Carbon\Carbon;
@@ -18,10 +19,14 @@ class ManagerController extends Controller
     use ProcessOnClient;
 
     protected $bookingRepository;
+    protected $userRepository;
 
-    public function __construct(BookingInterface $bookingRepository)
-    {
+    public function __construct(
+        BookingInterface $bookingRepository,
+        UserInterface $userRepository
+    ) {
         $this->bookingRepository = $bookingRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -110,9 +115,44 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($userId, $status)
     {
-        //
+        try {
+            if (Auth::user()->id != $userId) {
+                throw new Exception('404');
+            }
+
+            $this->updateBookingByTime($this->bookingRepository);
+            $data['user'] = $this->userRepository->getById($userId);
+            $data['bookings'] = $this->userRepository->getBookingsPaginate($data['user'], $status, config('setting.paginate_default_val'));
+            $data['status'] = $status;
+            
+            switch ($status) {
+                case config('setting.booking_cancel'):
+                    $data['title'] = trans('lang.tour_cancel');
+                    break;
+                case config('setting.booking_wait_confirm'):
+                    $data['title'] = trans('lang.tour_wait_confirm');
+                    break;
+                case config('setting.booking_confirmed'):
+                    $data['title'] = trans('lang.tour_confirmed');
+                    break;
+                case config('setting.booking_paymented'):
+                    $data['title'] = trans('lang.tour_paymented');
+                    break;
+                case config('setting.booking_finished'):
+                    $data['title'] = trans('lang.tour_finished');
+                    break;
+                default:
+                    $data['title'] = trans('lang.all_tour');
+                    break;
+            }
+
+            return view('bookingtour.list-booking', compact('data'));
+        } catch (Exception $e) {
+            return redirect()->route('404');
+        }
+        
     }
 
     /**
@@ -129,6 +169,7 @@ class ManagerController extends Controller
             }
 
             $this->updateBookingByTime($this->bookingRepository);
+            $data['user'] = $this->userRepository->getById($userId);
             $booking = $this->bookingRepository->getById($id);
 
             if ($booking->user->id != $userId) {
@@ -259,5 +300,14 @@ class ManagerController extends Controller
 
             return redirect()->route('404');
         }
+    }
+
+    public function bookingShow(Request $request)
+    {
+        $this->updateBookingByTime($this->bookingRepository);
+        $data['user'] = $this->userRepository->getById($request->user_id);
+        $data['bookings'] = $this->userRepository->getBookingsPaginate($data['user'], $request->status, config('setting.paginate_default_val'));
+
+        return view('bookingtour.ajax.bookings-show', compact('data'));
     }
 }

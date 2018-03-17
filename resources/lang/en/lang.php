@@ -168,4 +168,5 @@
         'tip_10' => 'There’s Always A Way',
         'tip_11' => 'Smile & Say Hello',
         'tip_12' => 'Keep An Open Mind',
+        'all_tour' => 'All Tour',
     ];
