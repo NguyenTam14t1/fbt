@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TourInterface;
+use App\Traits\ProcessOnClient;
 use Auth;
 
 
 class ToursController extends Controller
 {
+    use ProcessOnClient;
+
     protected $tourRepository;
     protected $reviewRepository;
 
@@ -60,6 +63,7 @@ class ToursController extends Controller
         $data['tour'] = $this->tourRepository->getById($id);
         $data = $this->tourRepository->getRate($id, $data);
         $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
+        $data['categories'] = $this->getParentCategories($data['tour']);
         
         return view('bookingtour.tour-detail', compact(['data']));
     }

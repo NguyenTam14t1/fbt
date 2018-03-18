@@ -13,7 +13,23 @@
                         <div class="titleTableInner">
                             <div class="pageTitleInfo">
                                 <h1>{{ $data['tour']->name }}</h1>
+                                <div class="under-border"></div>
                             </div>
+                            <ol class="page-title-content">
+                                <li>
+                                   {{ Html::link(route('home'), trans('lang.home')) }}
+                                </li>
+                                @foreach ($data['categories'] as $category)
+                                    <i class="fa fa-caret-right"></i>
+                                    <li>
+                                        {{ Html::link(route('client.category.show', $category->id), $category->name) }}
+                                    </li>
+                                @endforeach
+                                <i class="fa fa-caret-right"></i>
+                                <li>
+                                    {{ $data['tour']->name }}
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>

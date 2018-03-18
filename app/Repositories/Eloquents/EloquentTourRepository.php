@@ -86,4 +86,38 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
     {
         return $this->model->whereIn('category_id', $categoriesId)->inRandomOrder()->limit($limit)->get();
     }
+
+    public function searchTour($category, $checkIn, $checkOut, $price, $limit = 0)
+    {
+        $query = $this->model;
+        
+        if ($category) {
+            $query = $query->where('category_id', $category);
+        }
+
+        if ($checkIn) {
+            $query = $query->where('time_start', '>=', $checkIn);
+        }
+
+        if ($checkOut) {
+            $query = $query->where('time_finish', '<=', $checkOut);
+        }
+
+        switch ($price) {
+            case config('setting.price_search_1_val'):
+                $query = $query->where('price', '<', 500);
+                break;
+            case config('setting.price_search_2_val'):
+                $query = $query->whereBetween('price', [500, 1000]);  
+                break;
+            case config('setting.price_search_3_val'):
+                $query = $query->whereBetween('price', [1000, 2000]);  
+                break;
+            case config('setting.price_search_4_val'):
+                $query = $query->where('price', '>', 2000);  
+                break;
+        }
+
+        return $query->paginate($limit);
+    }
 }
