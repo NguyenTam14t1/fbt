@@ -347,4 +347,38 @@ $(document).ready(function () {
         $('#cancel-form').submit();
         return false;
     });
+
+    // booking-list paginate
+    $('#booking-show .pagination li a').click(function () {
+        var page = $(this).attr('href').split('page=')[1];
+        var user_id = $('#booking-show').attr('value');
+        var status = $('.bookingList').attr('status');
+        $.ajax({
+            method: 'POST',
+            url: route('bookingPaginate'),
+            data: {
+                user_id: user_id,
+                page: page,
+                status: status,
+            },
+            success: function (data) {
+                $('#booking-show').html(data);
+            },
+        });
+        return false;
+    });
+
+    var status = $('.bookingList').attr('status');
+    $('.bookingList li a').removeClass('active');
+    $('.bookingList li a').each(function () {
+        if ($(this).attr('status') == status) {
+            $(this).addClass('active');
+        }
+    });
+
+    // change header
+    var e = $(".changeHeader1 .navbar-fixed-top");
+    $(window).scroll(function(){
+        $(window).scrollTop() >= 1 && $(".navbar-default").hasClass("navbar-main") ? e.addClass("lightHeader2") : $(".navbar-default").hasClass("static-light") ? e.addClass("lightHeader") : e.removeClass("lightHeader2")
+    })
 });

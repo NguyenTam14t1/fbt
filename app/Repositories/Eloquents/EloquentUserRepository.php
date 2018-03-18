@@ -23,4 +23,13 @@ class EloquentUserRepository extends EloquentRepository implements UserInterface
     {
         return $user->bookings()->orderBy('updated_at', 'desc')->limit($limit);
     }
+
+    public function getBookingsPaginate(User $user, $status, $limit = 0)
+    {
+        if ($status > config('setting.booking_finished')) {
+            return $user->bookings()->paginate($limit);
+        }
+
+        return $user->bookings()->where('status', $status)->orderBy('updated_at', 'desc')->paginate($limit);
+    }
 }
