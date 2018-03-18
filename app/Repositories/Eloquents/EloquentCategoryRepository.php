@@ -22,4 +22,9 @@ class EloquentCategoryRepository extends EloquentRepository implements CategoryI
     {
         return $parentCategory->subCategories()->pluck('id');
     }
+
+    public function getCategoriesId()
+    {
+        return $this->getAll()->pluck('id');
+    }
 }

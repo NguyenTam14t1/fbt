@@ -9,4 +9,6 @@ interface CategoryInterface
     public function getParentCategories();
 
     public function getSubCategoriesId(Category $parentCategory);
+
+    public function getCategoriesId();
 }

@@ -59,8 +59,27 @@ Route::get('/booking/confirm/{code}', [
     'as' => 'confirm',
 ]);
 
-
 Route::post('/booking/paginate', [
     'uses' => 'Client\ManagerController@bookingShow',
     'as' => 'bookingPaginate',
 ]);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::resource('/tour', 'Admin\TourController', [
+        'as' => 'admin',
+    ]);
+
+    Route::post('/tour/import', [
+        'uses' => 'Admin\TourController@importTour',
+        'as' => 'import',
+    ]);
+
+    Route::resource('/booking', 'Admin\BookingController', [
+        'as' => 'admin',
+    ]);
+
+    Route::post('/booking/export', [
+        'uses' => 'Admin\BookingController@exportBooking',
+        'as' => 'export',
+    ]);
+});

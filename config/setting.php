@@ -39,4 +39,6 @@ return [
     'news_upload_folder' => '/uploads/news/',
     'news_default_img' => '/templates/bookingtour/img/news_default_img.jpg',
     'booking_all' => 5,
+    'paginate_default_val' => 10,
+    'import_success_default_val' => 0,
 ];
