@@ -27,7 +27,9 @@ class Tour extends Model
         'time_finish_format',
         'price_child',
         'picture_path',
+        'rate',
     ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -81,5 +83,21 @@ class Tour extends Model
         }
 
         return config('setting.tour_upload_folder') . $this->attributes['picture']; 
+    }
+
+    public function getRateAttribute()
+    {
+        $tour = $this->find($this->attributes['id']);
+        $rate = 0;
+
+        foreach ($tour->reviews as $review) {
+            $rate += $review->total_rate;
+        }
+
+        if ($rate) {
+            $rate /= count($tour->reviews);
+        }
+
+        return $rate;
     }
 }   

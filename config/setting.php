@@ -41,4 +41,9 @@ return [
     'booking_all' => 5,
     'paginate_default_val' => 10,
     'import_success_default_val' => 0,
+    'price_search_1_val' => 1,
+    'price_search_2_val' => 2,
+    'price_search_3_val' => 3,
+    'price_search_4_val' => 4,
+    'category_show_paginate' => 5,
 ];

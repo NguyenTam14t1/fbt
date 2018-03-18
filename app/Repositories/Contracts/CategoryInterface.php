@@ -11,4 +11,6 @@ interface CategoryInterface
     public function getSubCategoriesId(Category $parentCategory);
 
     public function getCategoriesId();
+    
+    public function getToursOfCategory($categoryId, $limit = 0);
 }

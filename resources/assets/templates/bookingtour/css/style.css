@@ -4443,7 +4443,8 @@ header {
 }@media(min-width:992px) {
     .packagesList .media-left {
     float: left;
-    width: auto;
+    width: 370px;
+    height: 270px;
     padding-right: 10px;
 }
 }.packagesList .media-left img {
@@ -9540,6 +9541,14 @@ label.star-service:before {
     margin-top: 99px;
 }
 
+.page-title-2 {
+    background-image:url(/templates/bookingtour/img/page-title/page-title-bg2.jpg);
+}
+
+.page-title-3 {
+    background-image:url(/templates/bookingtour/img/page-title/page-title-bg3.jpg);
+}
+
 /*program day detail*/
 .design-process-section .text-align-center {
     line-height: 25px;
@@ -10195,4 +10204,32 @@ label.star-service:before {
 
 .lightHeader2 {
     top: 0px !important;
+}
+
+.tour-list-header {
+    margin-top: 20px;
+}
+
+.no_result {
+    text-transform: capitalize;
+    text-align: center;
+    margin: 7%;
+}
+
+.page-title-content {
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.page-title-content li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.page-title-content a {
+    color: #fff;
+}
+
+.page-title-content a:hover {
+    color: #fff;
 }

@@ -5,6 +5,7 @@ namespace App\Traits;
 use Carbon\Carbon;
 use App\Repositories\Contracts\BookingInterface;
 use Mail;
+use App\Models\Tour;
 
 trait ProcessOnClient 
 {
@@ -38,5 +39,18 @@ trait ProcessOnClient
             $message->subject('Booking Tour Request Confirmation');
             $message->from(config('mail.username'),'Travel Tour');
         });
+    }
+
+    public function getParentCategories(Tour $tour)
+    {
+        $category = $tour->category;
+        $parentCategories = [$category];
+
+        while ($category->parent_id != config('setting.parent_id')) {
+            $category = $category->parentCategory;
+            array_unshift($parentCategories, $category);
+        }
+
+        return $parentCategories;
     }
 }

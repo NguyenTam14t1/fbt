@@ -44,4 +44,36 @@ class HomeController extends Controller
 
         return view('bookingtour.index', compact('data', 'allTour'));
     }
+
+    public function search(Request $request)
+    {
+        $data = $request->only([
+            'category',
+            'check_in',
+            'check_out',
+            'price'
+        ]);
+
+        if ($data['check_in']) {
+            $data['check_in'] = str_replace('/', '-', $data['check_in']);
+            $data['check_in'] = date('Y-m-d', strtotime($data['check_in']));
+        }
+
+        if ($data['check_out']) {
+            $data['check_out'] = str_replace('/', '-', $data['check_out']);
+            $data['check_out'] = date('Y-m-d', strtotime($data['check_out']));
+        }
+
+        $data['tours'] = $this->tourRepository->searchTour(
+            $data['category'], 
+            $data['check_in'], 
+            $data['check_out'], 
+            $data['price'],
+            config('setting.category_show_paginate')
+        );
+        $data['categories'] = $this->categoryRepository->getParentCategories()->get();
+        $data['title'] =  trans('lang.search');
+
+        return view('bookingtour.tour-list', compact('data'));
+    }
 }

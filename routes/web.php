@@ -51,7 +51,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('user.manager', 'Client\ManagerController', [
         'as' => 'client',
     ]);
-
 });
 
 Route::get('/booking/confirm/{code}', [
@@ -83,3 +82,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'as' => 'export',
     ]);
 });
+
+Route::resource('/category', 'Client\CategoryController', [
+    'as' => 'client',
+]);
+
+Route::get('/search', [
+    'uses' => 'HomeController@search',
+    'as' => 'search',
+]);

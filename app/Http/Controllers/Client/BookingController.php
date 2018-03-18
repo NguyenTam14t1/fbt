@@ -42,6 +42,7 @@ class BookingController extends Controller
         $data['adults'] = Session::get('adults');
         $data['children'] = Session::get('children');
         $data['price'] = ($data['adults'] + ($data['children']) / 2) * $data['tour']->price;
+        $data['categories'] = $this->getParentCategories($data['tour']);
         Session::put('create_first', 'OK');
 
         return view('bookingtour.booking-1', compact('data'));
@@ -100,6 +101,7 @@ class BookingController extends Controller
             }
             $data['confirm_code'] = Session::get('confirm');
             $data['tour'] = $tour;
+            $data['categories'] = $this->getParentCategories($data['tour']);
             
             $this->sendingMail($data, Auth::user()->email);
             $message = trans('lang.send_mail_success_1') . str_limit(Auth::user()->email, 6, '******') . trans('lang.send_mail_success_2');
@@ -129,6 +131,7 @@ class BookingController extends Controller
                 return redirect()->route('404');
             }
 
+            $categories = $this->getParentCategories($booking->tour);
             Session::forget('confirm');
             $data['confirm_code'] = '';
             $time_created = new Carbon($booking->created_at);
@@ -144,7 +147,7 @@ class BookingController extends Controller
                 $data['status'] = config('setting.booking_confirmed');
                 $this->bookingRepository->update($booking->id, $data);
 
-                return view('bookingtour.booking-2-2', compact('booking'));
+                return view('bookingtour.booking-2-2', compact('booking', 'categories'));
             }
         }
         
@@ -154,7 +157,8 @@ class BookingController extends Controller
     public function payment(Request $request)
     {
         $booking = $this->bookingRepository->getById($request->booking);
+        $categories = $this->getParentCategories($booking->tour);
         
-        return view('bookingtour.booking-3', compact('booking'));
+        return view('bookingtour.booking-3', compact('booking', 'categories'));
     }
 }

@@ -381,4 +381,17 @@ $(document).ready(function () {
     $(window).scroll(function(){
         $(window).scrollTop() >= 1 && $(".navbar-default").hasClass("navbar-main") ? e.addClass("lightHeader2") : $(".navbar-default").hasClass("static-light") ? e.addClass("lightHeader") : e.removeClass("lightHeader2")
     })
+
+    // home show rate
+    $('.rate-home').each(function () {
+        var val = Math.round($(this).parent().attr('value'));
+        $(this).children().children().each(function () {
+            if (val > 0) {
+                $(this).addClass('fa-star')
+            } else {
+                $(this).addClass('fa-star-o')
+            }
+            val--;
+        })
+    });
 });

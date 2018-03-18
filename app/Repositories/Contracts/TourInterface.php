@@ -22,4 +22,6 @@ interface TourInterface
     public function getPopularTours($limit = 0);
 
     public function getToursOfCategory(array $categoriesId, $limit = 0);
+
+    public function searchTour($category, $checkIn, $checkOut, $price, $limit = 0);
 }

@@ -209,4 +209,6 @@
         'confirmed' => 'Confirmed',
         'paymented' => 'Paymented',
         'finished' => 'Finished',
+        'no_result_search' => 'Nothing any tour',
+        'per_person' => 'Per Person',
     ];
