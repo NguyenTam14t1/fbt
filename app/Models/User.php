@@ -23,6 +23,8 @@ class User extends Authenticatable
         'description',
         'avatar',
         'is_admin',
+        'provider',
+        'provider_id',
     ];
 
     /**

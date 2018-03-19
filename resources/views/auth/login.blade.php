@@ -40,7 +40,7 @@
                     @endif
                 {{ Form::close() }}
                 <div class="or">@lang('lang.or')</div>
-                {{ Html::link('', trans('lang.login_facebook'), ['class' => 'btn btn-default btnSocial']) }}
+                {{ Html::link(route('authenticate', 'google'), trans('lang.login_google'), ['class' => 'btn btn-default btnSocial']) }}
             </div>
 
             <div class="modal-footer">

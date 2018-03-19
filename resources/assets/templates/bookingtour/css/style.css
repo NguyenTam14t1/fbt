@@ -7253,7 +7253,7 @@ header {
     width: 100%;
     height: 840px;
     overflow: hidden;
-    background: url(../img/not-found/not-found-bg.jpg) no-repeat center top fixed;
+    background: url(/templates/bookingtour/img/not-found-bg.jpg) no-repeat center top fixed;
     background-size: cover;
 }
 .notFoundContent {
@@ -9242,7 +9242,7 @@ header {
     margin-top: 3px;
 }
 .signupLoging .modal-body .btn-default.btnSocial {
-    background-color: #6684c4;
+    background-color: #c71a11;
 }
 .signupLoging .modal-body .btn-default.btnSocial:hover {
     opacity: 1;
@@ -10232,4 +10232,26 @@ label.star-service:before {
 
 .page-title-content a:hover {
     color: #fff;
+}
+
+/*preloader*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 99999;
+}
+ #status {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-image: url(/templates/bookingtour/img/preloader.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -100px 0 0 -100px;
 }

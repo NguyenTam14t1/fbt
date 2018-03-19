@@ -25,6 +25,10 @@
 
     </head>
     <body class="body-wrapper @yield('change-header')">
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
         @if (Session::has('login_request'))
             {{ Form::hidden('login', 'login', ['id' => 'login-request']) }}
         @endif
@@ -50,7 +54,7 @@
                             </li>
                             @auth
                                 <li class="active dropdown account-dropdown">
-                                    {!! html_entity_decode(Html::link('#', '<span><img src="" class="avatar"></span><strong>' . str_limit(Auth::user()->name, 7) . '</strong><span class="caret"></span>', ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'aria-haspopup' => 'true'])) !!}
+                                    {!! html_entity_decode(Html::link('#', '<span><img src="' . Auth()->user()->avatar_path . '" class="avatar"></span><strong>' . str_limit(Auth::user()->name, 7) . '</strong><span class="caret"></span>', ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'aria-haspopup' => 'true'])) !!}
                                     <ul class="dropdown-menu account-menu">
                                         <li>
                                             {{ Html::link(route('client.user.index'), trans('lang.dashboard')) }}
@@ -73,7 +77,6 @@
             </section>
             <header>
                 <nav class="navbar navbar-default navbar-main navbar-fixed-top @yield('header-type')" role="navigation">
-                    
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
@@ -91,36 +94,16 @@
                                 <li class="singleDrop active">
                                     {{ Html::link(route('home'), trans('lang.home')) }}
                                 </li>
-                                <li class="dropdown megaDropMenu ">
-                                    {{ Html::link('', trans('lang.tour'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-delay' => '300', 'data-close-others' => 'true', 'aria-expanded' => 'false']) }}
-                                    <ul class="row dropdown-menu">
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>@lang('lang.tour')</li>
-                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-sm-3 col-xs-12">
-                                            <ul class="list-unstyled">
-                                                <li>@lang('lang.tour')</li>
-                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                                <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown singleDrop ">
-                                    {{ Html::link('', trans('lang.tour'), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-delay' => '300', 'data-close-others' => 'true', 'aria-expanded' => 'false']) }}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>@lang('lang.tour')</li>
-                                        <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                        <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                        <li>{{ Html::link('', trans('lang.tour')) }}</li>
-                                    </ul>
-                                </li>
+                                @foreach ($menuCategories as $parentCategory)
+                                    <li class="dropdown singleDrop ">
+                                        {{ Html::link(route('client.category.show', $parentCategory->id), $parentCategory->name, ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-delay' => '300', 'data-close-others' => 'true', 'aria-expanded' => 'false']) }}
+                                        <ul class="row dropdown-menu">
+                                            @foreach ($parentCategory->subCategories as $category)
+                                                <li>{{ Html::link(route('client.category.show', $category->id), $category->name) }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
                                 <li class="dropdown searchBox">
                                     {!! html_entity_decode(Html::link('#', '<span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span>', ['class' => 'dropdow-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false'])) !!}
                                     <ul class="dropdown-menu dropdown-menu-right">

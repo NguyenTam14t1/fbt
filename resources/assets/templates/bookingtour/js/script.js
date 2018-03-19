@@ -394,4 +394,8 @@ $(document).ready(function () {
             val--;
         })
     });
+
+    // preloader
+    $('#status').fadeOut();
+    $('#preloader').delay(300).fadeOut('slow');
 });
