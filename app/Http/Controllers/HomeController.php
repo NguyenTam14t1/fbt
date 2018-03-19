@@ -76,4 +76,9 @@ class HomeController extends Controller
 
         return view('bookingtour.tour-list', compact('data'));
     }
+
+    public function error()
+    {
+        return view('widgets.bookingtour.404');
+    }
 }

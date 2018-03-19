@@ -91,3 +91,12 @@ Route::get('/search', [
     'uses' => 'HomeController@search',
     'as' => 'search',
 ]);
+
+Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider')->name('authenticate');
+
+Route::get('/auth/{provide}/callback', 'SocialAuthController@handleProviderCallback');
+
+Route::get('/404', [
+    'uses' => 'HomeController@error',
+    'as' => '404',
+]);

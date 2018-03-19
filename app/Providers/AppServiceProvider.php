@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use App\Models\Category;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
             'review' => \App\Models\Review::class,
             'tour' => \App\Models\Tour::class,
         ]);
+
+        $menuCategories = Category::where('parent_id', config('setting.parent_id'))->get();
+        View::share('menuCategories', $menuCategories);
     }
 
     /**

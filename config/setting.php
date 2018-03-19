@@ -46,4 +46,6 @@ return [
     'price_search_3_val' => 3,
     'price_search_4_val' => 4,
     'category_show_paginate' => 5,
+    'avatar_extension' => '.jpg',
+    '404_img' => '/templates/bookingtour/img/not-found.png',
 ];

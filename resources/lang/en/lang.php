@@ -211,4 +211,9 @@
         'finished' => 'Finished',
         'no_result_search' => 'Nothing any tour',
         'per_person' => 'Per Person',
+        '404' => '404 Error',
+        '404_text_1' => 'Oops! The page you are looking for could not be found!',
+        '404_text_2' => 'Please try searching again',
+        'login_google' => 'Login with Google',
+        'signup_google' => 'Sign up with Google',
     ];
