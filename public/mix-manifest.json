@@ -1,4 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/templates/admin/js/main.js": "/templates/admin/js/main.js",
+    "/templates/admin/js/plugins.js": "/templates/admin/js/plugins.js",
+    "/templates/bookingtour/js/activity-date.js": "/templates/bookingtour/js/activity-date.js",
+    "/templates/bookingtour/js/custom.js": "/templates/bookingtour/js/custom.js",
+    "/templates/bookingtour/js/script.js": "/templates/bookingtour/js/script.js",
+    "/templates/bookingtour/css/style.css": "/templates/bookingtour/css/style.css",
+    "/templates/bookingtour/css/activity-date.css": "/templates/bookingtour/css/activity-date.css",
+    "/templates/bookingtour/css/mail-form.css": "/templates/bookingtour/css/mail-form.css",
+    "/templates/bookingtour/js/modernizr.custom.js": "/templates/bookingtour/js/modernizr.custom.js",
+    "/templates/admin/css/normalize.css": "/templates/admin/css/normalize.css",
+    "/templates/admin/css/style.css": "/templates/admin/css/style.css"
 }
