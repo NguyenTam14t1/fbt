@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Models\Category;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+    	Schema::defaultStringLength(191); 
         Relation::morphMap([
             'comment' => \App\Models\Comment::class,
             'review' => \App\Models\Review::class,
@@ -23,7 +25,11 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         $menuCategories = Category::where('parent_id', config('setting.parent_id'))->get();
-        View::share('menuCategories', $menuCategories);
+        $subCategories = Category::where('parent_id', '<>', config('setting.parent_id'))
+            ->get();
+            $guides = $subCategories;
+            $hotels = $subCategories;
+        View::share(compact('menuCategories', 'subCategories', 'guides', 'hotels'));
     }
 
     /**

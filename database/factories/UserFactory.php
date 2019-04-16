@@ -19,7 +19,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => config('setting.password_test'),
         'description' => $faker->paragraph(2),
-        'avatar' => $faker->image($dir = '/tmp', $width = 320, $height = 240),
+        // 'avatar' => $faker->image($dir = '/tmp', $width = 320, $height = 240),
         'remember_token' => str_random(10),
         'is_admin' => false,
     ];
@@ -54,7 +54,7 @@ $factory->define(App\Models\Tour::class, function (Faker $faker) {
         'participants_min' => $faker->numberBetween(2, 5),
         'participants_max' => $faker->numberBetween(10, 15),
         'price' => $faker->numberBetween(1, 9) * 100,
-        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+        // 'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
     ];
 });
 
@@ -63,7 +63,7 @@ $factory->define(App\Models\News::class, function (Faker $faker) {
         'tour_id' => App\Models\Tour::all()->random()->id,
         'title' => $faker->sentence(),
         'content' => $faker->paragraph(2),
-        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+        // 'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
     ];
 });
 
@@ -72,7 +72,7 @@ $factory->define(App\Models\ActivityDate::class, function (Faker $faker) {
         'tour_id' => App\Models\Tour::all()->random()->id,
         'title' => $faker->sentence(),
         'content' => $faker->paragraph(2),
-        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+        'picture' => '1.jpg',
     ];
 });
 
@@ -81,7 +81,7 @@ $factory->define(App\Models\Service::class, function (Faker $faker) {
         'activity_date_id' => App\Models\ActivityDate::all()->random()->id,
         'name' => $faker->sentence(),
         'content' => $faker->paragraph(2),
-        'picture' => $faker->unique()->image($dir = '/tmp', $width = 640, $height = 480),
+        'picture' => '2.jpg',
         'type' => (rand(0, 1)) ? 'food' : 'place',
     ];
 });

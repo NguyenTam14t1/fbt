@@ -2,7 +2,7 @@
 
 return [
     'parent_id' => 0,
-    'password_test' => 'secret',
+    'password_test' => '123456',
     'footer_logo' => '/templates/bookingtour/img/logo-color-sm.png',
     'tour_default_img' => '/templates/bookingtour/img/tour_img_default.jpg',
     'date_upload_folder' => '/uploads/dates/',

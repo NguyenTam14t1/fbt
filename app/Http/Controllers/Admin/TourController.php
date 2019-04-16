@@ -105,8 +105,10 @@ class TourController extends Controller
 
     public function importTour(TourImportRequest $request)
     {
+        // dd($request->all());
         $categoriesId = $this->categoryRepository->getCategoriesId()->toArray();
         Excel::load($request->file_import, function($reader) use ($categoriesId) {
+            // dd( $categoriesId, $request->file_import);
 
             $error = '';
             $success = config('setting.import_success_default_val');
@@ -115,7 +117,7 @@ class TourController extends Controller
                     if (!in_array($record['category_id'], $categoriesId) || $record['time_finish']->lte($record['time_start'])) {
                         throw new Exception();
                     }
-                    
+                    // dd($record);
                     $this->tourRepository->create($record);
                     $success ++;
                 } catch (Exception $e) {

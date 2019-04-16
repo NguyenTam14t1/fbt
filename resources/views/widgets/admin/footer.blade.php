@@ -1,7 +1,7 @@
-        </div>
-
-        {{ Html::script('templates/plugins/datepicker/bootstrap-datepicker.js') }}
-        {{ Html::script('/templates/admin/js/plugins.js') }}
-        {{ Html::script('/templates/admin/js/main.js') }}
-    </body>
-</html>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      	<b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+</footer>
