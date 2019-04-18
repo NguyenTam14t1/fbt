@@ -6,54 +6,59 @@ $(function() {
     });
 });
 
-$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
-    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+// $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+//     var oldRemoveChoice = Search.prototype.searchRemoveChoice;
 
-    Search.prototype.searchRemoveChoice = function () {
-        oldRemoveChoice.apply(this, arguments);
-        this.$search.val('');
-    };
-});
-
+//     Search.prototype.searchRemoveChoice = function () {
+//         oldRemoveChoice.apply(this, arguments);
+//         this.$search.val('');
+//     };
+// });
+//add tour
 $(function () {
-    if ($('input[name=time_zone_browser]').length) {
-        let objectDate = new Date()
-        let timezone = 0 - objectDate.getTimezoneOffset()/60
-        $('input[name=time_zone_browser]').val(timezone)
-    }
     if ($('.check-add-tour').length) {
-        $('#publish_start_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_start input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
-            minDate: moment().format('YYYY-MM-DD HH:mm'),
+            minDate: moment().format('YYYY-MM-DD'),
             defaultDate: moment(),
             showClear: true
         })
 
-        $('#publish_end_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_finish input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
-            minDate: moment().format('YYYY-MM-DD HH:mm'),
+            minDate: moment().format('YYYY-MM-DD'),
             defaultDate: false,
             showClear: true
         })
+
+        $('.time_active input').datetimepicker({
+          format: 'YYYY-MM-DD',
+          useCurrent: false,
+          minDate: moment().format('YYYY-MM-DD'),
+          defaultDate: false,
+          showClear: true
+        })
+
+        // $('#add-active-date .time_active_other input').datetimepicker({
+        //   format: 'YYYY-MM-DD',
+        //   useCurrent: false,
+        //   minDate: moment().format('YYYY-MM-DD'),
+        //   defaultDate: false,
+        //   showClear: true
+        // })
     }
 
-    $('.thumbnail-of-video input').datetimepicker({
-        format: 'HH:mm:ss',
-        useCurrent: false,
-        showClear: true
-    })
-
     if ($('.check-edit-tour').length) {
-        let valStart = $('#publish_start_date input').data('val')
-        let defaultStart = valStart ? convertToLocale(valStart).format('YYYY-MM-DD HH:mm') : false
+        let valStart = $('#time_start input').data('val')
+        let defaultStart = valStart ? convertToLocale(valStart).format('YYYY-MM-DD') : false
         var now = moment();
         if(defaultStart){
-            $('#publish_start_date input').val(defaultStart)
+            $('#time_start input').val(defaultStart)
         }
-        $('#publish_start_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_start input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
             minDate: now,
             showClear: true,
@@ -61,19 +66,19 @@ $(function () {
             //defaultDate: defaultStart
         })
 
-        // $('#publish_start_date input').on('dp.change', e => {
-        //     $('#publish_end_date input').data("DateTimePicker").options({
+        // $('#time_start input').on('dp.change', e => {
+        //     $('#time_finish input').data("DateTimePicker").options({
         //         minDate: e.date ? e.date : false
         //     })
         // })
 
-        let valEnd = $('#publish_end_date input').data('val')
-        let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY-MM-DD HH:mm') : false
+        let valEnd = $('#time_finish input').data('val')
+        let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY-MM-DD') : false
         if(defaultEnd){
-            $('#publish_end_date input').val(defaultEnd);
+            $('#time_finish input').val(defaultEnd);
         }
-        $('#publish_end_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_finish input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
             minDate: now,
             showClear: true,
@@ -81,8 +86,8 @@ $(function () {
             //defaultDate: defaultEnd,
         })
 
-        // $('#publish_end_date input').on('dp.change', e => {
-        //     $('#publish_start_date input').data("DateTimePicker").options({
+        // $('#time_finish input').on('dp.change', e => {
+        //     $('#time_start input').data("DateTimePicker").options({
         //         maxDate: e.date ? e.date : false
         //     })
         // })
@@ -241,8 +246,7 @@ $(function () {
         if(fileUploadTest){
             formData.append('thumbnail', fileUploadTest[0], fileUploadTest[0].name);
         }
-        $('.progress-upload-form').show()
-
+        // $('.progress-upload-form').show()
         $.ajax({
             url: url,
             type: 'POST',
@@ -251,17 +255,56 @@ $(function () {
             cache: false,
             processData:false,
             success: data => {
-              window.location.href = urlIndex
+              // window.location.href = furlIndex
             },
             error: data => {
+                console.log(data)
                 if (data.status == 422) {
-                    $('.progress-upload-form').hide()
+                    // $('.progress-upload-form').hide()
                     showMessErrForm(data.responseJSON.errors)
                 }
             },
-            xhr: progressUpload,
+            // xhr: progressUpload,
         })
     })
+
+//table list tour 
+    var langDatatable = $('#message-data').data('lang-datatable');
+    if($('#datatable-list').length){
+        var table = $('#datatable-list').DataTable({
+            'language': {
+                'infoFiltered': '',
+                'info' : langDatatable['info'],
+                'paginate': {
+                    'previous': langDatatable['previous'],
+                    'next': langDatatable['next'],
+                    'first': langDatatable['first'],
+                    'last': langDatatable['last'],
+                },
+                'zeroRecords': langDatatable['zeroRecords'],
+                'lengthMenu': langDatatable['lengthMenu'],
+            },
+            "order": [],
+            "info": false,
+            "oSearch": {"bSmart": false},
+            "sPaginationType": "full_numbers",
+            'columnDefs': [{
+                'targets': 0,
+                'sortable': false,
+                'searchable': false,
+            },
+            {
+                'targets': 5,
+                'sortable': false,
+                'searchable': false,
+            },
+            {
+                'targets': 7,
+                'sortable': false,
+                'searchable': false,
+            }],
+        })
+    }
 
     function convertToLocale(val)
     {
@@ -303,44 +346,44 @@ $(function () {
           case key == 'name':
             appendMes(val, 'name-error')
             break
-          case key == 'group_id':
-            appendMes(val, 'group_id')
-            break
-          case key == 'level':
-            appendMes(val, 'level')
-            break
-          case key == 'teacher_main':
-            appendMes(val, 'teacher_main')
-            break
-          case key == 'teacher_one':
-            appendMes(val, 'teacher_one')
-            break
-          case key == 'teacher_two':
-            appendMes(val, 'teacher_two')
+          case key == 'place':
+            appendMes(val, 'place')
             break
           case key == 'category_id':
             appendMes(val, 'category_id')
             break
-          case key == 'content':
-            appendMes(val, 'content-mes-error')
+          case key == 'hotel_id':
+            appendMes(val, 'hotel_id')
+            break 
+          case key == 'guide_id':
+            appendMes(val, 'guide_id')
             break
-          case /tag_id[.\d*]?/.test(key):
-            appendMes(val, 'tag_id')
+          case key == 'price':
+            appendMes(val, 'price')
             break
-          case key == 'publish_start_date':
-            appendMes(val, 'publish_start_date')
+          case key == 'participants_min':
+            appendMes(val, 'participants_min')
             break
-          case key == 'publish_end_date':
-            appendMes(val, 'publish_end_date')
+          case key == 'participants_max':
+            appendMes(val, 'participants_max')
             break
-          case key == 'attachFiles.1':
-            appendMes(val, 'attach-file-1')
+          case key == 'description':
+            appendMes(val, 'description-mes-error')
             break
-          case key == 'attachFiles.2':
-            appendMes(val, 'attach-file-2')
+          case key == 'time_start':
+            appendMes(val, 'time_start')
             break
-          case key == 'attachFiles.3':
-            appendMes(val, 'attach-file-3')
+          case key == 'time_finish':
+            appendMes(val, 'time_finish')
+            break
+          case key == 'day_active_date':
+            appendMes(val, 'day_active_date')
+            break
+          case key == 'title_active_date':
+            appendMes(val, 'title_active_date')
+            break
+          case key == 'content_active_date':
+            appendMes(val, 'content_active_date')
             break
           case /updateFiles[.\d*]?/.test(key):
             let classE = key.replace('.', '-')
@@ -400,4 +443,59 @@ $(function () {
     $('body').on('click', '.tour #modal-default .yes-confirm', e => {
         window.location.href = route('admin.tour.index');
     })
+
+    // var step = 0;
+    // $('body').on('click', '#btn-add-active', function(e) {
+    //     step++;
+    //     var objTo = document.getElementById('active_date')
+    //     var divtest = document.createElement("div");
+    //     divtest.setAttribute("class", "form-group row panel-body removeclass" + step);
+    //     var rdiv = 'removeclass' + step;
+    //     divtest.innerHTML =  `<div class="col-sm-1 nopadding">
+    //                             <div class="form-group"  data-active-id="${step}">
+    //                               <h5>Day ${step}:</h5>
+    //                             </div>
+    //                           </div>
+    //                           <div class="col-sm-3 nopadding">
+    //                             <div class="form-group">
+    //                               <input type="text" class="form-control" id="title-active-date" name="title_active_date[]" value="" placeholder="Title">
+    //                             </div>
+    //                           </div>
+    //                           <div class="col-sm-7 nopadding">
+    //                             <div class="form-group">
+    //                               <textarea type="text" class="form-control" rows="7" id="content-active-date" name="content_active_date[]" placeholder="Content activity date"></textarea>
+    //                             </div>
+    //                           </div>
+                              
+    //                           <div class="col-sm-1 nopadding">
+    //                             <div class="form-group">
+    //                               <div class="input-group">
+    //                                 <div class="input-group-btn">
+    //                                   <button class="btn btn-danger" type="button" id="btn-cancel-active" onclick="remove_active_date(${step});"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
+    //                                 </div>
+    //                               </div>
+    //                             </div>
+    //                           </div>
+                              
+    //                           <div class="clear"></div>`;
+        
+    //     objTo.appendChild(divtest)
+    //     let dayFinal = step + 1
+    //     $('#day-final').html(`Day ${dayFinal}:`)
+    //     console.log('check1', step,step+1)
+    // })
+
+    // function remove_active_date(rid) {
+    //    $('.removeclass'+rid).remove();
+    // }
+
+
+  $('.time_active_other input').datetimepicker({
+    format: 'YYYY-MM-DD',
+    useCurrent: false,
+    defaultDate: false,
+    showClear: true
+  })
 })
+
+

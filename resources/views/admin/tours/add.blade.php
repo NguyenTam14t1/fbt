@@ -14,42 +14,40 @@
         enctype="multipart/form-data"
         data-url-index="{{route('admin.tour.index')}}">
         @csrf
-        <input type="number" name="time_zone_browser" value="" style="display: none;">
         <div class="box-body">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="form-group">
-                <label for="name">@lang('admin/tour.form.name.label')</label><span class="field-required">*</span>
-                <input class="form-control" name="name" id="name"
-                  placeholder="@lang('admin/tour.form.name.placeholder')"
-                  maxlength="{{config('setting.tour.maxlength_name')}}"
+                <label for="name">Title </label><span class="field-required">*</span>
+                <input class="form-control" name="name"
+                  id="name"
+                  required="required"
+                  maxlength="{{config('setting.tour.maxlength_name')}}" 
+                  placeholder="Title..."
                   value="">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group group-selectbox">
-                <label>@lang('admin/tour.form.category')</label><span class="field-required">*</span>
-                <select
-                  name="category_id[]"
-                  class="form-control selectpicker"
-                  data-live-search="true" multiple
-                  title="@lang('admin/tour.form.none')">
-                  @foreach ($subCategories as $category)
-                      <option value="{{$category->id}}">{{ $category->name }}</option>
-                  @endforeach
-                </select>
-                <span class="text-danger category_id" role="alert"></span>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="place">Place </label><span class="field-required">*</span>
+                <input class="form-control" name="place"
+                  id="place"
+                  placeholder="Place..."
+                  maxlength="{{config('setting.tour.maxlength_name')}}"
+                  value=""
+                  required="required">
+                  <span class="text-danger place-error" role="alert"></span>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4" id="thumbnail">
-              <p for="thumbnail">@lang('admin/tour.form.thumbnail')</p>
+              <p for="thumbnail">Thumbnail </p>
               <div class="input-group">
                 <label class="input-group-btn">
                   <span class="btn btn-primary">
-                    @lang('admin/tour.form.browse')
+                    Browse image
                     <input type="file" style="display: none;" name="thumbnail" accept="image/jpeg,image/jpg,image/png" id="file-img-thumbnail">
                   </span>
                 </label>
@@ -64,100 +62,150 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>@lang('admin/tour.form.guide')</label><span class="field-required">*</span>
-                    <select
-                      name="guide_id[]"
-                      class="form-control selectpicker"
-                      data-live-search="true" multiple
-                      title="@lang('admin/tour.form.none')">
-                      @foreach ($guides as $guide)
-                          <option value="{{$guide->id}}">{{ $guide->name }}</option>
-                      @endforeach
-                    </select>
-                    <span class="text-danger guide_id" role="alert"></span>
+                    <label>Category </label><span class="field-required">*</span>
+                      <select
+                        name="category_id"
+                        class="form-control selectpicker"
+                        data-live-search="true"
+                        multiple
+                        require="required"
+                        data-max-options="1"
+                        title="Select a category">
+                        @foreach ($subCategories as $category)
+                            <option value="{{$category->id}}">{{ $category->name }}</option>
+                        @endforeach
+                      </select>
+                    <span class="text-danger category_id" role="alert"></span>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>@lang('admin/tour.form.hotel')</label>
-                    <select
-                      name="hotel_id[]"
-                      class="form-control selectpicker"
-                      data-live-search="true" multiple
-                      title="@lang('admin/tour.form.none')">
-                      @foreach ($hotels as $hotel)
-                          <option value="{{$hotel->id}}">{{ $hotel->name }}</option>
-                      @endforeach
-                    </select>
+                    <label>Hotel </label>
+                      <select
+                        name="hotel_id[]"
+                        class="form-control selectpicker"
+                        data-live-search="true"
+                        multiple
+                        title="Select hotel">
+                        @foreach ($hotels as $hotel)
+                            <option value="{{$hotel->id}}">{{ $hotel->name }}</option>
+                        @endforeach
+                      </select>
                     <span class="text-danger hotel_id" role="alert"></span>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>@lang('admin/tour.form.publish.start')</label>
-                    <div class="input-group date" id="publish_start_date">
-                      <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                      <input type="text"
-                        name="publish_start_date"
-                        class="form-control pull-right"
-                        placeholder="YYYY-MM-DD HH:mm"
-                        autocomplete="off"
-                        value="">
-                    </div>
-                    <span class="text-danger publish_start_date" role="alert"></span>
+                  <div class="form-group group-selectbox">
+                    <label>Guide </label><span class="field-required">*</span>
+                      <select
+                        name="guide_id[]"
+                        class="form-control selectpicker"
+                        data-live-search="true"
+                        multiple
+                        required="required"
+                        title="Select guide">
+                        @foreach ($guides as $guide)
+                            <option value="{{$guide->id}}">{{ $guide->name }}</option>
+                        @endforeach
+                      </select>
+                    <span class="text-danger guide_id" role="alert"></span>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>@lang('admin/tour.form.publish.end')</label>
-                    <div class="input-group date" id="publish_end_date">
+                    <label for="level">Price </label><span class="field-required">*</span>
+                    <div class="input-group date" id="price">
                       <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="glyphicon glyphicon-usd"></span>
                       </span>
-                      <input type="text"
-                        name="publish_end_date"
+                      <input type="number"
+                        name="price"
+                        min="{{config('setting.tour.min_price')}}"
+                        max="{{config('setting.tour.max_price')}}"
+                        required="required" 
                         class="form-control pull-right"
-                        placeholder="YYYY-MM-DD HH:mm"
-                        autocomplete="off"
+                        placeholder="Price"
                         value="">
                     </div>
-                    <span class="text-danger publish_end_date" role="alert"></span>
+                    <span class="text-danger price" role="alert"></span>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">@lang('admin/tour.label.participants_min')</label>
+                    <label>Time start </label><span class="field-required">*</span>
+                    <div class="input-group date" id="time_start">
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                      <input type="text"
+                        name="time_start"
+                        required="required"
+                        class="form-control pull-right"
+                        placeholder="YYYY-MM-DD"
+                        autocomplete="off"
+                        value="">
+                    </div>
+                    <span class="text-danger time_start" role="alert"></span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Time finish </label><span class="field-required">*</span>
+                    <div class="input-group date" id="time_finish">
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                      <input type="text"
+                        name="time_finish"
+                        required="required"
+                        class="form-control pull-right"
+                        placeholder="YYYY-MM-DD"
+                        autocomplete="off"
+                        value="">
+                    </div>
+                    <span class="text-danger time_finish" role="alert"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="level">Participants min </label><span class="field-required">*</span>
                     <div class="input-group date" id="participants_min">
                       <span class="input-group-addon">
                         <span class="fa fa-male"></span>
                       </span>
                       <input type="number"
                         name="participants_min"
+                        required="required"
+                        min="{{config('setting.tour.min_guess')}}"
+                        max="{{config('setting.tour.max_guess')}}"
                         class="form-control pull-right"
                         placeholder="Participants min"
-                        value="0">
+                        value="1">
                     </div>
                     <span class="text-danger participants_min" role="alert"></span>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">@lang('admin/tour.label.participants_max')</label>
+                    <label for="level">Participants max </label><span class="field-required">*</span>
                     <div class="input-group date" id="participants_max">
                       <span class="input-group-addon">
                         <span class="fa fa-child"></span>
                       </span>
                       <input type="number"
                         name="participants_max"
+                        required="required"
+                        min="{{config('setting.tour.min_guess')}}"
+                        max="{{config('setting.tour.max_guess')}}"
                         class="form-control pull-right"
                         placeholder="Participants max"
-                        value="0">
+                        value="1">
                     </div>
                     <span class="text-danger participants_max" role="alert"></span>
                   </div>
@@ -165,32 +213,105 @@
               </div>
             </div>
           </div>
+          <br>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group name">
-                <label for="name">@lang('admin/tour.form.content')</label><span class="field-required">*</span>
+                <label for="name">Content </label><span class="field-required">*</span>
                 <div id="tab-quill">
                   <div id="content-quill">
                   </div>
                 </div>
-                <span class="text-danger content-mes-error" role="alert"></span><br>
+                <span class="text-danger description-mes-error" role="alert"></span><br>
               </div>
             </div>
           </div>
         </div>
-        <textarea id="content-tour" name="content" style="display: none;"></textarea>
+        <textarea id="content-tour" name="description" style="display: none;"></textarea>
+
+        <div class="box-body">
+          <div class="panel-body" id="add-active-date">
+            <label style="margin-left: 15px;" for="add-active-date">Program detail
+            <div id="active_date">
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-5 nopadding">
+                <div class="form-group">
+                  <label for="day-active-date">Time: </label><span class="field-required">*</span>
+                  <div class="input-group date time_active">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type="text"
+                      name="activity_dates[time][]"
+                      required="required"
+                      class="form-control pull-right day_active_date"
+                      placeholder="YYYY-MM-DD"
+                      autocomplete="off"
+                      value="">
+                  </div>
+                  <span class="text-danger day_active_date" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="title-active-date">Title: </label><span class="field-required">*</span>
+                  <div class="input-group date">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-book"></span>
+                    </span>
+                    <input type="text"
+                      name="activity_dates[title][]"
+                      required="required"
+                      maxlength="{{config('setting.tour.maxlength_name')}}"
+                      class="form-control pull-right title-active-date"
+                      placeholder="Title"
+                      value="">
+                  </div>
+                  <span class="text-danger title_active_date" role="alert"></span>
+                </div>
+              </div>
+              <div class="col-sm-6 nopadding">
+                <div class="form-group">
+                  <label for="content-active-date">Detail: </label><span class="field-required">*</span>
+                  <div>
+                    <textarea type="text"
+                      class="form-control content-active-date" rows="7"
+                      required="required"
+                      maxlength="{{config('setting.tour.maxlength_description')}}"
+                      name="activity_dates[detail][]" placeholder="Content activity date"></textarea>
+                  </div>
+                  <span class="text-danger content_active_date" role="alert"></span>
+                </div>
+              </div>
+                
+              <div class="col-sm-1 nopadding">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button class="btn btn-success" type="button"  onclick="active_date();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="clear"></div>
+          </div>
+        </div>
         <div id="submit-form">
           <p class="btn-danger btn" data-url="{{ route('admin.tour.index') }}"
             data-toggle="modal" data-target="#modal-default">@lang('admin/tour.cancel')</p>
           <input type="submit" class="btn btn-primary" value="@lang('admin/tour.submit')">
         </div>
       </form>
+    </div>
       <div
         id="dataFromServer"
-        data-trans="{{json_encode(trans('admin/tour.quill'))}}"
+        data-trans="{{json_encode('Description for tour')}}"
         style="display: none">
         </div>
     </div>
+    <div class="progress-upload-form" style="display: none;"><span>0%</span></div>
     @component('widgets.admin.modal')
       @slot('class')
         danger
@@ -200,6 +321,91 @@
       @endslot
     @endcomponent
   </section>
+
+<script type="text/javascript">
+
+  $('.time_active_other input').datetimepicker({
+    format: 'YYYY-MM-DD',
+    useCurrent: false,
+    defaultDate: false,
+    showClear: true
+  })
+  var step = 1;
+    function active_date() {
+      step++;
+      var objTo = document.getElementById('active_date')
+      var divtest = document.createElement("div");
+      divtest.setAttribute("class", "form-group row panel-body removeclass" + step);
+      var rdiv = 'removeclass' + step;
+      divtest.innerHTML =  `<div class="col-sm-5 nopadding">
+                              <div class="form-group">
+                                <label for="day-active-date">Time: </label><span class="field-required">*</span>
+                                <div class="input-group date time_active_other">
+                                  <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                                  <input type="text"
+                                    name="activity_dates[time][]"
+                                    required="required"
+                                    class="form-control pull-right day_active_date"
+                                    placeholder="YYYY-MM-DD"
+                                    autocomplete="off"
+                                    required="required"
+                                    value="">
+                                </div>
+                                <span class="text-danger day_active_date" role="alert"></span>
+                              </div>
+                              <div class="form-group">
+                                <label for="title-active-date">Title: </label><span class="field-required">*</span>
+                                <div class="input-group date">
+                                  <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                  </span>
+                                  <input type="text"
+                                    name="activity_dates[title][]"
+                                    required="required"
+                                    maxlength="350"
+                                    class="form-control pull-right title-active-date"
+                                    required="required"
+                                    placeholder="Title"
+                                    value="">
+                                </div>
+                                <span class="text-danger title_active_date" role="alert"></span>
+                              </div>
+                            </div>
+                            <div class="col-sm-6 nopadding">
+                              <div class="form-group">
+                                <label for="content-active-date">Detail: </label><span class="field-required">*</span>
+                                <div>
+                                  <textarea type="text" class="form-control content-active-date"
+                                    rows="7" maxlength="650"
+                                    required="required" name="activity_dates[detail][]"
+                                    placeholder="Content activity date"></textarea>
+                                </div>
+                                <span class="text-danger content_active_date" role="alert"></span>
+                              </div>
+                            </div>
+                              
+                            <div class="col-sm-1 nopadding">
+                              <div class="form-group">
+                                <div class="input-group">
+                                  <div class="input-group-btn">
+                                    <button class="btn btn-danger" type="button" onclick="remove_active_date(${step});"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                            
+                          <div class="clear"></div>`;
+      
+      objTo.appendChild(divtest)
+  }
+  function remove_active_date(rid) {
+    $('.removeclass'+rid).remove();
+  }
+</script>
+
 @endsection
 @section('styles')
   {{ Html::style('css/bootstrap-datetimepicker.css') }}
@@ -210,6 +416,7 @@
   {{ Html::style('templates/admin/css/tour.css') }}
 @endsection
 @section('scripts')
+  {{ Html::script('templates/admin/js/tour.js') }}
   {{ Html::script('js/moment.js') }}
   {{ Html::script('js/bootstrap-datetimepicker.min.js') }}
   {{ Html::script('js/dropzone.js') }}
@@ -218,5 +425,4 @@
   {{ Html::script('js/image-resize.min.js') }}
   {{ Html::script('js/bootstrap-select.min.js') }}
   {{ Html::script('js/select2.min.js') }}
-  {{ Html::script('templates/admin/js/tour.js') }}
 @endsection

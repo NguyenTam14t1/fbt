@@ -15,6 +15,7 @@
             @include('widgets.admin.header')
             @include('widgets.admin.sidebar')
             <div class="content-wrapper">
+                @include('widgets.admin.message')
                 @yield('content')
             </div>
             @include('widgets.admin.footer')

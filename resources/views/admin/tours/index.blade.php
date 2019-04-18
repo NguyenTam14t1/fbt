@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="box-body table-responsive pd-t-10">
                                 <div class="col-md-12" >
-                                    <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+                                    <table id="datatable-list" class="table table-striped table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th width="4%">
@@ -95,7 +95,7 @@
                 danger
             @endslot
             @slot('headerText')
-                @lang('admin/news.message.confirm_delete')
+                Are you sure delete this tour?
             @endslot
         @endcomponent
     </section>

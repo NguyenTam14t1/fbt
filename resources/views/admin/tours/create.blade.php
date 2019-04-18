@@ -33,7 +33,9 @@
                 <select
                   name="category_id[]"
                   class="form-control selectpicker"
-                  data-live-search="true" multiple
+                  data-live-search="true"
+                  multiple
+                  data-max-options="1"
                   title="@lang('admin/tour.form.none')">
                   @foreach ($subCategories as $category)
                       <option value="{{$category->id}}">{{ $category->name }}</option>
@@ -68,7 +70,8 @@
                     <select
                       name="guide_id[]"
                       class="form-control selectpicker"
-                      data-live-search="true" multiple
+                      data-live-search="true"
+                      multiple
                       title="@lang('admin/tour.form.none')">
                       @foreach ($guides as $guide)
                           <option value="{{$guide->id}}">{{ $guide->name }}</option>
@@ -165,6 +168,7 @@
               </div>
             </div>
           </div>
+          <br>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group name">
@@ -179,12 +183,48 @@
           </div>
         </div>
         <textarea id="content-tour" name="content" style="display: none;"></textarea>
+
+        <div class="row">
+          <div class="panel-body" id="add-active-date">
+            <div id="active_date">
+            </div>
+            
+            <div class="col-sm-1 nopadding">
+              <div class="form-group">
+                <h5>Day 1:</h5>
+              </div>
+            </div>
+            <div class="col-sm-3 nopadding">
+              <div class="form-group">
+                <input type="text" class="form-control" id="title-active-date" name="title_active_date[]" value="" placeholder="Title">
+              </div>
+            </div>
+            <div class="col-sm-7 nopadding">
+              <div class="form-group">
+                <textarea type="text" class="form-control" rows="7" id="content-active-date" name="content_active_date[]" placeholder="Content activity date"></textarea>
+              </div>
+            </div>
+            
+            <div class="col-sm-1 nopadding">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button class="btn btn-success" type="button"  onclick="active_date();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="clear"></div>
+          </div>
+        </div>
         <div id="submit-form">
           <p class="btn-danger btn" data-url="{{ route('admin.tour.index') }}"
             data-toggle="modal" data-target="#modal-default">@lang('admin/tour.cancel')</p>
           <input type="submit" class="btn btn-primary" value="@lang('admin/tour.submit')">
         </div>
       </form>
+    </div>
       <div
         id="dataFromServer"
         data-trans="{{json_encode(trans('admin/tour.quill'))}}"
@@ -200,14 +240,57 @@
       @endslot
     @endcomponent
   </section>
+<script type="text/javascript">
+  var step = 1;
+    function active_date() {
+        step++;
+        var objTo = document.getElementById('active_date')
+        var divtest = document.createElement("div");
+        divtest.setAttribute("class", "form-group row panel-body removeclass" + step);
+        var rdiv = 'removeclass' + step;
+        divtest.innerHTML =  `<div class="col-sm-1 nopadding">
+                                <div class="form-group">
+                                  <h5>Day ${step}:</h5>
+                                </div>
+                              </div>
+                              <div class="col-sm-3 nopadding">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="title-active-date" name="title_active_date[]" value="" placeholder="Title">
+                                </div>
+                              </div>
+                              <div class="col-sm-7 nopadding">
+                                <div class="form-group">
+                                  <textarea type="text" class="form-control" rows="7" id="content-active-date" name="content_active_date[]" placeholder="Content activity date"></textarea>
+                                </div>
+                              </div>
+                              
+                              <div class="col-sm-1 nopadding">
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <div class="input-group-btn">
+                                      <button class="btn btn-danger" type="button"  onclick="remove_active_date(${step});"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="clear"></div>`;
+        
+        objTo.appendChild(divtest)
+    }
+    function remove_active_date(rid) {
+       $('.removeclass'+rid).remove();
+    }
+</script>
+
 @endsection
 @section('styles')
-  {{ Html::style('templates/admin/css/tour.css') }}
   {{ Html::style('css/bootstrap-datetimepicker.css') }}
   {{ Html::style('css/dropzone.css') }}
   {{ Html::style('css/quill.snow.css') }}
   {{ Html::style('css/bootstrap-select.min.css') }}
   {{ Html::style('css/select2.min.css') }}
+  {{ Html::style('templates/admin/css/tour.css') }}
 @endsection
 @section('scripts')
   {{ Html::script('js/moment.js') }}

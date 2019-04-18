@@ -5,21 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use File;
+use Storage;
 
 class Tour extends Model
 {
     protected $fillable = [
         'category_id',
+        'hotel_id',
+        'guide_id',
         'name',
         'description',
         'place',
-        'hotel',
         'time_start',
         'time_finish',
         'participants_min',
         'participants_max',
         'price',
-        'picture',
+        'thumbnail',
     ];
 
     protected $appends = [
@@ -33,6 +35,16 @@ class Tour extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function hotels()
+    {
+        return $this->hasMany(Hotel::class);
+    }
+
+    public function guides()
+    {
+        return $this->hasMany(Guide::class);
     }
 
     public function newses()
@@ -76,13 +88,13 @@ class Tour extends Model
 
     public function getPicturePathAttribute()
     {
-        $pathFile = config('setting.tour_upload_folder') . $this->attributes['picture'];
-        
-        if (!File::exists(public_path($pathFile)) || empty($this->attributes['picture'])) {
-            return config('setting.tour_default_img');
+        if (!empty($this->attributes['thumbnail'])) {
+            // $pathFile = Storage::path(config('images.paths.thumbnail_tour') . '/' . $this->attributes['thumbnail']);
+            // return $pathFile;
+            return '/storage/app/' . config('images.paths.thumbnail_tour') . '/' . $this->attributes['thumbnail'];
         }
 
-        return config('setting.tour_upload_folder') . $this->attributes['picture']; 
+        return config('setting.tour_default_img');
     }
 
     public function getRateAttribute()

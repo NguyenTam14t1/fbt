@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'tour' => [
+        'maxlength_description' => 1000,
+        'maxlength_name' => 255,
+        'minlength_name' => 3,
+        'maxlength_content' => 2000,
+        'maxsize_thumbnail' => 10 * 1024,
+        'max_price' => 1000 * 2,
+        'min_price' => 1,
+        'min_guess' => 1,
+        'max_guess' => 200,
+    ],
     'parent_id' => 0,
     'password_test' => '123456',
     'footer_logo' => '/templates/bookingtour/img/logo-color-sm.png',

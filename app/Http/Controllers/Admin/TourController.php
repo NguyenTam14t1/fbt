@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TourInterface;
 use App\Repositories\Contracts\CategoryInterface;
 use App\Http\Requests\TourImportRequest;
+use App\Http\Requests\TourRequest;
 use Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 use Carbon\Carbon;
+use App\Models\Tour;
 
 class TourController extends Controller
 {
@@ -32,7 +34,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tours = $this->tourRepository->paginate(config('setting.paginate_default_val'));
+        $tours = $this->tourRepository->getAll();
 
         return view('admin.tours.index', compact('tours'));
     }
@@ -53,9 +55,41 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TourRequest $request)
     {
-        //
+        $data = $request->only([
+            'name',
+            'category_id',
+            'hotel_id',
+            'guide_id',
+            'price',
+            'time_start',
+            'time_finish',
+            'place',
+            'participants_min',
+            'participants_max',
+            'description',
+            'thumbnail',
+            // 'activity_dates',
+            // 'time',
+            // 'title',
+            // 'detail',
+        ]);
+
+        $response = $this->tourRepository->store($data);
+        if ($response) {
+            Session::flash('message', trans('admin/tour.messages.create_success'));
+
+            return response()->json([
+                'status' => true,
+            ]);
+        }
+
+        Session::flash('error', trans('admin/tour.messages.create_fail'));
+
+        return response()->json([
+            'status' => false,
+        ]);
     }
 
     /**
@@ -100,7 +134,13 @@ class TourController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = $this->tourRepository->delete($id);
+
+        if ($response) {
+            return redirect()->route('admin.tour.index')->with('message', 'Delete tour success!');
+        }
+
+        return redirect()->route('admin.tour.index')->with('error', 'Delete tour faild');
     }
 
     public function importTour(TourImportRequest $request)

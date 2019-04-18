@@ -9,12 +9,19 @@ use App\Models\Review;
 use App\Models\Booking;
 use Exception;
 use Date;
+use DB;
+use App\Repositories\Helpers\ImageHelper;
 
 class EloquentTourRepository extends EloquentRepository implements TourInterface
 {
     public function getModel()
     {
         return Tour::class;
+    }
+
+    public function getAll()
+    {
+        return $this->model->orderBy('id', 'desc')->get();
     }
 
     public function getByTime(Date $timeStart, Date $timeFinish)
@@ -90,7 +97,7 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
     public function searchTour($category, $checkIn, $checkOut, $price, $limit = 0)
     {
         $query = $this->model;
-        
+
         if ($category) {
             $query = $query->where('category_id', $category);
         }
@@ -108,16 +115,93 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
                 $query = $query->where('price', '<', 500);
                 break;
             case config('setting.price_search_2_val'):
-                $query = $query->whereBetween('price', [500, 1000]);  
+                $query = $query->whereBetween('price', [500, 1000]);
                 break;
             case config('setting.price_search_3_val'):
-                $query = $query->whereBetween('price', [1000, 2000]);  
+                $query = $query->whereBetween('price', [1000, 2000]);
                 break;
             case config('setting.price_search_4_val'):
-                $query = $query->where('price', '>', 2000);  
+                $query = $query->where('price', '>', 2000);
                 break;
         }
 
         return $query->paginate($limit);
+    }
+
+    public function store($data)
+    {
+        try {
+            DB::beginTransaction();
+            $dataTour = array_except($data, [
+                'guide_id',
+                'hotel_id',
+                'thumbnail',
+                'activity_dates',
+            ]);
+
+            $type = 'thumbnail_tour';
+            if (isset($data['thumbnail'])) {
+                $dataTour['thumbnail'] = ImageHelper::uploadFile($data['thumbnail'], $type, config('images.paths.' .$type));
+            }
+
+            $tour = $this->model->create($dataTour);
+// dd($tour);
+//             if (isset($data['hotel_id'])) {
+//                 $tour->hotels()->attach($data['hotel_id']);
+//             }
+// // dd($tour);
+//             if (isset($data['guide_id'])) {
+//                 $tour->guides()->attach($data['guide_id']);
+//             }
+
+//             $activityDates = [];
+
+            // if (isset($data['activity_dates']['time'])) {
+            //     foreach ($data['activity_dates']['time'] as $key => $time) {
+            //         array_push($activityDates, $time);
+            //     }
+            // }
+
+            DB::commit();
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
+            DB::rollBack();
+
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+        DB::beginTransaction();
+
+        try {
+            $tour = $this->model->findOrFail($id);
+            $tour->activityDates()->delete();
+            $tour->delete();
+
+            DB::commit();
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
+            DB::rollBack();
+
+            return false;
+        }
+    }
+
+    public function findOrFail($id)
+    {
+        try {
+            return $this->model->with(['hotels', 'guides', 'activityDates'])
+                ->findOrFail($id);
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
     }
 }
