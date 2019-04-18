@@ -64,7 +64,8 @@ class ToursController extends Controller
         $data = $this->tourRepository->getRate($id, $data);
         $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
         $data['categories'] = $this->getParentCategories($data['tour']);
-        
+        $data['note'] = $this->tourRepository->getNote();
+
         return view('bookingtour.tour-detail', compact(['data']));
     }
 
@@ -106,10 +107,10 @@ class ToursController extends Controller
     {
         $dataRq = $request->only([
             'tour_id',
-            'place_rate', 
-            'food_rate', 
-            'service_rate', 
-            'total_rate', 
+            'place_rate',
+            'food_rate',
+            'service_rate',
+            'total_rate',
             'content'
         ]);
 

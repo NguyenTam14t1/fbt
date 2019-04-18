@@ -47,5 +47,15 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\NewsInterface',
             'App\Repositories\Eloquents\EloquentNewsRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\HotelInterface',
+            'App\Repositories\Eloquents\EloquentHotelRepository'
+        );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\GuideInterface',
+            'App\Repositories\Eloquents\EloquentGuideRepository'
+        );
     }
 }

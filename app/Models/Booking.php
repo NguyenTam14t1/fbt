@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
     protected $fillable = [
         'tour_id',
         'user_id',
@@ -35,6 +39,11 @@ class Booking extends Model
         return $this->hasMany(TimesPayment::class);
     }
 
+    public function guests()
+    {
+        return $this->hasMany(Guest::class);
+    }
+
     public function tour()
     {
         return $this->belongsTo(Tour::class);
@@ -52,7 +61,7 @@ class Booking extends Model
     public function getStatusTextAttribute() {
         switch ($this->attributes['status']) {
             case config('setting.booking_cancel'):
-                return trans('lang.canceled');        
+                return trans('lang.canceled');
                 break;
             case config('setting.booking_wait_confirm'):
                 return trans('lang.waiting');

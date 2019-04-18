@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'Client\BookingController@selectParticipant',
         'as' => 'selectParticipant',
     ]);
-    
+
     Route::resource('tour.booking', 'Client\BookingController', [
         'as' => 'client',
     ]);
@@ -42,6 +42,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/payment', [
         'uses' => 'Client\BookingController@payment',
         'as' => 'payment',
+    ]);
+
+    Route::post('/pay-bills-online', [
+        'uses' => 'Client\BookingController@paymentOnline',
+        'as' => 'paymentOnline',
+    ]);
+
+    Route::post('/payment-success/{booking}/tour/{tour}', [
+        'uses' => 'Client\BookingController@paymentSuccess',
+        'as' => 'paymentSuccess',
     ]);
 
     Route::resource('/user', 'Client\UserController', [
@@ -80,6 +90,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/booking/export', [
         'uses' => 'Admin\BookingController@exportBooking',
         'as' => 'export',
+    ]);
+
+    Route::resource('/hotel', 'Admin\HotelController', [
+        'as' => 'admin',
     ]);
 });
 

@@ -27,7 +27,7 @@ class BookingController extends Controller
     public function index()
     {
         $this->updateBookingByTime($this->bookingRepository);
-        $bookings = $this->bookingRepository->paginate(config('setting.paginate_default_val'));
+        $bookings = $this->bookingRepository->getAll();
 
         return view('admin.bookings.index', compact('bookings'));
     }
@@ -95,7 +95,13 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = $this->bookingRepository->delete($id);
+
+        if ($response) {
+            return redirect()->route('admin.booking.index')->with('message', $response);
+        }
+
+        return redirect()->route('admin.booking.index')->with('error', 'Have error!');
     }
 
     public function exportBooking(Request $request)
@@ -103,7 +109,7 @@ class BookingController extends Controller
         $type = $request->type;
         $this->updateBookingByTime($this->bookingRepository);
         $data = $this->bookingRepository->getAll()->toArray();
-        
+
         return Excel::create('Travel_Tour_Bookings', function ($excel) use ($data) {
             $excel->sheet('My_Sheet', function($sheet) use ($data) {
                 $sheet->fromArray($data);

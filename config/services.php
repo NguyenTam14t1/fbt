@@ -36,8 +36,15 @@ return [
     ],
 
     'google' => [
-        'client_id' => '785966318125-dmfjia9usbic1jqofcfg7b7pr7m543mp.apps.googleusercontent.com',
-        'client_secret' => 'E1yXKvbYjGfik2ujlWfOAIQ6',
+        //tam
+        'client_id' => '378381004270-m1hevndhbo29792lpvuehk4jqtr8t6k1.apps.googleusercontent.com',
+        'client_secret' => 'g2yR5nF1K84ahKj-8W4gllSg',
         'redirect' => 'http://localhost:8000/auth/google/callback',
+        // 'redirect' => 'http://fbt.test/auth/google/callback',
+
+        //vinh
+        // 'client_id' => '785966318125-dmfjia9usbic1jqofcfg7b7pr7m543mp.apps.googleusercontent.com',
+        // 'client_secret' => 'E1yXKvbYjGfik2ujlWfOAIQ6',
+        // 'redirect' => 'http://localhost:8000/auth/google/callback',
     ],
 ];

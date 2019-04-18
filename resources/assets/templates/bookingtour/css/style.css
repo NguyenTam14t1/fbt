@@ -655,6 +655,7 @@ a:focus {
     height: 50px;
 }
 .thumbnail {
+    height: 550px;
     border: 0;
     padding: 0;
 }
@@ -9372,13 +9373,13 @@ body, .signupLoging {
 
 .account-menu li {
     width: 100%;
-    padding: 0 !important; 
+    padding: 0 !important;
 }
 
 .account-menu li a {
     display: block;
     width: 100%;
-    padding: 5px 15px; 
+    padding: 5px 15px;
 }
 
 .account-menu li a:hover {
@@ -9395,10 +9396,10 @@ body, .signupLoging {
 }
 
 /*rating*/
-input.star-place, 
-input.star-food, 
-input.star-service { 
-    display: none; 
+input.star-place,
+input.star-food,
+input.star-service {
+    display: none;
 }
 
 label.star-place,
@@ -9427,19 +9428,19 @@ input.star-service-5:checked ~ label.star-service:before {
     text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
 }
 
-input.star-place-1:checked ~ label.star-place:before, 
+input.star-place-1:checked ~ label.star-place:before,
 input.star-place-2:checked ~ label.star-place:before,
-input.star-food-1:checked ~ label.star-food:before, 
+input.star-food-1:checked ~ label.star-food:before,
 input.star-food-2:checked ~ label.star-food:before,
-input.star-service-1:checked ~ label.star-service:before, 
-input.star-service-2:checked ~ label.star-service:before { 
-    color: #f34807; 
+input.star-service-1:checked ~ label.star-service:before,
+input.star-service-2:checked ~ label.star-service:before {
+    color: #f34807;
 }
 
 label.star-place:hover,
 label.star-food:hover,
-label.star-service:hover { 
-    transform: rotate(-15deg) scale(1.3); 
+label.star-service:hover {
+    transform: rotate(-15deg) scale(1.3);
 }
 
 label.star-place:before,
@@ -9466,8 +9467,8 @@ label.star-service:before {
 
 .star-large-show:before {
     font-size: 45px;
-    padding: 20px 10px; 
-}                    
+    padding: 20px 10px;
+}
 
 .checked-1:before {
     content: '\f005';
@@ -9488,6 +9489,7 @@ label.star-service:before {
 }
 
 .rate-group {
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -9663,11 +9665,11 @@ label.star-service:before {
 }
 
 .process-model.contact-us-tab li::after  {
-    display: none; 
+    display: none;
 }
 
 .process-model.contact-us-tab li.visited i {
-    border-color: #e5e5e5; 
+    border-color: #e5e5e5;
 }
 
 @media screen and (max-width: 768px) {
@@ -9685,10 +9687,10 @@ label.star-service:before {
         width: 40px;
         line-height: 37px;
         font-size: 18px;
-    } 
+    }
 }
 
-@media screen and (max-width: 480px) { 
+@media screen and (max-width: 480px) {
     .more-icon-preocess.process-model li span {
         font-size: 16px;
         height: 35px;
@@ -9709,7 +9711,7 @@ label.star-service:before {
     }
     .process-model.more-icon-preocess {
         text-align: center;
-    }  
+    }
 }
 
 .media-heading {
@@ -10017,7 +10019,7 @@ label.star-service:before {
     font-family: FontAwesome;
     content: "\f072";
     font-style: normal;
-}      
+}
 
 .view-btn {
     background-color: #ff891e !important;

@@ -40,7 +40,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="mainContentSection">
         <div class="container">
             <div class="row progress-wizard progress-group">

@@ -38,17 +38,7 @@
                     <div class="form-group">
                         {{ Form::password('password_confirmation', ['id' => 'password-confirm', 'class' => 'form-control bg-ash' . ($errors->has('password') ? ' is-invalid' : ''), 'required' => 'required', 'placeholder' => trans('lang.password_confirm')]) }}
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            {{ Form::checkbox('accept', '', false, ['id' => 'accept', 'required' => 'required']) }} @lang('lang.agree_privacy')
-                        </label><br/>
 
-                        @if ($errors->has('accept'))
-                            <span class="invalid-feedback">
-                                <strong class="register-message danger">{{ $errors->first('accept') }}</strong>
-                            </span>
-                        @endif
-                    </div>
                     {{ Form::submit(trans('lang.signup'), ['class' => 'btn btn-default']) }}
                     {{ Form::hidden('popup-register', old('popup-register'), ['id' => 'popup-register']) }}
                     @if (count($errors))

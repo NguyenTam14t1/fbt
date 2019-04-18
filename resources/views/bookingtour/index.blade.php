@@ -15,39 +15,45 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($data['popular_tour'] as $tour)
-                    <div class="col-sm-4 col-xs-12">
-                        <div class="thumbnail deals tour-show">
-                            {{ Html::image($tour->picture_path, 'tour-image') }}
-                            {{ Html::link(route('client.tour.show', $tour->id), '', ['class' => 'pageLink']) }}
-                            <div class="discountInfo" value="{{ $tour->rate }}">
-                                <ul class="list-inline rating homePage rate-home">
-                                    <li><i class="fa" aria-hidden="true"></i></li>
-                                    <li><i class="fa" aria-hidden="true"></i></li>
-                                    <li><i class="fa" aria-hidden="true"></i></li>
-                                    <li><i class="fa" aria-hidden="true"></i></li>
-                                    <li><i class="fa" aria-hidden="true"></i></li>
-                                </ul>
-                            </div>
-                            <div class="caption">
-                                <h4>{{ $tour->name }}</h4>
-                                <p>{{ str_limit($tour->description, 60) }}</p>
-                                <div class="detailsInfo">
-                                    <h5>
-                                        <span class="fa fa-calendar"> @lang('lang.from'): <strong>{{ $tour->time_start_format }}</strong></span>
-                                        <span class="fa fa-calendar"> @lang('lang.to'): <strong>{{ $tour->time_finish_format }}</strong></span>
-                                        <strong>${{ $tour->price }}</strong>
-                                    </h5>
-                                    <ul class="list-inline detailsBtn">
-                                        <li>
-                                            {{ Html::link(route('client.tour.show', $tour->id), trans('lang.view'), ['class' => 'btn buttonTransparent']) }}
-                                        </li>
+                @if (count($data['popular_tour']))
+                    @foreach ($data['popular_tour'] as $tour)
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="thumbnail deals tour-show">
+                                {{ Html::image($tour->picture_path, 'tour-image') }}
+                                {{ Html::link(route('client.tour.show', $tour->id), '', ['class' => 'pageLink']) }}
+                                <div class="discountInfo" value="{{ $tour->rate }}">
+                                    <ul class="list-inline rating homePage rate-home">
+                                        <li><i class="fa" aria-hidden="true"></i></li>
+                                        <li><i class="fa" aria-hidden="true"></i></li>
+                                        <li><i class="fa" aria-hidden="true"></i></li>
+                                        <li><i class="fa" aria-hidden="true"></i></li>
+                                        <li><i class="fa" aria-hidden="true"></i></li>
                                     </ul>
+                                </div>
+                                <div class="caption">
+                                    <h4>{{ $tour->name }}</h4>
+                                    <p>{{ str_limit($tour->description, 60) }}</p>
+                                    <div class="detailsInfo">
+                                        <h5>
+                                            <span class="fa fa-calendar"> @lang('lang.from'): <strong>{{ $tour->time_start_format }}</strong></span>
+                                            <span class="fa fa-calendar"> @lang('lang.to'): <strong>{{ $tour->time_finish_format }}</strong></span>
+                                            <strong>${{ $tour->price }}</strong>
+                                        </h5>
+                                        <h5 style="float: right;">
+                                            <span><i class="fa fa-clock-o"></i> Duration: {{ $tour->duration }}</span>
+                                            <span><i class="fa fa-user"></i> Seat Availability: {{ $tour->seat_available }}</span>
+                                        </h5>
+                                        <ul class="list-inline detailsBtn">
+                                            <li>
+                                                {{ Html::link(route('client.tour.show', $tour->id), trans('lang.view'), ['class' => 'btn buttonTransparent']) }}
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
             <div class="row">
                 <div class="col-xs-12">
@@ -112,62 +118,71 @@
         </div>
     </section>
 
-    @foreach ($allTour as $category => $tours)
-        <section class="mainContentSection packagesSection tour-package">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="sectionTitle">
-                            <h2><span class="lightBg">{{ $category }}</span></h2>
-                            <p>@lang('lang.you_like') {{ $category }} @lang('lang.tour') ?</p>
+    @if (isset($allTour))
+        @foreach ($allTour as $category => $tours)
+            <section class="mainContentSection packagesSection tour-package">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="sectionTitle">
+                                <h2><span class="lightBg">{{ $category }}</span></h2>
+                                <p>@lang('lang.you_like') {{ $category }} @lang('lang.tour') ?</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    @foreach ($tours as $tour)
-                        <div class="col-sm-4 col-xs-12">
-                            <div class="thumbnail deals tour-show">
-                                {{ Html::image($tour->picture_path, 'tour-image') }}
-                                {{ Html::link(route('client.tour.show', $tour->id), '', ['class' => 'pageLink']) }}
-                                <div class="discountInfo"  value="{{ $tour->rate }}">
-                                    <ul class="list-inline rating homePage rate-home">
-                                        <li><i class="fa" aria-hidden="true"></i></li>
-                                        <li><i class="fa" aria-hidden="true"></i></li>
-                                        <li><i class="fa" aria-hidden="true"></i></li>
-                                        <li><i class="fa" aria-hidden="true"></i></li>
-                                        <li><i class="fa" aria-hidden="true"></i></li>
-                                    </ul>
-                                </div>
-                                <div class="caption">
-                                    <h4>{{ $tour->name }}</h4>
-                                    <p>{{ str_limit($tour->description, 60) }}</p>
-                                    <div class="detailsInfo">
-                                        <h5>
-                                            <span class="fa fa-calendar"> @lang('lang.from'): <strong>{{ $tour->time_start_format }}</strong></span>
-                                            <span class="fa fa-calendar"> @lang('lang.to'): <strong>{{ $tour->time_finish_format }}</strong></span>
-                                            <strong>${{ $tour->price }}</strong>
-                                        </h5>
-                                        <ul class="list-inline detailsBtn">
-                                            <li>
-                                                {{ Html::link(route('client.tour.show', $tour->id), trans('lang.view'), ['class' => 'btn buttonTransparent']) }}
-                                            </li>
-                                        </ul>
+                    @if (count($tours))
+                        <div class="row">
+                            @foreach ($tours as $tour)
+                                <div class="col-sm-4 col-xs-12">
+                                    <div class="thumbnail deals tour-show">
+                                        {{ Html::image($tour->picture_path, 'tour-image') }}
+                                        {{ Html::link(route('client.tour.show', $tour->id), '', ['class' => 'pageLink']) }}
+                                        <div class="discountInfo"  value="{{ $tour->rate }}">
+                                            <ul class="list-inline rating homePage rate-home">
+                                                <li><i class="fa" aria-hidden="true"></i></li>
+                                                <li><i class="fa" aria-hidden="true"></i></li>
+                                                <li><i class="fa" aria-hidden="true"></i></li>
+                                                <li><i class="fa" aria-hidden="true"></i></li>
+                                                <li><i class="fa" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="caption">
+                                            <h4>{{ $tour->name }}</h4>
+                                            <p>{{ str_limit($tour->description, 60) }}</p>
+                                            <div class="detailsInfo">
+                                                <h5>
+                                                    <span class="fa fa-calendar"> @lang('lang.from'): <strong>{{ $tour->time_start_format }}</strong></span>
+                                                    <span class="fa fa-calendar"> @lang('lang.to'): <strong>{{ $tour->time_finish_format }}</strong></span>
+                                                    <strong>${{ $tour->price }}</strong>
+                                                </h5>
+                                                <h5 style="float: right;">
+                                                    <span><i class="fa fa-clock-o"></i> Duration: {{ $tour->duration }}</span>
+                                                    <span><i class="fa fa-user"></i> Seat Availability: {{ $tour->seat_available }}</span>
+                                                </h5>
+                                                <ul class="list-inline detailsBtn">
+                                                    <li>
+                                                        {{ Html::link(route('client.tour.show', $tour->id), trans('lang.view'), ['class' => 'btn buttonTransparent']) }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="btnArea">
+                                    {{ Html::link(route('client.category.show', $tour->category->parentCategory->id), trans('lang.view_all'), ['class' => 'btn buttonTransparent']) }}
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endif
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="btnArea">
-                            {{ Html::link(route('client.category.show', $tour->category->parentCategory->id), trans('lang.view_all'), ['class' => 'btn buttonTransparent']) }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endforeach
+            </section>
+        @endforeach
+    @endif
 
     <section class="promotionWrapper amazingHtoleSection news-show">
         <div class="container">
@@ -208,23 +223,25 @@
     <section class="mainContentSection packagesSection tour-package">
         <div class="container">
             <div class="row">
-                @foreach ($data['news'] as $news)
-                    <div class="col-sm-4 col-xs-12">
-                            <div class="thumbnail deals tour-show">
-                                {!! html_entity_decode(Html::link('', Html::image($news->picture_path, 'guide-image'))) !!}
-                            </a>
-                            <div class="caption">
-                                <h3>{{ Html::link('', str_limit($news->title, 20), ['class' => 'blogTitle']) }}</h3>
-                                <ul class="list-inline blogInfo">
-                                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ $news->created_time }}</li>
-                                    <li><i class="fa fa-tags" aria-hidden="true"></i>Travel</li>
-                                </ul>
-                                <p>{{ str_limit($news->content, 60) }}</p>
-                                {{ Html::link('', trans('lang.view'), ['class' => 'btn buttonTransparent']) }}
+                @if (count($data['news']))
+                    @foreach ($data['news'] as $news)
+                        <div class="col-sm-4 col-xs-12">
+                                <div class="thumbnail deals tour-show">
+                                    {!! html_entity_decode(Html::link('', Html::image($news->picture_path, 'guide-image'))) !!}
+                                </a>
+                                <div class="caption">
+                                    <h3>{{ Html::link('', str_limit($news->title, 20), ['class' => 'blogTitle']) }}</h3>
+                                    <ul class="list-inline blogInfo">
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>{{ $news->created_time }}</li>
+                                        <li><i class="fa fa-tags" aria-hidden="true"></i>Travel</li>
+                                    </ul>
+                                    <p>{{ str_limit($news->content, 60) }}</p>
+                                    {{ Html::link('', trans('lang.view'), ['class' => 'btn buttonTransparent']) }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
             <div class="row">
                 <div class="col-xs-12">

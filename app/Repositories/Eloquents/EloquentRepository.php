@@ -23,6 +23,11 @@ abstract class EloquentRepository implements RepositoryInterface
 
     abstract public function getModel();
 
+    public function all($columns = ['*'])
+    {
+        return $this->model->orderBy('id', 'desc')->get($columns);
+    }
+
     public function getAll()
     {
         return $this->model->all();
@@ -44,7 +49,7 @@ abstract class EloquentRepository implements RepositoryInterface
             $record = $this->model->findOrFail($id);
             $record->update($data);
 
-            return true;    
+            return true;
         } catch (Exception $e) {
             return false;
         }
@@ -56,7 +61,7 @@ abstract class EloquentRepository implements RepositoryInterface
             $record = $this->model->findOrFail($data);
             $record->delete();
 
-            return true;            
+            return true;
         } catch (Exception $e) {
             return false;
         }

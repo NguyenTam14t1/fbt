@@ -71,7 +71,7 @@
                                 <label class="star-show"></label>
                                 <label class="star-show"></label>
                             </div>
-                        
+
                         </div>
                         <div class="col-md-4 rate-show-form col-xs-12 row form-group">
                             <span class="col-md-3 col-xs-12 rate-show-title">@lang('lang.foods'):</span>
@@ -116,7 +116,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">@lang('lang.date_start'):</label>
                                                 <div class="col-md-7 col-sm-12 col-xs-7 datepickerWrap">
-                                                    <div class="input-group date ed-datepicker" data-provide="datepicker">
+                                                    <div class="input-group date" id="date_start" readonly>
                                                         {{ Form::text('date_start', $data['tour']->time_start_format, ['class' => 'form-control', 'readonly' => 'readonly']) }}
                                                         <div class="input-group-addon">
                                                             <span class="fa fa-calendar"></span>
@@ -127,7 +127,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">@lang('lang.date_finish'):</label>
                                                 <div class="col-md-7 col-sm-12 col-xs-7 datepickerWrap">
-                                                    <div class="input-group date ed-datepicker filterDate" data-provide="datepicker">
+                                                    <div class="input-group date filterDate" id="date_finish" readonly>
                                                         {{ Form::text('date_finish', $data['tour']->time_finish_format, ['class' => 'form-control', 'readonly' => 'readonly']) }}
                                                         <div class="input-group-addon">
                                                             <span class="fa fa-calendar"></span>
@@ -136,17 +136,17 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">@lang('lang.participants_max')</label>
-                                                <div class="col-md-7 col-sm-12 col-xs-7 datepickerWrap">
-                                                    <div class="input-group date ed-datepicker filterDate" data-provide="datepicker">
-                                                        {{ Form::text('participants_max', $data['tour']->participants_max, ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'participants_max']) }}
+                                                <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">Seat Availability: </label>
+                                                <div class="col-md-7 col-sm-12 col-xs-7">
+                                                    <div class="input-group">
+                                                        {{ Form::text('participants_max', $data['tour']->seat_available, ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'participants_max']) }}
                                                         <div class="input-group-addon">
                                                             <span class="fa fa-child"></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+
                                             <div class="form-group">
                                                 <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">@lang('lang.adults'):</label>
                                                 <div class="col-md-5 col-sm-12 col-xs-7 datepickerWrap">
@@ -190,6 +190,7 @@
                     </div>
                 </aside>
             </div>
+
             <div class="description-aria">
                 <div class="sectionTitle2">
                     <h2>@lang('lang.description')</h2>
@@ -197,7 +198,7 @@
                 </div>
                 <div class="row">
                     @foreach ($data['tour']->activityDates as $activityDate)
-                        <div class="col-xs-12 col-sm-6">
+                        <div class="col-xs-12 col-sm-12">
                             <ul class="descriptionList">
                                 <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i>{{ $activityDate->title }}</li>
                             </ul>
@@ -218,7 +219,7 @@
                                     <div class="container">
                                         <article class="special-offers section-intro">
                                             <h2 class="page-title date-content">{{ $activity->title }}</h2>
-                                        </article>     
+                                        </article>
                                     </div>
                                 </a>
                             </li>
@@ -226,10 +227,10 @@
                     @endforeach
                     <nav id="mi-nav">
                         @foreach ($data['tour']->activityDates as $activity)
-                            {!! html_entity_decode(Html::link('#', '<span>' . trans('lang.day') . $loop->iteration . '</span>')) !!}
+                            {!! html_entity_decode(Html::link('#', '<span>' . $activity->time . '</span>')) !!}
                         @endforeach
                     </nav>
-                </div>     
+                </div>
                 <div class="clearfix"></div>
             </section>
         </div>
@@ -244,7 +245,7 @@
                             <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
                                 @foreach ($data['tour']->activityDates as $activity)
                                     <li role="presentation" id="{{ ($loop->iteration == 1) ? 'day-icon-1' : '' }}">
-                                        {!! html_entity_decode(Html::link('#day-' . $loop->iteration, '<i class="fa fa-binoculars" aria-hidden="true"></i><p>' . trans('lang.day') . $loop->iteration . '</p>', ['aria-controls' => 'day-' . $loop->iteration, 'role' => 'tab', 'data-toggle' => 'tab'])) !!}
+                                        {!! html_entity_decode(Html::link('#day-' . $loop->iteration, '<i class="fa fa-binoculars" aria-hidden="true"></i><p>' . $activity->time . '</p>', ['aria-controls' => 'day-' . $loop->iteration, 'role' => 'tab', 'data-toggle' => 'tab'])) !!}
                                     </li>
                                 @endforeach
                             </ul>
@@ -252,43 +253,9 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane " id="day-{{ $loop->iteration }}">
                                         <div class="design-process-content">
-                                            <h3 class="program-header">{{ trans('lang.day') . $loop->iteration . ': ' . $activity->title }}</h3>
-                                            <p>{{ $activity->content }}</p>
+                                            <h3 class="program-header">{{ $activity->time . ': ' . $activity->title }}</h3>
                                             <div class="description-aria">
-                                                <div class="header-service">@lang('lang.places')</div>
-                                                <div class="content-service row">
-                                                    @foreach ($activity->services()->place() as $service)
-                                                        <div class="col-md-6">   
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    {{ Html::image($service->picture_path, 'image-place', ['class' => 'media-object']) }}
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="media-heading">{{ $service->name }}</p>
-                                                                    <p>{{ $service->content }}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="description-aria">
-                                                <div class="header-service">@lang('lang.foods')</div>
-                                                <div class="content-service row">
-                                                    @foreach ($activity->services()->food() as $service)
-                                                        <div class="col-md-6">
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    {{ Html::image($service->picture_path, 'image-food', ['class' => 'media-object']) }}
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <p class="media-heading">{{ $service->name }}</p>
-                                                                    <p>{{ $service->content }}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
+                                                <p>{{ $activity->detail }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -301,10 +268,24 @@
         </div>
         <div class="container">
             <div class="review-aria">
-                <div class="sectionTitle2">
-                    <h2>@lang('lang.reviews')</h2>
-                    <p>@lang('lang.review_text')</p>
-                </div>
+                @if (isset($data['note']->content))
+                    <div class="sectionTitle2">
+                        <h2>Notes</h2>
+                        <div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tab-content">
+                                        <div class="design-process-content" style="border:1px solid #ccc;padding: 20px 30px 20px 30px;text-align: justify;word-wrap: break-word;height: 300px;overflow-y: scroll;line-height: 22px">
+                                            <div class="description-aria">
+                                                <p>{{ $data['note']->content }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="reviewContent" id="review-show" value="{{ $data['tour']->id }}">
                     {{ Form::hidden('rate-info', '', ['id' => 'rate-info', 'place' => $data['place_rate'], 'food' => $data['food_rate'], 'service' => $data['service_rate'], 'total' => $data['total_rate']]) }}
                     @auth

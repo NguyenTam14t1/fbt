@@ -8,14 +8,14 @@
         <title>@lang('lang.travel_tour')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @routes
-        
+
         <!-- PLUGINS CSS STYLE -->
         {{ Html::style('css/app.css') }}
         {{ Html::script('js/app.js') }}
         {{ Html::style('templates/plugins/selectbox/select_option1.css') }}
         {{ Html::style('templates/plugins/datepicker/datepicker.css') }}
         {{ Html::style(asset('/templates/plugins/animate/animate.min.css')) }}
-        
+
         <!-- CUSTOM CSS -->
         {{ Html::style('templates/bookingtour/css/style.css') }}
         {{ Html::style('templates/bookingtour/css/activity-date.css') }}
@@ -104,17 +104,7 @@
                                         </ul>
                                     </li>
                                 @endforeach
-                                <li class="dropdown searchBox">
-                                    {!! html_entity_decode(Html::link('#', '<span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span>', ['class' => 'dropdow-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false'])) !!}
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <span class="input-group">
-                                                {{ Form::text('search-input', '', ['class' => 'form-control', 'placeholder' => trans('lang.search_placeholder'), 'aria-describedby' => 'basic-addon2']) }}
-                                                <span class="input-group-addon" id="basic-addon2">@lang('lang.search')</span>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </div>
                     </div>

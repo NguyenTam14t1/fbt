@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	Schema::defaultStringLength(191); 
+    	Schema::defaultStringLength(191);
         Relation::morphMap([
             'comment' => \App\Models\Comment::class,
             'review' => \App\Models\Review::class,
@@ -27,9 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $menuCategories = Category::where('parent_id', config('setting.parent_id'))->get();
         $subCategories = Category::where('parent_id', '<>', config('setting.parent_id'))
             ->get();
-            $guides = $subCategories;
-            $hotels = $subCategories;
-        View::share(compact('menuCategories', 'subCategories', 'guides', 'hotels'));
+        View::share(compact('menuCategories', 'subCategories'));
     }
 
     /**

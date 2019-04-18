@@ -25,6 +25,22 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\Models\Hotel::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'address' => $faker->address,
+    ];
+});
+
+$factory->define(App\Models\Guide::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'mail' => $faker->unique()->safeEmail,
+        'address' => $faker->address,
+        'password' => config('setting.password_test'),
+        // 'is_admin' => false,
+    ];
+});
 
 $factory->define(App\Models\BankAccount::class, function (Faker $faker) {
     return [
@@ -48,7 +64,6 @@ $factory->define(App\Models\Tour::class, function (Faker $faker) {
         'name' => implode('', $faker->words(2)),
         'description' => $faker->paragraph(2),
         'place' => $faker->sentence(),
-        'hotel' => $faker->sentence(),
         'time_start' => $faker->dateTime(),
         'time_finish' => $faker->dateTime(),
         'participants_min' => $faker->numberBetween(2, 5),
@@ -71,8 +86,8 @@ $factory->define(App\Models\ActivityDate::class, function (Faker $faker) {
     return [
         'tour_id' => App\Models\Tour::all()->random()->id,
         'title' => $faker->sentence(),
-        'content' => $faker->paragraph(2),
-        'picture' => '1.jpg',
+        'detail' => $faker->paragraph(2),
+        'time' => $faker->time(),
     ];
 });
 
@@ -87,7 +102,7 @@ $factory->define(App\Models\Service::class, function (Faker $faker) {
 });
 
 $factory->define(App\Models\Review::class, function (Faker $faker) {
-    
+
     $foodRate = $faker->numberBetween(1, 5);
     $placeRate = $faker->numberBetween(1, 5);
     $serviceRate = $faker->numberBetween(1, 5);
@@ -104,7 +119,7 @@ $factory->define(App\Models\Review::class, function (Faker $faker) {
 });
 
 $factory->define(App\Models\Comment::class, function (Faker $faker) {
-    
+
     if (rand(0, 1)) {
         $type = 'review';
         $id = App\Models\Review::all()->random()->id;
@@ -123,7 +138,7 @@ $factory->define(App\Models\Comment::class, function (Faker $faker) {
 });
 
 $factory->define(App\Models\Booking::class, function (Faker $faker) {
-    
+
     $tourId = App\Models\Tour::all()->random()->id;
     $numOfPeople = $faker->numberBetween(5, 10);
     $price = App\Models\Tour::where('id', $tourId)->first()->price * $numOfPeople;
@@ -132,9 +147,17 @@ $factory->define(App\Models\Booking::class, function (Faker $faker) {
     $debt = $price - $paymented;
 
     return [
+        'first_name' => 'temp first_name',
+        'last_name' => 'temp last_name',
+        'address' => 'temp address',
+        'phone' => 'temp phone',
+        'identity_card' => 'temp identity_card',
+        'requiments' => 'temp requiments',
+        'confirm_code' => 'temp confirm_code',
         'tour_id' => $tourId,
-        'user_id' => App\Models\User::all()->random()->id,
+        'user_id' => rand(1, 10),
         'number_of_people' => $numOfPeople,
+        'number_of_children' => $numOfPeople,
         'status' => $faker->numberBetween(1, 3),
         'paymented' => $paymented,
         'debt' => $debt,

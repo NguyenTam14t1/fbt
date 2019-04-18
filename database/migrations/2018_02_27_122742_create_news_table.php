@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->integer('tour_id');
             $table->string('title');
             $table->text('content');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

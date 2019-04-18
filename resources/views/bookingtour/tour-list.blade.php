@@ -1,5 +1,7 @@
 @extends('widgets.bookingtour.master')
 
+@section ('change-header', 'changeHeader')
+
 @section('content')
     <!-- PAGE TITLE -->
     <section class="pageTitle page-title-2">
@@ -81,7 +83,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- PAGE CONTENT -->
     <section class="mainContentSection packagesSection">
         <div class="container">
@@ -97,7 +99,9 @@
                                             {{ Html::link(route('client.tour.show', $tour->id), $tour->name) }}
                                         </h4>
                                         <div class="discountInfo countryRating" value="{{ $tour->rate }}">
-                                            {!! html_entity_decode(Html::link(route('client.category.show', $tour->category->id), '<span>' . $tour->category->name . '</span>')) !!}
+                                            @if (isset($tour->category))
+                                                {!! html_entity_decode(Html::link(route('client.category.show', $tour->category->id), '<span>' . $tour->category->name . '</span>')) !!}
+                                            @endif
                                             <ul class="list-inline rating rate-home">
                                                 <li><i class="fa" aria-hidden="true"></i></li>
                                                 <li><i class="fa" aria-hidden="true"></i></li>
@@ -107,6 +111,14 @@
                                             </ul>
                                         </div>
                                         <p>{{ str_limit($tour->description, 150) }}</p>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <span><i class="fa fa-clock-o"></i> Duration: {{ $tour->duration }}</span>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <span><i class="fa fa-user"></i> Seat available: {{ $tour->seat_available }}</span>
+                                            </div>
+                                        </div>
                                         <ul class="list-inline detailsBtn">
                                             <li><span class="textInfo"><i class="fa fa-calendar" aria-hidden="true"></i> @lang('lang.from'): {{ $tour->time_start_format }}</span></li>
                                             <li><span class="textInfo"><i class="fa fa-calendar" aria-hidden="true"></i> @lang('lang.to'): {{ $tour->time_finish_format }}</span></li>

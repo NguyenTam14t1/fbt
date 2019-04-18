@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 interface RepositoryInterface
 {
+    public function all($columns = ['*']);
+
     public function getAll();
 
     public function getById($id);

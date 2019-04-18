@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use File;
+use Storage;
 
 class Tour extends Model
 {
@@ -13,13 +14,14 @@ class Tour extends Model
         'name',
         'description',
         'place',
-        'hotel',
         'time_start',
         'time_finish',
         'participants_min',
         'participants_max',
         'price',
-        'picture',
+        'thumbnail',
+        'name_thumbnail',
+        'count_register',
     ];
 
     protected $appends = [
@@ -28,11 +30,23 @@ class Tour extends Model
         'price_child',
         'picture_path',
         'rate',
+        'seat_available',
+        'duration',
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function hotels()
+    {
+        return $this->belongsToMany(Hotel::class, 'tour_hotel', 'tour_id', 'hotel_id');
+    }
+
+    public function guides()
+    {
+        return $this->belongsToMany(Guide::class, 'tour_guide', 'tour_id', 'guide_id');
     }
 
     public function newses()
@@ -70,19 +84,28 @@ class Tour extends Model
 
     public function getPriceChildAttribute() {
         $price_child = floor($this->attributes['price'] / 2);
-        
+
         return $price_child;
-    }    
+    }
 
     public function getPicturePathAttribute()
     {
-        $pathFile = config('setting.tour_upload_folder') . $this->attributes['picture'];
-        
-        if (!File::exists(public_path($pathFile)) || empty($this->attributes['picture'])) {
-            return config('setting.tour_default_img');
+        if (!empty($this->attributes['thumbnail'])) {
+            $pathFile = Storage::path(config('images.paths.thumbnail_tour') . '/' . $this->attributes['thumbnail']);
+            // return $pathFile;
+            // return '/storage/app/' . config('images.paths.thumbnail_tour') . '/' . $this->attributes['thumbnail'];
+            return '/storage/' . config('images.paths.thumbnail_tour') . '/' . $this->attributes['thumbnail'];
         }
 
-        return config('setting.tour_upload_folder') . $this->attributes['picture']; 
+        return config('setting.tour_default_img');
+
+        // if (!empty($this->attributes['thumbnail'])) {
+        //     $pathFile = config('images.paths.thumbnail_tour') . '/' . $this->attributes['thumbnail'];
+
+        //     return full_path_file($pathFile);
+        // }
+
+        // return config('setting.tour_default_img');
     }
 
     public function getRateAttribute()
@@ -100,4 +123,23 @@ class Tour extends Model
 
         return $rate;
     }
-}   
+
+    public function getDescriptionAttribute($value)
+    {
+        return strip_tags($value);
+    }
+
+    public function getSeatAvailableAttribute()
+    {
+        return $this->participants_max - $this->count_register;
+    }
+
+    public function getDurationAttribute()
+    {
+        $startDay = Carbon::parse($this->attributes['time_start']);
+        $endDay = Carbon::parse($this->attributes['time_finish']);
+        $duration = ($endDay->diffInDays($startDay)) + 1;
+
+        return $duration;
+    }
+}

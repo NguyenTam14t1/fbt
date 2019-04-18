@@ -6,54 +6,202 @@ $(function() {
     });
 });
 
-$.fn.select2.amd.require(['select2/selection/search'], function (Search) {
-    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+// $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+//     var oldRemoveChoice = Search.prototype.searchRemoveChoice;
 
-    Search.prototype.searchRemoveChoice = function () {
-        oldRemoveChoice.apply(this, arguments);
-        this.$search.val('');
-    };
-});
-
+//     Search.prototype.searchRemoveChoice = function () {
+//         oldRemoveChoice.apply(this, arguments);
+//         this.$search.val('');
+//     };
+// });
+//add tour
 $(function () {
-    if ($('input[name=time_zone_browser]').length) {
-        let objectDate = new Date()
-        let timezone = 0 - objectDate.getTimezoneOffset()/60
-        $('input[name=time_zone_browser]').val(timezone)
+    function addActiveDates(timeStart, timeFinish) {
+        var timeDiff = timeFinish - timeStart + 1
+        var objTo = document.getElementById('active_date')
+        $('#active_date').empty()
+
+        if (timeDiff > 0) {
+          var numDays = Math.ceil(timeDiff / (1000 * 3600 *24))
+          $('#active_date').data('total-date', numDays)
+          $('#label-detail-progam').show()
+          var htmlAppend = ''
+          for (var i = 0; i < numDays; i++) {
+            htmlAppend += `<div id="active-${i}">
+                            <div class="col-sm-5 nopadding">
+                              <div class="form-group">
+                                <label for="day-active-date">Time</label>
+                                <input type="text"
+                                  name="activity_dates[time][]"
+                                  readonly
+                                  maxlength="350"
+                                  id="time-${i}"
+                                  class="form-control pull-right time-active-date"
+                                  value="Day ${i+1}">
+                              </div>
+                              <div class="form-group">
+                                <label for="title-active-date">Title: </label><span class="field-required">*</span>
+                                <div class="input-group date">
+                                  <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                  </span>
+                                  <input type="text"
+                                    name="activity_dates[title][]"
+                                    required="required"
+                                    maxlength="{{config('setting.tour.maxlength_name')}}"
+                                    class="form-control pull-right title-active-date"
+                                    placeholder="Title"
+                                    id="title-${i}"
+                                    value="">
+                                </div>
+                                <span class="text-danger title_active_date" role="alert"></span>
+                              </div>
+                            </div>
+                            <div class="col-sm-7 nopadding">
+                              <div class="form-group">
+                                <label for="content-active-date">Detail: </label><span class="field-required">*</span>
+                                <div>
+                                  <textarea type="text"
+                                    class="form-control content-active-date" rows="7"
+                                    required="required"
+                                    maxlength="{{config('setting.tour.maxlength_description')}}"
+                                    id="detail-${i}"
+                                    name="activity_dates[detail][]" placeholder="Content activity date"></textarea>
+                                </div>
+                                <span class="text-danger content_active_date" role="alert"></span>
+                              </div>
+                            </div>
+                          </div>`;
+          }
+
+          $('#active_date').append(htmlAppend)
+        }
     }
+
+    function editActiveDates(timeStart, timeFinish) {
+        var timeDiff = timeFinish - timeStart + 1
+        var objTo = document.getElementById('active_date')
+        $('#active_date').empty()
+
+        if (timeDiff > 0) {
+          var numDays = Math.ceil(timeDiff / (1000 * 3600 *24))
+          $('#active_date').data('total-date', numDays)
+          $('#label-detail-progam').show()
+          var htmlAppend = ''
+          for (var i = 0; i < numDays; i++) {
+            htmlAppend += `<div id="active-${i}">
+                            <div class="col-sm-5 nopadding">
+                              <div class="form-group">
+                                <label for="day-active-date">Time</label>
+                                <input type="text"
+                                  name="activity_dates[time][]"
+                                  readonly
+                                  maxlength="350"
+                                  id="time-${i}"
+                                  class="form-control pull-right time-active-date"
+                                  value="Day ${i+1}">
+                              </div>
+                              <div class="form-group">
+                                <label for="title-active-date">Title: </label><span class="field-required">*</span>
+                                <div class="input-group date">
+                                  <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                  </span>
+                                  <input type="text"
+                                    name="activity_dates[title][]"
+                                    required="required"
+                                    maxlength="{{config('setting.tour.maxlength_name')}}"
+                                    class="form-control pull-right title-active-date"
+                                    placeholder="Title"
+                                    id="title-${i}"
+                                    value="">
+                                </div>
+                                <span class="text-danger title_active_date" role="alert"></span>
+                              </div>
+                            </div>
+                            <div class="col-sm-7 nopadding">
+                              <div class="form-group">
+                                <label for="content-active-date">Detail: </label><span class="field-required">*</span>
+                                <div>
+                                  <textarea type="text"
+                                    class="form-control content-active-date" rows="7"
+                                    required="required"
+                                    maxlength="{{config('setting.tour.maxlength_description')}}"
+                                    id="detail-${i}"
+                                    name="activity_dates[detail][]" placeholder="Content activity date"></textarea>
+                                </div>
+                                <span class="text-danger content_active_date" role="alert"></span>
+                              </div>
+                            </div>
+                          </div>`;
+          }
+
+          $('#active_date').append(htmlAppend)
+        }
+    }
+
     if ($('.check-add-tour').length) {
-        $('#publish_start_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_start input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
-            minDate: moment().format('YYYY-MM-DD HH:mm'),
-            defaultDate: moment(),
+            minDate: moment().add(5, 'days').format('YYYY-MM-DD'),
+            defaultDate: moment().add(5, 'days'),
             showClear: true
         })
 
-        $('#publish_end_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_finish input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
-            minDate: moment().format('YYYY-MM-DD HH:mm'),
+            minDate: moment().add(5, 'days').format('YYYY-MM-DD'),
             defaultDate: false,
             showClear: true
         })
+
+        $('#time_start input').on('dp.change', function(e) {
+            var dateFinish = new Date($('#time_finish input').val())
+            var dateStart = new Date(e.target.value)
+            var timeStart = dateStart.getTime()
+            var timeFinish = dateFinish.getTime()
+
+            addActiveDates(timeStart, timeFinish)
+        })
+
+        $('#time_finish input').on('dp.change', function(e) {
+            var dateStart = new Date($('#time_start input').val())
+            var dateFinish = new Date(e.target.value)
+            var timeStart = dateStart.getTime()
+            var timeFinish = dateFinish.getTime()
+
+            addActiveDates(timeStart, timeFinish)
+        })
+
+        // $('.time_active input').datetimepicker({
+        //   format: 'YYYY-MM-DD',
+        //   useCurrent: false,
+        //   minDate: moment().format('YYYY-MM-DD'),
+        //   defaultDate: false,
+        //   showClear: true
+        // })
+
+        // $('#add-active-date .time_active_other input').datetimepicker({
+        //   format: 'YYYY-MM-DD',
+        //   useCurrent: false,
+        //   minDate: moment().format('YYYY-MM-DD'),
+        //   defaultDate: false,
+        //   showClear: true
+        // })
     }
 
-    $('.thumbnail-of-video input').datetimepicker({
-        format: 'HH:mm:ss',
-        useCurrent: false,
-        showClear: true
-    })
-
     if ($('.check-edit-tour').length) {
-        let valStart = $('#publish_start_date input').data('val')
-        let defaultStart = valStart ? convertToLocale(valStart).format('YYYY-MM-DD HH:mm') : false
-        var now = moment();
+        $('#label-detail-progam').show()
+        let valStart = $('#time_start input').data('val')
+        let defaultStart = valStart ? convertToLocale(valStart).format('YYYY-MM-DD') : false
+        var now = moment().add(5, 'days');
         if(defaultStart){
-            $('#publish_start_date input').val(defaultStart)
+            $('#time_start input').val(defaultStart)
         }
-        $('#publish_start_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_start input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
             minDate: now,
             showClear: true,
@@ -61,19 +209,19 @@ $(function () {
             //defaultDate: defaultStart
         })
 
-        // $('#publish_start_date input').on('dp.change', e => {
-        //     $('#publish_end_date input').data("DateTimePicker").options({
+        // $('#time_start input').on('dp.change', e => {
+        //     $('#time_finish input').data("DateTimePicker").options({
         //         minDate: e.date ? e.date : false
         //     })
         // })
 
-        let valEnd = $('#publish_end_date input').data('val')
-        let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY-MM-DD HH:mm') : false
+        let valEnd = $('#time_finish input').data('val')
+        let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY-MM-DD') : false
         if(defaultEnd){
-            $('#publish_end_date input').val(defaultEnd);
+            $('#time_finish input').val(defaultEnd);
         }
-        $('#publish_end_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+        $('#time_finish input').datetimepicker({
+            format: 'YYYY-MM-DD',
             useCurrent: false,
             minDate: now,
             showClear: true,
@@ -81,8 +229,27 @@ $(function () {
             //defaultDate: defaultEnd,
         })
 
-        // $('#publish_end_date input').on('dp.change', e => {
-        //     $('#publish_start_date input').data("DateTimePicker").options({
+
+        $('#time_start input').on('dp.change', function(e) {
+            var dateFinish = new Date($('#time_finish input').val())
+            var dateStart = new Date(e.target.value)
+            var timeStart = dateStart.getTime()
+            var timeFinish = dateFinish.getTime()
+
+            addActiveDates(timeStart, timeFinish)
+        })
+
+        $('#time_finish input').on('dp.change', function(e) {
+            var dateStart = new Date($('#time_start input').val())
+            var dateFinish = new Date(e.target.value)
+            var timeStart = dateStart.getTime()
+            var timeFinish = dateFinish.getTime()
+
+            addActiveDates(timeStart, timeFinish)
+        })
+
+        // $('#time_finish input').on('dp.change', e => {
+        //     $('#time_start input').data("DateTimePicker").options({
         //         maxDate: e.date ? e.date : false
         //     })
         // })
@@ -203,46 +370,46 @@ $(function () {
         window.location.href = url
     })
 
-    //handle load teacher in create and edit tour
-    setTimeout(function(){
-        $('.select-box-teacher div.filter-option').each(function (index) {
-            $(this).click()
-        })
-
-        $('#name').click()
-        $('#name').focus()
-        $('#name').blur()
-
-        if ($('.check-edit-tour').length) {
-            $('select.select-teacher').each(function (index) {
-                $(this).trigger('change')
-            })
-        }
-    }, 500);
-
-    $('body').on('change', 'select.select-teacher', function (e) {
-        let el = $(this)
-        let positionChange = el.data('teacher')
-
-        whenChoiseTeacher(positionChange)
-        e.stopPropagation()
+    //get hotel from map js API
+    $('.btn-add-hotel').on('click', function(e) {
+        $('.google-map-hotel').show()
     })
 
-    //end handle load teacher in create and edit tour
+    //get data active dates
 
-    //submit form create
+    function getAllActiveDetails(allDay) {
+      let activeDetailArr = []
+
+      for (var i = 0; i < allDay; i++) {
+        let objActive = {
+          id: $('#active-date-id-' + i).val() || null,
+          time: $('#time-' + i).val() || null,
+          title: $('#title-' + i).val() || null,
+          detail: $('#detail-' + i).val() || null,
+        }
+        activeDetailArr.push(objActive)
+      }
+
+      return activeDetailArr
+    }
+//prevent submit form create tour
     $('body').on('submit', '#add-tour', function (e) {
         e.preventDefault()
         $('span.text-danger').empty()
         let url = $(this).attr('action')
         let urlIndex = $(this).data('url-index')
         let formData = new FormData(this)
+        let allDay = $('#active_date').data('total-date')
+        let activeDateDatas = allDay > 0 ? getAllActiveDetails(allDay) : null
+        let jsonActiveDatas = JSON.stringify(activeDateDatas);
+
+        formData.append('activity_dates', jsonActiveDatas)
+
         fileUploadTest = fileUploadTest || '';
         if(fileUploadTest){
             formData.append('thumbnail', fileUploadTest[0], fileUploadTest[0].name);
         }
-        $('.progress-upload-form').show()
-
+        // $('.progress-upload-form').show()
         $.ajax({
             url: url,
             type: 'POST',
@@ -251,17 +418,97 @@ $(function () {
             cache: false,
             processData:false,
             success: data => {
-              window.location.href = urlIndex
+              // window.location.href = urlIndex
             },
             error: data => {
+                console.log(data)
                 if (data.status == 422) {
-                    $('.progress-upload-form').hide()
+                    // $('.progress-upload-form').hide()
                     showMessErrForm(data.responseJSON.errors)
                 }
             },
-            xhr: progressUpload,
+            // xhr: progressUpload,
         })
     })
+
+//prevent submit form create edit tour
+    $('body').on('submit', '#edit-tour', function (e) {
+        e.preventDefault()
+        $('span.text-danger').empty()
+        let url = $(this).attr('action')
+        let urlIndex = $(this).data('url-index')
+        let formData = new FormData(this)
+        let allDay = $('#active_date').data('total-date')
+        let activeDateDatas = allDay > 0 ? getAllActiveDetails(allDay) : null
+        let jsonActiveDatas = JSON.stringify(activeDateDatas)
+
+        console.log(jsonActiveDatas, allDay)
+
+        formData.append('activity_dates', jsonActiveDatas)
+
+        fileUploadTest = fileUploadTest || '';
+        if(fileUploadTest){
+            formData.append('thumbnail', fileUploadTest[0], fileUploadTest[0].name);
+        }
+        // $('.progress-upload-form').show()
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: data => {
+              // window.location.href = urlIndex
+            },
+            error: data => {
+                console.log(data)
+                if (data.status == 422) {
+                    // $('.progress-upload-form').hide()
+                    showMessErrForm(data.responseJSON.errors)
+                }
+            },
+            // xhr: progressUpload,
+        })
+    })
+
+//table list tour
+    var langDatatable = $('#message-data').data('lang-datatable');
+    if($('#datatable-list').length){
+        var table = $('#datatable-list').DataTable({
+            'language': {
+                'infoFiltered': '',
+                'info' : langDatatable['info'],
+                'paginate': {
+                    'previous': langDatatable['previous'],
+                    'next': langDatatable['next'],
+                    'first': langDatatable['first'],
+                    'last': langDatatable['last'],
+                },
+                'zeroRecords': langDatatable['zeroRecords'],
+                'lengthMenu': langDatatable['lengthMenu'],
+            },
+            "order": [],
+            "info": false,
+            "oSearch": {"bSmart": false},
+            "sPaginationType": "full_numbers",
+            'columnDefs': [{
+                'targets': 0,
+                'sortable': false,
+                'searchable': false,
+            },
+            {
+                'targets': 5,
+                'sortable': false,
+                'searchable': false,
+            },
+            {
+                'targets': 7,
+                'sortable': false,
+                'searchable': false,
+            }],
+        })
+    }
 
     function convertToLocale(val)
     {
@@ -303,44 +550,44 @@ $(function () {
           case key == 'name':
             appendMes(val, 'name-error')
             break
-          case key == 'group_id':
-            appendMes(val, 'group_id')
-            break
-          case key == 'level':
-            appendMes(val, 'level')
-            break
-          case key == 'teacher_main':
-            appendMes(val, 'teacher_main')
-            break
-          case key == 'teacher_one':
-            appendMes(val, 'teacher_one')
-            break
-          case key == 'teacher_two':
-            appendMes(val, 'teacher_two')
+          case key == 'place':
+            appendMes(val, 'place')
             break
           case key == 'category_id':
             appendMes(val, 'category_id')
             break
-          case key == 'content':
-            appendMes(val, 'content-mes-error')
+          case key == 'hotel_id':
+            appendMes(val, 'hotel_id')
             break
-          case /tag_id[.\d*]?/.test(key):
-            appendMes(val, 'tag_id')
+          case key == 'guide_id':
+            appendMes(val, 'guide_id')
             break
-          case key == 'publish_start_date':
-            appendMes(val, 'publish_start_date')
+          case key == 'price':
+            appendMes(val, 'price')
             break
-          case key == 'publish_end_date':
-            appendMes(val, 'publish_end_date')
+          case key == 'participants_min':
+            appendMes(val, 'participants_min')
             break
-          case key == 'attachFiles.1':
-            appendMes(val, 'attach-file-1')
+          case key == 'participants_max':
+            appendMes(val, 'participants_max')
             break
-          case key == 'attachFiles.2':
-            appendMes(val, 'attach-file-2')
+          case key == 'description':
+            appendMes(val, 'description-mes-error')
             break
-          case key == 'attachFiles.3':
-            appendMes(val, 'attach-file-3')
+          case key == 'time_start':
+            appendMes(val, 'time_start')
+            break
+          case key == 'time_finish':
+            appendMes(val, 'time_finish')
+            break
+          case key == 'day_active_date':
+            appendMes(val, 'day_active_date')
+            break
+          case key == 'title_active_date':
+            appendMes(val, 'title_active_date')
+            break
+          case key == 'content_active_date':
+            appendMes(val, 'content_active_date')
             break
           case /updateFiles[.\d*]?/.test(key):
             let classE = key.replace('.', '-')
@@ -400,4 +647,59 @@ $(function () {
     $('body').on('click', '.tour #modal-default .yes-confirm', e => {
         window.location.href = route('admin.tour.index');
     })
+
+    // var step = 0;
+    // $('body').on('click', '#btn-add-active', function(e) {
+    //     step++;
+    //     var objTo = document.getElementById('active_date')
+    //     var divtest = document.createElement("div");
+    //     divtest.setAttribute("class", "form-group row panel-body removeclass" + step);
+    //     var rdiv = 'removeclass' + step;
+    //     divtest.innerHTML =  `<div class="col-sm-1 nopadding">
+    //                             <div class="form-group"  data-active-id="${step}">
+    //                               <h5>Day ${step}:</h5>
+    //                             </div>
+    //                           </div>
+    //                           <div class="col-sm-3 nopadding">
+    //                             <div class="form-group">
+    //                               <input type="text" class="form-control" id="title-active-date" name="title_active_date[]" value="" placeholder="Title">
+    //                             </div>
+    //                           </div>
+    //                           <div class="col-sm-7 nopadding">
+    //                             <div class="form-group">
+    //                               <textarea type="text" class="form-control" rows="7" id="content-active-date" name="content_active_date[]" placeholder="Content activity date"></textarea>
+    //                             </div>
+    //                           </div>
+
+    //                           <div class="col-sm-1 nopadding">
+    //                             <div class="form-group">
+    //                               <div class="input-group">
+    //                                 <div class="input-group-btn">
+    //                                   <button class="btn btn-danger" type="button" id="btn-cancel-active" onclick="remove_active_date(${step});"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
+    //                                 </div>
+    //                               </div>
+    //                             </div>
+    //                           </div>
+
+    //                           <div class="clear"></div>`;
+
+    //     objTo.appendChild(divtest)
+    //     let dayFinal = step + 1
+    //     $('#day-final').html(`Day ${dayFinal}:`)
+    //     console.log('check1', step,step+1)
+    // })
+
+    // function remove_active_date(rid) {
+    //    $('.removeclass'+rid).remove();
+    // }
+
+
+  $('.time_active_other input').datetimepicker({
+    format: 'YYYY-MM-DD',
+    useCurrent: false,
+    defaultDate: false,
+    showClear: true
+  })
 })
+
+

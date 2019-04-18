@@ -11,6 +11,6 @@ class ActivityDatesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\ActivityDate::class, 30)->create();
+        factory(App\Models\ActivityDate::class, 10)->create();
     }
 }

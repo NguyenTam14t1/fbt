@@ -106,3 +106,30 @@ if (! function_exists('backgroundUrl')) {
         return '';
     }
 }
+
+if (! function_exists('full_path_file')) {
+    function full_path_file($pathFile, $disk = null)
+    {
+        $disk = $disk ?? config('filesystem.default');
+        if ($pathFile) {
+            return Storage::disk($disk)->url($pathFile);
+        }
+
+        return '';
+    }
+}
+
+if (! function_exists('saveFileTemp')) {
+    function saveFileTemp($pathFile) {
+        return Storage::disk('public')->put($pathFile, Storage::disk('s3')->get($pathFile));
+    }
+}
+
+if (!function_exists('origin_subdomain')) {
+    function origin_subdomain() {
+        $host = Request::getHttpHost();
+        $pieces = explode('.', $host);
+
+        return $pieces[0];
+    }
+}

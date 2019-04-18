@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TourInterface;
 use App\Repositories\Contracts\CategoryInterface;
+use App\Repositories\Contracts\HotelInterface;
+use App\Repositories\Contracts\GuideInterface;
 use App\Http\Requests\TourImportRequest;
+use App\Http\Requests\TourRequest;
 use Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 use Carbon\Carbon;
+use App\Models\Tour;
 
 class TourController extends Controller
 {
@@ -19,10 +23,14 @@ class TourController extends Controller
 
     public function __construct(
         TourInterface $tourRepository,
-        CategoryInterface $categoryRepository
+        CategoryInterface $categoryRepository,
+        HotelInterface $hotelRepository,
+        GuideInterface $guideRepository
     ) {
         $this->tourRepository = $tourRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->hotelRepository = $hotelRepository;
+        $this->guideRepository = $guideRepository;
     }
 
     /**
@@ -32,7 +40,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tours = $this->tourRepository->paginate(config('setting.paginate_default_val'));
+        $tours = $this->tourRepository->getAll();
 
         return view('admin.tours.index', compact('tours'));
     }
@@ -44,7 +52,10 @@ class TourController extends Controller
      */
     public function create()
     {
-        return view('admin.tours.add');
+        $guides = $this->guideRepository->all(['id', 'name']);
+        $hotels = $this->hotelRepository->all(['id', 'name']);
+
+        return view('admin.tours.add', compact('guides','hotels'));
     }
 
     /**
@@ -53,9 +64,39 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TourRequest $request)
     {
-        //
+        $data = $request->only([
+            'name',
+            'category_id',
+            'hotel_id',
+            'guide_id',
+            'price',
+            'time_start',
+            'time_finish',
+            'place',
+            'participants_min',
+            'participants_max',
+            'description',
+            'thumbnail',
+            'activity_dates',
+        ]);
+
+        $response = $this->tourRepository->store($data);
+
+        if ($response) {
+            Session::flash('message', 'Tour create success');
+
+            return response()->json([
+                'status' => true,
+            ]);
+        }
+
+        Session::flash('error', 'Ttour create fail');
+
+        return response()->json([
+            'status' => false,
+        ]);
     }
 
     /**
@@ -77,7 +118,15 @@ class TourController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tour = $this->tourRepository->findOrFail($id);
+        $guides = $this->guideRepository->all(['id', 'name']);
+        $hotels = $this->hotelRepository->all(['id', 'name']);
+
+        if (!$tour) {
+            return redirect()->route('admin.tour.index')->with('error', 'Tour not found!');
+        }
+
+        return view('admin.tours.edit', compact('tour', 'guides', 'hotels'));
     }
 
     /**
@@ -87,9 +136,25 @@ class TourController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TourRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $result = $this->tourRepository->update($data, $id);
+
+        if ($result) {
+            Session::flash('message', 'Tour update success!');
+
+            return response()->json([
+                'status' => true,
+            ]);
+        }
+
+        Session::flash('error', 'Tour update faild!');
+
+        return response()->json([
+            'status' => false,
+        ]);
     }
 
     /**
@@ -100,15 +165,19 @@ class TourController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = $this->tourRepository->delete($id);
+
+        if ($response) {
+            return redirect()->route('admin.tour.index')->with('message', 'Delete tour success!');
+        }
+
+        return redirect()->route('admin.tour.index')->with('error', 'Delete tour faild');
     }
 
     public function importTour(TourImportRequest $request)
     {
-        // dd($request->all());
         $categoriesId = $this->categoryRepository->getCategoriesId()->toArray();
         Excel::load($request->file_import, function($reader) use ($categoriesId) {
-            // dd( $categoriesId, $request->file_import);
 
             $error = '';
             $success = config('setting.import_success_default_val');
@@ -117,7 +186,7 @@ class TourController extends Controller
                     if (!in_array($record['category_id'], $categoriesId) || $record['time_finish']->lte($record['time_start'])) {
                         throw new Exception();
                     }
-                    // dd($record);
+
                     $this->tourRepository->create($record);
                     $success ++;
                 } catch (Exception $e) {

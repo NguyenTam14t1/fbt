@@ -40,7 +40,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="mainContentSection">
         <div class="container">
             <div class="row progress-wizard progress-group">
@@ -96,10 +96,15 @@
                         <h2>@lang('lang.payment_info')</h2>
                     </div>
                     <div class="bookingForm">
-                        <form action="" method="POST" role="form" class="form">
+                        <form action="{{ route('paymentOnline') }}" method="POST" role="form" class="form">
+                            @csrf
                             <div class="row">
                                 <div class="form-group col-sm-6 col-xs-12">
                                     <label for="">@lang('lang.first_name')</label>
+                                    <input type="text" name="booking_id" class="hide" value="{{ $booking->id }}">
+                                    <input type="text" name="tour_id" class="hide" value="{{ $booking->tour->id }}">
+                                    <input type="text" name="tour_debt" class="hide" value="{{ $booking->debt }}">
+                                    <input type="text" name="tour_name" class="hide" value="{{ $booking->tour->name }}">
                                     {{ Form::text('first_name', $booking->first_name, ['class' => 'form-control', 'readonly' => 'readonly']) }}
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
@@ -152,15 +157,6 @@
                                         <li>
                                             {!! html_entity_decode(Html::link('#', Html::image(config('setting.master_card_icon'), 'master-card-icon'))) !!}
                                         </li>
-                                        <li>
-                                            {!! html_entity_decode(Html::link('#', Html::image(config('setting.discover_icon'), 'discover-icon'))) !!}
-                                        </li>
-                                        <li>
-                                            {!! html_entity_decode(Html::link('#', Html::image(config('setting.visa_icon'), 'visa-icon'))) !!}
-                                        </li>
-                                        <li>
-                                            {!! html_entity_decode(Html::link('#', Html::image(config('setting.paypal_icon'), 'paypal-icon'))) !!}
-                                        </li>
                                     </ul>
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
@@ -176,7 +172,7 @@
                                     </div>
                                 </div>
                                 <div class="buttonArea btn-group-mail">
-                                    {{ Html::link('#', trans('payment'), ['class' => 'btn buttonTransparent', 'id' => 'payment-btn']) }}
+                                    <input type="submit" name="btn-payment-online" class="btn buttonTransparent" value="Payment">
                                 </div>
                             </div>
                         </form>

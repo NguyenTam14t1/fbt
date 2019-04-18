@@ -9,8 +9,9 @@ class ActivityDate extends Model
 {
     protected $fillable = [
         'tour_id',
-        'content',
-        'picture',
+        'title',
+        'detail',
+        'time',
     ];
 
     protected $appends = [
@@ -27,14 +28,19 @@ class ActivityDate extends Model
         return $this->belongsTo(Tour::class);
     }
 
+    public function getDetailAttribute($value)
+    {
+        return strip_tags($value);
+    }
+
     public function getPicturePathAttribute()
     {
-        $pathFile = config('setting.date_upload_folder') . $this->attributes['picture'];
-        
-        if (!File::exists(public_path($pathFile)) || empty($this->attributes['picture'])) {
-            return config('setting.date_default_img');
-        }
+        // $pathFile = config('setting.date_upload_folder') . $this->attributes['picture'];
 
-        return config('setting.date_upload_folder') . $this->attributes['picture']; 
+        // if (!File::exists(public_path($pathFile)) || empty($this->attributes['picture'])) {
+            return config('setting.date_default_img');
+        // }
+
+        // return config('setting.date_upload_folder') . $this->attributes['picture'];
     }
 }

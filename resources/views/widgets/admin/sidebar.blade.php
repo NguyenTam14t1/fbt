@@ -9,7 +9,19 @@
                     <span>@lang('admin/global.sidebar_list.dashboard')</span>
                 </a>
             </li>
-            
+            <li class="{{set_active(['admin.tour.*'])}}">
+                <a href="{{ route('admin.tour.index') }}">
+                    <i class="fa fa-mountains"></i>
+                    <span>List tour</span>
+                </a>
+            </li>
+
+            <li class="{{set_active(['admin.booking.*'])}}">
+                <a href="{{ route('admin.booking.index') }}">
+                    <i class="fa fa-cat"></i>
+                    <span>List booking</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

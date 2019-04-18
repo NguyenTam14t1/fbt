@@ -15,7 +15,7 @@ interface TourInterface
 
     public function addNewReviewFromUser($userId, array $data);
 
-    public function addNewBookingFromUser($userId, array $data);
+    public function addNewBookingFromUser($userId, array $data, $tourId);
 
     public function getNewTours($limit = 0);
 
@@ -24,4 +24,18 @@ interface TourInterface
     public function getToursOfCategory(array $categoriesId, $limit = 0);
 
     public function searchTour($category, $checkIn, $checkOut, $price, $limit = 0);
+
+    public function store($data);
+
+    public function createActiveDate($acticeDates, $tourId);
+
+    public function update($tour, $id);
+
+    public function updateMultiActiveDate($activeDates, $tourId);
+
+    public function delete($tourId);
+
+    public function getNote();
+
+    public function getTerm();
 }

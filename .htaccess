@@ -3,3 +3,5 @@
     RewriteRule ^storage/ - [L]
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+php_value max_execution_time 3600

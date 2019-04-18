@@ -40,7 +40,7 @@
             </div>
         </div>
     </section>
-    
+
     <section class="mainContentSection">
         <div class="container">
             <div class="row progress-wizard progress-group">
@@ -93,11 +93,11 @@
                 </div>
                 <div class="col-sm-8 col-sm-pull-4 col-xs-12">
                     <div class="infoTitle">
-                        <h2>@lang('lang.personal_info')</h2>
+                        <h2>Communications</h2>
                     </div>
                     <div class="bookingForm">
                         @if (count($errors))
-                            <div class="alert alert-danger">      
+                            <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -135,12 +135,94 @@
                                     <label for="">@lang('lang.requiments')</label>
                                     {{ Form::textarea('requiments', old('requiments'), ['class' => 'form-control']) }}
                                 </div>
+                            </div>
+
+                            <div class="form-group col-xs-12">
+                                <div class="infoTitle">
+                                    <h2>List customers</h2>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="text" name="num_register" id="num-register" class="hide" value="{{ $data['adults'] + $data['children'] }}">
+                            </div>
+
+                            @for ($i = 0; $i < $data['adults']; $i++)
+                                <label for="">Adult {{ $i+1 }}</label>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <div class="col-sm-8 nopadding">
+                                          <div class="form-group">
+                                            <input type="text" class="form-control" id=" guest-full-name-{{ $i }}" name="guest[full_name][]" value="" placeholder="Full name">
+                                          </div>
+                                        </div>
+
+                                        <div class="col-sm-4 nopadding">
+                                          <div class="form-group">
+                                            <div class="input-group">
+                                              <input type="date" name="guest[date_born][]" id="guest-date-born-{{ $i }}" class="form-control guest-date-born" placeholder="Date of born">
+                                              <input type="text" name="guest[type_guest][]" id="guest-type-{{ $i }}" class="form-control hide" value="{{config('setting.booking.adult')}}">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            @endfor
+
+                            @for ($i = 0; $i < $data['children']; $i++)
+                                <label for="">Children {{ $i+1 }}</label>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <div class="col-sm-8 nopadding">
+                                          <div class="form-group">
+                                            <input type="text" class="form-control full_name"  id=" guest-full-name-{{ $i }}" name="guest[full_name][]" value="" placeholder="Full name">
+                                          </div>
+                                        </div>
+
+                                        <div class="col-sm-4 nopadding">
+                                          <div class="form-group">
+                                            <div class="input-group">
+                                              <input type="date" name="guest[date_born][]" id="guest-born-{{ $i }}" class="form-control born" placeholder="Date of born">
+                                              <input type="text" name="guest[type_guest][]" id="guest-type-{{ $i }}" class="form-control hide" value="{{config('setting.booking.children')}}">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            @endfor
+
+                            <div class="row">
+                                <div class="sectionTitle2">
+                                    @if (isset($data['term']->content))
+                                        <h2>Terms</h2>
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="tab-content">
+                                                        <div class="design-process-content" style="border:1px solid #ccc;padding: 20px 30px 20px 30px;text-align: justify;word-wrap: break-word;height: 300px;overflow-y: scroll;line-height: 22px">
+                                                            <div class="description-aria">
+                                                                <p>{{ $data['term']->content }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 30px">
                                 <div class="checkbox col-xs-12">
                                     <label>
-
                                         {{ Form::checkbox('accept', 1, false, ['required' => 'required']) }} @lang('lang.accept_text') {{ Html::link('#', trans('lang.term_condition')) }}
                                     </label>
                                 </div>
+
                                 <div class="col-xs-12">
                                     <div class="buttonArea galleryBtnArea">
                                         <ul class="list-inline">

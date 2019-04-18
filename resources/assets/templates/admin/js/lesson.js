@@ -15,17 +15,17 @@ $(function () {
     }
     if ($('.check-add-lesson').length) {
         $('#publish_start_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+            format: 'YYYY/MM/DD HH:mm',
             useCurrent: false,
-            minDate: moment().format('YYYY-MM-DD HH:mm'),
+            minDate: moment().format('YYYY/MM/DD HH:mm'),
             defaultDate: moment(),
             showClear: true
         })
 
         $('#publish_end_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+            format: 'YYYY/MM/DD HH:mm',
             useCurrent: false,
-            minDate: moment().format('YYYY-MM-DD HH:mm'),
+            minDate: moment().format('YYYY/MM/DD HH:mm'),
             defaultDate: false,
             showClear: true
         })
@@ -39,13 +39,13 @@ $(function () {
 
     if ($('.check-edit-lesson').length) {
         let valStart = $('#publish_start_date input').data('val')
-        let defaultStart = valStart ? convertToLocale(valStart).format('YYYY-MM-DD HH:mm') : false
+        let defaultStart = valStart ? convertToLocale(valStart).format('YYYY/MM/DD HH:mm') : false
         var now = moment();
         if(defaultStart){
             $('#publish_start_date input').val(defaultStart)
         }
         $('#publish_start_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+            format: 'YYYY/MM/DD HH:mm',
             useCurrent: false,
             minDate: now,
             showClear: true,
@@ -60,12 +60,12 @@ $(function () {
         // })
 
         let valEnd = $('#publish_end_date input').data('val')
-        let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY-MM-DD HH:mm') : false
+        let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY/MM/DD HH:mm') : false
         if(defaultEnd){
             $('#publish_end_date input').val(defaultEnd);
         }
         $('#publish_end_date input').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm',
+            format: 'YYYY/MM/DD HH:mm',
             useCurrent: false,
             minDate: now,
             showClear: true,
@@ -117,6 +117,52 @@ $(function () {
     $("#thumbnail input[type=file]").on('change', event => {
         fileUploadTest = event.target.files;
         checkFile(fileUploadTest)
+    })
+
+    $('#thumbnail .clear-file').on('click', event => {
+        fileUploadTest = null
+        $("#thumbnail input[type=file]").val(null)
+        checkFile([])
+    })
+
+    //excute upload video
+    $('.upload-one-file input[type=file]').on('change', event => {
+        let parent = $(event.target).parents('.upload-one-file')
+        let inputText = $(event.target).parents('.input-group-btn').siblings('input[type=text]')
+
+        if (event.target.files.length) {
+            let nameFile = event.target.files.length ? event.target.files[0].name : null
+            inputText.val(nameFile)
+            if ($(event.target).hasClass('input-video')) {
+                let video = document.createElement('video');
+                let duration = 0
+                video.preload = 'metadata';
+                video.onloadedmetadata = () => {
+                    window.URL.revokeObjectURL(video.src);
+                    duration = video.duration;
+                    parent.find('.duration-video').val(duration)
+                }
+                video.src = URL.createObjectURL(event.target.files[0]);
+                parent.find('.video-option').show()
+            }
+        } else {
+            inputText.val(null)
+            if ($(event.target).hasClass('input-video')) {
+                parent.find('.video-option').hide()
+                parent.find('.video-option input[type=file]').val(null).change()
+                parent.find('.thumbnail-video input[type=text]').val('00:00:00')
+            }
+        }
+    })
+
+    $('.upload-one-file .fa-times-circle').on('click', event => {
+        let parent = $(event.target).parents('.upload-one-file')
+        let inputFile = $(event.target).siblings('.input-group-btn').find('input[type=file]')
+        let inputText = $(event.target).siblings('input[type=text]')
+
+        $(event.target).parents('.video').siblings('.status-video').empty();
+        inputFile.val(null).change()
+        inputText.val(null)
     })
 
     //ajax remove image on server
@@ -202,6 +248,181 @@ $(function () {
         });
     }
 
+    //list lesson
+    if ($('#datatable-list').length) {
+        let langDatatable = $('#message-data').data('lang-datatable');
+        let langMessConfirm = $('#message-data').data('mess-confirm');
+        let urlAjaxDataTable = $('#message-data').data('url-datatable');
+        let messAction = $('#message-data').data('mess-action');
+        let urlDelete = $('#message-data').data('url-delete')
+        let urlEdit = $('#message-data').data('url-edit');
+
+        let table = $('#datatable-list').dataTable({
+            'processing': true,
+            'serverSide': true,
+            'searchDelay': 400,
+            'info': false,
+            "order": [],
+            'language': {
+                'infoFiltered': '',
+                'info' : langDatatable['info'],
+                'paginate': {
+                    'previous': langDatatable['previous'],
+                    'next': langDatatable['next'],
+                    'first': langDatatable['first'],
+                    'last': langDatatable['last'],
+                },
+                'search': langDatatable['search'],
+                'searchPlaceholder': langDatatable['searchPlaceholder'],
+                'zeroRecords': langDatatable['zeroRecords'],
+                'lengthMenu': langDatatable['lengthMenu'],
+            },
+            "sPaginationType": "full_numbers",
+            "info": false,
+            'ajax': {
+                'url' : urlAjaxDataTable,
+                'data': function (d) {
+                    if ($('.toggle-advanced-search i').hasClass('fa-caret-up')) {
+                        d.category_id = $('.category-search .advanced-select-search').val()
+                        d.teacher_id = $('.teacher-search .advanced-select-search').val()
+                        d.tag_id = $('.tag-search .advanced-select-search').val()
+                    }
+                }
+            },
+            'columns': [
+                { 'data': 'lesson_name'},
+                { 'data': 'teacher_name' },
+                { 'data': 'category_name' },
+                { 'data': 'publish_start_date' },
+                { 'data': 'publish_end_date' },
+                { 'data': 'level' },
+                { 'data': null },
+            ],
+            'columnDefs': [
+                {
+                    'targets': 0,
+                },
+                {
+                    'targets': 1,
+                    'searchable': false,
+                    'sortable': false,
+                },
+                {
+                    'targets': 2,
+                    'class': 'text-center',
+                    'searchable': false,
+                    'sortable': false,
+                },
+                {
+                    'targets': 3,
+                    'searchable': false,
+                },
+                {
+                    'targets': 4,
+                    'searchable': false,
+                },
+                {
+                    'targets': 5,
+                    'searchable': false,
+                },
+                {
+                    'targets': 6,
+                    'searchable': false,
+                    'sortable': false,
+                    'class': 'text-center',
+                },
+            ],
+            'createdRow': function (row, data, index) {
+                let editLink = urlEdit.replace('ID_REPLY_IN_URL', data.id);
+                let isDelete = !data.deleted_at
+                $('td', row).eq(6).empty().append(`
+                    <div class="group-action">
+                        <a data-toggle="tooltip" data-placement="left" title="${ messAction['edit'] }" href="${ editLink }" class="btn btn-primary group-action-link">
+                            <i class="fa fa-pencil-square-o fa fa-lg"></i></a>
+                        <div class="onoffswitch group-action-switch">
+                            <button class="show-modal-confirm" data-toggle="modal" data-target="#modal-default" style="display:none;"></button>
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch-${data.id}"
+                                ${isDelete ? 'checked' : ''} data-id="${data.id}" data-show-modal="true">
+                            <label class="onoffswitch-label" for="myonoffswitch-${data.id}">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                `).addClass('text-center');
+
+                $('td', row).eq(5).empty().append(`
+                    <p class="lesson_level">${renderHtmlLevel(data.level)}</p>
+                `)
+
+                $('td', row).eq(0).empty().append(`
+                    <a href='${editLink}'>${data.lesson_name}</a>
+                `)
+                if (convertToLocale(data.publish_start_date)._isValid) {
+                    $('td', row).eq(3).empty().append(convertToLocale(data.publish_start_date).format('YYYY/MM/DD HH:mm'))
+                }
+                if (convertToLocale(data.publish_end_date)._isValid) {
+                    $('td', row).eq(4).empty().append(convertToLocale(data.publish_end_date).format('YYYY/MM/DD HH:mm'))
+                }
+            },
+        });
+
+
+        let idInputOnOff = null
+        $('body').on('change', '.lesson-list .onoffswitch-checkbox', function(e){
+            idInputOnOff = '#' + $(this).attr('id')
+            var action = urlDelete.replace('ID_REPLY_IN_URL', $(this).data('id'));
+            $('#delete-lesson-form').attr('action', action)
+            if(this.checked) { //delete
+                $('#modal-default .modal-title').text(langMessConfirm['anable_lesson'])
+                $(this).siblings('.show-modal-confirm').trigger('click')
+            } else { //open
+                $('#modal-default .modal-title').text(langMessConfirm['disable_lesson'])
+                $(this).siblings('.show-modal-confirm').trigger('click')
+            }
+        })
+
+        $('body').on('click', '.lesson-list #modal-default .close-confirm, .lesson-list #modal-default .close', e => {
+            $('#delete-lesson-form').attr('action', urlDelete)
+            $(idInputOnOff).prop('checked', !$(idInputOnOff).prop('checked'))
+            e.stopPropagation()
+        })
+
+        $('body').on('click', '.lesson-list #modal-default, .lesson-list #modal-default .modal-dialog', e => {
+            $('#delete-lesson-form').attr('action', urlDelete)
+            $(idInputOnOff).prop('checked', !$(idInputOnOff).prop('checked'))
+        })
+
+        $('body').on('click', '.lesson-list #modal-default .yes-confirm', e => {
+            $('#delete-lesson-form').submit()
+        })
+
+        $('body').on('click', '.lesson-list .search_lesson span', e => {
+            let keysearch = $(e.target).siblings('input').val()
+            table.fnFilter(keysearch)
+        })
+
+        $('.advanced-select-search').select2({
+            maximumInputLength: 15,
+            maximumSelectionLength: 3,
+            language: $('meta[name="app-lang"]').attr('content')
+        });
+
+        $('body').on('click', '.toggle-advanced-search a', function (e) {
+            $('.wrap-advanced-search').slideToggle()
+            $(this).siblings('i').toggleClass('fa-caret-up')
+            $(this).siblings('i').toggleClass('fa-caret-down')
+        })
+
+        $('body').on('keydown', '.search_lesson input[type=search]', e => {
+            if (e.which == 13) {
+                e.preventDefault();
+                let keysearch = $(e.target).val()
+                table.fnFilter(keysearch)
+            }
+        })
+    }
+
     $('body').on('click', '.add-lesson #modal-default .yes-confirm', e => {
         let url = $('#submit-form p.btn-danger').data('url')
         window.location.href = url
@@ -231,6 +452,46 @@ $(function () {
         whenChoiseTeacher(positionChange)
         e.stopPropagation()
     })
+
+
+    let whenChoiseTeacher = function (positionChange) {
+        if (positionChange == 'main') {
+            handleSelectBox($('select.select-teacher-one'), $('select.select-teacher-main'), $('select.select-teacher-two'))
+            handleSelectBox($('select.select-teacher-two'), $('select.select-teacher-main'), $('select.select-teacher-one'))
+        } else if (positionChange == 'one') {
+            handleSelectBox($('select.select-teacher-main'), $('select.select-teacher-one'), $('select.select-teacher-two'))
+            handleSelectBox($('select.select-teacher-two'), $('select.select-teacher-one'), $('select.select-teacher-main'))
+        } else if (positionChange == 'two') {
+            handleSelectBox($('select.select-teacher-main'), $('select.select-teacher-two'), $('select.select-teacher-one'))
+            handleSelectBox($('select.select-teacher-one'), $('select.select-teacher-two'), $('select.select-teacher-main'))
+        }
+    }
+
+    let handleSelectBox = function (handleFor, selectOne, selectTwo) {
+        let teacherChoised = []
+        let valOne = selectOne.val()[0]
+        let valTwo = selectTwo.val()[0]
+
+        if (valOne) {
+            teacherChoised.push($(`select.select-teacher-main option[value=${valOne}]`).text())
+        }
+
+        if (valTwo) {
+            teacherChoised.push($(`select.select-teacher-main option[value=${valTwo}]`).text())
+        }
+
+        handleFor.find('option').each(function (index) {
+            let textInOption = $(this).text()
+
+            if ($.inArray(textInOption, teacherChoised) != -1) {
+                $(this).prop('disabled', true)
+            } else {
+                $(this).prop('disabled', false)
+            }
+        })
+
+        handleFor.selectpicker('render')
+    }
 
     //end handle load teacher in create and edit lesson
 
@@ -266,6 +527,15 @@ $(function () {
             xhr: progressUpload,
         })
     })
+
+    function renderHtmlLevel(level) {
+        let stringHtml = ''
+        for (let i = 1; i <= 5; i++) {
+            stringHtml += `<i class="fa ${i <= level ? 'fa-star below-level' : 'fa-star-o above-level'}" aria-hidden="true"></i>`
+        }
+
+        return stringHtml
+    }
 
     function convertToLocale(val)
     {
