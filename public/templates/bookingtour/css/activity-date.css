@@ -1,0 +1,660 @@
+
+#special-offers .section-intro {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 400px;
+}
+/** 
+ * Special Offers Section 
+ * =============================== */
+#special-offers {
+  position: relative;
+  background-color: #51575b;
+  border-top: 1px solid #e9eff4;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#special-offers .page-title {
+  margin: 86px 0 24px 0;
+}
+#special-offers .section-intro h2 {
+  font-size: 36px;
+  line-height: 36px;
+}
+#special-offers .price {
+  background: #8bcf17;
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: bold;
+  padding: 7px 60px;
+  margin: 1px 0 0 0;
+}
+#special-offers .section-intro {
+  width: 550px;
+  color: #51575b;
+}
+#special-offers .section-intro h1.page-title,
+#special-offers .section-intro h2 {
+  color: #51575b;
+}
+#special-offers .star-ratings i {
+  font-size: 36px;
+  color: #8bcf17;
+  margin-right: 8px;
+}
+#special-offers .star-ratings i:last-child {
+  margin-right: 0;
+}
+.mi-slider:before,
+.mi-slider:after {
+  display: table;
+  content: '';
+  clear: both;
+}
+.mi-slider img {
+  max-width: 100%;
+  height: auto;
+}
+.mi-slider li {
+  max-width: 100%;
+  height: auto;
+}
+.mi-slider li a {
+  height: 100%;
+}
+.mi-slider li h4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  background: #fff000;
+}
+.mi-slider li div.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  text-align: center;
+}
+#mi-nav {
+  top: 300px;
+  left: 123px;
+  width: 250px;
+  height: 100%;
+  max-height: 680px;
+  border-top: none;
+  position: relative;
+}
+#mi-nav:before {
+  background-color: #8bcf17;
+  content: "";
+  width: 5px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#mi-nav a {
+  display: block;
+  float: none;
+  padding: 0;
+  margin-left: 5px;
+  margin-bottom: 15px;
+  width: 30px;
+  height: 100px;
+  overflow: visible;
+  text-decoration: none !important;
+}
+#mi-nav a:hover {
+  text-decoration: none !important;
+}
+#mi-nav a:hover span {
+  opacity: 1;
+}
+#mi-nav a:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 20px;
+  height: 20px;
+  content: "";
+  border: 5px solid #fff;
+  background-color: #8bcf17;
+  border-radius: 200px;
+  top: -12.5px;
+  left: -12.5px;
+}
+#mi-nav a.mi-selected:before {
+  display: none;
+  visibility: hidden;
+}
+#mi-nav a.mi-selected:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 30px;
+  height: 30px;
+  content: "\25CF";
+  font-family: fontawesome;
+  font-size: 28px;
+  line-height: 17px;
+  color: #444;
+  padding: 3px 0 0 1px;
+  vertical-align: middle;
+  text-align: center;
+  border: 2px solid #8bcf17;
+  background-color: #fff ;
+  border-radius: 200px;
+  top: -17px;
+  left: -17px;
+}
+#mi-nav a.mi-selected span {
+  display: block;
+}
+#mi-nav a span {
+  position: relative;
+  top: -30px;
+  left: 40px;
+  width: 160px;
+  background: #3a3e4a;
+  padding: 15px 20px;
+  color: #ffffff;
+  display: block!important;
+  opacity: 0;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+#mi-nav a span:after {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  top: -webkit-calc(22%);
+  top: calc(22%);
+  left: -15px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #3a3e4a;
+  border-bottom: 15px solid transparent;
+}
+
+@media all and (max-width: 530px) {
+  .small-nav {
+    display: block!important;
+    margin-top: 30px!important;
+  }
+  .mi-slider nav#mi-nav {
+    display: none;
+  }
+  .small-nav {
+    top: 100%!important;
+  }
+  #our-travel {
+    padding-top: 122px!important;
+  }
+}
+
+@media (max-width: 767px) {
+  .index-mini .head-image .texts {
+    top: 10%;
+  }
+  #header #main-menu {
+    margin: 0 ;
+  }
+  #special-offers .section-intro {
+    width: 330px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  #special-offers .section-intro .page-title,
+  #special-offers .section-intro h2 {
+    color: #fff!important;
+  }
+  .single-slider-holder .hotel-detail-gallery-item img {
+    width: 280px!important;
+    height: 230px!important;
+  }
+  .tab-pane#comment .comments-holder .comment-item .comment-body {
+    margin: 10px 0;
+  }
+  .tab-pane#comment .comments-holder .comment-item .avatar {
+    text-align: center;
+    margin: 0 auto;
+  }
+  .sidebar-holder {
+    margin: 20px 0;
+  }
+  .breadcrumb-holder {
+    float: none!important;
+  }
+  .page-head-holder {
+    text-align: center;
+  }
+  .hotels-filter-form ul li.form-member,
+  .hotels-filter-form ul li.form-member select,
+  .hotels-filter-form ul li.form-member .chosen-container {
+    width: 100%;
+  }
+  #sliding-testimony .criteria .criteria-item {
+    margin: 0 0 20px 0;
+    width: 50%;
+  }
+  #sliding-testimony .criteria .criteria-item .circle {
+    margin: 0 auto;
+  }
+  #sliding-testimony .criteria .criteria-item .stats .number {
+    display: block;
+  }
+  .category-heading:after {
+    display: none!important;
+  }
+  .hotel-lists,
+  .list-heading {
+    border: 1px solid #e0e5e9;
+    border-top: 0;
+  }
+  .tour-category-item .hotel-lists .load-more-hotel {
+    padding: 20px;
+  }
+  .tour-category-item .part {
+    width: 100%;
+    float: left;
+  }
+  .destinations .destination {
+    margin: 10px 0;
+  }
+  #featured {
+    display: none;
+  }
+  .menu-body.closed {
+    right: -120% !important;
+  }
+  #header .branding {
+    width: 100%;
+    text-align: center;
+  }
+  #header #main-menu {
+    display: block;
+    float: none;
+  }
+  .top-drop-menu {
+    text-align: center;
+    margin: 23px auto!important;
+  }
+  .widget-support {
+    margin: 10px 0!important;
+  }
+}
+
+@media (max-width: 370px) {
+  .controls ul li {
+    float: none;
+  }
+  #our-travel .page-title {
+    line-height: 40px;
+  }
+  #special-offers .price {
+    font-size: 33px;
+    padding: 1px 31px;
+  }
+  #special-offers .page-title {
+    margin: 13px 0 24px 0;
+  }
+  #special-offers .section-intro {
+    max-width: 100%!important;
+  }
+}
+
+@media (min-width: 992px) {
+  #special-offers {
+    height: 1100px!important;
+  }
+}
+
+@media all and (max-width: 991px) {
+  #hotels.page .contents.grid-contents .content.wide .right-area {
+    min-height: 173px;
+  }
+  #hotels.page .contents.grid-contents .content.wide .right-area .book-holder {
+    text-align: center;
+  }
+  #hotels.page .grid-contents .entry .entry-content {
+    padding: 23px 20px 12px 20px!important;
+  }
+  #hotels.page .grid-contents .no-margin-left {
+    margin: 0!important;
+    padding: 0!important;
+  }
+  .contents.grid-contents .content.wide .entry .entry-meta {
+    margin: auto auto 10px auto;
+  }
+  .pagination-holder.left {
+    text-align: left;
+  }
+  .pagination-holder.right {
+    text-align: center;
+  }
+  .pagination-holder.center {
+    text-align: center;
+  }
+  #header #main-menu {
+    margin: 0 0 0 30%;
+  }
+  #special-offers .section-intro h2 {
+    font-size: 26px;
+    color: #8bcf17 !important;
+  }
+  #our-travel.sidebar .load-more-hotel {
+    position: relative;
+    bottom: -20px;
+    padding: 15px;
+    margin: 20px 0;
+  }
+  .featured-tour a {
+    position: relative;
+    display: block;
+  }
+  .featured-tour a img {
+    width: 100%;
+  }
+  .widget .hotel-lists {
+    border: none;
+  }
+  .contents.grid-contents .content.wide .right-area {
+    border: 0;
+  }
+  #special-offers {
+    height: 440px!important;
+  }
+  #mi-nav {
+    top: 120px;
+    left: -110px;
+  }
+  #mi-nav a {
+    height: 30px;
+  }
+  .top-drop-menu {
+    min-width: 300px;
+  }
+}
+
+.mi-slider {
+        height:100%;
+}
+
+.mi-slider ul {
+  list-style-type: none;
+  position: absolute;
+  width: 100%;
+   height:100%; 
+  left: 0;
+  overflow: hidden;
+  text-align: center;
+  pointer-events: none;
+}
+
+.no-js .mi-slider ul {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  margin: 0;
+  overflow: visible;
+}
+
+.mi-slider ul.mi-current {
+  pointer-events: auto;
+}
+
+.mi-slider ul li {
+  display: inline-block;
+  -webkit-transform: translateX(600%);
+  transform: translateX(600%);
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+
+.no-js .mi-slider ul li {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.mi-slider ul li{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.mi-slider ul li a{
+   height: 100%!important;
+    width: 100%;
+    background-size: cover;
+}
+.mi-slider ul li a,
+.mi-slider ul li img {
+  display: block;
+  margin: 0 auto;
+}
+
+.mi-slider ul li a {
+  outline: none;
+  cursor: pointer;
+}
+
+.mi-slider ul li img {
+  max-width: 100%;
+  border: none;
+}
+
+.mi-slider ul li h4 {
+  display: inline-block;
+  font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 20px 10px 0;
+}
+
+.mi-slider ul li:hover {
+  opacity: 0.7;
+} 
+
+.mi-slider nav {
+  position: relative;
+  top: 400px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  border-top: 5px solid #333;
+}
+
+.no-js nav {
+  display: none;
+}
+
+.mi-slider nav a {
+  display: inline-block;
+  padding: 40px 30px 30px 34px;
+  position: relative;
+  color: #888;
+  outline: none;
+  -webkit-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+}
+
+.mi-slider nav a:hover,
+.mi-slider nav a.mi-selected {
+  color: #000;
+}
+
+/* Move classes and animations */
+
+.mi-slider ul:first-child li,
+.no-js .mi-slider ul li {
+  -webkit-animation: scaleUp 350ms ease-in-out both;
+  animation: scaleUp 350ms ease-in-out both;
+}
+
+@-webkit-keyframes scaleUp {
+  0% { -webkit-transform: translateX(0) scale(0); }
+  100% { -webkit-transform: translateX(0) scale(1); }
+}
+
+@keyframes scaleUp {
+  0% { transform: translateX(0) scale(0); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+.mi-slider ul:first-child li:first-child {
+  -webkit-animation-delay: 90ms;
+  animation-delay: 90ms;
+}
+
+.mi-slider ul:first-child li:nth-child(2) {
+  -webkit-animation-delay: 180ms;
+  animation-delay: 180ms;
+}
+
+.mi-slider ul:first-child li:nth-child(3) {
+  -webkit-animation-delay: 270ms;
+  animation-delay: 270ms;
+}
+
+.mi-slider ul:first-child li:nth-child(4) {
+  -webkit-animation-delay: 360ms;
+  animation-delay: 360ms;
+}
+
+/* moveFromRight */
+
+.mi-slider ul.mi-moveFromRight li {
+  -webkit-animation: moveFromRight 350ms ease-in-out both;
+  animation: moveFromRight 350ms ease-in-out both;
+}
+
+/* moveFromLeft */
+
+.mi-slider ul.mi-moveFromLeft li {
+  -webkit-animation: moveFromLeft 350ms ease-in-out both;
+  animation: moveFromLeft 350ms ease-in-out both;
+}
+
+/* moveToRight */
+
+.mi-slider ul.mi-moveToRight li {
+  -webkit-animation: moveToRight 350ms ease-in-out both;
+  animation: moveToRight 350ms ease-in-out both;
+}
+
+/* moveToLeft */
+
+.mi-slider ul.mi-moveToLeft li {
+  -webkit-animation: moveToLeft 350ms ease-in-out both;
+  animation: moveToLeft 350ms ease-in-out both;
+}
+
+/* Animation Delays */
+
+.mi-slider ul.mi-moveToLeft li:first-child,
+.mi-slider ul.mi-moveFromRight li:first-child,
+.mi-slider ul.mi-moveToRight li:nth-child(4),
+.mi-slider ul.mi-moveFromLeft li:nth-child(4) {
+  -webkit-animation-delay: 0ms;
+  animation-delay: 0ms;
+}
+
+.mi-slider ul.mi-moveToLeft li:nth-child(2),
+.mi-slider ul.mi-moveFromRight li:nth-child(2),
+.mi-slider ul.mi-moveToRight li:nth-child(3),
+.mi-slider ul.mi-moveFromLeft li:nth-child(3) {
+  -webkit-animation-delay: 90ms;
+  animation-delay: 90ms;
+}
+
+.mi-slider ul.mi-moveToLeft li:nth-child(3),
+.mi-slider ul.mi-moveFromRight li:nth-child(3),
+.mi-slider ul.mi-moveToRight li:nth-child(2),
+.mi-slider ul.mi-moveFromLeft li:nth-child(2) {
+  -webkit-animation-delay: 180ms;
+  animation-delay: 180ms;
+}
+
+.mi-slider ul.mi-moveToLeft li:nth-child(4),
+.mi-slider ul.mi-moveFromRight li:nth-child(4),
+.mi-slider ul.mi-moveToRight li:first-child,
+.mi-slider ul.mi-moveFromLeft li:first-child  {
+  -webkit-animation-delay: 270ms;
+  animation-delay: 270ms;
+}
+
+/* Animations */
+
+@-webkit-keyframes moveFromRight {
+  0% { -webkit-transform: translateX(600%); }
+  100% { -webkit-transform: translateX(0%); }
+}
+
+@-webkit-keyframes moveFromLeft {
+  0% { -webkit-transform: translateX(-600%); }
+  100% { -webkit-transform: translateX(0%); }
+}
+
+@-webkit-keyframes moveToRight {
+  0% { -webkit-transform: translateX(0%); }
+  100% { -webkit-transform: translateX(600%); }
+}
+
+@-webkit-keyframes moveToLeft {
+  0% { -webkit-transform: translateX(0%); }
+  100% { -webkit-transform: translateX(-600%); }
+}
+
+@keyframes moveFromRight {
+  0% { transform: translateX(600%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes moveFromLeft {
+  0% { transform: translateX(-600%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes moveToRight {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(600%); }
+}
+
+@keyframes moveToLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-600%); }
+}
+
+.mi-slider {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.small-nav{
+    display: none;
+}
+/* Media Queries */
+@media screen and (max-width: 910px){
+  .mi-slider nav {
+    max-width: 90%;
+  }
+  .mi-slider nav a {
+    font-size: 12px;
+    padding: 40px 10px 30px 14px;
+  }
+}
+
+@media screen and (max-width: 740px){
+
+}
