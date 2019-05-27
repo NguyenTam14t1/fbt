@@ -174,22 +174,6 @@ $(function () {
 
             addActiveDates(timeStart, timeFinish)
         })
-
-        // $('.time_active input').datetimepicker({
-        //   format: 'YYYY-MM-DD',
-        //   useCurrent: false,
-        //   minDate: moment().format('YYYY-MM-DD'),
-        //   defaultDate: false,
-        //   showClear: true
-        // })
-
-        // $('#add-active-date .time_active_other input').datetimepicker({
-        //   format: 'YYYY-MM-DD',
-        //   useCurrent: false,
-        //   minDate: moment().format('YYYY-MM-DD'),
-        //   defaultDate: false,
-        //   showClear: true
-        // })
     }
 
     if ($('.check-edit-tour').length) {
@@ -368,11 +352,6 @@ $(function () {
     $('body').on('click', '.add-tour #modal-default .yes-confirm', e => {
         let url = $('#submit-form p.btn-danger').data('url')
         window.location.href = url
-    })
-
-    //get hotel from map js API
-    $('.btn-add-hotel').on('click', function(e) {
-        $('.google-map-hotel').show()
     })
 
     //get data active dates
@@ -647,59 +626,6 @@ $(function () {
     $('body').on('click', '.tour #modal-default .yes-confirm', e => {
         window.location.href = route('admin.tour.index');
     })
-
-    // var step = 0;
-    // $('body').on('click', '#btn-add-active', function(e) {
-    //     step++;
-    //     var objTo = document.getElementById('active_date')
-    //     var divtest = document.createElement("div");
-    //     divtest.setAttribute("class", "form-group row panel-body removeclass" + step);
-    //     var rdiv = 'removeclass' + step;
-    //     divtest.innerHTML =  `<div class="col-sm-1 nopadding">
-    //                             <div class="form-group"  data-active-id="${step}">
-    //                               <h5>Day ${step}:</h5>
-    //                             </div>
-    //                           </div>
-    //                           <div class="col-sm-3 nopadding">
-    //                             <div class="form-group">
-    //                               <input type="text" class="form-control" id="title-active-date" name="title_active_date[]" value="" placeholder="Title">
-    //                             </div>
-    //                           </div>
-    //                           <div class="col-sm-7 nopadding">
-    //                             <div class="form-group">
-    //                               <textarea type="text" class="form-control" rows="7" id="content-active-date" name="content_active_date[]" placeholder="Content activity date"></textarea>
-    //                             </div>
-    //                           </div>
-
-    //                           <div class="col-sm-1 nopadding">
-    //                             <div class="form-group">
-    //                               <div class="input-group">
-    //                                 <div class="input-group-btn">
-    //                                   <button class="btn btn-danger" type="button" id="btn-cancel-active" onclick="remove_active_date(${step});"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-    //                                 </div>
-    //                               </div>
-    //                             </div>
-    //                           </div>
-
-    //                           <div class="clear"></div>`;
-
-    //     objTo.appendChild(divtest)
-    //     let dayFinal = step + 1
-    //     $('#day-final').html(`Day ${dayFinal}:`)
-    //     console.log('check1', step,step+1)
-    // })
-
-    // function remove_active_date(rid) {
-    //    $('.removeclass'+rid).remove();
-    // }
-
-
-  $('.time_active_other input').datetimepicker({
-    format: 'YYYY-MM-DD',
-    useCurrent: false,
-    defaultDate: false,
-    showClear: true
-  })
 })
 
 

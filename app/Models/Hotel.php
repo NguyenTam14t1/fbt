@@ -9,7 +9,9 @@ class Hotel extends Model
     protected $fillable = [
         'name',
         'address',
-        'information',
+        'phone',
+        'rating',
+        'website',
     ];
 
     public function tours()

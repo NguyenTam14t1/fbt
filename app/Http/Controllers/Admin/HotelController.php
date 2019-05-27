@@ -4,17 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\HotelInterface;
+use Session;
+use Exception;
 
 class HotelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct(HotelInterface $hotelRepository)
+    {
+        $this->hotelRepository = $hotelRepository;
+    }
+
     public function index()
     {
-        //
+        $hotels = $this->hotelRepository->getAll();
+
+        return view('admin.hotels.add', compact('hotels'));
     }
 
     /**
@@ -35,7 +40,29 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'name',
+            'address',
+            'phone',
+            'rating',
+            'website',
+        ]);
+
+        $response = $this->hotelRepository->store($data);
+
+        if ($response) {
+            Session::flash('message', 'Add hotel success!');
+
+            return response()->json([
+                'status' => true,
+            ]);
+        }
+
+        Session::flash('error', 'Add hotel fail');
+
+        return response()->json([
+            'status' => false,
+        ]);
     }
 
     /**
@@ -57,7 +84,13 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hotel = $this->hotelRepository->findOrFail($id);
+
+        if (!$hotel) {
+            return redirect()->route('admin.hotel.index')->with('error', 'Hotel not found!');
+        }
+
+        return view('admin.hotels.edit', compact('hotel'));
     }
 
     /**
@@ -69,7 +102,17 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->only(['name', 'address', 'phone']);
+
+        $result = $this->hotelRepository->update($data, $id);
+
+        if ($result) {
+            return redirect()->route('admin.hotel.index')->with('message', 'Hotel update success!');
+        }
+
+        Session::flash('error', 'Hotel update faild!');
+
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +123,12 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = $this->hotelRepository->delete($id);
+
+        if ($response) {
+            return redirect()->route('admin.hotel.index')->with('message', 'Delete hotel success!');
+        }
+
+        return redirect()->route('admin.hotel.index')->with('error', 'Delete hotel faild');
     }
 }

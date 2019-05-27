@@ -10,5 +10,7 @@ interface HotelInterface
 
     public function getHotelsId();
 
-    // public function store($data, $tourId);
+    public function store($data);
+
+    public function delete($id);
 }

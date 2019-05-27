@@ -1,13 +1,13 @@
 @extends ('widgets.admin.master')
 
 @section('title')
-    @lang('admin/booking.title_index')
+    List booking
 @endsection
 
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('admin/booking.title_index')
+            List booking
         </h1>
     </section>
     <section class="content form-switch booking-list">
@@ -21,17 +21,14 @@
                                     <table id="datatable-list" class="table table-striped table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th width="2%">
-                                                    {{ Form::checkbox('checkbox', '', false, ['class' => 'check user-check', 'id' => 'check-all']) }}
-                                                </th>
-                                                <th width="2%">@lang('lang.stt')</th>
+                                                <th width="4%">@lang('lang.stt')</th>
                                                 <th width="8%">Name tour</th>
                                                 <th width="12%">@lang('lang.email')</th>
                                                 <th width="7%">@lang('lang.adults')</th>
                                                 <th width="7%">@lang('lang.children')</th>
                                                 <th width="7%">@lang('lang.status')</th>
-                                                <th width="7%">@lang('lang.paymented')</th>
                                                 <th width="7%">@lang('lang.debt')</th>
+                                                <th width="7%">@lang('lang.paymented')</th>
                                                 <th width="24%" class="text-center">@lang('lang.action')</th>
                                             </tr>
                                         </thead>
@@ -40,9 +37,6 @@
                                                 @foreach ($bookings as $booking)
                                                     @if (isset($booking->tour) && isset($booking->user))
                                                         <tr>
-                                                            <td class="center">
-                                                                {{ Form::checkbox('checkbox', '', false, ['class' => 'check checkbox-input user-check', 'booking' => $booking->id]) }}
-                                                            </td>
                                                             <td class="center">{{ $loop->iteration }}</td>
                                                             <td>{{ str_limit($booking->tour->name, 35) }}</td>
                                                             <td class="center">{{ str_limit($booking->user->email) }}</td>
@@ -51,8 +45,8 @@
                                                                 {{ $booking->number_of_children }}
                                                             </td>
                                                             <td class="center status-{{ $booking->status }}">{{ $booking->status_text }}</td>
-                                                            <td class="center">${{ $booking->paymented }}</td>
                                                             <td class="center">${{ $booking->debt }}</td>
+                                                            <td class="center">${{ $booking->paymented }}</td>
                                                             <td class="text-center">
                                                                 <div class="group-action">
                                                                     <a data-toggle="tooltip" data-placement="left" title="view" href="#" class="btn btn-primary group-action-link">
@@ -94,7 +88,7 @@
             data-lang-datatable="{{ json_encode(trans('admin/global.datatable')) }}"
             data-url-delete = "{{route('admin.booking.destroy', 'ID_REPLY_IN_URL')}}"
             data-url-dataTable = "{{ route('admin.booking.index') }}">
-        ></div>
+        </div>
         @component('widgets.admin.modal')
             @slot('class')
                 danger

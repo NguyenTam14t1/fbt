@@ -19,6 +19,12 @@ return [
         'adult' => 'adult',
         'children' => 'children',
     ],
+    'hotel' => [
+        'maxlength_name' => 80,
+        'minlength_name' => 3,
+        'maxlength_address' => 255,
+        'length_phone' => 10,
+    ],
     'parent_id' => 0,
     'password_test' => '123456',
     'footer_logo' => '/templates/bookingtour/img/logo-color-sm.png',

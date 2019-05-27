@@ -50,9 +50,11 @@ mix.js('resources/assets/js/app.js', 'public/js')
 //admin
    .styles('resources/assets/templates/admin/css/style.css', 'public/templates/admin/css/style.css')
    .sass('resources/assets/sass/admin/tour.scss', 'public/templates/admin/css/tour.css')
+   .sass('resources/assets/sass/admin/hotel.scss', 'public/templates/admin/css/hotel.css')
    .sass('resources/assets/sass/admin/booking.scss', 'public/templates/admin/css/booking.css')
    .sass('resources/assets/sass/admin.scss', 'public/templates/admin/css/admin.css')
    .js('resources/assets/templates/admin/js/main.js', 'public/templates/admin/js/main.js')
    .js('resources/assets/templates/admin/js/tour.js', 'public/templates/admin/js/tour.js')
+   .js('resources/assets/templates/admin/js/hotel.js', 'public/templates/admin/js/hotel.js')
    .js('resources/assets/templates/admin/js/booking.js', 'public/templates/admin/js/booking.js')
    .js('resources/assets/templates/admin/js/plugins.js', 'public/templates/admin/js/plugins.js');

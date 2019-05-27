@@ -18,9 +18,6 @@ use App\Models\Tour;
 
 class TourController extends Controller
 {
-    protected $tourRepository;
-    protected $categoryRepository;
-
     public function __construct(
         TourInterface $tourRepository,
         CategoryInterface $categoryRepository,
@@ -92,7 +89,7 @@ class TourController extends Controller
             ]);
         }
 
-        Session::flash('error', 'Ttour create fail');
+        Session::flash('error', 'Tour create fail');
 
         return response()->json([
             'status' => false,

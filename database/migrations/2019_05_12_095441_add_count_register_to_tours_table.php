@@ -26,7 +26,7 @@ class AddCountRegisterToToursTable extends Migration
     public function down()
     {
         Schema::table('tours', function (Blueprint $table) {
-            $table->integer('count_register')->default(0);
+            $table->dropColumn('count_register');
         });
     }
 }

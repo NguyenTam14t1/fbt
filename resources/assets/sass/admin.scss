@@ -102,3 +102,21 @@
         margin: 3px 0 0 100px;
     }
 }
+
+.field-required {
+  color: red;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.box-primary {
+    padding-bottom: 15px;
+}
+
+#submit-form {
+    text-align: right;
+    margin: 10px 9px 0px 9px;
+    button, p {
+        border-radius: 0px;
+    }
+}

@@ -24,25 +24,54 @@ class EloquentHotelRepository extends EloquentRepository implements HotelInterfa
         return $this->getAll()->pluck('id');
     }
 
-    public function store($acticeDates, $tourId)
+    public function store($data)
     {
         try {
-            DB::beginTransaction();
-            $data = [];
-
-            foreach ($acticeDates as $key => $value) {
-                $data['tour_id'] = $tourId;
-                $data = $value;
-                dd($data);
-                $this->model->create($data);
-            }
-
-            DB::commit();
+            Hotel::create($data);
 
             return true;
         } catch (Exception $e) {
             report($e);
-            DB::rollBack();
+
+            return false;
+        }
+    }
+
+    public function findOrFail($id)
+    {
+        try {
+            return $this->model->findOrFail($id);
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
+
+    public function update($input, $id)
+    {
+        try {
+            $hotel = $this->model->findOrFail($id);
+
+            $hotel->update($input);
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $hotel = $this->model->findOrFail($id);
+            $hotel->delete();
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
 
             return false;
         }

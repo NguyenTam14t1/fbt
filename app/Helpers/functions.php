@@ -12,6 +12,40 @@ function escape_like($string)
     return str_replace($search, $replace, $string);
 }
 
+function showRate($rating)
+{
+    $rate = '';
+
+    for ($i = 0; $i < 5; $i ++) {
+        $rate .= '<span class="fa-stack stars">';
+        $rate .= '<i class="fa fa-star fa-stack-1x"></i>';
+        if ($rating > 0.5) {
+            $rate .= '<i class="fa fa-star fa-stack-1x"></i>';
+        }
+        elseif ($rating < 0.5 && $rating > 0) {
+            $rate .= '<i class="fa fa-star-half-o fa-stack-1x"></i>';
+        }
+        else {
+            $rate .= '<i class="fa fa-star fa-stack-1x fa-inverse"></i>';
+        }
+        $rating --;
+        $rate .= '</span>';
+    }
+
+    return $rate;
+}
+
+function renderHtmlRating($rating) {
+    $stringHtml = '';
+
+    for ($i = 1; $i <= 5; $i++) {
+        $faStar = ($i <= $rating) ? 'fa-star below-level' : 'fa-star-o above-level';
+        $stringHtml .= '<i class="fa ' . $faStar. '" aria-hidden="true"></i>';
+    }
+
+    return $stringHtml;
+}
+
 function timeAgo($time)
 {
     return Carbon::parse($time)->diffForHumans();

@@ -1,31 +1,115 @@
 @extends('widgets.admin.master')
-@section('title', trans('admin/hotel.title.create'))
+@section('title', 'Manage hotel')
 @section('content')
   <section class="content-header">
     <h1>
-      @lang('admin/hotel.header.add')
+      Manage hotel
     </h1>
   </section>
-  <section class="content add-hotel check-add-hotel">
+  <section class="content add-hotel check-add-hotel hotel-list">
     <div class="box box-primary">
-      <form role="form" id="add-hotel"
-        action="{{route('admin.hotel.store')}}"
-        method="POST"
-        enctype="multipart/form-data"
-        data-url-index="{{route('admin.hotel.index')}}">
-        @csrf
-        <div class="box-body">
-          <div style="margin-top: 40px">
-            @include('widgets.hotel-map')
-          </div>
+        <div class="box box-primary">
+            <div class="box-header">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-3">
+                    <div id="findhotels">
+                      Find hotels in:
+                    </div>
+                  </div>
+
+                  <div class="col-sm-9">
+                    <div class="form-group" id="locationField">
+                      <input class="form-control" name="autocomplete"
+                        id="autocomplete"
+                        type="text"
+                        placeholder="Enter a city">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group group-selectbox" id="controls">
+                    <select
+                      id="country"
+                      class="form-control"
+                      title="Select a address">
+                      <option value="all">All</option>
+                      <option value="uk" selected>United Kingdom</option>
+                      <option value="vi">Vietnam</option>
+                      <option value="au">Australia</option>
+                      <option value="br">Brazil</option>
+                      <option value="ca">Canada</option>
+                      <option value="fr">France</option>
+                      <option value="de">Germany</option>
+                      <option value="mx">Mexico</option>
+                      <option value="nz">New Zealand</option>
+                      <option value="it">Italy</option>
+                      <option value="za">South Africa</option>
+                      <option value="es">Spain</option>
+                      <option value="pt">Portugal</option>
+                      <option value="us">U.S.A.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div id="map"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="listing">
+                          <table id="resultsTable">
+                            <tbody id="results"></tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @include('admin.hotels.list')
+
+            <div style="display: none">
+              <div id="info-content">
+                <table>
+                  <form role="form" id="add-hotel"
+                    action="{{route('admin.hotel.store')}}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    data-url-index="{{route('admin.hotel.index')}}">
+                    @csrf
+                    <tr id="iw-url-row" class="iw_table_row">
+                      <td id="iw-icon" class="iw_table_icon"></td>
+                      <td id="iw-url" data-name-hotel=""></td>
+                    </tr>
+                    <tr id="iw-address-row" class="iw_table_row">
+                      <td class="iw_attribute_name">Address:</td>
+                      <td id="iw-address"  data-address-hotel=""></td>
+                    </tr>
+                    <tr id="iw-phone-row" class="iw_table_row">
+                      <td class="iw_attribute_name">Telephone:</td>
+                      <td id="iw-phone" data-phone-hotel=""></td>
+                    </tr>
+                    <tr id="iw-rating-row" class="iw_table_row">
+                      <td class="iw_attribute_name">Rating:</td>
+                      <td id="iw-rating" data-rating-hotel=""></td>
+                    </tr>
+                    <tr id="iw-website-row" class="iw_table_row">
+                      <td class="iw_attribute_name">Website:</td>
+                      <td id="iw-website" data-website-hotel=""></td>
+                    </tr>
+                    <tr>
+                      <td class="text-center" colspan="2"><button type="submit" id="btn-select-hotel">Select</button></td>
+                    </tr>
+                  </form>
+                </table>
+              </div>
+            </div>
           <br>
         </div>
-      <div id="submit-form">
-          <p class="btn-danger btn" data-url="{{ route('admin.hotel.index') }}"
-            data-toggle="modal" data-target="#modal-default">@lang('admin/hotel.cancel')</p>
-          <input type="submit" class="btn btn-primary" value="@lang('admin/hotel.submit')">
-        </div>
-      </form>
     </div>
       <div
         id="dataFromServer"
@@ -33,14 +117,6 @@
         style="display: none">
         </div>
     </div>
-    @component('widgets.admin.modal')
-      @slot('class')
-        danger
-      @endslot
-      @slot('headerText')
-        @lang('admin/global.message.cancel')
-      @endslot
-    @endcomponent
   </section>
 
 @endsection
@@ -64,7 +140,7 @@
   {{ Html::script('js/select2.min.js') }}
 @endsection
 
-<script>
+<script type="text/javascript">
   // This example uses the autocomplete feature of the Google Places API.
   // It allows the user to find all hotels in a given place, within a given
   // country. It then displays markers for all the hotels returned,
@@ -77,14 +153,14 @@
   var map, places, infoWindow;
   var markers = [];
   var autocomplete;
-  var countryRestrict = {'country': 'vi'};
+  var countryRestrict = {'country': 'uk'};
   var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
   var hostnameRegexp = new RegExp('^https?://.+?/');
 
   var countries = {
     'vi': {
-      center: {lat: 14.31, lng: 108.34},
-      zoom: 4
+      center: {lat: 14.315424, lng: 108.339537},
+      zoom: 5
     },
     'au': {
       center: {lat: -25.3, lng: 133.8},
@@ -142,8 +218,8 @@
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: countries['vi'].zoom,
-      center: countries['vi'].center,
+      zoom: countries['uk'].zoom,
+      center: countries['uk'].center,
       mapTypeControl: false,
       panControl: false,
       zoomControl: false,
@@ -163,7 +239,7 @@
           componentRestrictions: countryRestrict
         });
     places = new google.maps.places.PlacesService(map);
-
+console.log(autocomplete.addListener('place_changed', onPlaceChanged), 'check 1')
     autocomplete.addListener('place_changed', onPlaceChanged);
 
     // Add a DOM event listener to react when the user selects a country.
@@ -175,6 +251,7 @@
   // zoom the map in on the city.
   function onPlaceChanged() {
     var place = autocomplete.getPlace();
+    console.log('check placeholder', place)
     if (place.geometry) {
       map.panTo(place.geometry.location);
       map.setZoom(15);
@@ -238,6 +315,7 @@
       autocomplete.setComponentRestrictions({'country': country});
       map.setCenter(countries[country].center);
       map.setZoom(countries[country].zoom);
+      console.log(map.setCenter(countries[country].center), 'check center',autocomplete.setComponentRestrictions({'country': country}))
     }
     clearResults();
     clearMarkers();
@@ -298,15 +376,21 @@
   // Load the place information into the HTML elements used by the info window.
   function buildIWContent(place) {
     document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
-        'src="' + place.icon + '"/>';
-    document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
-        '">' + place.name + '</a></b>';
-    document.getElementById('iw-address').textContent = place.vicinity;
+        'src="' + place.icon + '"/>'
+    let nameHotel = document.getElementById('iw-url')
+    nameHotel.innerHTML = '<b><a href="' + place.url +
+        '">' + place.name + '</a></b>'
+    nameHotel.setAttribute('data-name-hotel', place.name)
+
+    let addressHotel = document.getElementById('iw-address')
+    addressHotel.textContent = place.vicinity;
+    addressHotel.setAttribute('data-address-hotel', place.formatted_address)
 
     if (place.formatted_phone_number) {
-      document.getElementById('iw-phone-row').style.display = '';
-      document.getElementById('iw-phone').textContent =
-          place.formatted_phone_number;
+      document.getElementById('iw-phone-row').style.display = ''
+      let phoneHotel = document.getElementById('iw-phone')
+      phoneHotel.textContent = place.formatted_phone_number
+      phoneHotel.setAttribute('data-phone-hotel', place.formatted_phone_number)
     } else {
       document.getElementById('iw-phone-row').style.display = 'none';
     }
@@ -316,15 +400,17 @@
     // for the rating points not achieved.
     if (place.rating) {
       var ratingHtml = '';
+      var ratingHotel = document.getElementById('iw-rating')
       for (var i = 0; i < 5; i++) {
         if (place.rating < (i + 0.5)) {
           ratingHtml += '&#10025;';
         } else {
           ratingHtml += '&#10029;';
         }
-      document.getElementById('iw-rating-row').style.display = '';
-      document.getElementById('iw-rating').innerHTML = ratingHtml;
+        document.getElementById('iw-rating-row').style.display = ''
+        ratingHotel.innerHTML = ratingHtml
       }
+      ratingHotel.setAttribute('data-rating-hotel', place.rating)
     } else {
       document.getElementById('iw-rating-row').style.display = 'none';
     }
@@ -334,12 +420,14 @@
     if (place.website) {
       var fullUrl = place.website;
       var website = hostnameRegexp.exec(place.website);
+      var websiteHotel = document.getElementById('iw-website')
       if (website === null) {
         website = 'http://' + place.website + '/';
         fullUrl = website;
       }
-      document.getElementById('iw-website-row').style.display = '';
-      document.getElementById('iw-website').textContent = website;
+      document.getElementById('iw-website-row').style.display = ''
+      websiteHotel.textContent = website
+      websiteHotel.setAttribute('data-website-hotel', place.website)
     } else {
       document.getElementById('iw-website-row').style.display = 'none';
     }

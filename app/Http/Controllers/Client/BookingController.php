@@ -230,6 +230,7 @@ class BookingController extends Controller
             ]);
 
             $data['paymented'] = $amount;
+            $data['status'] = config('setting.booking_finished');
             if (isset($data['paymented'])) {
                 $this->bookingRepository->update($bookingId, $data);
             }

@@ -338,33 +338,6 @@ $(function () {
         window.location.href = url
     })
 
-    //handle load teacher in create and edit booking
-    setTimeout(function(){
-        $('.select-box-teacher div.filter-option').each(function (index) {
-            $(this).click()
-        })
-
-        $('#name').click()
-        $('#name').focus()
-        $('#name').blur()
-
-        if ($('.check-edit-booking').length) {
-            $('select.select-teacher').each(function (index) {
-                $(this).trigger('change')
-            })
-        }
-    }, 500);
-
-    $('body').on('change', 'select.select-teacher', function (e) {
-        let el = $(this)
-        let positionChange = el.data('teacher')
-
-        whenChoiseTeacher(positionChange)
-        e.stopPropagation()
-    })
-
-    //end handle load teacher in create and edit booking
-
     //get data active dates
 
     function getAllActiveDetails(allDay) {

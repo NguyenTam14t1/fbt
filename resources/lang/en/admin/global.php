@@ -8,6 +8,7 @@ return [
     ],
     'btn' => [
         'add' => 'Add',
+        'new' => 'Add',
         'submit' => 'Submit',
         'cancel' => 'Cancel',
         'signin' => 'Signin',
@@ -26,6 +27,7 @@ return [
     ],
     'message' => [
         'confirm' => 'Do you want to deactivate it?',
+        'cancel' => 'Do you want to exit?',
     ],
     'notice' => [
         'result_empty' => 'Nothing was found',

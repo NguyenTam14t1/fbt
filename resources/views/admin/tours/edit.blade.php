@@ -25,6 +25,7 @@
                   id="name"
                   required="required"
                   maxlength="{{config('setting.tour.maxlength_name')}}"
+                  minlength="{{config('setting.tour.minlength_name')}}"
                   placeholder="Title..."
                   value="{{ $tour->name }}">
                   <span class="text-danger name-error" role="alert"></span>
@@ -37,6 +38,7 @@
                   id="place"
                   placeholder="Place..."
                   maxlength="{{config('setting.tour.maxlength_name')}}"
+                  minlength="{{config('setting.tour.minlength_name')}}"
                   value="{{ $tour->place }}"
                   required="required">
                   <span class="text-danger place-error" role="alert"></span>
@@ -317,8 +319,8 @@
         </div>
         <div id="submit-form">
           <p class="btn-danger btn" data-url="{{ route('admin.tour.index') }}"
-            data-toggle="modal" data-target="#modal-default">@lang('admin/tour.cancel')</p>
-          <input type="submit" class="btn btn-primary" value="@lang('admin/tour.submit')">
+            data-toggle="modal" data-target="#modal-default">@lang('admin/global.btn.cancel')</p>
+          <input type="submit" class="btn btn-primary" value="@lang('admin/global.btn.submit')">
         </div>
       </form>
     </div>

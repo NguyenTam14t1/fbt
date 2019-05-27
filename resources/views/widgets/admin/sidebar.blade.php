@@ -9,20 +9,47 @@
                     <span>@lang('admin/global.sidebar_list.dashboard')</span>
                 </a>
             </li>
-            <li class="{{set_active(['admin.tour.*'])}}">
-                <a href="{{ route('admin.tour.index') }}">
-                    <i class="fa fa-mountains"></i>
-                    <span>List tour</span>
+
+            <li class="treeview {{set_active(['admin.tour.*'])}}">
+                <a href="#">
+                    <i class="glyphicon glyphicon-th-list"></i><span>Tour Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li class="{{set_active(['admin.tour.index'])}}">
+                        <a href="{{ route('admin.tour.index') }}">
+                            <i class="fa fa-mountains"></i>
+                            <span>List</span>
+                        </a>
+                    </li>
+                    <li class="{{set_active(['admin.tour.create'])}}">
+                        <a href="{{ route('admin.tour.create') }}">
+                            <i class="fa fa-cat"></i>
+                            <span>Create</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="{{set_active(['admin.booking.*'])}}">
                 <a href="{{ route('admin.booking.index') }}">
-                    <i class="fa fa-cat"></i>
-                    <span>List booking</span>
+                    <i class="glyphicon glyphicon-check"></i>
+                    <span>Manage booking</span>
                 </a>
             </li>
+
+            <li class="{{set_active(['admin.hotel.*'])}}">
+                <a href="{{ route('admin.hotel.index') }}">
+                    <i class="glyphicon glyphicon-home"></i>
+                    <span>Manage hotel</span>
+                </a>
+            </li>
+
+
         </ul>
+
     </section>
     <!-- /.sidebar -->
 </aside>

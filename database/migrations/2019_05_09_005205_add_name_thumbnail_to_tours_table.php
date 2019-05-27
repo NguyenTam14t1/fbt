@@ -26,7 +26,7 @@ class AddNameThumbnailToToursTable extends Migration
     public function down()
     {
         Schema::table('tours', function (Blueprint $table) {
-            $table->string('name_thumbnail')->nullable();
+            $table->dropColumn('name_thumbnail');
         });
     }
 }

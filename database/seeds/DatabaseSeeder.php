@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ServicesTableSeeder::class);
         $this->call(ReviewsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
-        $this->call(BankAccountsTableSeeder::class);
-        $this->call(BookingsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(BookingsTableSeeder::class);
+        $this->call(BankAccountsTableSeeder::class);
     }
 }

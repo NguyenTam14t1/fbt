@@ -31,10 +31,16 @@ class EloquentBookingRepository extends EloquentRepository implements BookingInt
             $booking = $this->model->withTrashed()->findOrFail($bookingId);
 
             if ($booking->deleted_at) {
+                $data['status'] = config('setting.booking_wait_confirm');
+                $booking->update($data);
                 $booking->restore();
+
                 return 'Booking enable success!';
             } else {
+                $data['status'] = config('setting.booking_cancel');
+                $booking->update($data);
                 $booking->delete();
+
                 return 'Booking disable success!';
             }
 
