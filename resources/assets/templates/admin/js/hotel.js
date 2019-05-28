@@ -58,6 +58,8 @@ $(function() {
         let phone = $('#iw-phone').data('phone-hotel') || null
         let rating = $('#iw-rating').data('rating-hotel') || null
         let website = $('#iw-website').data('website-hotel') || null
+        let latitude = $('#iw-latitude').data('latitude-hotel') || null
+        let longitude = $('#iw-longitude').data('longitude-hotel') || null
         $.ajax({
         url: route('admin.hotel.store'),
         type: 'POST',
@@ -66,10 +68,11 @@ $(function() {
             address: address,
             phone: phone,
             rating: rating,
-            website: website
+            website: website,
+            latitude: latitude,
+            longitude: longitude,
         },
         success: data => {
-            console.log(data, 'check sel')
           window.location.href = urlIndex
         },
         error: data => {
@@ -81,6 +84,11 @@ $(function() {
         },
         // xhr: progressUpload,
         })
+    })
+
+    $('body').on('click', '.add-hotel #modal-default .yes-confirm', e => {
+        let url = $('#submit-form p.btn-danger').data('url')
+        window.location.href = url
     })
 
     $('body').on('click', '.delete-hotel-trigger', function(e){
@@ -178,10 +186,5 @@ $(function() {
             }
         })
     }
-
-    $('body').on('click', '.add-hotel #modal-default .yes-confirm', e => {
-        let url = $('#submit-form p.btn-danger').data('url')
-        window.location.href = url
-    })
 })
 

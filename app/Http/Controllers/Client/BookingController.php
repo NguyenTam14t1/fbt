@@ -67,7 +67,7 @@ class BookingController extends Controller
             return redirect()->route('client.tour.show', $id);
         }
 
-        $data['tour'] = $this->tourRepository->getById($id);
+        $data['tour'] = $this->tourRepository->findOrFail($id);
         $data['adults'] = Session::get('adults');
         $data['children'] = Session::get('children');
         $data['price'] = ($data['adults'] + ($data['children']) / 2) * $data['tour']->price;
@@ -91,7 +91,7 @@ class BookingController extends Controller
                 return redirect()->route('client.tour.show', $id);
             }
 
-            $tour = $this->tourRepository->getById($id);
+            $tour = $this->tourRepository->findOrFail($id);
             $data = $request->only([
                 'first_name',
                 'last_name',
@@ -143,6 +143,8 @@ class BookingController extends Controller
             $message = trans('lang.send_mail_success_1') . str_limit(Auth::user()->email, 6, '******') . trans('lang.send_mail_success_2');
             Session::flash('send_success', $message);
         } catch (Exception $e) {
+            report($e);
+
             Session::flash('send_error', trans('lang.send_mail_error'));
         }
 
@@ -328,7 +330,7 @@ class BookingController extends Controller
 
     public function paymentSuccess($bookingId, $tourId)
     {
-        $data['tour'] = $this->tourRepository->getById($tourId);
+        $data['tour'] = $this->tourRepository->findOrFail($tourId);
         $data = $this->tourRepository->getRate($tourId, $data);
         $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
         $data['categories'] = $this->getParentCategories($data['tour']);

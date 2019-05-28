@@ -104,10 +104,10 @@
                 </div>
             </footer>
         </div>
-        
+
         @include('auth.login')
         @include('auth.register')
-        
+
         {{ Html::script('templates/bookingtour/js/modernizr.custom.js') }}
         {{ Html::script('templates/bookingtour/js/activity-date.js') }}
         {{ Html::script('templates/plugins/revolution/jquery.themepunch.tools.min.js') }}

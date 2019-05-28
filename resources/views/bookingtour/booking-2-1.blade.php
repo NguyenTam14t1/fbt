@@ -108,8 +108,13 @@
                                     <dl class="dl-horizontal">
                                         <dt><i class="fa fa-map-marker" aria-hidden="true"></i> @lang('lang.place'):</dt>
                                         <dd>{{ $data['tour']->place }}</dd>
-                                        <dt><i class="fa fa-h-square" aria-hidden="true"></i> @lang('lang.hotel'):</dt>
-                                        <dd>{{ $data['tour']->hotel }}</dd>
+                                        @if (isset($data['tour']->hotels))
+                                            <dt><i class="fa fa-h-square" aria-hidden="true"></i> @lang('lang.hotel'):</dt>
+                                            @foreach ($data['tour']->hotels as $hotel)
+                                                <dt>{{ $hotel->name }}</dt>
+                                                <dd>{{ $hotel->address }}</dd>
+                                            @endforeach
+                                        @endif
                                     </dl>
                                 </div>
                                 <div class="col-sm-4 col-xs-12">

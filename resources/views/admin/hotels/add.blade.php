@@ -102,6 +102,10 @@
                       <td id="iw-website" data-website-hotel=""></td>
                     </tr>
                     <tr>
+                      <td id="iw-latitude" data-latitude-hotel="" class="hide"></td>
+                      <td id="iw-longitude" data-longitude-hotel="" class="hide"></td>
+                    </tr>
+                    <tr>
                       <td class="text-center" colspan="2"><button type="submit" id="btn-select-hotel">Select</button></td>
                     </tr>
                   </form>
@@ -238,7 +242,7 @@
           types: ['(cities)'],
           componentRestrictions: countryRestrict
         });
-    places = new google.maps.places.PlacesService(map);
+    places = new google.maps.places.PlacesService(map)
     autocomplete.addListener('place_changed', onPlaceChanged);
 
     // Add a DOM event listener to react when the user selects a country.
@@ -365,9 +369,9 @@
           if (status !== google.maps.places.PlacesServiceStatus.OK) {
             return;
           }
-          infoWindow.open(map, marker);
+          infoWindow.open(map, marker)
           buildIWContent(place);
-          console.log(place, 'check palace')
+          console.log('check attr place', place)
         });
   }
 
@@ -429,7 +433,19 @@
     } else {
       document.getElementById('iw-website-row').style.display = 'none';
     }
+
+    //get latitude of place
+    if (place.geometry.viewport.na.l) {
+      var latHotel = document.getElementById('iw-latitude')
+      latHotel.setAttribute('data-latitude-hotel', place.geometry.viewport.na.l)
+    }
+
+    //get longitude of place
+    if (place.geometry.viewport.ia.l) {
+      var longHotel = document.getElementById('iw-longitude')
+      longHotel.setAttribute('data-longitude-hotel', place.geometry.viewport.na.l)
+    }
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ6PeXqLJdTn9R-ELpwbbcjso3vAClRac&libraries=places&callback=initMap"
-    async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-73YdXuXIbhIJlNPOaNM7erGhnKqHxS0&language=en" async defer></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ6PeXqLJdTn9R-ELpwbbcjso3vAClRac&libraries=places&callback=initMap" async defer></script>

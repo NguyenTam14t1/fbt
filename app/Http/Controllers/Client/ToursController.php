@@ -60,7 +60,7 @@ class ToursController extends Controller
      */
     public function show($id)
     {
-        $data['tour'] = $this->tourRepository->getById($id);
+        $data['tour'] = $this->tourRepository->findOrFail($id);
         $data = $this->tourRepository->getRate($id, $data);
         $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
         $data['categories'] = $this->getParentCategories($data['tour']);
@@ -115,7 +115,7 @@ class ToursController extends Controller
         ]);
 
         $this->tourRepository->addNewReviewFromUser(Auth::user()->id, $dataRq);
-        $data['tour'] = $this->tourRepository->getById($dataRq['tour_id']);
+        $data['tour'] = $this->tourRepository->findOrFail($dataRq['tour_id']);
         $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
         $data = $this->tourRepository->getRate($dataRq['tour_id'], $data);
 
@@ -124,7 +124,7 @@ class ToursController extends Controller
 
     public function reviewShow(Request $request)
     {
-        $data['tour'] = $this->tourRepository->getById($request->tour_id);
+        $data['tour'] = $this->tourRepository->findOrFail($request->tour_id);
         $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
         $data = $this->tourRepository->getRate($request->tour_id, $data);
 

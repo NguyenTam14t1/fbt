@@ -46,6 +46,8 @@ class HotelController extends Controller
             'phone',
             'rating',
             'website',
+            'latitude',
+            'longitude',
         ]);
 
         $response = $this->hotelRepository->store($data);

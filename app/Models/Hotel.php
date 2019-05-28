@@ -12,6 +12,8 @@ class Hotel extends Model
         'phone',
         'rating',
         'website',
+        'latitude',
+        'longitude',
     ];
 
     public function tours()

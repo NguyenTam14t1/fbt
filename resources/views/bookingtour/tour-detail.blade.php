@@ -37,8 +37,15 @@
         </div>
     </section>
     <!-- PAGE CONTENT -->
-    <section class="mainContentSection singlePackage">
+    <section class="mainContentSection singlePackage" style="padding: 30px 0px">
         <div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="margin-bottom: 30px">
+                    <div style="font-weight: bold;font-size:18px;line-height: 22px;padding: 15px 80px 15px 15px;background:#f5f4ef;" class="tentour">
+                        <h4 itemprop="name">{{ $data['tour']->name }}</h4>
+                    </div>
+                </div>
+            </div>
             <div class="row ">
                 <div class="col-sm-8 col-xs-12">
                     <div id="package-carousel" class="carousel slide" data-ride="carousel">
@@ -191,45 +198,54 @@
                 </aside>
             </div>
 
+            <div class="description-aria sectionTitle2">
+                <h2>Tour program</h2>
+                <div id="map-canvas"></div>
+            </div>
+
             <div class="description-aria">
                 <div class="sectionTitle2">
                     <h2>@lang('lang.description')</h2>
                     <p>{!! $data['tour']->description !!}</p>
                 </div>
                 <div class="row">
-                    @foreach ($data['tour']->activityDates as $activityDate)
-                        <div class="col-xs-12 col-sm-12">
-                            <ul class="descriptionList">
-                                <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i>{{ $activityDate->title }}</li>
-                            </ul>
-                        </div>
-                    @endforeach
+                    @if (isset($data['tour']->activityDates))
+                        @foreach ($data['tour']->activityDates as $activityDate)
+                            <div class="col-xs-12 col-sm-12">
+                                <ul class="descriptionList">
+                                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i>{{ $activityDate->title }}</li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
-        <div class="information-aria">
-            <h3 class="program-title">@lang('lang.program_overview')</h3>
+        <div class="information-aria sectionTitle2">
+            <h2 class="program-title" style="margin-left: 100px">@lang('lang.program_overview')</h2>
             <section id="special-offers" class="section wide-fat">
                 <div id="mi-slider" class="mi-slider">
-                    @foreach ($data['tour']->activityDates as $activity)
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    {{ Html::image($activity->picture_path, 'Date Program') }}
-                                    <div class="container">
-                                        <article class="special-offers section-intro">
-                                            <h2 class="page-title date-content">{{ $activity->title }}</h2>
-                                        </article>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    @endforeach
-                    <nav id="mi-nav">
+                    @if (isset($data['tour']->activityDates))
                         @foreach ($data['tour']->activityDates as $activity)
-                            {!! html_entity_decode(Html::link('#', '<span>' . $activity->time . '</span>')) !!}
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        {{ Html::image($activity->picture_path, 'Date Program') }}
+                                        <div class="container">
+                                            <article class="special-offers section-intro">
+                                                <h2 class="page-title date-content">{{ $activity->title }}</h2>
+                                            </article>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         @endforeach
-                    </nav>
+                        <nav id="mi-nav">
+                            @foreach ($data['tour']->activityDates as $activity)
+                                {!! html_entity_decode(Html::link('#', '<span>' . $activity->time . '</span>')) !!}
+                            @endforeach
+                        </nav>
+                    @endif
                 </div>
                 <div class="clearfix"></div>
             </section>
@@ -241,30 +257,110 @@
             <section class="design-process-section" id="process-tab">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
+                        @if (isset($data['tour']->activityDates))
+                            <div class="col-xs-12">
+                                <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
+                                    @foreach ($data['tour']->activityDates as $activity)
+                                        <li role="presentation" id="{{ ($loop->iteration == 1) ? 'day-icon-1' : '' }}">
+                                            {!! html_entity_decode(Html::link('#day-' . $loop->iteration, '<i class="fa fa-binoculars" aria-hidden="true"></i><p>' . $activity->time . '</p>', ['aria-controls' => 'day-' . $loop->iteration, 'role' => 'tab', 'data-toggle' => 'tab'])) !!}
+                                        </li>
+                                    @endforeach
+                                </ul>
                                 @foreach ($data['tour']->activityDates as $activity)
-                                    <li role="presentation" id="{{ ($loop->iteration == 1) ? 'day-icon-1' : '' }}">
-                                        {!! html_entity_decode(Html::link('#day-' . $loop->iteration, '<i class="fa fa-binoculars" aria-hidden="true"></i><p>' . $activity->time . '</p>', ['aria-controls' => 'day-' . $loop->iteration, 'role' => 'tab', 'data-toggle' => 'tab'])) !!}
-                                    </li>
-                                @endforeach
-                            </ul>
-                            @foreach ($data['tour']->activityDates as $activity)
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane " id="day-{{ $loop->iteration }}">
-                                        <div class="design-process-content">
-                                            <h3 class="program-header">{{ $activity->time . ': ' . $activity->title }}</h3>
-                                            <div class="description-aria">
-                                                <p>{{ $activity->detail }}</p>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane " id="day-{{ $loop->iteration }}">
+                                            <div class="design-process-content">
+                                                <h3 class="program-header">{{ $activity->time . ': ' . $activity->title }}</h3>
+                                                <div class="description-aria">
+                                                    <p>{{ $activity->detail }}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             </section>
+        </div>
+        <div class="container">
+            <div class="sectionTitle2">
+                <h2>Information hotel & guide</h2>
+            </div>
+            <div class="main-contain">
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Hotel</p>
+                <section class="design-process-section" id="list-hotel">
+                    <table class="table table-bordered" id="table-hotel">
+                        @if (isset($data['tour']->hotels))
+                            <thead>
+                                <tr style="font-weight: bold; font-size: 16px;">
+                                    <td style="width:300px; padding-left: 20px" >Name</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
+                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data['tour']->hotels as $hotel)
+                                    <tr>
+                                      <td class="name-hotel" data-name-hotel="{{ $hotel->name }}" scope="row" style="padding-left: 20px">{{ $hotel->name }}</td>
+                                      <td class="address-hotel" data-address-hotel="{{ $hotel->address }}" colspan="2" style="padding-left: 20px">{{ $hotel->address }}</td>
+                                      <td class="phone-hotel" data-phone-hotel="{{ $hotel->phone }}" style="padding-left: 20px">{{ $hotel->phone }}</td>
+                                      <td class="latitude-hotel" data-latitude-hotel="{{ $hotel->latitude }}" class="hide"></td>
+                                      <td class="longitude-hotel" data-longitude-hotel="{{ $hotel->longitude }}" class="hide"></td>
+                                    </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        @else
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                            </tbody>
+                        @endif
+                    </table>
+                </section>
+            </div>
+
+            <div class="main-contain">
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Guide</p>
+                <section class="design-process-section" id="list-hotel">
+                    <table class="table table-bordered table-hotel">
+                        @if (isset($data['tour']->guides))
+                            <thead>
+                                <tr style="font-weight: bold; font-size: 16px;">
+                                    <td style="width:300px; padding-left: 20px" >Name</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
+                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data['tour']->guides as $guide)
+                                    <tr>
+                                      <td class="name-guide" data-name-guide="{{ $guide->name }}" scope="row" style="padding-left: 20px">{{ $guide->name }}</td>
+                                      <td class="address-guide" data-address-guide="{{ $guide->address }}" colspan="2" style="padding-left: 20px">{{ $guide->address }}</td>
+                                      <td class="phone-guide" data-phone-guide="{{ $guide->phone }}" style="padding-left: 20px">{{ $guide->phone }}</td>
+                                    </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        @else
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                            </tbody>
+                        @endif
+                    </table>
+                </section>
+            </div>
         </div>
         <div class="container">
             <div class="review-aria">
@@ -360,22 +456,24 @@
                     <div class="reviewMedia">
                         <ul class="media-list">
                             @foreach ($data['reviews'] as $review)
-                                <li class="media review-list">
-                                    <div class="media-left">
-                                        {!! html_entity_decode(Html::link('#', Html::image($review->user->avatar_path, 'image-avatar', ['class' => 'media-object']))) !!}
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">{{ $review->user->name }}</h5>
-                                        <div value="{{ $review->total_rate }}" class="rating-show">
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
+                                @if (isset($review->user))
+                                    <li class="media review-list">
+                                        <div class="media-left">
+                                            {!! html_entity_decode(Html::link('#', Html::image($review->user->avatar_path, 'image-avatar', ['class' => 'media-object']))) !!}
                                         </div>
-                                        <p>{{ $review->content }}</p>
-                                    </div>
-                                </li>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{ $review->user->name }}</h5>
+                                            <div value="{{ $review->total_rate }}" class="rating-show">
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                            </div>
+                                            <p>{{ $review->content }}</p>
+                                        </div>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                         <div class="paginationCenter">
@@ -387,3 +485,209 @@
         </div>
     </section>
 @endsection
+
+<style type="text/css">
+    /*.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        vertical-align: middle;
+        padding-left: 20px;
+    }*/
+    #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 500px;
+        width: 100%;
+    }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-73YdXuXIbhIJlNPOaNM7erGhnKqHxS0&language=en"></script>
+<script>
+    var map;
+    var marker;
+    var markers = [];
+    var directionsDisplay;
+    var directionsService;
+    var stepDisplay;
+
+
+    var MY_MAPTYPE_ID = 'StarTravel';
+
+    function initialize() {
+        directionsService = new google.maps.DirectionsService();
+        var featureOpts = [
+              {
+                  stylers: [
+                    { hue: '#09a5e5' },
+                    { visibility: 'simplified' },
+                    { gamma: 0.5 },
+                    { weight: 0.5 }
+                  ]
+              },
+              {
+                  elementType: 'labels',
+                  stylers: [
+                    { visibility: 'on' }
+                  ]
+              },
+              {
+                  featureType: 'water',
+                  stylers: [
+                    { color: '#09a5e5' }
+                  ]
+              }
+        ];
+        var mapOptions = {
+            //zoom: 8,
+            //center: new google.maps.LatLng(16.082412, 107.578125),
+            //mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeControlOptions: {
+                mapTypeIds: [MY_MAPTYPE_ID]
+            },
+            mapTypeId: MY_MAPTYPE_ID
+        }
+
+        var arrHotel = []
+        $('#table-hotel tbody tr').each(function(index, value){
+            var objHotel = {
+                Name: $(this).find('.name-hotel').data('name-hotel') || '',
+                Lat: $(this).find('.latitude-hotel').data('latitude-hotel') || null,
+                Long: $(this).find('.longitude-hotel').data('longitude-hotel') || null,
+                Desription: $(this).find('.address-hotel').data('address-hotel') || '',
+                Link: "",
+            }
+            if (objHotel.Lat && objHotel.Long) {
+                arrHotel.push(objHotel)
+            }
+        })
+
+        if (arrHotel.length > 0) {
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        } else {
+            document.getElementById('map-canvas').style.display = "none"
+        }
+
+        var styledMapOptions = {
+            name: 'Star travel'
+        };
+
+        var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+
+        map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+
+        directionsService = new google.maps.DirectionsService();
+
+
+        var rendererOptions = {
+            map: map,
+            markerOptions: { visible: false },
+            polylineOptions: { strokeColor: '#860e0e' }
+        }
+
+        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions)
+
+        stepDisplay = new google.maps.InfoWindow();
+        // var _listjson = '[{"Name":"Huế","Lat":"16.449773","Long":"107.558899","Desription":"Huế","Link":"https://travel.com.vn/mien-trung/tour-hue.aspx"},{"Name":"Động Phong Nha","Lat":"17.543357","Long":"106.144795","Desription":"Động Phong Nha","Link":"https://travel.com.vn/mien-trung/tour-dong-phong-nha.aspx"},{"Name":"Động Thiên Đường","Lat":"17.543418","Long":"106.144774","Desription":"Động Thiên Đường","Link":"https://travel.com.vn/mien-trung/tour-dong-thien-duong.aspx"},{"Name":"Bà Nà","Lat":"15.998684","Long":"107.988142","Desription":"Bà Nà","Link":"https://travel.com.vn/mien-trung/tour-ba-na.aspx"},{"Name":"Hội An","Lat":"15.877072","Long":"108.325868","Desription":"Hội An","Link":"https://travel.com.vn/mien-trung/tour-hoi-an.aspx"},{"Name":"Sơn Trà ","Lat":"16.117957","Long":"108.273121","Desription":"Sơn Trà ","Link":"https://travel.com.vn/mien-trung/tour-son-tra-.aspx"}]';
+
+        // var obj = $.parseJSON(_listjson);
+        // console.log(obj, 'check obj', arrHotel, _listjson)
+
+    if (arrHotel.length > 0) {
+        $.each(arrHotel, function (key, val) {
+        // $.each(obj, function (key, val) {
+            //alert(val.Name);
+            var myLatLng = new google.maps.LatLng(parseFloat(val.Lat), parseFloat(val.Long));
+            marker = new google.maps.Marker({
+                map: map,
+                //animation: google.maps.Animation.BOUNCE,
+                position: myLatLng,
+                icon: 'https://travel.com.vn/Content/themeOrange/img/marker_letter/letter_' + key + '.png',
+                title: val.Desription
+                // title: (key + 1) + ' : ' + val.Name
+            });
+            markers[key] = marker;
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Check in: ' + val.Desription
+                // content: 'Xem thông tin tour ' + val.Name
+            });
+            google.maps.event.addListener(markers[key], 'mouseover', function () {
+                infowindow.open(map, markers[key]);
+            });
+            google.maps.event.addListener(markers[key], 'mouseout', function () {
+                infowindow.close(map, markers[key]);
+            });
+            google.maps.event.addListener(markers[key], 'click', function () {
+                location.href = val.Link;
+            });
+        });
+        }
+        if (markers.length == 1) {
+            map.setZoom(8);
+            map.setCenter(markers[0].getPosition());
+        }
+        if (markers.length > 1)
+            calcRoute();
+    }
+
+    function calcRoute() {
+        var maxpoints = markers.length - 1 > 9 ? 9 : markers.length - 1;        // do google gioi hạn 8 waypoint
+        var start = markers[0].getPosition();
+        var end = markers[maxpoints].getPosition();
+        //var end = markers[markers.length - 1].getPosition();
+        var waypts = [];
+
+        for (var i = 1; i < maxpoints; i++) {
+
+            waypts.push({
+                location: markers[i].getPosition(),
+                stopover: true
+            });
+        }
+
+        var request = {
+            origin: start,
+            destination: end,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                var flightPlanCoordinates = [];
+                if (markers.length - 1 > 9) {                   // ve tiep bang polyline
+                    for (j = 9; j < markers.length; j++) {
+                        flightPlanCoordinates[j - 9] = markers[j].getPosition();
+                    }
+                }
+                var flightPath = new google.maps.Polyline({
+                    path: flightPlanCoordinates,
+                    strokeColor: '#860e0e',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+                flightPath.setMap(map);
+                var latlngbounds = new google.maps.LatLngBounds();
+                for (var i = 0; i < markers.length; i++) {
+                    latlngbounds.extend(markers[i].getPosition());
+                }
+                map.fitBounds(latlngbounds);
+            }
+            else {
+                var flightPlanCoordinates = [];
+                var latlngbounds = new google.maps.LatLngBounds();
+                for (var i = 0; i < markers.length; i++) {
+                    latlngbounds.extend(markers[i].getPosition());
+                    flightPlanCoordinates[i] = markers[i].getPosition();
+                }
+                var flightPath = new google.maps.Polyline({
+                    path: flightPlanCoordinates,
+                    strokeColor: '#860e0e',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+
+                flightPath.setMap(map);
+                map.fitBounds(latlngbounds);
+            }
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

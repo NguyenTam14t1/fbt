@@ -431,7 +431,7 @@ $(function () {
             cache: false,
             processData:false,
             success: data => {
-              // window.location.href = urlIndex
+              window.location.href = urlIndex
             },
             error: data => {
                 console.log(data)
@@ -470,7 +470,7 @@ $(function () {
             cache: false,
             processData:false,
             success: data => {
-              // window.location.href = urlIndex
+              window.location.href = urlIndex
             },
             error: data => {
                 console.log(data)

@@ -193,13 +193,15 @@
                     <p>{!! $data['tour']->description !!}</p>
                 </div>
                 <div class="row">
-                    @foreach ($data['tour']->activityDates as $activityDate)
-                        <div class="col-xs-12 col-sm-12">
-                            <ul class="descriptionList">
-                                <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i>{{ $activityDate->title }}</li>
-                            </ul>
-                        </div>
-                    @endforeach
+                    @if (isset($data['tour']->activityDates))
+                        @foreach ($data['tour']->activityDates as $activityDate)
+                            <div class="col-xs-12 col-sm-12">
+                                <ul class="descriptionList">
+                                    <li><i class="fa fa-dot-circle-o" aria-hidden="true"></i>{{ $activityDate->title }}</li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -207,25 +209,27 @@
             <h3 class="program-title">@lang('lang.program_overview')</h3>
             <section id="special-offers" class="section wide-fat">
                 <div id="mi-slider" class="mi-slider">
-                    @foreach ($data['tour']->activityDates as $activity)
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    {{ Html::image($activity->picture_path, 'Date Program') }}
-                                    <div class="container">
-                                        <article class="special-offers section-intro">
-                                            <h2 class="page-title date-content">{{ $activity->title }}</h2>
-                                        </article>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    @endforeach
-                    <nav id="mi-nav">
+                    @if (isset($data['tour']->activityDates))
                         @foreach ($data['tour']->activityDates as $activity)
-                            {!! html_entity_decode(Html::link('#', '<span>' . $activity->time . '</span>')) !!}
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        {{ Html::image($activity->picture_path, 'Date Program') }}
+                                        <div class="container">
+                                            <article class="special-offers section-intro">
+                                                <h2 class="page-title date-content">{{ $activity->title }}</h2>
+                                            </article>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         @endforeach
-                    </nav>
+                        <nav id="mi-nav">
+                            @foreach ($data['tour']->activityDates as $activity)
+                                {!! html_entity_decode(Html::link('#', '<span>' . $activity->time . '</span>')) !!}
+                            @endforeach
+                        </nav>
+                    @endif
                 </div>
                 <div class="clearfix"></div>
             </section>
@@ -238,25 +242,27 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
+                            @if (isset($data['tour']->activityDates))
+                                <ul class="nav nav-tabs process-model more-icon-preocess" role="tablist">
+                                    @foreach ($data['tour']->activityDates as $activity)
+                                        <li role="presentation" id="{{ ($loop->iteration == 1) ? 'day-icon-1' : '' }}">
+                                            {!! html_entity_decode(Html::link('#day-' . $loop->iteration, '<i class="fa fa-binoculars" aria-hidden="true"></i><p>' . $activity->time . '</p>', ['aria-controls' => 'day-' . $loop->iteration, 'role' => 'tab', 'data-toggle' => 'tab'])) !!}
+                                        </li>
+                                    @endforeach
+                                </ul>
                                 @foreach ($data['tour']->activityDates as $activity)
-                                    <li role="presentation" id="{{ ($loop->iteration == 1) ? 'day-icon-1' : '' }}">
-                                        {!! html_entity_decode(Html::link('#day-' . $loop->iteration, '<i class="fa fa-binoculars" aria-hidden="true"></i><p>' . $activity->time . '</p>', ['aria-controls' => 'day-' . $loop->iteration, 'role' => 'tab', 'data-toggle' => 'tab'])) !!}
-                                    </li>
-                                @endforeach
-                            </ul>
-                            @foreach ($data['tour']->activityDates as $activity)
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane " id="day-{{ $loop->iteration }}">
-                                        <div class="design-process-content">
-                                            <h3 class="program-header">{{ $activity->time . ': ' . $activity->title }}</h3>
-                                            <div class="description-aria">
-                                                <p>{{ $activity->detail }}</p>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane " id="day-{{ $loop->iteration }}">
+                                            <div class="design-process-content">
+                                                <h3 class="program-header">{{ $activity->time . ': ' . $activity->title }}</h3>
+                                                <div class="description-aria">
+                                                    <p>{{ $activity->detail }}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -356,22 +362,24 @@
                     <div class="reviewMedia">
                         <ul class="media-list">
                             @foreach ($data['reviews'] as $review)
-                                <li class="media review-list">
-                                    <div class="media-left">
-                                        {!! html_entity_decode(Html::link('#', Html::image($review->user->avatar_path, 'image-avatar', ['class' => 'media-object']))) !!}
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="media-heading">{{ $review->user->name }}</h5>
-                                        <div value="{{ $review->total_rate }}" class="rating-show">
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
-                                            <label class="star-show"></label>
+                                @if (isset($review->user))
+                                    <li class="media review-list">
+                                        <div class="media-left">
+                                            {!! html_entity_decode(Html::link('#', Html::image($review->user->avatar_path, 'image-avatar', ['class' => 'media-object']))) !!}
                                         </div>
-                                        <p>{{ $review->content }}</p>
-                                    </div>
-                                </li>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{ $review->user->name }}</h5>
+                                            <div value="{{ $review->total_rate }}" class="rating-show">
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                                <label class="star-show"></label>
+                                            </div>
+                                            <p>{{ $review->content }}</p>
+                                        </div>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                         <div class="paginationCenter">
