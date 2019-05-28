@@ -23,9 +23,8 @@ class Booking extends Model
         'number_of_people',
         'number_of_children',
         'status',
-        'paymented',
+        'status_payment',
         'debt',
-        'times_payment',
         'confirm_code',
     ];
 

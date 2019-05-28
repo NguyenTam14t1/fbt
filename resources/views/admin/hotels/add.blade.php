@@ -239,7 +239,6 @@
           componentRestrictions: countryRestrict
         });
     places = new google.maps.places.PlacesService(map);
-console.log(autocomplete.addListener('place_changed', onPlaceChanged), 'check 1')
     autocomplete.addListener('place_changed', onPlaceChanged);
 
     // Add a DOM event listener to react when the user selects a country.
@@ -251,7 +250,6 @@ console.log(autocomplete.addListener('place_changed', onPlaceChanged), 'check 1'
   // zoom the map in on the city.
   function onPlaceChanged() {
     var place = autocomplete.getPlace();
-    console.log('check placeholder', place)
     if (place.geometry) {
       map.panTo(place.geometry.location);
       map.setZoom(15);
@@ -315,7 +313,6 @@ console.log(autocomplete.addListener('place_changed', onPlaceChanged), 'check 1'
       autocomplete.setComponentRestrictions({'country': country});
       map.setCenter(countries[country].center);
       map.setZoom(countries[country].zoom);
-      console.log(map.setCenter(countries[country].center), 'check center',autocomplete.setComponentRestrictions({'country': country}))
     }
     clearResults();
     clearMarkers();
@@ -370,6 +367,7 @@ console.log(autocomplete.addListener('place_changed', onPlaceChanged), 'check 1'
           }
           infoWindow.open(map, marker);
           buildIWContent(place);
+          console.log(place, 'check palace')
         });
   }
 

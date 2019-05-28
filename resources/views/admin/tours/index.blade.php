@@ -26,9 +26,6 @@
                                     <table id="datatable-list" class="table table-striped table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th width="4%">
-                                                    {{ Form::checkbox('checkbox', '', false, ['class' => 'check checkbox-input user-check']) }}
-                                                </th>
                                                 <th width="4%">@lang('lang.stt')</th>
                                                 <th width="20%">@lang('lang.name')</th>
                                                 <th width="24%">@lang('lang.time')</th>
@@ -42,9 +39,6 @@
                                             @if (count($tours))
                                                 @foreach ($tours as $tour)
                                                     <tr>
-                                                        <td class="center">
-                                                            {{ Form::checkbox('checkbox', '', false, ['class' => 'check checkbox-input user-check']) }}
-                                                        </td>
                                                         <td class="center">{{ $loop->iteration }}</td>
                                                         <td>{{ $tour->name }}</td>
                                                         <td class="center">{{ $tour->time_start_format . ' - ' . $tour->time_finish_format }}</td>

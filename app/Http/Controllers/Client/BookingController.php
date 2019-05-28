@@ -106,16 +106,7 @@ class BookingController extends Controller
             $data['number_of_people'] = Session::get('adults');
             $data['number_of_children'] = Session::get('children');
             $data['status'] = config('setting.booking_wait_confirm');
-            $data['paymented'] = config('setting.paymented_default_value');
             $data['debt'] = ($data['number_of_people'] + ($data['number_of_children']) / 2) * $tour->price;
-
-            if ($data['debt'] < config('setting.total_cost_small') ) {
-                $data['times_payment'] = config('setting.times_payment_small');
-            } elseif ($data['debt'] < config('setting.total_cost_medium')) {
-                $data['times_payment'] = config('setting.times_payment_medium');
-            } else {
-                $data['times_payment'] = config('setting.times_payment_big');
-            }
 
             $data['count_register'] = $request->num_register;
             $dataGuest = $request->guest;
@@ -220,27 +211,34 @@ class BookingController extends Controller
             $tourId = $request->tour_id;
             $bookingId = $request->booking_id;
 
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+            try {
+                Stripe::setApiKey(env('STRIPE_SECRET'));
 
-            $charge = Charge::create([
-                // 'card' => $card ,
-                'amount' => $amount,
-                'currency' => 'usd',
-                'source' => env('SOURCE_CARD_STRIPE'),
-            ]);
+                $charge = Charge::create([
+                    // 'card' => $card ,
+                    'amount' => $amount,
+                    'currency' => 'usd',
+                    'source' => env('SOURCE_CARD_STRIPE'),
+                ]);
+            } catch (\Stripe\Error\Card $e) {
+                report($e);
 
-            $data['paymented'] = $amount;
+                return false;
+            }
+
+            $data['status_payment'] = config('setting.status_payment.paid');
             $data['status'] = config('setting.booking_finished');
-            if (isset($data['paymented'])) {
+            if (isset($data['status_payment'])) {
                 $this->bookingRepository->update($bookingId, $data);
             }
 
-            return redirect()->route('client.booking.paymentSuccess', ['booking' => $bookingId, 'tour' => $tourId]);
-        } catch (\Stripe\Error\Card $e) {
+            return redirect()->route('paymentSuccess', ['booking' => $bookingId, 'tour' => $tourId]);
+        } catch (Exception $e) {
             report($e);
 
             return false;
         }
+    }
 
 
         //pay with paypal
@@ -327,7 +325,6 @@ class BookingController extends Controller
 
     //     return false;
     // }
-    }
 
     public function paymentSuccess($bookingId, $tourId)
     {

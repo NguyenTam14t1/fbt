@@ -27,8 +27,8 @@
                                                 <th width="7%">@lang('lang.adults')</th>
                                                 <th width="7%">@lang('lang.children')</th>
                                                 <th width="7%">@lang('lang.status')</th>
-                                                <th width="7%">@lang('lang.debt')</th>
-                                                <th width="7%">@lang('lang.paymented')</th>
+                                                <th width="7%">Cost</th>
+                                                <th width="7%">Payment</th>
                                                 <th width="24%" class="text-center">@lang('lang.action')</th>
                                             </tr>
                                         </thead>
@@ -45,11 +45,24 @@
                                                                 {{ $booking->number_of_children }}
                                                             </td>
                                                             <td class="center status-{{ $booking->status }}">{{ $booking->status_text }}</td>
-                                                            <td class="center">${{ $booking->debt }}</td>
-                                                            <td class="center">${{ $booking->paymented }}</td>
-                                                            <td class="text-center">
+                                                            <td class="center">{{ $booking->debt }}</td>
+                                                            <td class="center">
                                                                 <div class="group-action">
-                                                                    <a data-toggle="tooltip" data-placement="left" title="view" href="#" class="btn btn-primary group-action-link">
+                                                                    <div class="onoffswitch1 group-action-switch1">
+                                                                        <button class="show-modal-confirm" style="display:none;"></button>
+                                                                        @php $paid = $booking->status_payment @endphp
+                                                                        <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="myonoffswitch1-{{ $booking->id }}"
+                                                                            {{ $paid == config('setting.status_payment.paid') ? 'checked' : ''}} data-id="{{ $booking->id }}" data-show-modal="true">
+                                                                        <label class="onoffswitch1-label" for="myonoffswitch1-{{ $booking->id }}">
+                                                                            <span class="onoffswitch1-inner"></span>
+                                                                            <span class="onoffswitch1-switch1"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <div class="group-action" class="btn-action">
+                                                                    <a data-toggle="modal" data-placement="left" title="view" data-target="#modal-detail-booking" class="btn btn-primary group-action-link">
                                                                         <i class="fa fa-eye fa fa-lg"></i></a>
                                                                     <div class="onoffswitch group-action-switch">
                                                                         <button class="show-modal-confirm" data-toggle="modal" data-target="#modal-default" style="display:none;"></button>
@@ -80,12 +93,19 @@
                 </div>
             </div>
         </div>
+        {{ Form::open(['route' => ['admin.booking.update', 'ID_REPLY_IN_URL'], 'id' => 'edit-booking-form', 'class' => 'form-horizontal']) }}
+            @csrf
+            {{ method_field('PATCH') }}
+            <input type="text" value="" class="hide" name="status_payment" id="status-payment" data-status-payment="">
+        {{ Form::close() }}
+
         {{ Form::open(['route' => ['admin.booking.destroy', 'ID_REPLY_IN_URL'], 'id' => 'delete-booking-form', 'class' => 'form-horizontal']) }}
             {{ method_field('DELETE') }}
         {{ Form::close() }}
         <div id="message-data"
             data-mess-confirm="{{ json_encode(trans('admin/global.message.confirm')) }}"
             data-lang-datatable="{{ json_encode(trans('admin/global.datatable')) }}"
+            data-url-edit = "{{route('admin.booking.update', 'ID_REPLY_IN_URL')}}"
             data-url-delete = "{{route('admin.booking.destroy', 'ID_REPLY_IN_URL')}}"
             data-url-dataTable = "{{ route('admin.booking.index') }}">
         </div>
@@ -95,6 +115,12 @@
             @endslot
             @slot('headerText')
                 @lang('admin/global.message.confirm')
+            @endslot
+        @endcomponent
+
+        @component('widgets.admin.modal-detail-booking')
+            @slot('headerText')
+                @include('admin.bookings.detail')
             @endslot
         @endcomponent
     </section>

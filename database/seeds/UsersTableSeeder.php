@@ -26,6 +26,14 @@ class UsersTableSeeder extends Seeder
             'is_admin' => false,
         ]);
 
+        factory(App\Models\User::class, 1)->create([
+            'name' => 'Nguyen Tam',
+            'password' => '123456',
+            'email' => 'nguyentam14t1@gmail.com',
+            'description' => 'profile user',
+            'is_admin' => false,
+        ]);
+
         factory(App\Models\User::class, 20)->create()->each(function ($user) {
             if (rand(0, 1)) {
                 $type = 'review';

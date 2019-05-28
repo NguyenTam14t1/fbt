@@ -32,6 +32,8 @@ class EloquentBookingRepository extends EloquentRepository implements BookingInt
 
             if ($booking->deleted_at) {
                 $data['status'] = config('setting.booking_wait_confirm');
+                $data['status_payment'] = config('setting.status_payment.no_paid');
+
                 $booking->update($data);
                 $booking->restore();
 
@@ -57,7 +59,7 @@ class EloquentBookingRepository extends EloquentRepository implements BookingInt
         try {
 
             return $this->model->withTrashed()
-                ->with(['user'])
+                ->with(['user', 'guests', 'tour'])
                 ->findOrFail($id);
         } catch (Exception $e) {
             report($e);

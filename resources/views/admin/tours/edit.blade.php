@@ -97,15 +97,15 @@
                         class="form-control selectpicker"
                         data-live-search="true"
                         multiple
-                        title="Select hotel">
+                        title="Select hotel by searching name or address">
                         @php
                           $tourHotels = $tour->hotels->pluck('id')->all();
                         @endphp
                         @foreach ($hotels as $hotel)
                             @if (in_array($hotel->id, $tourHotels))
-                              <option selected="true" value="{{$hotel->id}}">{{ $hotel->name }}</option>
+                              <option selected="true" value="{{$hotel->id}}" data-tokens="{{ $hotel->address }}">{{ $hotel->name }}</option>
                             @else
-                              <option value="{{$hotel->id}}">{{ $hotel->name }}</option>
+                              <option value="{{$hotel->id}}" data-tokens="{{ $hotel->address }}">{{ $hotel->name }}</option>
                             @endif
                         @endforeach
                       </select>
@@ -324,11 +324,10 @@
         </div>
       </form>
     </div>
-      <div
-        id="dataFromServer"
-        data-trans="{{json_encode('Description for tour')}}"
-        style="display: none">
-        </div>
+    <div
+      id="dataFromServer"
+      data-trans="{{json_encode('Description for tour')}}"
+      style="display: none">
     </div>
     <div class="progress-upload-form" style="display: none;"><span>0%</span></div>
     @component('widgets.admin.modal')

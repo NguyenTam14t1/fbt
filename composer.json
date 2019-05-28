@@ -15,8 +15,9 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6.0",
         "maatwebsite/excel": "^2.1",
-        "tightenco/ziggy": "^0.6.2",
-        "sunra/php-simple-html-dom-parser": "1.5.2"
+        "stripe/stripe-php": "^6.37",
+        "sunra/php-simple-html-dom-parser": "1.5.2",
+        "tightenco/ziggy": "^0.6.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

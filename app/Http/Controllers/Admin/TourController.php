@@ -50,7 +50,7 @@ class TourController extends Controller
     public function create()
     {
         $guides = $this->guideRepository->all(['id', 'name']);
-        $hotels = $this->hotelRepository->all(['id', 'name']);
+        $hotels = $this->hotelRepository->all(['id', 'name', 'address']);
 
         return view('admin.tours.add', compact('guides','hotels'));
     }
@@ -117,7 +117,7 @@ class TourController extends Controller
     {
         $tour = $this->tourRepository->findOrFail($id);
         $guides = $this->guideRepository->all(['id', 'name']);
-        $hotels = $this->hotelRepository->all(['id', 'name']);
+        $hotels = $this->hotelRepository->all(['id', 'name', 'address']);
 
         if (!$tour) {
             return redirect()->route('admin.tour.index')->with('error', 'Tour not found!');

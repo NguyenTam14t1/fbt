@@ -26,7 +26,7 @@ return [
         'change' => 'Deactive/Active',
     ],
     'message' => [
-        'confirm' => 'Do you want to deactivate it?',
+        'confirm' => 'Do you want to disable it?',
         'cancel' => 'Do you want to exit?',
     ],
     'notice' => [
@@ -42,7 +42,7 @@ return [
         'searchPlaceholder' => 'Please enter keywords',
         'lengthMenu' => 'Paging _MENU_',
         'zeroRecords' => 'Nothing was found',
-        'title-modal-delete' => 'Are you sure deactivate?',
+        'title-modal-delete' => 'Are you sure disable?',
         'title-modal-publish' => 'Are you sure activate?',
     ],
     'dataselect' => [

@@ -18,7 +18,7 @@ class UserController extends Controller
     use ProcessOnClient;
 
     public function __construct(
-        UserInterface $userRepository, 
+        UserInterface $userRepository,
         BookingInterface $bookingRepository
     ) {
         $this->userRepository = $userRepository;
@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         try {
             $data['user'] = Auth::user();
-            
+
             if (!$data['user']) {
                 throw new Exception();
             }
@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        // 
+        //
     }
 
     /**

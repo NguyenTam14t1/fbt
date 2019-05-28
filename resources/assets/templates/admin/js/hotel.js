@@ -27,15 +27,6 @@ $(function() {
             "info": false,
             "oSearch": {"bSmart": false},
             "sPaginationType": "full_numbers",
-            // bAutoWidth: false,
-            // 'columns': [
-            //     { sWidth: '15%' },
-            //     { sWidth: '15%' },
-            //     { sWidth: '15%' },
-            //     { sWidth: '20%' },
-            //     { sWidth: '20%' },
-            //     { sWidth: '15%' },
-            // ],
             'columnDefs': [
                 { "width": "10%", "targets": 0 },
                 { "width": "20%", "targets": 1 },
@@ -57,7 +48,6 @@ $(function() {
             fixedColumns: true,
         })
     }
-
 
     //submit create hotel
     var urlIndex = $('#add-hotel').data('url-index')
@@ -188,5 +178,10 @@ $(function() {
             }
         })
     }
+
+    $('body').on('click', '.add-hotel #modal-default .yes-confirm', e => {
+        let url = $('#submit-form p.btn-danger').data('url')
+        window.location.href = url
+    })
 })
 

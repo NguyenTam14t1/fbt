@@ -36,7 +36,7 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        // 
+        //
     }
 
     /**
@@ -126,7 +126,7 @@ class ManagerController extends Controller
             $data['user'] = $this->userRepository->getById($userId);
             $data['bookings'] = $this->userRepository->getBookingsPaginate($data['user'], $status, config('setting.paginate_default_val'));
             $data['status'] = $status;
-            
+
             switch ($status) {
                 case config('setting.booking_cancel'):
                     $data['title'] = trans('lang.tour_cancel');
@@ -152,7 +152,7 @@ class ManagerController extends Controller
         } catch (Exception $e) {
             return redirect()->route('404');
         }
-        
+
     }
 
     /**
@@ -179,9 +179,9 @@ class ManagerController extends Controller
             $data['edit'] = '';
             $data['update'] = true;
             $time_start_tour = new Carbon($booking->tour->time_start);
-            $deadline = $time_start_tour->subMinutes(config('setting.deadline_booking_minutes'));            
+            $deadline = $time_start_tour->subMinutes(config('setting.deadline_booking_minutes'));
             $time_now = Carbon::now();
-            
+
             if ($deadline->lte($time_now)) {
                 $data['update'] = false;
             }

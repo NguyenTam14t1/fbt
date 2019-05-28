@@ -89,9 +89,9 @@
                         class="form-control selectpicker"
                         data-live-search="true"
                         multiple
-                        title="Select hotel">
+                        title="Select hotel by searching name or address">
                         @foreach ($hotels as $hotel)
-                            <option value="{{$hotel->id}}">{{ $hotel->name }}</option>
+                            <option value="{{$hotel->id}}" data-tokens="{{ $hotel->address }}">{{ $hotel->name }}</option>
                         @endforeach
                       </select>
                     <span class="text-danger hotel_id" role="alert"></span>
@@ -247,7 +247,6 @@
           <input type="submit" class="btn btn-primary" value="@lang('admin/global.btn.submit')">
         </div>
       </form>
-    </div>
       <div
         id="dataFromServer"
         data-trans="{{json_encode('Description for tour')}}"

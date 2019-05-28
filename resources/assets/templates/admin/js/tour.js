@@ -193,12 +193,6 @@ $(function () {
             //defaultDate: defaultStart
         })
 
-        // $('#time_start input').on('dp.change', e => {
-        //     $('#time_finish input').data("DateTimePicker").options({
-        //         minDate: e.date ? e.date : false
-        //     })
-        // })
-
         let valEnd = $('#time_finish input').data('val')
         let defaultEnd = valEnd ? convertToLocale(valEnd).format('YYYY-MM-DD') : false
         if(defaultEnd){
@@ -231,12 +225,6 @@ $(function () {
 
             addActiveDates(timeStart, timeFinish)
         })
-
-        // $('#time_finish input').on('dp.change', e => {
-        //     $('#time_start input').data("DateTimePicker").options({
-        //         maxDate: e.date ? e.date : false
-        //     })
-        // })
     }
 
     //excute thumbnail
@@ -338,40 +326,86 @@ $(function () {
 
         $('.ql-editor').html($('#content-tour').text())
 
-        // let base_url = $('#dataFromServer').data('url-search-tag')
-        // $('.tag-select').select2({
-        //     tags: true,
-        //     maximumInputLength: 15,
-        //     maximumSelectionLength: 5,
-        //     language: $('meta[name="app-lang"]').attr('content'),
-        // }).on('select2:open', function() {
-        //     $('.select2-search__field').attr('maxlength', 15);
-        // });
+        $('.selectpicker').selectpicker()
+
+        // function customMatcher(params, data) {
+        //     // Always return the object if there is nothing to compare
+        //     if ($.trim(params.term) === '') {
+        //         return data;
+        //       }
+
+        //       // Do a recursive check for options with children
+        //       if (data.children && data.children.length > 0) {
+        //         // Clone the data object if there are children
+        //         // This is required as we modify the object to remove any non-matches
+        //         var match = $.extend(true, {}, data);
+
+        //         // Check each child of the option
+        //         for (var c = data.children.length - 1; c >= 0; c--) {
+        //           var child = data.children[c];
+
+        //           var matches = matcher(params, child);
+
+        //           // If there wasn't a match, remove the object in the array
+        //           if (matches == null) {
+        //             match.children.splice(c, 1);
+        //           }
+        //         }
+
+        //         // If any children matched, return the new object
+        //         if (match.children.length > 0) {
+        //           return match;
+        //         }
+
+        //         // If there were no matching children, check just the plain object
+        //         return matcher(params, match);
+        //       }
+
+        //       var original = stripDiacritics(data.text).toUpperCase();
+        //       var term = stripDiacritics(params.term).toUpperCase();
+
+        //       // Check if the text contains the term
+        //       if (original.indexOf(term) > -1) {
+        //         return data;
+        //       }
+
+        //         // Check if the data occurs
+        //         if ($(data.element).data('address-hotel').toString().indexOf(params.term) > -1) {
+        //             return data;
+        //         }
+
+        //     // If it doesn't contain the term, don't return anything
+        //     return null;
+        // }
+
+        // console.log(customMatcher, 'check match')
+        // $('.hotel-select').select2({
+        //     matcher: customMatcher
+        // })
+        //
     }
 
-    $('body').on('click', '.add-tour #modal-default .yes-confirm', e => {
-        let url = $('#submit-form p.btn-danger').data('url')
-        window.location.href = url
-    })
+
 
     //get data active dates
 
     function getAllActiveDetails(allDay) {
-      let activeDetailArr = []
+        let activeDetailArr = []
 
-      for (var i = 0; i < allDay; i++) {
-        let objActive = {
-          id: $('#active-date-id-' + i).val() || null,
-          time: $('#time-' + i).val() || null,
-          title: $('#title-' + i).val() || null,
-          detail: $('#detail-' + i).val() || null,
-        }
-        activeDetailArr.push(objActive)
-      }
+        for (var i = 0; i < allDay; i++) {
+            let objActive = {
+                id: $('#active-date-id-' + i).val() || null,
+                time: $('#time-' + i).val() || null,
+                title: $('#title-' + i).val() || null,
+                detail: $('#detail-' + i).val() || null,
+            }
+            activeDetailArr.push(objActive)
+          }
 
-      return activeDetailArr
+        return activeDetailArr
     }
-//prevent submit form create tour
+
+    //prevent submit form create tour
     $('body').on('submit', '#add-tour', function (e) {
         e.preventDefault()
         $('span.text-danger').empty()
@@ -410,7 +444,7 @@ $(function () {
         })
     })
 
-//prevent submit form create edit tour
+    //prevent submit form create edit tour
     $('body').on('submit', '#edit-tour', function (e) {
         e.preventDefault()
         $('span.text-danger').empty()
@@ -420,8 +454,6 @@ $(function () {
         let allDay = $('#active_date').data('total-date')
         let activeDateDatas = allDay > 0 ? getAllActiveDetails(allDay) : null
         let jsonActiveDatas = JSON.stringify(activeDateDatas)
-
-        console.log(jsonActiveDatas, allDay)
 
         formData.append('activity_dates', jsonActiveDatas)
 
@@ -451,7 +483,7 @@ $(function () {
         })
     })
 
-//table list tour
+    //table list tour
     var langDatatable = $('#message-data').data('lang-datatable');
     if($('#datatable-list').length){
         var table = $('#datatable-list').DataTable({
@@ -618,13 +650,9 @@ $(function () {
         $('.delete-tour-form').submit();
     })
 
-    $('body').on('click', '.tour-list .search_item span', e => {
-        let keysearch = $(e.target).siblings('input').val()
-        table.fnFilter(keysearch)
-    })
-
-    $('body').on('click', '.tour #modal-default .yes-confirm', e => {
-        window.location.href = route('admin.tour.index');
+    $('body').on('click', '.add-tour #modal-default .yes-confirm', e => {
+        let url = $('#submit-form p.btn-danger').data('url')
+        window.location.href = url
     })
 })
 

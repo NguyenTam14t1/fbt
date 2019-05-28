@@ -81,6 +81,52 @@
         right: 0px;
     }
 
+    .onoffswitch1 {
+        position: relative; width: 79px;
+        -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    }
+    .onoffswitch1-checkbox {
+        display: none;
+    }
+    .onoffswitch1-label {
+        display: block; overflow: hidden; cursor: pointer;
+        border: 2px solid #999999; border-radius: 16px;
+    }
+    .onoffswitch1-inner {
+        display: block; width: 200%; margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+    }
+    .onoffswitch1-inner:before, .onoffswitch1-inner:after {
+        display: block; float: left; width: 50%; height: 24px; padding: 0; line-height: 24px;
+        font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+        box-sizing: border-box;
+    }
+    .onoffswitch1-inner:before {
+        content: "Paid";
+        padding-right: 10px;
+        background-color: #34A7C1; color: #FFFFFF;
+    }
+    .onoffswitch1-inner:after {
+        content: "Debt";
+        padding-right: 10px;
+        background-color: #EEEEEE; color: #999999;
+        text-align: right;
+    }
+    .onoffswitch1-switch1 {
+        display: block; width: 28px; margin: 0px;
+        background: #FFFFFF;
+        position: absolute; top: 0; bottom: 0;
+        right: 51px;
+        border: 2px solid #999999; border-radius: 16px;
+        transition: all 0.3s ease-in 0s;
+    }
+    .onoffswitch1-checkbox:checked + .onoffswitch1-label .onoffswitch1-inner {
+        margin-left: 0;
+    }
+    .onoffswitch1-checkbox:checked + .onoffswitch1-label .onoffswitch1-switch1 {
+        right: 0px;
+    }
+
     .search_item {
         span {
             background-color: #3c8dbc;

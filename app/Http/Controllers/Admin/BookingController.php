@@ -61,7 +61,9 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = $this->bookingRepository->findOrFail($id);
+
+        return view('admin.bookings.detail', compact(['booking']));
     }
 
     /**
@@ -84,7 +86,19 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->only(['status_payment']);
+        $data['status_payment'] = $data['status_payment'] === 'true' ? true : false;
+
+        $data['status'] = $data['status_payment'] ? config('setting.booking_finished')
+                                                : config('setting.booking_wait_confirm');
+
+        $result = $this->bookingRepository->update($id, $data);
+
+        if ($result) {
+            return redirect()->route('admin.booking.index')->with('message', 'Booking update status payment success!');
+        }
+
+        return redirect()->route('admin.booking.index')->with('error', 'Have error!');
     }
 
     /**

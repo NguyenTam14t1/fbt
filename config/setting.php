@@ -41,6 +41,10 @@ return [
     'booking_confirmed' => 2,
     'booking_paymented' => 3,
     'booking_finished' => 4,
+    'status_payment' => [
+        'no_paid' => false,
+        'paid' => true,
+    ],
     'deadline_confirm_minutes' => 1440,
     'paymented_default_value' => 0,
     'times_payment_small' => 1,
