@@ -109,8 +109,6 @@
                                         <dl class="dl-horizontal">
                                             <dt><i class="fa fa-map-marker" aria-hidden="true"></i> @lang('lang.place'):</dt>
                                             <dd>{{ $booking->tour->place }}</dd>
-                                            <dt><i class="fa fa-h-square" aria-hidden="true"></i> @lang('lang.hotel'):</dt>
-                                            <dd>{{ $booking->tour->hotel }}</dd>
                                         </dl>
                                     </div>
                                     <div class="col-sm-4 col-xs-12">

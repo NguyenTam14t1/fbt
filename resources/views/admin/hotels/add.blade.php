@@ -443,7 +443,7 @@
     //get longitude of place
     if (place.geometry.viewport.ia.l) {
       var longHotel = document.getElementById('iw-longitude')
-      longHotel.setAttribute('data-longitude-hotel', place.geometry.viewport.na.l)
+      longHotel.setAttribute('data-longitude-hotel', place.geometry.viewport.ia.l)
     }
   }
 </script>

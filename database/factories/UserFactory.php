@@ -159,9 +159,7 @@ $factory->define(App\Models\Booking::class, function (Faker $faker) {
         'number_of_people' => $numOfPeople,
         'number_of_children' => $numOfPeople,
         'status' => $faker->numberBetween(1, 3),
-        'paymented' => $paymented,
         'debt' => $debt,
-        'times_payment' => $timesPayment,
     ];
 });
 

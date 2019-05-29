@@ -32,7 +32,7 @@
             <div class="group-form">
                 <div class="left">@lang('lang.identity_card'):</div>
                 <div class="right">{{ str_limit($data['identity_card'], 4, '*****') }}</div>
-            </div>  
+            </div>
             <div class="group-form">
                 <div class="left">@lang('lang.email'):</div>
                 <div class="right">{{ $data['email'] }}</div>
@@ -56,10 +56,6 @@
                 <div class="group-form">
                     <div class="left">@lang('lang.total_cost'):</div>
                     <div class="right">${{ $data['debt'] }}</div>
-                </div>
-                <div class="group-form">
-                    <div class="left">@lang('lang.times_payment'):</div>
-                    <div class="right">{{ $data['times_payment'] }}</div>
                 </div>
                 <div class="group-form">
                     <div class="left">@lang('lang.requiments'):</div>
@@ -88,16 +84,13 @@
                         <div class="left">@lang('lang.place'):</div>
                         <div class="right">{{ $data['tour']->place }}</div>
                     </div>
-                    <div class="group-form">
-                        <div class="left">@lang('lang.hotel'):</div>
-                        <div class="right">{{ $data['tour']->hotel }}</div>
-                    </div>
                   </div>
                   <div class="price-content">
                     <h2>@lang('lang.price'): <span class="price">${{ $data['tour']->price }}</span></h2>
                     <p>@lang('lang.price_text')</p>
                   </div>
                 </div>
+                @include('bookingtour.tour-info-hotel-guide')
             </div>
         </div>
         <div>

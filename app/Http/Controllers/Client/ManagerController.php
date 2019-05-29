@@ -87,9 +87,7 @@ class ManagerController extends Controller
             $data['number_of_people'] = $booking->number_of_people;
             $data['number_of_children'] = $booking->number_of_children;
             $data['status'] = $booking->status;
-            $data['paymented'] = $booking->paymented;
             $data['debt'] = $booking->debt;
-            $data['times_payment'] = $booking->times_payment;
             $data['confirm_code'] = $booking->confirm_code;
             $data['tour'] = $booking->tour;
 

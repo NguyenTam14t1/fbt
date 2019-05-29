@@ -37,8 +37,15 @@
         </div>
     </section>
     <!-- PAGE CONTENT -->
-    <section class="mainContentSection singlePackage">
+    <section class="mainContentSection singlePackage" style="padding: 30px 0px">
         <div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="margin-bottom: 30px">
+                    <div style="font-weight: bold;font-size:18px;line-height: 22px;padding: 15px 80px 15px 15px;background:#f5f4ef;" class="tentour">
+                        <h4 itemprop="name">{{ $data['tour']->name }}</h4>
+                    </div>
+                </div>
+            </div>
             <div class="row ">
                 <div class="col-sm-8 col-xs-12">
                     <div id="package-carousel" class="carousel slide" data-ride="carousel">
@@ -267,6 +274,84 @@
                     </div>
                 </div>
             </section>
+        </div>
+        <div class="container">
+            <div class="sectionTitle2">
+                <h2>Information hotel & guide</h2>
+            </div>
+            <div class="main-contain">
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Hotel</p>
+                <section class="design-process-section" id="list-hotel">
+                    <table class="table table-bordered" id="table-hotel">
+                        @if (isset($data['tour']->hotels))
+                            <thead>
+                                <tr style="font-weight: bold; font-size: 16px;">
+                                    <td style="width:300px; padding-left: 20px" >Name</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
+                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data['tour']->hotels as $hotel)
+                                    <tr>
+                                      <td class="name-hotel" data-name-hotel="{{ $hotel->name }}" scope="row" style="padding-left: 20px">{{ $hotel->name }}</td>
+                                      <td class="address-hotel" data-address-hotel="{{ $hotel->address }}" colspan="2" style="padding-left: 20px">{{ $hotel->address }}</td>
+                                      <td class="phone-hotel" data-phone-hotel="{{ $hotel->phone }}" style="padding-left: 20px">{{ $hotel->phone }}</td>
+                                      <td class="latitude-hotel" data-latitude-hotel="{{ $hotel->latitude }}" class="hide"></td>
+                                      <td class="longitude-hotel" data-longitude-hotel="{{ $hotel->longitude }}" class="hide"></td>
+                                    </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        @else
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                            </tbody>
+                        @endif
+                    </table>
+                </section>
+            </div>
+
+            <div class="main-contain">
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Guide</p>
+                <section class="design-process-section" id="list-hotel">
+                    <table class="table table-bordered table-hotel">
+                        @if (isset($data['tour']->guides))
+                            <thead>
+                                <tr style="font-weight: bold; font-size: 16px;">
+                                    <td style="width:300px; padding-left: 20px" >Name</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
+                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data['tour']->guides as $guide)
+                                    <tr>
+                                      <td class="name-guide" data-name-guide="{{ $guide->name }}" scope="row" style="padding-left: 20px">{{ $guide->name }}</td>
+                                      <td class="address-guide" data-address-guide="{{ $guide->address }}" colspan="2" style="padding-left: 20px">{{ $guide->address }}</td>
+                                      <td class="phone-guide" data-phone-guide="{{ $guide->phone }}" style="padding-left: 20px">{{ $guide->phone }}</td>
+                                    </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        @else
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                </tr>
+                            </tbody>
+                        @endif
+                    </table>
+                </section>
+            </div>
         </div>
         <div class="container">
             <div class="review-aria">

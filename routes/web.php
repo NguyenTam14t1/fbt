@@ -35,6 +35,11 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'selectParticipant',
     ]);
 
+    Route::get('/payment-success/{booking}/tour/{tour}', [
+        'uses' => 'Client\BookingController@paymentSuccess',
+        'as' => 'paymentSuccess',
+    ]);
+
     Route::resource('tour.booking', 'Client\BookingController', [
         'as' => 'client',
     ]);
@@ -47,11 +52,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/pay-bills-online', [
         'uses' => 'Client\BookingController@paymentOnline',
         'as' => 'paymentOnline',
-    ]);
-
-    Route::post('/payment-success/{booking}/tour/{tour}', [
-        'uses' => 'Client\BookingController@paymentSuccess',
-        'as' => 'paymentSuccess',
     ]);
 
     Route::resource('/user', 'Client\UserController', [

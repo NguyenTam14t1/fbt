@@ -43,6 +43,7 @@ class BookingController extends Controller
     ) {
         $this->tourRepository = $tourRepository;
         $this->bookingRepository = $bookingRepository;
+    }
 
         // if(config('paypal.settings.mode') == 'live'){
             // $this->client_id = config('paypal.live_client_id');
@@ -55,7 +56,6 @@ class BookingController extends Controller
         // // Set the Paypal API Context/Credentials
         // $this->apiContext = new ApiContext(new OAuthTokenCredential($this->client_id, $this->secret));
         // $this->apiContext->setConfig(config('paypal.settings'));
-    }
     /**
      * Display a listing of the resource.
      *
@@ -242,6 +242,18 @@ class BookingController extends Controller
         }
     }
 
+    public function paymentSuccess($bookingId, $tourId)
+    {
+        $data['tour'] = $this->tourRepository->findOrFail($tourId);
+        $data = $this->tourRepository->getRate($tourId, $data);
+        $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
+        $data['categories'] = $this->getParentCategories($data['tour']);
+        $data['note'] = $this->tourRepository->getNote();
+        $data['booking'] = $this->bookingRepository->findOrFail($bookingId);
+
+        return view('bookingtour.tour-booking-success', compact(['data']));
+    }
+}
 
         //pay with paypal
         // Create a new billing plan
@@ -327,16 +339,3 @@ class BookingController extends Controller
 
     //     return false;
     // }
-
-    public function paymentSuccess($bookingId, $tourId)
-    {
-        $data['tour'] = $this->tourRepository->findOrFail($tourId);
-        $data = $this->tourRepository->getRate($tourId, $data);
-        $data['reviews'] = $this->tourRepository->getReviews($data['tour']);
-        $data['categories'] = $this->getParentCategories($data['tour']);
-        $data['note'] = $this->tourRepository->getNote();
-        $data['booking'] = $this->bookingRepository->findOrFail($bookingId);
-
-        return view('bookingtour.tour-booking-success', compact(['data']));
-    }
-}
