@@ -18,23 +18,23 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="name">Title </label><span class="field-required">*</span>
+                <label for="name">Tiêu đề </label><span class="field-required">*</span>
                 <input class="form-control" name="name"
                   id="name"
                   required="required"
                   maxlength="{{config('setting.tour.maxlength_name')}}"
                   minlength="{{config('setting.tour.minlength_name')}}"
-                  placeholder="Title..."
+                  placeholder="Tiêu đề..."
                   value="">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="place">Place </label><span class="field-required">*</span>
+                <label for="place">Địa điểm </label><span class="field-required">*</span>
                 <input class="form-control" name="place"
                   id="place"
-                  placeholder="Place..."
+                  placeholder="Địa điểm..."
                   maxlength="{{config('setting.tour.maxlength_name')}}"
                   minlength="{{config('setting.tour.minlength_name')}}"
                   value=""
@@ -45,7 +45,7 @@
           </div>
           <div class="row">
             <div class="col-md-4" id="thumbnail">
-              <p for="thumbnail">Thumbnail </p>
+              <p for="thumbnail">Hình ảnh </p>
               <div class="input-group">
                 <label class="input-group-btn">
                   <span class="btn btn-primary">
@@ -65,7 +65,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>Category </label><span class="field-required">*</span>
+                    <label>Danh mục </label><span class="field-required">*</span>
                       <select
                         name="category_id"
                         class="form-control selectpicker"
@@ -73,7 +73,7 @@
                         multiple
                         require="required"
                         data-max-options="1"
-                        title="Select a category">
+                        title="Chọn danh mục">
                         @foreach ($subCategories as $category)
                             <option value="{{$category->id}}">{{ $category->name }}</option>
                         @endforeach
@@ -83,13 +83,13 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>Hotel </label>
+                    <label>Khách sạn </label>
                       <select
                         name="hotel_id[]"
                         class="form-control selectpicker"
                         data-live-search="true"
                         multiple
-                        title="Select hotel by searching name or address">
+                        title="Chọn khách sạn theo tên hoặc thành phố">
                         @foreach ($hotels as $hotel)
                             <option value="{{$hotel->id}}" data-tokens="{{ $hotel->address }}">{{ $hotel->name }}</option>
                         @endforeach
@@ -101,14 +101,14 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>Guide </label><span class="field-required">*</span>
+                    <label>Hướng dẫn viên </label><span class="field-required">*</span>
                       <select
                         name="guide_id[]"
                         class="form-control selectpicker"
                         data-live-search="true"
                         multiple
                         required="required"
-                        title="Select guide">
+                        title="Chọn Hướng dẫn viên">
                         @foreach ($guides as $guide)
                             <option value="{{$guide->id}}">{{ $guide->name }}</option>
                         @endforeach
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Price </label><span class="field-required">*</span>
+                    <label for="level">Gía </label><span class="field-required">*</span>
                     <div class="input-group date" id="price">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-usd"></span>
@@ -129,7 +129,7 @@
                         max="{{config('setting.tour.max_price')}}"
                         required="required"
                         class="form-control pull-right"
-                        placeholder="Price"
+                        placeholder="Gía"
                         value="">
                     </div>
                     <span class="text-danger price" role="alert"></span>
@@ -139,7 +139,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Time start </label><span class="field-required">*</span>
+                    <label>Thời gian bắt đầu </label><span class="field-required">*</span>
                     <div class="input-group date" id="time_start">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Time finish </label><span class="field-required">*</span>
+                    <label>Thời gian kết thúc </label><span class="field-required">*</span>
                     <div class="input-group date" id="time_finish">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -220,7 +220,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group name">
-                <label for="name">Content </label><span class="field-required">*</span>
+                <label for="name">Nội dung </label><span class="field-required">*</span>
                 <div id="tab-quill">
                   <div id="content-quill">
                   </div>

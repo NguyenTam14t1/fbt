@@ -1,13 +1,13 @@
 @extends ('widgets.admin.master')
 
 @section('title')
-    List tours
+    Danh sách tour
 @endsection
 
 @section('content')
     <section class="content-header">
         <h1>
-            List tours
+            Danh sách tour
         </h1>
     </section>
     <section class="content form-switch tour-list">
@@ -26,12 +26,12 @@
                                     <table id="datatable-list" class="table table-striped table-bordered" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th width="4%">@lang('lang.stt')</th>
-                                                <th width="20%">@lang('lang.name')</th>
-                                                <th width="24%">@lang('lang.time')</th>
-                                                <th width="7%">@lang('lang.price')</th>
-                                                <th width="12%">@lang('lang.picture')</th>
-                                                <th width="7%">@lang('lang.participants')</th>
+                                                <th width="4%">Số thứ tự</th>
+                                                <th width="20%">Tên</th>
+                                                <th width="24%">Thời gian</th>
+                                                <th width="7%">Gía</th>
+                                                <th width="12%">Hình ảnh</th>
+                                                <th width="7%">Số chỗ trống</th>
                                                 <th width="20%" class="text-center">@lang('lang.action')</th>
                                             </tr>
                                         </thead>

@@ -1,19 +1,19 @@
 @extends('widgets.admin.master')
-@section('title', 'Edit user')
+@section('title', 'Thêm mới')
 @section('content')
   <section class="content-header">
     <h1>
-      Edit user
+      Thêm mới
     </h1>
   </section>
-  <section class="content add-user check-add-user">
+  <section class="content add-guide check-add-guide">
     <div class="box box-primary">
       <form role="form"
-        id="add-user"
-        action="{{route('admin.user.store')}}"
+        id="add-guide"
+        action="{{route('admin.guide.store')}}"
         method="POST"
         enctype="multipart/form-data"
-        data-url-index="{{route('admin.user.index')}}">
+        data-url-index="{{route('admin.guide.index')}}">
         @csrf
         <div class="box-body">
           <div class="row">
@@ -26,11 +26,11 @@
                   maxlength="{{config('setting.hotel.maxlength_name')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
                   placeholder="Name..."
-                  value="{{ $user->name }}">
+                  value="">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
                 <label for="name">Số điên thoại </label><span class="field-required">*</span>
                 <input class="form-control" name="phone"
@@ -39,8 +39,28 @@
                   maxlength="{{config('setting.hotel.length_phone')}}"
                   minlength="{{config('setting.hotel.length_phone')}}"
                   placeholder="Telephone..."
-                  value="{{ $user->phone }}">
+                  value="">
                   <span class="text-danger name-error" role="alert"></span>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="form-group group-selectbox">
+                  <label>Chọn khu vực </label><span class="field-required">*</span>
+                    <select
+                      name="category_id"
+                      class="form-control selectpicker"
+                      data-live-search="true"
+                      multiple
+                      require="required"
+                      data-max-options="1"
+                      title="Select a category">
+                      @foreach ($subCategories as $category)
+                          <option value="{{$category->id}}">{{ $category->name }}</option>
+                      @endforeach
+                    </select>
+                  <span class="text-danger category_id" role="alert"></span>
+                </div>
               </div>
             </div>
           </div>
@@ -54,7 +74,7 @@
                   placeholder="Address..."
                   maxlength="{{config('setting.hotel.maxlength_address')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
-                  value="{{ $user->address }}"
+                  value=""
                   required="required">
                   <span class="text-danger place-error" role="alert"></span>
               </div>
@@ -66,25 +86,17 @@
                 <input class="form-control" name="mail"
                   id="name"
                   required="required"
-                  minlength="{{config('setting.user.length_phone')}}"
+                  minlength="{{config('setting.guide.length_phone')}}"
                   placeholder="Telephone..."
-                  value="{{ $user->phone }}">
+                  value="">
                   <span class="text-danger name-error" role="alert"></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group name">
-                <label for="place">Website </label>
-                <input class="form-control" type="text" name="website" value="{{ $user->website }}" readonly="readonly">
               </div>
             </div>
           </div>
         </div>
 
         <div id="submit-form">
-          <p class="btn-danger btn" data-url="{{ route('admin.user.index') }}"
+          <p class="btn-danger btn" data-url="{{ route('admin.guide.index') }}"
             data-toggle="modal" data-target="#modal-default">@lang('admin/global.btn.cancel')</p>
           <input type="submit" class="btn btn-primary" value="@lang('admin/global.btn.submit')">
         </div>
@@ -101,12 +113,14 @@
   </section>
 
 @endsection
+
 @section('styles')
+  {{ Html::style('css/bootstrap-select.min.css') }}
   {{ Html::style('css/select2.min.css') }}
 @endsection
 @section('scripts')
-  {{ Html::script('templates/admin/js/user.js') }}
- {{ Html::script('js/moment.js') }}
+  {{ Html::script('templates/admin/js/guide.js') }}
+  {{ Html::script('js/dropzone.js') }}
   {{ Html::script('js/bootstrap-select.min.js') }}
   {{ Html::script('js/select2.min.js') }}
 @endsection

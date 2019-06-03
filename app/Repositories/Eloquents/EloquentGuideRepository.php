@@ -24,27 +24,58 @@ class EloquentGuideRepository extends EloquentRepository implements GuideInterfa
         return $this->getAll()->pluck('id');
     }
 
-    // public function store($acticeDates, $tourId)
-    // {
-    //     try {
-    //         DB::beginTransaction();
-    //         $data = [];
+    public function store($data)
+    {
+        try {
+            $data['password'] = config('setting.password_test');
 
-    //         foreach ($acticeDates as $key => $value) {
-    //             $data['tour_id'] = $tourId;
-    //             $data = $value;
-    //             dd($data);
-    //             $this->model->create($data);
-    //         }
+            Guide::create($data);
 
-    //         DB::commit();
+            return true;
+        } catch (Exception $e) {
+            report($e);
 
-    //         return true;
-    //     } catch (Exception $e) {
-    //         report($e);
-    //         DB::rollBack();
+            return false;
+        }
+    }
 
-    //         return false;
-    //     }
-    // }
+    public function findOrFail($id)
+    {
+        try {
+            return $this->model->findOrFail($id);
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
+
+    public function update($input, $id)
+    {
+        try {
+            $guide = $this->model->findOrFail($id);
+
+            $guide->update($input);
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $guide = $this->model->findOrFail($id);
+            $guide->delete();
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
 }

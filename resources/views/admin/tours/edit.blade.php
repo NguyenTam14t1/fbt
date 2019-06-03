@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="name">Title </label><span class="field-required">*</span>
+                <label for="name">Tiêu đề </label><span class="field-required">*</span>
                 <input class="form-control" name="name"
                   id="name"
                   required="required"

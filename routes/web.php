@@ -87,9 +87,13 @@ Route::post('admin/login', [
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], function () {
     Route::get('logout', 'Admin\LoginController@logout')->name('admin.auth.logout');
-
+    Route::get('dashboard/chart-count-view-lesson', 'DashboardController@getChartCountViewLesson')->name('admin.dashboard.getChartCountViewLesson');
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('/tour', 'Admin\TourController', [
+        'as' => 'admin',
+    ]);
+
+    Route::resource('/guide', 'Admin\GuideController', [
         'as' => 'admin',
     ]);
 
@@ -97,6 +101,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], func
         'uses' => 'Admin\TourController@importTour',
         'as' => 'import',
     ]);
+
 
     Route::resource('/booking', 'Admin\BookingController', [
         'as' => 'admin',

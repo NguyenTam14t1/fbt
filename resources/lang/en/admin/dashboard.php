@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'title' => 'STATISTIC',
+    'title' => 'Thống kê',
     'general_info' => [
-        'category' => 'category',
-        'tour' => 'tour',
-        'user' => 'user',
-        'guide' => 'guide',
+        'category' => 'Danh mục',
+        'tour' => 'Tour',
+        'user' => 'Người dùng',
+        'guide' => 'Hướng dẫn viên',
         'teacher' => 'teacher',
-        'hotel' => 'hotel',
+        'hotel' => 'Khách sạn',
     ],
     'chart_view_count_lesson' => [
         'title' => 'Chart number view lesson',

@@ -16,6 +16,7 @@ class UpdatePhoneToGuidesTable extends Migration
         Schema::table('guides', function (Blueprint $table) {
             $table->dropColumn('information');
             $table->string('phone');
+            $table->integer('category_id');
         });
     }
 
@@ -29,6 +30,7 @@ class UpdatePhoneToGuidesTable extends Migration
         Schema::table('guides', function (Blueprint $table) {
             $table->text('information');
             $table->dropColumn('phone');
+            $table->dropColumn('category_id');
         });
     }
 }

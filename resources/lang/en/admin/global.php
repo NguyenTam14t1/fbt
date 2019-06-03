@@ -15,6 +15,7 @@ return [
         'yes' => 'Yes',
         'create' => 'create',
         'save' => 'save',
+        'login' => 'Login',
         'ok' => 'OK',
     ],
     'label' => [

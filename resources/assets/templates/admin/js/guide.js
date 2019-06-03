@@ -7,10 +7,10 @@ $(function() {
 })
 
 $(function() {
-    //table list hotel
+    //table list guide
     var langDatatable = $('#message-data').data('lang-datatable')
-    if($('#data-list-hotel').length){
-        var table = $('#data-list-hotel').DataTable({
+    if($('#data-list-guide').length){
+        var table = $('#data-list-guide').DataTable({
             'language': {
                 'infoFiltered': '',
                 'info' : langDatatable['info'],
@@ -36,10 +36,9 @@ $(function() {
                     'searchable': false,
                     "width": "15%",
                 },
-                { "width": "15%", "targets": 3 },
-                { "width": "20%", "targets": 4 },
+                { "width": "35%", "targets": 3 },
                 {
-                    'targets': 5,
+                    'targets': 4,
                     'sortable': false,
                     'searchable': false,
                     "width": "20%",
@@ -49,21 +48,21 @@ $(function() {
         })
     }
 
-    $('body').on('click', '.add-hotel #modal-default .yes-confirm', e => {
+    $('body').on('click', '.add-guide #modal-default .yes-confirm', e => {
         let url = $('#submit-form p.btn-danger').data('url')
         window.location.href = url
     })
 
-    $('body').on('click', '.delete-user-trigger', function(e){
-        let userId = $(this).data("user-id");
+    $('body').on('click', '.delete-guide-trigger', function(e){
+        let guideId = $(this).data("guide-id");
         event.preventDefault();
         $('#modal-default').modal('show', {backdrop: 'true'});
         var url_delete = $(this).data('url-delete')
-        $('.delete-user-form').attr('action', url_delete);
+        $('.delete-guide-form').attr('action', url_delete);
     })
 
-    $('body').on('click', '.user-list #modal-default .yes-confirm', e => {
-        $('.delete-user-form').submit();
+    $('body').on('click', '.guide-list #modal-default .yes-confirm', e => {
+        $('.delete-guide-form').submit();
     })
 
     function showMessErrForm(errors)
@@ -79,8 +78,8 @@ $(function() {
               case key == 'category_id':
                 appendMes(val, 'category_id')
                 break
-              case key == 'hotel_id':
-                appendMes(val, 'hotel_id')
+              case key == 'guide_id':
+                appendMes(val, 'guide_id')
                 break
               case key == 'guide_id':
                 appendMes(val, 'guide_id')

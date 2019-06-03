@@ -1,12 +1,12 @@
 <div class="box-body">
-    <h4>List hotels are choose</h4>
+    <h4>Danh sách khách sạn được chọn</h4>
     <table id="data-list-hotel" class="data-list-hotel table table-striped table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>Name hotel</th>
-                <th>Address</th>
-                <th>Telephone</th>
-                <th class="text-center">Rating</th>
+                <th>Tên khách sạn</th>
+                <th>Địa điểm</th>
+                <th>Số điện thoại</th>
+                <th class="text-center">Điểm đánh gía</th>
                 <th>Website</th>
                 <th class="text-center">@lang('lang.action')</th>
             </tr>
@@ -57,7 +57,7 @@
         danger
     @endslot
     @slot('headerText')
-        Are you sure delete this hotel?
+        Bạn có chắc chắn muốn xóa khách sạn?
     @endslot
 @endcomponent
 </div>

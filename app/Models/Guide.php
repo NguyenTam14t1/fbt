@@ -12,7 +12,8 @@ class Guide extends Model
         'address',
         'mail',
         'password',
-        'information',
+        'phone',
+        'category_id',
     ];
 
     public function tours()

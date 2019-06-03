@@ -445,6 +445,7 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
         try {
             $tour = $this->model->findOrFail($id);
             $tour->activityDates()->delete();
+            $tour->bookings()->delete();
             $tour->guides()->detach();
             $tour->hotels()->detach();
             $tour->delete();

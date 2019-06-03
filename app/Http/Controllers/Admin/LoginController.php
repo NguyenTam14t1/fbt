@@ -15,7 +15,20 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.login');
+        if (Auth::check())
+        {
+            $user = Auth::user()->load('group');
+            $arrGroupName = [];
+
+            if ($user->group->name == 'admin')
+            {
+                return redirect()->route('admin.dashboard');
+            } else {
+                Auth::logout();
+                return view('admin.pages.login');
+            }
+        } else
+            return view('admin.pages.login');
     }
 
     public function store(Request $request)

@@ -9,4 +9,8 @@ interface GuideInterface
     public function getAll();
 
     public function getGuidesId();
+
+    public function store($data);
+
+    public function delete($id);
 }

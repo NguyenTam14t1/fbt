@@ -14,7 +14,7 @@
                 <div class="col-sm-6">
                   <div class="col-sm-3">
                     <div id="findhotels">
-                      Find hotels in:
+                      Khách sạn:
                     </div>
                   </div>
 
@@ -23,7 +23,7 @@
                       <input class="form-control" name="autocomplete"
                         id="autocomplete"
                         type="text"
-                        placeholder="Enter a city">
+                        placeholder="Nhập tên thành phố">
                     </div>
                   </div>
                 </div>
@@ -83,18 +83,18 @@
                     @csrf
                     <tr id="iw-url-row" class="iw_table_row">
                       <td id="iw-icon" class="iw_table_icon"></td>
-                      <td id="iw-url" data-name-hotel=""></td>
+                      <td id="iw-url" data-name-hotel="">Tên: </td>
                     </tr>
                     <tr id="iw-address-row" class="iw_table_row">
-                      <td class="iw_attribute_name">Address:</td>
+                      <td class="iw_attribute_name">Địa chỉ:</td>
                       <td id="iw-address"  data-address-hotel=""></td>
                     </tr>
                     <tr id="iw-phone-row" class="iw_table_row">
-                      <td class="iw_attribute_name">Telephone:</td>
+                      <td class="iw_attribute_name">Điện thoại:</td>
                       <td id="iw-phone" data-phone-hotel=""></td>
                     </tr>
                     <tr id="iw-rating-row" class="iw_table_row">
-                      <td class="iw_attribute_name">Rating:</td>
+                      <td class="iw_attribute_name">Lượt đánh gía:</td>
                       <td id="iw-rating" data-rating-hotel=""></td>
                     </tr>
                     <tr id="iw-website-row" class="iw_table_row">
@@ -106,7 +106,7 @@
                       <td id="iw-longitude" data-longitude-hotel="" class="hide"></td>
                     </tr>
                     <tr>
-                      <td class="text-center" colspan="2"><button type="submit" id="btn-select-hotel">Select</button></td>
+                      <td class="text-center" colspan="2"><button type="submit" id="btn-select-hotel">Chọn</button></td>
                     </tr>
                   </form>
                 </table>
