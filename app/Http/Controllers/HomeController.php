@@ -71,6 +71,11 @@ class HomeController extends Controller
             $data['price'],
             config('setting.category_show_paginate')
         );
+
+        if (isset($data['category']) && $data['category'] != 0) {
+            $data['category_search'] = $this->categoryRepository->getById($data['category']);
+        }
+
         $data['categories'] = $this->categoryRepository->getParentCategories()->get();
         $data['title'] =  trans('lang.search');
 

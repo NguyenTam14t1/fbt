@@ -3,8 +3,8 @@
     <section class="sidebar" style="height: auto;">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu tree" data-widget="tree">
-            <li class="active">
-                <a href="#">
+            <li class="{{set_active(['admin.dashboard.*'])}}">
+                <a href="{{ route('admin.dashboard') }}">
                     <i class="fa fa-dashboard"></i>
                     <span>@lang('admin/global.sidebar_list.dashboard')</span>
                 </a>

@@ -12,68 +12,83 @@
 */
 
 Auth::routes();
-
+// Route::group(['middleware' => 'auth.user'], function () {
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('/tour', 'Client\ToursController', [
-    'as' => 'client',
-]);
-
-Route::post('/review', [
-    'uses' => 'Client\ToursController@review',
-    'as' => 'review',
-]);
-
-Route::post('/review/paginate', [
-    'uses' => 'Client\ToursController@reviewShow',
-    'as' => 'reviewPaginate',
-]);
-
-Route::group(['middleware' => 'auth'], function() {
-    Route::post('/selectParticipant', [
-        'uses' => 'Client\BookingController@selectParticipant',
-        'as' => 'selectParticipant',
-    ]);
-
-    Route::get('/payment-success/{booking}/tour/{tour}', [
-        'uses' => 'Client\BookingController@paymentSuccess',
-        'as' => 'paymentSuccess',
-    ]);
-
-    Route::resource('tour.booking', 'Client\BookingController', [
+    Route::resource('/tour', 'Client\ToursController', [
         'as' => 'client',
     ]);
 
-    Route::post('/payment', [
-        'uses' => 'Client\BookingController@payment',
-        'as' => 'payment',
+    Route::post('/review', [
+        'uses' => 'Client\ToursController@review',
+        'as' => 'review',
     ]);
 
-    Route::post('/pay-bills-online', [
-        'uses' => 'Client\BookingController@paymentOnline',
-        'as' => 'paymentOnline',
+    Route::post('/review/paginate', [
+        'uses' => 'Client\ToursController@reviewShow',
+        'as' => 'reviewPaginate',
     ]);
 
-    Route::resource('/user', 'Client\UserController', [
-        'as' => 'client',
+    Route::group(['middleware' => 'auth'], function() {
+        Route::post('/selectParticipant', [
+            'uses' => 'Client\BookingController@selectParticipant',
+            'as' => 'selectParticipant',
+        ]);
+
+        Route::get('/payment-success/{booking}/tour/{tour}', [
+            'uses' => 'Client\BookingController@paymentSuccess',
+            'as' => 'paymentSuccess',
+        ]);
+
+        Route::resource('tour.booking', 'Client\BookingController', [
+            'as' => 'client',
+        ]);
+
+        Route::post('/payment', [
+            'uses' => 'Client\BookingController@payment',
+            'as' => 'payment',
+        ]);
+
+        Route::post('/pay-bills-online', [
+            'uses' => 'Client\BookingController@paymentOnline',
+            'as' => 'paymentOnline',
+        ]);
+
+        Route::resource('/user', 'Client\UserController', [
+            'as' => 'client',
+        ]);
+
+        Route::resource('user.manager', 'Client\ManagerController', [
+            'as' => 'client',
+        ]);
+    });
+
+    Route::get('/booking/confirm/{code}', [
+        'uses' => 'Client\BookingController@confirmRequest',
+        'as' => 'confirm',
     ]);
 
-    Route::resource('user.manager', 'Client\ManagerController', [
-        'as' => 'client',
+    Route::post('/booking/paginate', [
+        'uses' => 'Client\ManagerController@bookingShow',
+        'as' => 'bookingPaginate',
     ]);
-});
+// });
 
-Route::get('/booking/confirm/{code}', [
-    'uses' => 'Client\BookingController@confirmRequest',
-    'as' => 'confirm',
+//admin
+Route::get('admin', [
+    'uses' => 'Admin\LoginController@index',
+    'as' => 'admin.login',
 ]);
 
-Route::post('/booking/paginate', [
-    'uses' => 'Client\ManagerController@bookingShow',
-    'as' => 'bookingPaginate',
+Route::post('admin/login', [
+    'uses' => 'Admin\LoginController@store',
+    'as' => 'admin.auth.store',
 ]);
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], function () {
+    Route::get('logout', 'Admin\LoginController@logout')->name('admin.auth.logout');
+
+    Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('/tour', 'Admin\TourController', [
         'as' => 'admin',
     ]);

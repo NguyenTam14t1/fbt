@@ -17,12 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
+        'name',
+        'email',
         'password',
         'description',
         'avatar',
-        'is_admin',
+        'group_id',
         'provider',
         'provider_id',
     ];
@@ -61,6 +61,12 @@ class User extends Authenticatable
         return $this->hasMany(BankAccount::class);
     }
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
+
     public function setPasswordAttribute($value)
     {
         return $this->attributes['password'] = Hash::make($value);
@@ -69,11 +75,11 @@ class User extends Authenticatable
      public function getAvatarPathAttribute()
     {
         $pathFile = config('setting.avatar_upload_folder') . $this->attributes['avatar'];
-        
+
         if (!File::exists(public_path($pathFile)) || empty($this->attributes['avatar'])) {
             return config('setting.avatar_default_img');
         }
 
-        return config('setting.avatar_upload_folder') . $this->attributes['avatar']; 
+        return config('setting.avatar_upload_folder') . $this->attributes['avatar'];
     }
 }

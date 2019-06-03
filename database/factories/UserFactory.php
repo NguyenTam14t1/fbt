@@ -21,7 +21,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'description' => $faker->paragraph(2),
         // 'avatar' => $faker->image($dir = '/tmp', $width = 320, $height = 240),
         'remember_token' => str_random(10),
-        'is_admin' => false,
+        'group_id' => 2,
     ];
 });
 

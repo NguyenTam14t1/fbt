@@ -73,7 +73,18 @@ return [
     'price_search_2_val' => 2,
     'price_search_3_val' => 3,
     'price_search_4_val' => 4,
+    'range_prace' => [
+        '1' => 'Dưới 500$',
+        '2' => 'Từ 500$-1000$',
+        '3' => 'Từ 1000$-2000$',
+        '1' => 'Trên 2000$',
+    ],
     'category_show_paginate' => 5,
     'avatar_extension' => '.jpg',
     '404_img' => '/templates/bookingtour/img/not-found.png',
+    'group' => [
+        '1' => 'admin',
+        '2' => 'user',
+        '3' => 'guide',
+    ],
 ];

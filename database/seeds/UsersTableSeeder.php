@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'password' => 'admin',
             'email' => 'admin@admin.com',
-            'is_admin' => true,
+            'group_id' => 1,
         ]);
 
         factory(App\Models\User::class, 1)->create([
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'password' => '123456',
             'email' => 'user@user.com',
             'description' => 'profile user',
-            'is_admin' => false,
+            'group_id' => 2,
         ]);
 
         factory(App\Models\User::class, 1)->create([
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
             'password' => '123456',
             'email' => 'nguyentam14t1@gmail.com',
             'description' => 'profile user',
-            'is_admin' => false,
+            'group_id' => 2,
         ]);
 
         factory(App\Models\User::class, 20)->create()->each(function ($user) {

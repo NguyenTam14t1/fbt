@@ -17,7 +17,7 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                
+
                 <li class="dropdown user user-menu notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src=#" class="user-image" alt="User Image">
@@ -36,7 +36,7 @@
                                     </a>
                                 </li>
                                  <li>
-                                    <a href="#">
+                                    <a href="{{  route('admin.auth.logout') }}">
                                         <i class="fa fa fa-book"></i> <span>@lang('admin/auth.logout')</span>
                                     </a>
                                 </li>

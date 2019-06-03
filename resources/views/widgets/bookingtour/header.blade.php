@@ -46,12 +46,6 @@
                             </li>
                         </ul>
                         <ul class="headerTopNavbar navbar-right">
-                            <li class="active language-select">
-                                <select name="language">
-                                    <option value="en">@lang('lang.english')</option>
-                                    <option value="vi">@lang('lang.vietnamese')</option>
-                                </select>
-                            </li>
                             @auth
                                 <li class="active dropdown account-dropdown">
                                     {!! html_entity_decode(Html::link('#', '<span><img src="' . Auth()->user()->avatar_path . '" class="avatar"></span><strong>' . str_limit(Auth::user()->name, 7) . '</strong><span class="caret"></span>', ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'aria-haspopup' => 'true'])) !!}

@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         Session::flash('login_request');
-        
+
         return redirect()->back();
     }
 }
