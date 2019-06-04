@@ -20,10 +20,11 @@ class DashboardController extends Controller
         return view('admin.dashboard', array_merge($generalInfo));
     }
 
-    public function getChartCountViewLesson(Request $request)
+    public function getChartCountBooking(Request $request)
     {
+        $input = $request->all();
         return $this->tryCatch($request->all(), function($input) {
-            return $this->dashboardRepository->getDataCountViewLesson($input);
+            return $this->dashboardRepository->getChartCountBooking($input);
         });
     }
 }

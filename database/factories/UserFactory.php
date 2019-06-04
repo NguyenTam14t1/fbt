@@ -38,6 +38,8 @@ $factory->define(App\Models\Guide::class, function (Faker $faker) {
         'mail' => $faker->unique()->safeEmail,
         'address' => $faker->address,
         'password' => config('setting.password_test'),
+        'phone' => config('setting.password_test'),
+        'category_id' => 1,
         // 'is_admin' => false,
     ];
 });

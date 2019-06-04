@@ -35,6 +35,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .copyDirectory('node_modules/jquery/dist', 'public/jquery')
    .copyDirectory('node_modules/datatables.net-bs/', 'public/datatables.net-bs')
    .copy('node_modules/datatables.net/js/jquery.dataTables.min.js', 'public/datatables.net-bs/js')
+   .copy('node_modules/chart.js/dist/Chart.min.js', 'public/js')
 
 
 //web

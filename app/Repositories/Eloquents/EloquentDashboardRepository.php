@@ -14,7 +14,7 @@ use Carbon\Carbon;
 class EloquentDashboardRepository extends EloquentRepository implements DashboardInterface
 {
     const LIMIT_DATE = 30;
-    const STUDENT_TYPE = "student";
+    const STATUS_PAYMENT = true;
 
     public function getModel()
     {
@@ -36,27 +36,29 @@ class EloquentDashboardRepository extends EloquentRepository implements Dashboar
         return compact('numTour', 'numUser', 'numGuide', 'numCategory', 'numHotel');
     }
 
-    public function getDataCountViewLesson($input)
+    public function getChartCountBooking($input)
     {
         $dataInput['date_start'] = Carbon::now()->subDays(30)->format('Y-m-d');
         $dataInput['date_end'] = Carbon::now()->format('Y-m-d');
 
-        // if ($input['type_range'] == 'day') {
-        //     $query = 'select count(*) as num_view,
-        //         count(distinct(user_id)) as num_user, date as time from log_access
-        //         where date >= "' .$dataInput['date_start']. '" and user_type = "' . self:: STUDENT_TYPE . '"
-        //         group by date order by date limit ' . self::LIMIT_DATE;
-        // } elseif ($input['type_range'] == 'month') {
-        //     $query = 'select count(*) as num_view,
-        //                 count(distinct(user_id)) as num_user, DATE_FORMAT(date, "%Y-%m") as time from log_access
-        //                 where date >= DATE_SUB("' .$dataInput['date_end']. '", INTERVAL 1 YEAR ) and user_type = "' . self:: STUDENT_TYPE . '"
-        //                 GROUP BY YEAR(date), MONTH(date) order by date';
-        // } elseif ($input['type_range'] == 'week') {
+        if ($input['type_range'] == 'day') {
+            $query = 'select (select count(*) from bookings where created_at >= "' .$dataInput['date_start']. '" group by created_at order by created_at limit ' . self::LIMIT_DATE . ') as num_booking ,
+                count(distinct(tour_id)) as num_paid, DATE_FORMAT(created_at, "%Y-%m-%d") as time from bookings
+                where created_at >= "' .$dataInput['date_start']. '" and status_payment = "' . self:: STATUS_PAYMENT . '"
+                group by created_at order by created_at limit ' . self::LIMIT_DATE;
+        }
+        elseif ($input['type_range'] == 'month') {
+            $query = 'select (select count(*) from bookings where created_at >= DATE_SUB("' .$dataInput['date_end']. '", INTERVAL 1 YEAR ) GROUP BY YEAR(created_at), MONTH(created_at)) as num_booking ,
+                        count(distinct(tour_id)) as num_paid, DATE_FORMAT(created_at, "%Y-%m") as time from bookings
+                        where created_at >= DATE_SUB("' .$dataInput['date_end']. '", INTERVAL 1 YEAR ) and status_payment = "' . self:: STATUS_PAYMENT . '"
+                        GROUP BY YEAR(created_at), MONTH(created_at) order by created_at';
+        }
+        // elseif ($input['type_range'] == 'week') {
         //     $dateFirstWeek = $dataInput['date_start'];
         //     $dateOfWeek  = Carbon::parse($dataInput['date_start'])->weekOfYear;
-        //     $queryGetWeek = DB::table('log_access')
+        //     $queryGetWeek = DB::table('bookings')
         //         ->whereBetween('date', [$dataInput['date_start'], $dataInput['date_end']])
-        //         ->where('user_type', self:: STUDENT_TYPE)
+        //         ->where('status_payment', self:: STATUS_PAYMENT)
         //         ->orderBy('date')
         //         ->get()
         //         ->groupBy(function ($el) use (&$dateOfWeek, &$dateFirstWeek) {
@@ -71,14 +73,20 @@ class EloquentDashboardRepository extends EloquentRepository implements Dashboar
         //     $data = array();
         //     foreach ($queryGetWeek as $key => $week) {
         //         $el = array();
-        //         $el['num_view'] = count($week);
-        //         $el['num_user'] = count($week->unique('user_id'));
+        //         $el['num_booking'] = count($week);
+        //         $el['num_paid'] = count($week->unique('tour_id'));
         //         $el['time'] = Carbon::parse($key)->endOfWeek()->format('Y-m-d');
         //         array_push($data, $el);
         //     }
         //     return $data;
         // }
-        // $data = DB::select($query);
-        // return $data;
+        $data = DB::select($query);
+        DB::enableQueryLog(); // Enable query log
+
+// Your Eloquent query
+
+dd(DB::getQueryLog());
+        // dd($data);
+        return $data;
     }
 }

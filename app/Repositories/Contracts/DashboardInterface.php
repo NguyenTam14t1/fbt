@@ -7,5 +7,5 @@ interface DashboardInterface
 {
     public function getGeneralInfo();
 
-    public function getDataCountViewLesson($input);
+    public function getChartCountBooking($input);
 }

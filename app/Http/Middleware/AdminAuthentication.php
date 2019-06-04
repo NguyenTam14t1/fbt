@@ -29,6 +29,6 @@ class AdminAuthentication
                 return redirect()->route('admin.login');
             }
         } else
-            return redirect('admin.login');
+            return redirect()->route('admin.login');
     }
 }

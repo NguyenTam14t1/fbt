@@ -83,11 +83,11 @@
         </div>
         <div class="box box-success">
           <div class="box-header with-border">
-            <h3 class="box-title">@lang('admin/dashboard.chart_view_count_lesson.title')</h3>
+            <h3 class="box-title">Thống kê doanh thu</h3>
             <div class="box-tools pull-right">
-              <button class="btn btn-primary btn-chart-select default-chart" data-type="day">@lang('admin/dashboard.chart.daily')</button>
-              <button class="btn btn-primary btn-chart-select" data-type="week">@lang('admin/dashboard.chart.weekly')</button>
-              <button class="btn btn-primary btn-chart-select" data-type="month">@lang('admin/dashboard.chart.monthly')</button>
+              <button class="btn btn-primary btn-chart-select default-chart" data-type="day">Ngày</button>
+              <button class="btn btn-primary btn-chart-select" data-type="week">Tuần</button>
+              <button class="btn btn-primary btn-chart-select" data-type="month">Tháng</button>
             </div>
           </div>
           <div class="box-body no-padding" style="height: 500px;">
@@ -109,9 +109,9 @@
 
 @section('scripts')
     <script type="text/javascript">
-        var NUM_VIEW_LESSON = "@lang('admin/dashboard.chart_view_count_lesson.label.num_view_lesson')"
-        var NUM_STUDENT = "@lang('admin/dashboard.chart_view_count_lesson.label.num_student')"
+        var NUM_BOOKING = "Số lượng đặt tour"
+        var NUM_PAID = "Số lượng đã thanh toán"
     </script>
     {{ Html::script('js/Chart.min.js') }}
-    {{ Html::script(mix('admin/js/dashboard.js')) }}
+    {{ Html::script('templates/admin/js/dashboard.js') }}
 @endsection

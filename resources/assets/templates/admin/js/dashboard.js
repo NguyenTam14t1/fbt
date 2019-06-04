@@ -17,14 +17,14 @@ $(document).ready(function() {
         data: {
             labels: [],
             datasets: [{
-                label: NUM_VIEW_LESSON,
+                label: NUM_BOOKING,
                 data: [],
                 fill: false,
                 backgroundColor: window.chartColors.blue,
                 borderColor: window.chartColors.blue,
             },
             {
-                label: NUM_STUDENT,
+                label: NUM_PAID,
                 data: [],
                 fill: false,
                 backgroundColor: window.chartColors.red,
@@ -86,14 +86,17 @@ $(document).ready(function() {
             method: 'GET',
             data: {type_range: typeRange},
         }).done(function(response) {
+                console.log(response, 'check d1')
+
             if (response.success) {
                 let data = response.data
                 let timeValues = []
-
+                console.log(response.success, 'check data view')
                 switch (typeRange) {
                     case 'day':
                         while(dateStart.add(1, 'days').diff(dateEnd) < 0) {
                             timeValues.push(dateStart.clone().format('YYYY-MM-DD'));
+                            console.log(response, 'check data view')
                         }
                         break;
 
@@ -128,26 +131,26 @@ $(document).ready(function() {
                 let emptyData = timeValues.diff(timeArr);
                 let temp = emptyData.forEach(function (e) {
                     let addData = {
-                        num_view: 0,
-                        num_user: 0,
+                        num_booking: 0,
+                        num_paid: 0,
                         time: e}
                     data.push(addData)
                 })
                 data.sort((a,b) => (a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0));
                 let dataView = data.map((item) => {
-                    return item.num_view
+                    return item.num_booking
                 })
                 let dataClient = data.map((item) => {
-                    return item.num_user
+                    return item.num_paid
                 })
                 let labels = data.map((item) => {
                     let labelTime = new Date(item.time)
 
                     if (typeRange == 'month') {
-                        return labelTime.toLocaleString('ja', {month: 'long', year: 'numeric' });
+                        return labelTime.toLocaleString('vi', {month: 'long', year: 'numeric' });
                     }
 
-                    return labelTime.toLocaleString('ja', {day: 'numeric' ,month: 'long', year: 'numeric' });
+                    return labelTime.toLocaleString('vi', {day: 'numeric' ,month: 'long', year: 'numeric' });
                 })
 
                 chartCountViewLession.data.datasets[0].data = dataView

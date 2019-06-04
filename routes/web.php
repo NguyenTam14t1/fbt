@@ -85,9 +85,9 @@ Route::post('admin/login', [
     'as' => 'admin.auth.store',
 ]);
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () {
     Route::get('logout', 'Admin\LoginController@logout')->name('admin.auth.logout');
-    Route::get('dashboard/chart-count-view-lesson', 'DashboardController@getChartCountViewLesson')->name('admin.dashboard.getChartCountViewLesson');
+    Route::get('dashboard/chart-count-booking', 'Admin\DashboardController@getChartCountBooking')->name('admin.dashboard.getChartCountViewLesson');
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('/tour', 'Admin\TourController', [
         'as' => 'admin',
