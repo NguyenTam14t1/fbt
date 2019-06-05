@@ -25,7 +25,7 @@
                   required="required"
                   maxlength="{{config('setting.hotel.maxlength_name')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
-                  placeholder="Name..."
+                  placeholder="Tên..."
                   value="">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
@@ -38,7 +38,7 @@
                   required="required"
                   maxlength="{{config('setting.hotel.length_phone')}}"
                   minlength="{{config('setting.hotel.length_phone')}}"
-                  placeholder="Telephone..."
+                  placeholder="Số điên thoại..."
                   value="">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
@@ -71,7 +71,7 @@
                 <input class="form-control" name="address"
                   id="place"
                   required="required"
-                  placeholder="Address..."
+                  placeholder="Địa chỉ..."
                   maxlength="{{config('setting.hotel.maxlength_address')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
                   value=""
@@ -87,7 +87,7 @@
                   id="name"
                   required="required"
                   minlength="{{config('setting.guide.length_phone')}}"
-                  placeholder="Telephone..."
+                  placeholder="Email..."
                   value="">
                   <span class="text-danger name-error" role="alert"></span>
               </div>

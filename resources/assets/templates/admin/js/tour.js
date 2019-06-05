@@ -505,16 +505,16 @@ $(function () {
             "sPaginationType": "full_numbers",
             'columnDefs': [{
                 'targets': 0,
+                'sortable': true,
+                'searchable': false,
+            },
+            {
+                'targets': 4,
                 'sortable': false,
                 'searchable': false,
             },
             {
-                'targets': 5,
-                'sortable': false,
-                'searchable': false,
-            },
-            {
-                'targets': 7,
+                'targets': 6,
                 'sortable': false,
                 'searchable': false,
             }],

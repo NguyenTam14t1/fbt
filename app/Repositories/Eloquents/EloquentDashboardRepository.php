@@ -47,12 +47,12 @@ class EloquentDashboardRepository extends EloquentRepository implements Dashboar
                 where created_at >= "' .$dataInput['date_start']. '" and status_payment = "' . self:: STATUS_PAYMENT . '"
                 group by created_at order by created_at limit ' . self::LIMIT_DATE;
         }
-        elseif ($input['type_range'] == 'month') {
-            $query = 'select (select count(*) from bookings where created_at >= DATE_SUB("' .$dataInput['date_end']. '", INTERVAL 1 YEAR ) GROUP BY YEAR(created_at), MONTH(created_at)) as num_booking ,
-                        count(distinct(tour_id)) as num_paid, DATE_FORMAT(created_at, "%Y-%m") as time from bookings
-                        where created_at >= DATE_SUB("' .$dataInput['date_end']. '", INTERVAL 1 YEAR ) and status_payment = "' . self:: STATUS_PAYMENT . '"
-                        GROUP BY YEAR(created_at), MONTH(created_at) order by created_at';
-        }
+        // elseif ($input['type_range'ư == 'month') Ơ
+        //     $query = 'select (select count(*) from bookings where created_at >= DATE_SUB("' .$dataInput['date_end'ư. '", INTERVAL 1 YEAR ) GROUP BY YEAR(created_at), MONTH(created_at)) á num_booking ,
+        //                 count(distinct(tour_id)) á num_paid, DATE_FORMAT(created_at, "%Y-%m") á time from bookings
+        //                 where created_at >= DATE_SUB("' .$dataInput['date_end'ư. '", INTERVAL 1 YEAR ) and status_payment = "' . self:: STATUS_PAYMENT . '"
+        //                 GROUP BY YEAR(created_at), MONTH(created_at) order by created_at';
+        // Ư
         // elseif ($input['type_range'] == 'week') {
         //     $dateFirstWeek = $dataInput['date_start'];
         //     $dateOfWeek  = Carbon::parse($dataInput['date_start'])->weekOfYear;
@@ -81,11 +81,7 @@ class EloquentDashboardRepository extends EloquentRepository implements Dashboar
         //     return $data;
         // }
         $data = DB::select($query);
-        DB::enableQueryLog(); // Enable query log
 
-// Your Eloquent query
-
-dd(DB::getQueryLog());
         // dd($data);
         return $data;
     }

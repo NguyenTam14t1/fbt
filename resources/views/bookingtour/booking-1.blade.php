@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-sm-8 col-sm-pull-4 col-xs-12">
                     <div class="infoTitle">
-                        <h2>Communications</h2>
+                        <h2>Thông tin liên lạc</h2>
                     </div>
                     <div class="bookingForm">
                         @if (count($errors))
@@ -139,7 +139,7 @@
 
                             <div class="form-group col-xs-12">
                                 <div class="infoTitle">
-                                    <h2>List customers</h2>
+                                    <h2>Danh sách khách hàng</h2>
                                 </div>
                             </div>
 
@@ -148,7 +148,7 @@
                             </div>
 
                             @for ($i = 0; $i < $data['adults']; $i++)
-                                <label for="">Adult {{ $i+1 }}</label>
+                                <label for="">Người lớn {{ $i+1 }}</label>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <div class="col-sm-8 nopadding">
@@ -172,7 +172,7 @@
                             @endfor
 
                             @for ($i = 0; $i < $data['children']; $i++)
-                                <label for="">Children {{ $i+1 }}</label>
+                                <label for="">Trẻ nhỏ {{ $i+1 }}</label>
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <div class="col-sm-8 nopadding">
@@ -198,7 +198,7 @@
                             <div class="row">
                                 <div class="sectionTitle2">
                                     @if (isset($data['term']->content))
-                                        <h2>Terms</h2>
+                                        <h2>Chú ý</h2>
                                         <div>
                                             <div class="row">
                                                 <div class="col-xs-12">

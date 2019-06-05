@@ -27,6 +27,7 @@ class EloquentHotelRepository extends EloquentRepository implements HotelInterfa
     public function store($data)
     {
         try {
+            // dd($data);
             Hotel::create($data);
 
             return true;

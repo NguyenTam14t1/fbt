@@ -61,9 +61,9 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        $booking = $this->bookingRepository->findOrFail($id);
+        // $booking = $this->bookingRepository->findOrFail($id);
 
-        return view('admin.bookings.detail', compact(['booking']));
+        // return view('admin.bookings.detail', compact(['booking']));
     }
 
     /**

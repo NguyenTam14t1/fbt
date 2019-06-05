@@ -87,10 +87,9 @@
                             <div class="user-area dropdown float-right">
                                 {!! html_entity_decode(Html::link('#', Html::image(Auth::user()->avatar_path, 'user-avatar', ['class' => 'user-avatar']), ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-haspopup' => 'true', 'aria-expanded' => 'false'])) !!}
                                 <div class="user-menu dropdown-menu">
-                                    {{ Html::link('', trans('lang.my_profile'), ['class' => 'nav-link fa fa-user']) }}
-                                    {{ Html::link('', trans('lang.notifications'), ['class' => 'nav-link fa fa-comment-o']) }}
-                                    {{ Html::link('', trans('lang.setting'), ['class' => 'nav-link fa fa-cog']) }}
-                                    {{ Html::link(route('home'), trans('lang.logout'), ['class' => 'nav-link fa fa-power-off', 'onclick' => 'event.preventDefault(); document.getElementById("logout-form").submit();']) }} 
+
+                                    {{ Html::link('', 'Cài đặt', ['class' => 'nav-link fa fa-cog']) }}
+                                    {{ Html::link(route('home'), 'Đăng xuất', ['class' => 'nav-link fa fa-power-off', 'onclick' => 'event.preventDefault(); document.getElementById("logout-form").submit();']) }}
                                     {{ Form::open(['route' => 'logout', 'id' => 'logout-form']) }}
                                     {{ Form::close() }}
                                 </div>

@@ -30,7 +30,7 @@
                         '',
                         [
                             'class' => 'form-control',
-                            'placeholder' => trans('admin/user.label.email')
+                            'placeholder' => 'Mail'
                         ])
                     }}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -40,7 +40,7 @@
                         'password',
                         [
                             'class' => 'form-control',
-                            'placeholder' => trans('admin/user.label.password')
+                            'placeholder' => 'Mật khẩu'
                         ])
                     }}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>

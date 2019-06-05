@@ -60,10 +60,10 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="text-center">
+                                                            <td>
                                                                 <div class="group-action" class="btn-action">
-                                                                    <a data-toggle="modal" data-placement="left" title="view" data-target="#modal-detail-booking" class="btn btn-primary group-action-link">
-                                                                        <i class="fa fa-eye fa fa-lg"></i></a>
+                                                                    <!-- <a data-toggle="modal" data-placement="left" title="view" data-target="#modal-detail-booking" class="btn btn-primary group-action-link">
+                                                                        <i class="fa fa-eye fa fa-lg"></i></a> -->
                                                                     <div class="onoffswitch group-action-switch">
                                                                         <button class="show-modal-confirm" data-toggle="modal" data-target="#modal-default" style="display:none;"></button>
                                                                         @php $isDelete = !($booking->deleted_at) @endphp
@@ -118,11 +118,7 @@
             @endslot
         @endcomponent
 
-        @component('widgets.admin.modal-detail-booking')
-            @slot('headerText')
-                @include('admin.bookings.detail')
-            @endslot
-        @endcomponent
+
     </section>
 @endsection
 @section('scripts')

@@ -277,18 +277,17 @@
         </div>
         <div class="container">
             <div class="sectionTitle2">
-                <h2>Information hotel & guide</h2>
             </div>
             <div class="main-contain">
-                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Hotel</p>
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Khách sạn</p>
                 <section class="design-process-section" id="list-hotel">
                     <table class="table table-bordered" id="table-hotel">
                         @if (isset($data['tour']->hotels))
                             <thead>
                                 <tr style="font-weight: bold; font-size: 16px;">
-                                    <td style="width:300px; padding-left: 20px" >Name</td>
-                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
-                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                    <td style="width:300px; padding-left: 20px" >Tên</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Địa chỉ</td>
+                                    <td style="width:150px; padding-left: 20px">Số điện thoại</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -302,14 +301,14 @@
                                     </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px">  Đang cập nhập  </td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         @else
                             <tbody>
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px">  Đang cập nhập  </td>
                                 </tr>
                             </tbody>
                         @endif
@@ -318,15 +317,15 @@
             </div>
 
             <div class="main-contain">
-                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Guide</p>
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Hướng dẫn viên</p>
                 <section class="design-process-section" id="list-hotel">
                     <table class="table table-bordered table-hotel">
                         @if (isset($data['tour']->guides))
                             <thead>
                                 <tr style="font-weight: bold; font-size: 16px;">
-                                    <td style="width:300px; padding-left: 20px" >Name</td>
-                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
-                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                    <td style="width:300px; padding-left: 20px" >Tên</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Địa chỉ</td>
+                                    <td style="width:150px; padding-left: 20px">Số điện thoại</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -338,14 +337,14 @@
                                     </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px">  Đang cập nhập  </td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         @else
                             <tbody>
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px">  Đang cập nhập  </td>
                                 </tr>
                             </tbody>
                         @endif

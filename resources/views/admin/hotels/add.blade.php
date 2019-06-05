@@ -259,7 +259,7 @@
       map.setZoom(15);
       search();
     } else {
-      document.getElementById('autocomplete').placeholder = 'Enter a city';
+      document.getElementById('autocomplete').placeholder = 'Nhập tên thành phố';
     }
   }
 
@@ -435,15 +435,22 @@
     }
 
     //get latitude of place
-    if (place.geometry.viewport.na.l) {
+    if (place.geometry.viewport.na) {
       var latHotel = document.getElementById('iw-latitude')
       latHotel.setAttribute('data-latitude-hotel', place.geometry.viewport.na.l)
     }
-
+console.log(place)
     //get longitude of place
-    if (place.geometry.viewport.ia.l) {
+    if (place.geometry.viewport.ia) {
       var longHotel = document.getElementById('iw-longitude')
       longHotel.setAttribute('data-longitude-hotel', place.geometry.viewport.ia.l)
+      console.log('check 1', place.geometry.viewport.ia.l)
+    }
+
+    if (place.geometry.viewport.ga) {
+      var longHotel = document.getElementById('iw-longitude')
+      longHotel.setAttribute('data-longitude-hotel', place.geometry.viewport.ga.l)
+       console.log('check 2', place.geometry.viewport.ga.l)
     }
   }
 </script>

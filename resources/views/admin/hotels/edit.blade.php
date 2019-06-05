@@ -20,25 +20,25 @@
           <div class="row">
             <div class="col-md-9">
               <div class="form-group">
-                <label for="name">Name </label><span class="field-required">*</span>
+                <label for="name">Tên </label><span class="field-required">*</span>
                 <input class="form-control" name="name"
                   id="name"
                   required="required"
                   maxlength="{{config('setting.hotel.maxlength_name')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
-                  placeholder="Name..."
+                  placeholder="Tên..."
                   value="{{ $hotel->name }}">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="name">Telephone </label><span class="field-required">*</span>
+                <label for="name">Số điện thoại </label><span class="field-required">*</span>
                 <input class="form-control" name="phone"
                   id="name"
                   maxlength="{{config('setting.hotel.length_phone')}}"
                   minlength="{{config('setting.hotel.length_phone')}}"
-                  placeholder="Telephone..."
+                  placeholder="Số điện thoại..."
                   value="{{ $hotel->phone }}">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
@@ -47,10 +47,10 @@
           <div class="row">
             <div class="col-md-10">
               <div class="form-group">
-                <label for="place">Address </label><span class="field-required">*</span>
+                <label for="place">Địa chỉ </label><span class="field-required">*</span>
                 <input class="form-control" name="address"
                   id="place"
-                  placeholder="Address..."
+                  placeholder="Địa chỉ..."
                   maxlength="{{config('setting.hotel.maxlength_address')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
                   value="{{ $hotel->address }}"

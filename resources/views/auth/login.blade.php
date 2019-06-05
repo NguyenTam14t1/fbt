@@ -28,7 +28,7 @@
                         @endif
                     </div>
                     <div class="checkbox">
-                        <label>                
+                        <label>
                             {{ Form::checkbox('remember', 'true', old('remember', false)) }} <i></i>@lang('lang.remember_me')
                         </label>
                         {{ Html::link(route('password.request'), trans('lang.forgot_password'), ['class' => 'forgotPass cleafix']) }}
@@ -39,8 +39,7 @@
                         {{ Form::hidden('login-error', '', ['class' => 'popup-error']) }}
                     @endif
                 {{ Form::close() }}
-                <div class="or">@lang('lang.or')</div>
-                {{ Html::link(route('authenticate', 'google'), trans('lang.login_google'), ['class' => 'btn btn-default btnSocial']) }}
+
             </div>
 
             <div class="modal-footer">

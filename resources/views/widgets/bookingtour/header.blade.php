@@ -103,4 +103,25 @@
                         </div>
                     </div>
                 </nav>
+                <script type="text/javascript">
+                        var timer;
+
+                        $(".account-dropdown").on("mouseover", function() {
+                          clearTimeout(timer);
+                          openSubmenu();
+                        }).on("mouseleave", function() {
+                          timer = setTimeout(
+                            closeSubmenu
+                          , 1000);
+                        });
+
+                        function openSubmenu() {
+                          $(".account-menu").show();
+                          console.log('check open')
+                        }
+                        function closeSubmenu() {
+                          $(".account-menu").hide();
+                          $(".account-menu").removeClass("open");
+                        }
+                </script>
             </header>

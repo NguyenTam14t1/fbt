@@ -3,13 +3,13 @@
                 <div class="footer clearfix">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12">
                                 <div class="footerContent">
                                     {!! html_entity_decode(Html::link(route('home'), Html::image(config('setting.footer_logo'), 'footer-logo'), ['class' => 'footer-logo'])) !!}
                                     <p>@lang('lang.about_text')</p>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12">
                                 <div class="footerContent">
                                     <h5>@lang('lang.contact_us')</h5>
                                     <p>@lang('lang.contact_text')</p>
@@ -20,56 +20,18 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12">
                                 <div class="footerContent imgGallery">
-                                    <h5>@lang('lang.gallery')</h5>
+                                    <h5>Danh mục</h5>
                                     <div class="row">
-                                        <div class="col-xs-4">
-                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
-                                        </div>
-                                        <div class="col-xs-4">
-                                            {!! html_entity_decode(Html::link('', Html::image(config('setting.tour_default_img'), 'image'), ['class' => 'fancybox-pop'])) !!}
-                                        </div>
+                                        @if (isset($menuCategories))
+                                            @foreach($menuCategories as $category)
+                                                <div class="col-xs-4">
+                                                    {{ $category->name }}
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-12">
-                                <div class="footerContent">
-                                    <h5>@lang('lang.newsletter')</h5>
-                                    <p>@lang('lang.newsletter_text')</p>
-                                    <div class="input-group">
-                                        {{ Form::text('mail-input', '', ['class' => 'form-control', 'placeholder' => trans('lang.enter_mail'), 'aria-describedby' => 'basic-addon21']) }}
-                                        <span class="input-group-addon" id="basic-addon21"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
-                                    </div>
-                                    <ul class="list-inline">
-                                        <li>
-                                            {{ Html::link('', '', ['class' => 'fa fa-facebook']) }}
-                                        </li>
-                                        <li>
-                                            {{ Html::link('', '', ['class' => 'fa fa-twitter']) }}
-                                        </li>
-                                        <li>
-                                            {{ Html::link('', '', ['class' => 'fa fa-google-plus']) }}
-                                        </li>
-                                        <li>
-                                            {{ Html::link('', '', ['class' => 'fa fa-pinterest-p']) }}
-                                        </li>
-                                        <li>
-                                            {{ Html::link('', '', ['class' => 'fa fa-vimeo']) }}
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -86,8 +86,6 @@
             <h3 class="box-title">Thống kê doanh thu</h3>
             <div class="box-tools pull-right">
               <button class="btn btn-primary btn-chart-select default-chart" data-type="day">Ngày</button>
-              <button class="btn btn-primary btn-chart-select" data-type="week">Tuần</button>
-              <button class="btn btn-primary btn-chart-select" data-type="month">Tháng</button>
             </div>
           </div>
           <div class="box-body no-padding" style="height: 500px;">

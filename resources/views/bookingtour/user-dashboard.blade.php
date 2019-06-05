@@ -1,5 +1,5 @@
 @extends('widgets.bookingtour.dashboard')
-
+@section ('change-header', 'changeHeader')
 @section('main-content')
     @section('active-1', 'active')
     <!-- WELCOME SECTION -->

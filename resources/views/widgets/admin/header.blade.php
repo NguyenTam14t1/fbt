@@ -5,7 +5,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">NAG</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img class="logo logo-sidebar" src="{{ asset('/images/logo.png') }}"></span>
+        <span class="logo-lg"><img class="logo logo-sidebar" src="{{ asset('/bookingtour/images/avatar_default_img.png') }}"></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -20,24 +20,24 @@
 
                 <li class="dropdown user user-menu notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src=#" class="user-image" alt="User Image">
+                        <img src="{{ Auth()->user()->avatar_path }}" class="avatar" style="height: 30px; width: 30px; border-radius: 50%; margin-right: 5px;">
                     </a>
                     <ul class="dropdown-menu" style="width: 200px">
                         <li>
                             <ul class="menu">
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-user"></i> <span>@lang('admin/user.sidebar_profile')</span>
+                                        <i class="fa fa-user"></i> <span>Tài khoản</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-key"></i> <span>@lang('admin/user.sidebar_password_change')</span>
+                                        <i class="fa fa-key"></i> <span>Đổi mật khẩu</span>
                                     </a>
                                 </li>
                                  <li>
                                     <a href="{{  route('admin.auth.logout') }}">
-                                        <i class="fa fa fa-book"></i> <span>@lang('admin/auth.logout')</span>
+                                        <i class="fa fa fa-book"></i> <span>Đăng xuất</span>
                                     </a>
                                 </li>
                             </ul>

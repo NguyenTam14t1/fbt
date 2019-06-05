@@ -143,7 +143,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">Seat Availability: </label>
+                                                <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">Số chỗ còn nhận: </label>
                                                 <div class="col-md-7 col-sm-12 col-xs-7">
                                                     <div class="input-group">
                                                         {{ Form::text('participants_max', $data['tour']->seat_available, ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'participants_max']) }}
@@ -199,7 +199,7 @@
             </div>
 
             <div class="description-aria sectionTitle2">
-                <h2>Tour program</h2>
+                <h2>Chương trình tour</h2>
                 <div id="map-canvas"></div>
             </div>
 
@@ -222,7 +222,7 @@
             </div>
         </div>
         <div class="information-aria sectionTitle2">
-            <h2 class="program-title" style="margin-left: 100px">@lang('lang.program_overview')</h2>
+            <h2 class="program-title" style="margin-left: 170px">@lang('lang.program_overview')</h2>
             <section id="special-offers" class="section wide-fat">
                 <div id="mi-slider" class="mi-slider">
                     @if (isset($data['tour']->activityDates))
@@ -286,18 +286,18 @@
         </div>
         <div class="container">
             <div class="sectionTitle2">
-                <h2>Information hotel & guide</h2>
+                <h2>Thông tin khách sạn và hướng dẫn viên</h2>
             </div>
             <div class="main-contain">
-                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Hotel</p>
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Khách sạn</p>
                 <section class="design-process-section" id="list-hotel">
                     <table class="table table-bordered" id="table-hotel">
                         @if (isset($data['tour']->hotels))
                             <thead>
                                 <tr style="font-weight: bold; font-size: 16px;">
-                                    <td style="width:300px; padding-left: 20px" >Name</td>
-                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
-                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                    <td style="width:300px; padding-left: 20px" >Tên</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Địa chỉ</td>
+                                    <td style="width:150px; padding-left: 20px">Số điện thoại</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -311,14 +311,14 @@
                                     </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px"> Đang cập nhập </td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         @else
                             <tbody>
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px"> Đang cập nhật </td>
                                 </tr>
                             </tbody>
                         @endif
@@ -327,15 +327,15 @@
             </div>
 
             <div class="main-contain">
-                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Guide</p>
+                <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Hướng dẫn viên</p>
                 <section class="design-process-section" id="list-hotel">
                     <table class="table table-bordered table-hotel">
                         @if (isset($data['tour']->guides))
                             <thead>
                                 <tr style="font-weight: bold; font-size: 16px;">
-                                    <td style="width:300px; padding-left: 20px" >Name</td>
-                                    <td colspan="2" style="width:200px; padding-left: 20px">Address</td>
-                                    <td style="width:150px; padding-left: 20px">Phone</td>
+                                    <td style="width:300px; padding-left: 20px" >Tên</td>
+                                    <td colspan="2" style="width:200px; padding-left: 20px">Địa chỉ</td>
+                                    <td style="width:150px; padding-left: 20px">Số điện thoại</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -347,14 +347,14 @@
                                     </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px"> Đang cập nhật </td>
                                 </tr>
                                 @endforelse
                             </tbody>
                         @else
                             <tbody>
                                 <tr>
-                                    <td colspan="4" style="padding-left: 20px"> Updating </td>
+                                    <td colspan="4" style="padding-left: 20px"> Đang cập nhật </td>
                                 </tr>
                             </tbody>
                         @endif
@@ -366,7 +366,7 @@
             <div class="review-aria">
                 @if (isset($data['note']->content))
                     <div class="sectionTitle2">
-                        <h2>Notes</h2>
+                        <h2>Lưu ý</h2>
                         <div>
                             <div class="row">
                                 <div class="col-xs-12">
