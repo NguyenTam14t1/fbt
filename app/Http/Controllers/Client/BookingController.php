@@ -221,6 +221,7 @@ class BookingController extends Controller
                     'amount' => $amount,
                     'currency' => 'usd',
                     'source' => env('SOURCE_CARD_STRIPE'),
+                    // 'source' => $infoCard['number'],
                 ]);
             } catch (\Stripe\Error\Card $e) {
                 report($e);

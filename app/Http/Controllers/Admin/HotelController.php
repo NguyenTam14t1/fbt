@@ -53,14 +53,14 @@ class HotelController extends Controller
         $response = $this->hotelRepository->store($data);
 
         if ($response) {
-            Session::flash('message', 'Add hotel success!');
+            Session::flash('message', 'Thêm mới khách sạn thành công!');
 
             return response()->json([
                 'status' => true,
             ]);
         }
 
-        Session::flash('error', 'Add hotel fail');
+        Session::flash('error', 'Thêm mới khách sạn thất bại!');
 
         return response()->json([
             'status' => false,
@@ -89,7 +89,7 @@ class HotelController extends Controller
         $hotel = $this->hotelRepository->findOrFail($id);
 
         if (!$hotel) {
-            return redirect()->route('admin.hotel.index')->with('error', 'Hotel not found!');
+            return redirect()->route('admin.hotel.index')->with('error', 'Không tìm thấy khách sạn!');
         }
 
         return view('admin.hotels.edit', compact('hotel'));
@@ -109,10 +109,10 @@ class HotelController extends Controller
         $result = $this->hotelRepository->update($data, $id);
 
         if ($result) {
-            return redirect()->route('admin.hotel.index')->with('message', 'Hotel update success!');
+            return redirect()->route('admin.hotel.index')->with('message', 'Cập nhật khách sạn thành công!');
         }
 
-        Session::flash('error', 'Hotel update faild!');
+        Session::flash('error', 'Cập nhật khách sạn thất bại!');
 
         return redirect()->back();
     }
@@ -128,9 +128,9 @@ class HotelController extends Controller
         $response = $this->hotelRepository->delete($id);
 
         if ($response) {
-            return redirect()->route('admin.hotel.index')->with('message', 'Delete hotel success!');
+            return redirect()->route('admin.hotel.index')->with('message', 'Xóa khách sạn thành công!');
         }
 
-        return redirect()->route('admin.hotel.index')->with('error', 'Delete hotel faild');
+        return redirect()->route('admin.hotel.index')->with('error', 'Xóa khách sạn thất bại');
     }
 }

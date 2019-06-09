@@ -82,14 +82,14 @@ class TourController extends Controller
         $response = $this->tourRepository->store($data);
 
         if ($response) {
-            Session::flash('message', 'Tour create success');
+            Session::flash('message', 'Tạo mới tour thành công');
 
             return response()->json([
                 'status' => true,
             ]);
         }
 
-        Session::flash('error', 'Tour create fail');
+        Session::flash('error', 'Tạo mới tour thất bại');
 
         return response()->json([
             'status' => false,
@@ -120,7 +120,7 @@ class TourController extends Controller
         $hotels = $this->hotelRepository->all(['id', 'name', 'address']);
 
         if (!$tour) {
-            return redirect()->route('admin.tour.index')->with('error', 'Tour not found!');
+            return redirect()->route('admin.tour.index')->with('error', 'Không tìm thấy tour!');
         }
 
         return view('admin.tours.edit', compact('tour', 'guides', 'hotels'));
@@ -140,14 +140,14 @@ class TourController extends Controller
         $result = $this->tourRepository->update($data, $id);
 
         if ($result) {
-            Session::flash('message', 'Tour update success!');
+            Session::flash('message', 'Cập nhật tour thành công!');
 
             return response()->json([
                 'status' => true,
             ]);
         }
 
-        Session::flash('error', 'Tour update faild!');
+        Session::flash('error', 'Cập nhật tour thất bại!');
 
         return response()->json([
             'status' => false,
@@ -165,10 +165,10 @@ class TourController extends Controller
         $response = $this->tourRepository->delete($id);
 
         if ($response) {
-            return redirect()->route('admin.tour.index')->with('message', 'Delete tour success!');
+            return redirect()->route('admin.tour.index')->with('message', 'Xóa tour thành công!');
         }
 
-        return redirect()->route('admin.tour.index')->with('error', 'Delete tour faild');
+        return redirect()->route('admin.tour.index')->with('error', 'Xóa tour thất bại');
     }
 
     public function importTour(TourImportRequest $request)

@@ -35,14 +35,21 @@
         <div class="container">
             <div class="row gridResize">
                 {{ Form::open(['route' => 'search', 'method' => 'GET']) }}
-                    <div class="col-sm-3 col-xs-12">
-                        <div class="sectionTitleDouble">
-                            <p>@lang('lang.search')</p>
-                            <h2>@lang('lang.your') <span>@lang('lang.tours')</span></h2>
-                        </div>
-                    </div>
-                    <div class="col-sm-7 col-xs-12">
+                    <div class="col-sm-10 col-xs-12">
                         <div class="row">
+                            <div class="col-sm-3 col-xs-12">
+                                <div class="input-group key-search"
+                                    style="border-bottom: 1px solid #656565;
+                                    margin-top: 3px;
+                                    width: 220px;
+                                    margin-right: 10px;">
+                                    <input type="text" name="key_search"
+                                            class="form-control"
+                                            style="color: #fff; margin-left: 20px;"
+                                            value="{{ $data['key_search'] ?? '' }}"
+                                            placeholder="NHẬP VÀO TỪ KHÓA">
+                                </div>
+                            </div>
                             <div class="col-sm-3 col-xs-12">
                                 <div class="searchTour">
                                     <select name="category" class="select-drop">
@@ -53,23 +60,29 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-2 col-xs-12">
                                 <div class="input-group date ed-datepicker" data-provide="datepicker">
-                                    {{ Form::text('check_in', '', ['class' => 'form-control', 'placeholder' => trans('lang.check_in')]) }}
+                                    <input type="text" name="check_in"
+                                        value="{{ $data['check_in'] ?? '' }}"
+                                        class="form-control" placeholder="@lang('lang.check_in')"
+                                        style="color: #fff; margin-left: 20px;">
                                     <div class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-2 col-xs-12">
                                 <div class="input-group date ed-datepicker" data-provide="datepicker">
-                                    {{ Form::text('check_out', '', ['class' => 'form-control', 'placeholder' => trans('lang.check_out')]) }}
+                                    <input type="text" name="check_out"
+                                        value="{{ $data['check_out'] ?? '' }}"
+                                        class="form-control" placeholder="@lang('lang.check_out')"
+                                        style="color: #fff; margin-left: 20px;">
                                     <div class="input-group-addon">
                                         <span class="fa fa-calendar"></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-2 col-xs-12">
                                 <div class="searchTour">
                                     {{ Form::select('price', ['0' => trans('lang.all'), '1' => '< $500', '2' => '$500 - $1000', '3' => '$1000 - $2000', '4' => '> $2000'], '', ['class' => 'select-drop form-control']) }}
                                 </div>
@@ -113,10 +126,10 @@
                                         <p>{{ str_limit($tour->description, 150) }}</p>
                                         <div class="row">
                                             <div class="col-sm-3">
-                                                <span><i class="fa fa-clock-o"></i> Duration: {{ $tour->duration }}</span>
+                                                <span><i class="fa fa-clock-o"></i> Số ngày: {{ $tour->duration }}</span>
                                             </div>
                                             <div class="col-sm-6">
-                                                <span><i class="fa fa-user"></i> Seat available: {{ $tour->seat_available }}</span>
+                                                <span><i class="fa fa-user"></i> Số chỗ còn nhận: {{ $tour->seat_available }}</span>
                                             </div>
                                         </div>
                                         <ul class="list-inline detailsBtn">
@@ -127,7 +140,6 @@
                                     <div class="bodyRight">
                                         <div class="bookingDetails">
                                             <h2 class="tour-list-header">${{ $tour->price }}</h2>
-                                            <p>@lang('lang.per_person')</p>
                                             {{ Html::link(route('client.tour.show', $tour->id), trans('lang.view'), ['class' => 'btn buttonTransparent clearfix']) }}
                                         </div>
                                     </div>

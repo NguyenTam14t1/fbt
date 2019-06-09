@@ -152,14 +152,7 @@
                                         <label for="">@lang('lang.cvv')</label>
                                         {{ Form::text('cvv', old('cvv'), ['class' => 'form-control']) }}
                                     </div>
-                                    <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="" class="blankLabel"></label>
-                                        <ul class="list-inline">
-                                            <li>
-                                                {!! html_entity_decode(Html::link('#', Html::image(config('setting.master_card_icon'), 'master-card-icon'))) !!}
-                                            </li>
-                                        </ul>
-                                    </div>
+
                                     <div class="form-group col-sm-6 col-xs-12">
                                         <label for="" class="blankLabel">@lang('lang.expiration_date')</label>
                                         <div class="bookingDrop">

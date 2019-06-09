@@ -95,10 +95,10 @@ class BookingController extends Controller
         $result = $this->bookingRepository->update($id, $data);
 
         if ($result) {
-            return redirect()->route('admin.booking.index')->with('message', 'Booking update status payment success!');
+            return redirect()->route('admin.booking.index')->with('message', 'Thay đổi trạng thái thanh toán thành công!');
         }
 
-        return redirect()->route('admin.booking.index')->with('error', 'Have error!');
+        return redirect()->route('admin.booking.index')->with('error', 'Có lỗi xảy ra!');
     }
 
     /**
@@ -115,7 +115,7 @@ class BookingController extends Controller
             return redirect()->route('admin.booking.index')->with('message', $response);
         }
 
-        return redirect()->route('admin.booking.index')->with('error', 'Have error!');
+        return redirect()->route('admin.booking.index')->with('error', 'Có lỗi xảy ra!');
     }
 
     public function exportBooking(Request $request)

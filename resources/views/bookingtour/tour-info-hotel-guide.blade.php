@@ -3,7 +3,7 @@
         <h2>Thông tin khách sạn và hướng dẫn viên</h2>
     </div>
     <div class="main-contain">
-        <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Hotel</p>
+        <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Khách sạn</p>
         <section class="design-process-section" id="list-hotel">
             <table class="table table-bordered" id="table-hotel">
                 @if (isset($data['tour']->hotels))
@@ -41,7 +41,7 @@
     </div>
 
     <div class="main-contain">
-        <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Guide</p>
+        <p style="text-transform: uppercase; color: #333; font-weight: bold; font-size: 15px; margin-bottom: 15px; margin-top: 10px"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Hướng dẫn viên</p>
         <section class="design-process-section" id="list-hotel">
             <table class="table table-bordered table-hotel">
                 @if (isset($data['tour']->guides))

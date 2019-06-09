@@ -152,7 +152,7 @@ $(function() {
             $('#edit-booking-form').attr('action', actionEdit)
             var statusCheck = this.checked
 
-            isConfirm = statusCheck == true ? confirm('Are you sure change status to paid?') : confirm('Are you sure change status to debt?')
+            isConfirm = statusCheck == true ? confirm('Bạn có chắc chắn muốn đổi sang trạng thái đã thanh toán?') : confirm('Bạn có chắc chắn muốn đổi sang trạng thái chưa thanh toán?')
 
             if (isConfirm) {
                 $('#status-payment').val(statusCheck)
@@ -168,10 +168,10 @@ $(function() {
             $('#delete-booking-form').attr('action', action)
 
             if (this.checked) { //delete
-                $('#modal-default .modal-title').text(langDatatable['title-modal-publish'])
+                $('#modal-default .modal-title').text('Bạn có chắc chắn muốn kích hoạt lại đơn đặt tour?')
                 $(this).siblings('.show-modal-confirm').trigger('click')
             } else { //open
-                $('#modal-default .modal-title').text(langDatatable['title-modal-delete'])
+                $('#modal-default .modal-title').text('Bạn có chắc chắn muốn hủy đơn đặt tour')
                 $(this).siblings('.show-modal-confirm').trigger('click')
             }
         })

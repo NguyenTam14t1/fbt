@@ -8,9 +8,11 @@ interface CategoryInterface
 {
     public function getParentCategories();
 
+    public function getSubCategoryByParentId($parentId);
+
     public function getSubCategoriesId(Category $parentCategory);
 
     public function getCategoriesId();
-    
+
     public function getToursOfCategory($categoryId, $limit = 0);
 }

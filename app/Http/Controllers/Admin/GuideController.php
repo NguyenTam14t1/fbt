@@ -53,10 +53,10 @@ class GuideController extends Controller
 
         $response = $this->guideRepository->store($data);
         if ($response) {
-            return redirect()->route('admin.guide.index')->with('mesage', 'guide update success!');
+            return redirect()->route('admin.guide.index')->with('mesage', 'Thêm mới hướng dẫn viên thành công!');
         }
 
-        Session::flash('error', 'guide update faild!');
+        Session::flash('error', 'Thêm mới hướng dẫn viên thất bại!');
 
         return redirect()->back();
     }
@@ -83,7 +83,7 @@ class GuideController extends Controller
         $guide = $this->guideRepository->findOrFail($id);
 
         if (!$guide) {
-            return redirect()->route('admin.guide.index')->with('error', 'guide not found!');
+            return redirect()->route('admin.guide.index')->with('error', 'Không tìm thấy hưóng dẫn viên!');
         }
 
         return view('admin.guides.edit', compact('guide'));
@@ -103,10 +103,10 @@ class GuideController extends Controller
         $result = $this->guideRepository->update($data, $id);
 
         if ($result) {
-            return redirect()->route('admin.guide.index')->with('mesage', 'guide update success!');
+            return redirect()->route('admin.guide.index')->with('mesage', 'Cập nhật hướng dẫn viên thành công!');
         }
 
-        Session::flash('error', 'guide update faild!');
+        Session::flash('error', 'Cập nhật hướng dẫn viên thất bại!');
 
         return redirect()->back();
     }
@@ -122,9 +122,9 @@ class GuideController extends Controller
         $response = $this->guideRepository->delete($id);
 
         if ($response) {
-            return redirect()->route('admin.guide.index')->with('message', 'Delete guide success!');
+            return redirect()->route('admin.guide.index')->with('message', 'Xóa hướng dẫn viên thành công!');
         }
 
-        return redirect()->route('admin.guide.index')->with('error', 'Delete guide faild');
+        return redirect()->route('admin.guide.index')->with('error', 'Xóa hướng dẫn viên thành công');
     }
 }

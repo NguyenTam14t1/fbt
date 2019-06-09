@@ -1,5 +1,8 @@
 @extends('widgets.bookingtour.dashboard')
-@section ('change-header', 'changeHeader')
+
+@section('change-header', 'changeHeader1')
+@section('header-type', 'lightHeader lightHeader1')
+
 @section('main-content')
     @section('active-1', 'active')
     <!-- WELCOME SECTION -->

@@ -6,9 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use File;
 use Storage;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Tour extends Model
 {
+    use SearchableTrait;
+
+    protected $searchable = [
+        'columns' => [
+            'place' => 10,
+            'name' => 10,
+            'description' => 10,
+        ],
+    ];
+
     protected $fillable = [
         'category_id',
         'name',
@@ -123,6 +134,12 @@ class Tour extends Model
 
         return $rate;
     }
+
+    // public function setDescriptionAttribute($value)
+    // {
+    //     // return $this->sanitize($value);
+    //     return strip_tags($value);
+    // }
 
     public function getDescriptionAttribute($value)
     {

@@ -56,13 +56,13 @@
         box-sizing: border-box;
     }
     .onoffswitch-inner:before {
-        content: "Able";
-        padding-right: 10px;
+        content: "Đã đặt";
+        // padding-right: 10px;
         background-color: #34A7C1; color: #FFFFFF;
     }
     .onoffswitch-inner:after {
-        content: "Disable";
-        padding-right: 10px;
+        content: "Đã hủy";
+        // padding-right: 10px;
         background-color: #EEEEEE; color: #999999;
         text-align: right;
     }
@@ -102,13 +102,13 @@
         box-sizing: border-box;
     }
     .onoffswitch1-inner:before {
-        content: "Paid";
-        padding-right: 10px;
+        content: "Đã trả";
+        padding-left: 5px;
         background-color: #34A7C1; color: #FFFFFF;
     }
     .onoffswitch1-inner:after {
-        content: "Debt";
-        padding-right: 10px;
+        content: "Nợ";
+        padding-right: 20px;
         background-color: #EEEEEE; color: #999999;
         text-align: right;
     }

@@ -12,6 +12,7 @@ use App\Models\Hotel;
 use App\Models\Review;
 use App\Models\Booking;
 use App\Models\Note;
+use App\Models\Category;
 use Exception;
 use Date;
 use DB;
@@ -180,14 +181,23 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
         return $tours;
     }
 
-    public function searchTour($category, $checkIn, $checkOut, $price, $limit = 0)
+    public function getSubCategoryByParentId($parentId)
+    {
+        return Category::where('parent_id', $parentId)->pluck('id');
+    }
+
+    public function searchTour($urlCurrent, $keySearch, $category, $checkIn, $checkOut, $price, $limit = 0)
     {
         $deadline = Carbon::now()->addDays(config('setting.tour.deadline'));
-        $query = $this->model->whereRaw('count_register < participants_max')
+        $query = $this->model->search($keySearch, null, true)
+                            ->whereRaw('count_register < participants_max')
                             ->where('time_start', '>', $deadline);
 
         if ($category) {
-            $query = $query->where('category_id', $category);
+            $subCategory = $this->getSubCategoryByParentId($category);
+            if ($subCategory->count() > 0) {
+                $query = $query->whereIn('category_id', $subCategory);
+            }
         }
 
         if ($checkIn) {
@@ -213,7 +223,7 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
                 break;
         }
 
-        return $query->paginate($limit);
+        return $query->paginate($limit)->withPath($urlCurrent);
     }
 
     public function store($data)
@@ -227,6 +237,7 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
                 'activity_dates',
             ]);
 
+            $dataTour['description'] = strip_tags($dataTour['description']);
             $type = 'thumbnail_tour';
             if (isset($data['thumbnail'])) {
                 $dataTour['name_thumbnail'] = $data['thumbnail']->getClientOriginalName();
@@ -320,7 +331,7 @@ class EloquentTourRepository extends EloquentRepository implements TourInterface
             ]);
 
             $dataTour['category_id'] = $dataTour['category_id'] ?? 0;
-            // $dataTour['content_trip_tag'] = strip_tags($dataTour['content']);
+            $dataTour['description'] = strip_tags($dataTour['description']);
             if (is_null($input['name_thumbnail']) && $tour->getOriginal('thumbnail')) {
                 $dataTour['thumbnail'] = '';
                 $dataTour['name_thumbnail'] = '';

@@ -42,11 +42,21 @@ class EloquentDashboardRepository extends EloquentRepository implements Dashboar
         $dataInput['date_end'] = Carbon::now()->format('Y-m-d');
 
         if ($input['type_range'] == 'day') {
-            $query = 'select (select count(*) from bookings where created_at >= "' .$dataInput['date_start']. '" group by created_at order by created_at limit ' . self::LIMIT_DATE . ') as num_booking ,
+            $query = 'select
                 count(distinct(tour_id)) as num_paid, DATE_FORMAT(created_at, "%Y-%m-%d") as time from bookings
                 where created_at >= "' .$dataInput['date_start']. '" and status_payment = "' . self:: STATUS_PAYMENT . '"
                 group by created_at order by created_at limit ' . self::LIMIT_DATE;
         }
+
+        // if ($input['type_range'] == 'day') {
+        //     $query = 'select (select count(*) from bookings where created_at >= "' .$dataInput['date_start']. '" group by created_at order by created_at limit ' . self::LIMIT_DATE . ') as num_booking ,
+        //         count(distinct(tour_id)) as num_paid, DATE_FORMAT(created_at, "%Y-%m-%d") as time from bookings
+        //         where created_at >= "' .$dataInput['date_start']. '" and status_payment = "' . self:: STATUS_PAYMENT . '"
+        //         group by created_at order by created_at limit ' . self::LIMIT_DATE;
+        // }
+
+
+
         // elseif ($input['type_range'ư == 'month') Ơ
         //     $query = 'select (select count(*) from bookings where created_at >= DATE_SUB("' .$dataInput['date_end'ư. '", INTERVAL 1 YEAR ) GROUP BY YEAR(created_at), MONTH(created_at)) á num_booking ,
         //                 count(distinct(tour_id)) á num_paid, DATE_FORMAT(created_at, "%Y-%m") á time from bookings

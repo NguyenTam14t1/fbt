@@ -1,9 +1,9 @@
 @extends('widgets.admin.master')
-@section('title', 'Add tour')
+@section('title', 'Thêm mới tour')
 @section('content')
   <section class="content-header">
     <h1>
-      Add tour
+      Thêm mới tour
     </h1>
   </section>
   <section class="content add-tour check-add-tour">
@@ -49,7 +49,7 @@
               <div class="input-group">
                 <label class="input-group-btn">
                   <span class="btn btn-primary">
-                    Image
+                    Hình ảnh
                     <input type="file" style="display: none;" accept="image/jpeg,image/jpg,image/png" id="file-img-thumbnail">
                   </span>
                 </label>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Gía </label><span class="field-required">*</span>
+                    <label for="level">Giá </label><span class="field-required">*</span>
                     <div class="input-group date" id="price">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-usd"></span>
@@ -129,7 +129,7 @@
                         max="{{config('setting.tour.max_price')}}"
                         required="required"
                         class="form-control pull-right"
-                        placeholder="Gía"
+                        placeholder="Giá"
                         value="">
                     </div>
                     <span class="text-danger price" role="alert"></span>
@@ -177,7 +177,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Participants min </label><span class="field-required">*</span>
+                    <label for="level">Số người tối thiểu </label><span class="field-required">*</span>
                     <div class="input-group date" id="participants_min">
                       <span class="input-group-addon">
                         <span class="fa fa-male"></span>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Participants max </label><span class="field-required">*</span>
+                    <label for="level">Số người tối đa </label><span class="field-required">*</span>
                     <div class="input-group date" id="participants_max">
                       <span class="input-group-addon">
                         <span class="fa fa-child"></span>
@@ -234,7 +234,7 @@
 
         <div class="box-body">
           <div class="panel-body" id="add-active-date">
-            <label style="margin-left: 15px; display: none" id="label-detail-progam" for="add-active-date">Program detail
+            <label style="margin-left: 15px; display: none" id="label-detail-progam" for="add-active-date">Chi tiết lịch trình
             <div id="active_date" data-total-date="0">
             </div>
 
@@ -249,7 +249,7 @@
       </form>
       <div
         id="dataFromServer"
-        data-trans="{{json_encode('Description for tour')}}"
+        data-trans="Mô tả cho tour"
         style="display: none">
         </div>
     </div>

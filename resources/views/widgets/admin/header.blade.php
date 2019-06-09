@@ -3,9 +3,8 @@
     <!-- Logo -->
     <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">NAG</span>
+        <span class="logo-mini">Star travel </span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img class="logo logo-sidebar" src="{{ asset('/bookingtour/images/avatar_default_img.png') }}"></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->

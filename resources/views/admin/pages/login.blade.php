@@ -1,65 +1,94 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>@lang('admin/global.btn.login')</title>
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        @include('widgets.admin.styles')
-        @yield('style')
-        </head>
-    <body class="hold-transition login-page">
-        @include('widgets.admin.message')
-        <div class="login-box">
-            <div class="login-logo">
-                <a href="../../index2.html"><b></b>@lang('admin/global.btn.login')</a>
-            </div>
-            <!-- /.login-logo -->
-            <div class="login-box-body">
-            {{ Form::close() }}
-                {{ Form::open([
-                        'route' => ['admin.auth.store'],
-                        'id' => 'login-form',
-                        'class' => 'form-horizontal',
-                        'files' => true]) }}
-                        @method('POST')
-                <div class="form-group has-feedback">
-                    {{ Form::text(
-                        'email',
-                        '',
-                        [
-                            'class' => 'form-control',
-                            'placeholder' => 'Mail'
-                        ])
-                    }}
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                    {{ Form::password(
-                        'password',
-                        [
-                            'class' => 'form-control',
-                            'placeholder' => 'Mật khẩu'
-                        ])
-                    }}
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                <div class="col-xs-8">
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin/global.btn.signin')</button>
-                </div>
-                <!-- /.col -->
-                </div>
-            {{ Form::close() }}
+<!DOCTYPE HTML>
+<html lang="zxx">
 
-            </div>
-          <!-- /.login-box-body -->
-        </div>
-        @include('widgets.admin.scripts')
-        @yield('script')
-    </body>
+  <head>
+  	<title>Admin - Star travel - Đăng nhập</title>
+  	<!-- Meta tag Keywords -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<meta name="keywords" content="Effective Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"
+  	/>
+  	<script>
+  		addEventListener("load", function () {
+  			setTimeout(hideURLbar, 0);
+  		}, false);
+
+  		function hideURLbar() {
+  			window.scrollTo(0, 1);
+  		}
+  	</script>
+    {{ Html::style('templates/admin/css/login.css') }}
+    @include('widgets.admin.styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+
+  <body>
+  	<div class="video-w3l" data-vide-bg="images/background">
+  		<!--header-->
+  		<div class="header-w3l">
+  			<h1>
+  				Star travel
+  			</h1>
+  		</div>
+  		<!--//header-->
+  		<div class="main-content-agile">
+  			<div class="sub-main-w3">
+  				<h2>Đăng nhập
+  					<i class="fa fa-hand-o-down" aria-hidden="true"></i>
+  				</h2>
+          {{ Form::close() }}
+            {{ Form::open([
+                    'route' => ['admin.auth.store'],
+                    'id' => 'login-form',
+                    'class' => 'form-horizontal',
+                    'files' => true]) }}
+                    @method('POST')
+              <div class="pom-agile">
+                  <span class="fa fa-envelope" aria-hidden="true"></span>
+                  {{ Form::text(
+                      'email',
+                      '',
+                      [
+                          'class' => 'user',
+                          'placeholder' => 'Mail'
+                      ])
+                  }}
+              </div>
+              <div class="pom-agile">
+                  <span class="fa fa-key" aria-hidden="true"></span>
+                  {{ Form::password(
+                      'password',
+                      [
+                          'class' => 'pass',
+                          'placeholder' => 'Mật khẩu'
+                      ])
+                  }}
+              </div>
+              <div class="sub-w3l">
+                <div class="sub-agile">
+                  <input type="checkbox" id="brand1" value="">
+                  <label for="brand1">
+                    <span></span>Remember me</label>
+                </div>
+                <a href="#">Quên mật khẩu?</a>
+                <div class="clear"></div>
+              </div>
+              <div class="right-w3l">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin/global.btn.signin')</button>
+              </div>
+            {{ Form::close() }}
+  			</div>
+  		</div>
+  		<!--//main-->
+  		<!--footer-->
+  		<div class="footer">
+  			<p>&copy; 2019 Star travel
+  			</p>
+  		</div>
+  		<!--//footer-->
+  	</div>
+
+    @include('widgets.admin.scripts')
+    @yield('script')
+  </body>
 </html>

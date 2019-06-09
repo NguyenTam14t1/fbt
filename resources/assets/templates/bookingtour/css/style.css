@@ -562,6 +562,39 @@ a:focus {
     font-weight: 400;
     color: rgba(255, 255, 255, .3);
 }
+
+.key-search .form-control {
+    height: 45px;
+    background: 0 0;
+    border: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .3);
+    padding: 4px 12px 4px 0;
+    box-shadow: none!important;
+}
+.div-search .form-control::-webkit-input-placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .3);
+    text-transform: uppercase;
+}
+.div-search .form-control::-moz-placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .3);
+}
+.div-search .form-control:-ms-input-placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .3);
+}
+.div-search .form-control:-moz-placeholder {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, .3);
+}
+
 .ed-datepicker.filterDate .form-control::-webkit-input-placeholder {
     font-size: 12px;
     font-weight: 400;
@@ -655,9 +688,15 @@ a:focus {
     height: 50px;
 }
 .thumbnail {
-    height: 550px;
+    height: 500px;
+    width: 355px;
     border: 0;
     padding: 0;
+    opacity: 0.95;
+}
+.thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.07, 1.07);
 }
 .thumbnail.deals {
     overflow: hidden;

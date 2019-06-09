@@ -54,7 +54,7 @@
                       multiple
                       require="required"
                       data-max-options="1"
-                      title="Select a category">
+                      title="Chọn khu vực">
                       @foreach ($subCategories as $category)
                           <option value="{{$category->id}}">{{ $category->name }}</option>
                       @endforeach

@@ -20,6 +20,11 @@ class EloquentCategoryRepository extends EloquentRepository implements CategoryI
         return $this->model->where('parent_id', 0);
     }
 
+    public function getSubCategoryByParentId($parentId)
+    {
+        return $this->model->where('parent_id', $parentId)->pluck('id');
+    }
+
     public function getSubCategoriesId(Category $parentCategory)
     {
         return $parentCategory->subCategories()->pluck('id');

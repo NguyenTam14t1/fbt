@@ -1,9 +1,9 @@
 @extends('widgets.admin.master')
-@section('title', 'Edit tour')
+@section('title', 'Chỉnh sửa tour')
 @section('content')
   <section class="content-header">
     <h1>
-      Edit tour
+      Chỉnh sửa tour
     </h1>
   </section>
   <section class="content add-tour check-edit-tour">
@@ -26,17 +26,17 @@
                   required="required"
                   maxlength="{{config('setting.tour.maxlength_name')}}"
                   minlength="{{config('setting.tour.minlength_name')}}"
-                  placeholder="Title..."
+                  placeholder="Tiêu đề..."
                   value="{{ $tour->name }}">
                   <span class="text-danger name-error" role="alert"></span>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="place">Place </label><span class="field-required">*</span>
+                <label for="place">Địa điểm </label><span class="field-required">*</span>
                 <input class="form-control" name="place"
                   id="place"
-                  placeholder="Place..."
+                  placeholder="Địa điểm..."
                   maxlength="{{config('setting.tour.maxlength_name')}}"
                   minlength="{{config('setting.tour.minlength_name')}}"
                   value="{{ $tour->place }}"
@@ -47,11 +47,11 @@
           </div>
           <div class="row">
             <div class="col-md-4" id="thumbnail">
-              <p for="thumbnail">Thumbnail </p>
+              <p for="thumbnail">Hình ảnhDanh mục </p>
               <div class="input-group">
                 <label class="input-group-btn">
                   <span class="btn btn-primary">
-                    Image
+                    Hình ảnhDanh mục
                     <input type="file" style="display: none;" accept="image/jpeg,image/jpg,image/png" id="file-img-thumbnail">
                   </span>
                 </label>
@@ -69,7 +69,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>Category </label><span class="field-required">*</span>
+                    <label>Danh mục </label><span class="field-required">*</span>
                       <select
                         name="category_id"
                         class="form-control selectpicker"
@@ -77,7 +77,7 @@
                         multiple
                         require="required"
                         data-max-options="1"
-                        title="Select a category">
+                        title="Chọn danh mục">
                         @foreach ($subCategories as $category)
                           @if ($tour->category_id == $category->id)
                             <option selected="true" value="{{$category->id}}">{{ $category->name }}</option>
@@ -91,13 +91,13 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>Hotel </label>
+                    <label>Khách sạn </label>
                       <select
                         name="hotel_id[]"
                         class="form-control selectpicker"
                         data-live-search="true"
                         multiple
-                        title="Select hotel by searching name or address">
+                        title="Chọn khách sạn theo tên hoặc thành phố">
                         @php
                           $tourHotels = $tour->hotels->pluck('id')->all();
                         @endphp
@@ -116,14 +116,14 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group group-selectbox">
-                    <label>Guide </label><span class="field-required">*</span>
+                    <label>Hướng dẫn viên </label><span class="field-required">*</span>
                       <select
                         name="guide_id[]"
                         class="form-control selectpicker"
                         data-live-search="true"
                         multiple
                         required="required"
-                        title="Select guide">
+                        title="Chọn Hướng dẫn viên">
                         @php
                           $tourGuides = $tour->guides->pluck('id')->all();
                         @endphp
@@ -140,7 +140,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Price </label><span class="field-required">*</span>
+                    <label for="level">Giá </label><span class="field-required">*</span>
                     <div class="input-group date" id="price">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-usd"></span>
@@ -151,7 +151,7 @@
                         max="{{config('setting.tour.max_price')}}"
                         required="required"
                         class="form-control pull-right"
-                        placeholder="Price"
+                        placeholder="Giá"
                         value="{{ $tour->price }}">
                     </div>
                     <span class="text-danger price" role="alert"></span>
@@ -161,7 +161,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Time start </label><span class="field-required">*</span>
+                    <label>Thời gian bắt đầu </label><span class="field-required">*</span>
                     <div class="input-group date" id="time_start">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -180,7 +180,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label>Time finish </label><span class="field-required">*</span>
+                    <label>Thời gian kết thúc </label><span class="field-required">*</span>
                     <div class="input-group date" id="time_finish">
                       <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -201,7 +201,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Participants min </label><span class="field-required">*</span>
+                    <label for="level">Số người tối thiểu </label><span class="field-required">*</span>
                     <div class="input-group date" id="participants_min">
                       <span class="input-group-addon">
                         <span class="fa fa-male"></span>
@@ -220,7 +220,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label for="level">Participants max </label><span class="field-required">*</span>
+                    <label for="level">Số người tối đa </label><span class="field-required">*</span>
                     <div class="input-group date" id="participants_max">
                       <span class="input-group-addon">
                         <span class="fa fa-child"></span>
@@ -244,7 +244,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group name">
-                <label for="name">Content </label><span class="field-required">*</span>
+                <label for="name">Nội dung </label><span class="field-required">*</span>
                 <div id="tab-quill">
                   <div id="content-quill">
                   </div>
@@ -258,7 +258,7 @@
 
         <div class="box-body">
           <div class="panel-body" id="edit-active-date">
-            <label style="margin-left: 15px; display: none" id="label-detail-progam" for="edit-active-date">Program detail
+            <label style="margin-left: 15px; display: none" id="label-detail-progam" for="edit-active-date">Chi tiết lịch trình
             <div id="active_date" data-total-date="{{ $tour->activityDates->count() }}">
               @if (isset($tour->activityDates))
                 @foreach ($tour->activityDates as $activeDate)
@@ -268,7 +268,7 @@
                         <input type="text"
                           name="id" class="hide"
                           id="active-date-id-{{ $loop->index }}" value="{{ $activeDate->id }}">
-                        <label for="day-active-date">Time</label>
+                        <label for="day-active-date">Thời gian</label>
                         <input type="text"
                           name="activity_dates[time][]"
                           readonly
@@ -278,7 +278,7 @@
                           value="{{ $activeDate->time }}">
                       </div>
                       <div class="form-group">
-                        <label for="title-active-date">Title: </label><span class="field-required">*</span>
+                        <label for="title-active-date">Chủ đề: </label><span class="field-required">*</span>
                         <div class="input-group date">
                           <span class="input-group-addon">
                             <span class="glyphicon glyphicon-book"></span>
@@ -288,7 +288,7 @@
                             required="required"
                             maxlength="{{config('setting.tour.maxlength_name')}}"
                             class="form-control pull-right title-active-date"
-                            placeholder="Title"
+                            placeholder="Chủ đề"
                             id="title-{{ $loop->index }}"
                             value="{{ $activeDate->title }}">
                         </div>
@@ -297,14 +297,14 @@
                     </div>
                     <div class="col-sm-7 nopadding">
                       <div class="form-group">
-                        <label for="content-active-date">Detail: </label><span class="field-required">*</span>
+                        <label for="content-active-date">Chi tiết: </label><span class="field-required">*</span>
                         <div>
                           <textarea type="text"
                             class="form-control content-active-date" rows="7"
                             required="required"
                             maxlength="{{config('setting.tour.maxlength_description')}}"
                             id="detail-{{ $loop->index }}"
-                            name="activity_dates[detail][]" placeholder="Content activity date">{{ $activeDate->detail }}</textarea>
+                            name="activity_dates[detail][]" placeholder="Hoạt động trong ngày ">{{ $activeDate->detail }}</textarea>
                         </div>
                         <span class="text-danger content_active_date" role="alert"></span>
                       </div>
@@ -326,7 +326,7 @@
     </div>
     <div
       id="dataFromServer"
-      data-trans="{{json_encode('Description for tour')}}"
+      data-trans="Mô tả cho tour"
       style="display: none">
     </div>
     <div class="progress-upload-form" style="display: none;"><span>0%</span></div>

@@ -47,7 +47,9 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $urlCurrent = $request->fullUrl();
         $data = $request->only([
+            'key_search',
             'category',
             'check_in',
             'check_out',
@@ -64,7 +66,13 @@ class HomeController extends Controller
             $data['check_out'] = date('Y-m-d', strtotime($data['check_out']));
         }
 
+        if (isset($data['category'])  && $data['category'] != 0) {
+            $data['sub_category'] = $this->categoryRepository->getSubCategoryByParentId($data['category']);
+        }
+
         $data['tours'] = $this->tourRepository->searchTour(
+            $urlCurrent,
+            $data['key_search'],
             $data['category'],
             $data['check_in'],
             $data['check_out'],

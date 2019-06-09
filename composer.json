@@ -17,7 +17,8 @@
         "maatwebsite/excel": "^2.1",
         "stripe/stripe-php": "^6.37",
         "sunra/php-simple-html-dom-parser": "1.5.2",
-        "tightenco/ziggy": "^0.6.2"
+        "tightenco/ziggy": "^0.6.2",
+        "nicolaslopezj/searchable": "1.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

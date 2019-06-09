@@ -37,13 +37,13 @@ class EloquentBookingRepository extends EloquentRepository implements BookingInt
                 $booking->update($data);
                 $booking->restore();
 
-                return 'Booking enable success!';
+                return 'Kích hoạt đơn đặt tour thành công!';
             } else {
                 $data['status'] = config('setting.booking_cancel');
                 $booking->update($data);
                 $booking->delete();
 
-                return 'Booking disable success!';
+                return 'Hủy đơn đặt tour thành công!';
             }
 
             return true;

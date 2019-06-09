@@ -1,9 +1,9 @@
 @extends('widgets.admin.master')
-@section('title', 'Edit hotel')
+@section('title', 'Chỉnh sửa thông tin khách sạn')
 @section('content')
   <section class="content-header">
     <h1>
-      Edit hotel
+      Chỉnh sửa thông tin khách sạn
     </h1>
   </section>
   <section class="content add-hotel check-edit-hotel">

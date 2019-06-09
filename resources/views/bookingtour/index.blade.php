@@ -40,8 +40,8 @@
                                             <strong>${{ $tour->price }}</strong>
                                         </h5>
                                         <h5 style="float: right;">
-                                            <span><i class="fa fa-clock-o"></i> Duration: {{ $tour->duration }}</span>
-                                            <span><i class="fa fa-user"></i> Seat Availability: {{ $tour->seat_available }}</span>
+                                            <span><i class="fa fa-clock-o"></i> Số ngày: {{ $tour->duration }}</span>
+                                            <span><i class="fa fa-user"></i> Số chỗ còn nhận: {{ $tour->seat_available }}</span>
                                         </h5>
                                         <ul class="list-inline detailsBtn">
                                             <li>
@@ -72,48 +72,60 @@
                     <div class="sectionTitleHomeCity2">
                         <div class="sectionTitleDouble">
                             <p>@lang('lang.search')</p>
-                            <h2>@lang('lang.your') <span>@lang('lang.tours')</span></h2>
+                            <h2><span>@lang('lang.tours')</span></h2>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 col-xs-12">
-                    {{ Form::open(['route' => 'search', 'method' => 'GET']) }}
-                        <div class="amazingSelectbox">
-                            <div class="searchHotel">
-                                <select name="category" id="guiest_id2" class="select-drop">
-                                    <option value="0">@lang('lang.all')</option>
-                                    @foreach ($data['categories'] as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="searchHotel">
-                                <div class="input-group date ed-datepicker" data-provide="datepicker">
-                                    {{ Form::text('check_in', '', ['class' => 'form-control', 'placeholder' => trans('lang.check_in')]) }}
-                                    <div class="input-group-addon">
-                                        <span class="fa fa-calendar"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="searchHotel">
-                                <div class="input-group date ed-datepicker" data-provide="datepicker">
-                                    {{ Form::text('check_out', '', ['class' => 'form-control', 'placeholder' => trans('lang.check_out')]) }}
-                                    <div class="input-group-addon">
-                                        <span class="fa fa-calendar"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="searchHotel">
-                                {{ Form::select('price', ['0' => trans('lang.all'), '1' => '< $500', '2' => '$500 - $1000', '3' => '$1000 - $2000', '4' => '> $2000'], '', ['class' => 'select-drop form-control']) }}
-                            </div>
-                            <div class="searchHotelBtn">
-                                {{ Form::button(trans('lang.search'), ['type' => 'submit', 'class' => 'btn buttonCustomPrimary']) }}
+        </div>
+        <div class="row" style="margin: 0 10px">
+            <div class="col-sm-12 col-xs-12">
+                {{ Form::open(['route' => 'search', 'method' => 'GET']) }}
+                    <div class="amazingSelectbox">
+                        <div class="searchHotel key-search">
+                            <div class="input-group" style="border: 1px solid #dedede;
+                                                            border-radius: 5px;
+                                                            margin-top: 0;
+                                                            width: 220px;
+                                                            margin-right: 10px;">
+                                <input type="text" name="key_search"
+                                        class="form-control"
+                                        style="color: #fff; margin-left: 20px;"
+                                        placeholder="NHẬP VÀO TỪ KHÓA">
                             </div>
                         </div>
-                    {{ Form::close() }}
-                </div>
+                        <div class="searchHotel">
+                            <select name="category" id="guiest_id2" class="select-drop">
+                                <option value="0">@lang('lang.all')</option>
+                                @foreach ($data['categories'] as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="searchHotel">
+                            <div class="input-group date ed-datepicker" data-provide="datepicker">
+                                {{ Form::text('check_in', '', ['class' => 'form-control', 'placeholder' => trans('lang.check_in')]) }}
+                                <div class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="searchHotel">
+                            <div class="input-group date ed-datepicker" data-provide="datepicker">
+                                {{ Form::text('check_out', '', ['class' => 'form-control', 'placeholder' => trans('lang.check_out')]) }}
+                                <div class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="searchHotel">
+                            {{ Form::select('price', ['0' => trans('lang.all'), '1' => '< $500', '2' => '$500 - $1000', '3' => '$1000 - $2000', '4' => '> $2000'], '', ['class' => 'select-drop form-control']) }}
+                        </div>
+                        <div class="searchHotelBtn">
+                            {{ Form::button(trans('lang.search'), ['type' => 'submit', 'class' => 'btn buttonCustomPrimary']) }}
+                        </div>
+                    </div>
+                {{ Form::close() }}
             </div>
         </div>
     </section>
@@ -157,8 +169,8 @@
                                                     <strong>${{ $tour->price }}</strong>
                                                 </h5>
                                                 <h5 style="float: right;">
-                                                    <span><i class="fa fa-clock-o"></i> Duration: {{ $tour->duration }}</span>
-                                                    <span><i class="fa fa-user"></i> Seat Availability: {{ $tour->seat_available }}</span>
+                                                    <span><i class="fa fa-clock-o"></i> Số ngày: {{ $tour->duration }}</span>
+                                                    <span><i class="fa fa-user"></i> Số chỗ còn nhận: {{ $tour->seat_available }}</span>
                                                 </h5>
                                                 <ul class="list-inline detailsBtn">
                                                     <li>

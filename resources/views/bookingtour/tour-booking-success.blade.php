@@ -143,7 +143,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">Seat Availability: </label>
+                                                <label class="control-label col-md-5 col-sm-12 col-xs-5" for="inputSuccess3">Số chỗ còn nhận: </label>
                                                 <div class="col-md-7 col-sm-12 col-xs-7">
                                                     <div class="input-group">
                                                         {{ Form::text('participants_max', $data['tour']->seat_available, ['class' => 'form-control', 'readonly' => 'readonly', 'id' => 'participants_max']) }}
@@ -170,20 +170,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="totalCost">
+                                            <div>
                                                 <div class="row">
                                                     <div class="col-xs-8 totalCostLeft">
                                                         <p>@lang('lang.total_cost'):</p>
                                                     </div>
                                                     <div name="price" class="col-xs-4 totalCostRight" value="{{ $data['tour']->price }}">${{ $data['booking']->debt }}</div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-xs-8 totalCostLeft">
-                                                        <p>Status:</p>
-                                                    </div>
-                                                    @php $status = $data['booking']->status == config('booking_finished') ? 'Đã thanh toán' : 'Chưa thanh toán'; @endphp
-                                                    <div name="price" class="col-xs-4 totalCostRight" value="{{ $status }}">${{ $status }}</div>
-                                                </div>
+
                                             </div>
                                         {{ Form::close() }}
                                     </div>

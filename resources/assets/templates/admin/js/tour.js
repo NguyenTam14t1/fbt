@@ -30,17 +30,17 @@ $(function () {
             htmlAppend += `<div id="active-${i}">
                             <div class="col-sm-5 nopadding">
                               <div class="form-group">
-                                <label for="day-active-date">Time</label>
+                                <label for="day-active-date">Thời gian</label>
                                 <input type="text"
                                   name="activity_dates[time][]"
                                   readonly
                                   maxlength="350"
                                   id="time-${i}"
                                   class="form-control pull-right time-active-date"
-                                  value="Day ${i+1}">
+                                  value="Ngày ${i+1}">
                               </div>
                               <div class="form-group">
-                                <label for="title-active-date">Title: </label><span class="field-required">*</span>
+                                <label for="title-active-date">Chủ đề: </label><span class="field-required">*</span>
                                 <div class="input-group date">
                                   <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-book"></span>
@@ -50,7 +50,7 @@ $(function () {
                                     required="required"
                                     maxlength="{{config('setting.tour.maxlength_name')}}"
                                     class="form-control pull-right title-active-date"
-                                    placeholder="Title"
+                                    placeholder="Chủ đề"
                                     id="title-${i}"
                                     value="">
                                 </div>
@@ -59,14 +59,14 @@ $(function () {
                             </div>
                             <div class="col-sm-7 nopadding">
                               <div class="form-group">
-                                <label for="content-active-date">Detail: </label><span class="field-required">*</span>
+                                <label for="content-active-date">Chi tiết: </label><span class="field-required">*</span>
                                 <div>
                                   <textarea type="text"
                                     class="form-control content-active-date" rows="7"
                                     required="required"
                                     maxlength="{{config('setting.tour.maxlength_description')}}"
                                     id="detail-${i}"
-                                    name="activity_dates[detail][]" placeholder="Content activity date"></textarea>
+                                    name="activity_dates[detail][]" placeholder="Hoạt động trong ngày"></textarea>
                                 </div>
                                 <span class="text-danger content_active_date" role="alert"></span>
                               </div>
