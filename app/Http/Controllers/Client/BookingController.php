@@ -13,16 +13,8 @@ use Exception;
 use Carbon\Carbon;
 use App\Traits\ProcessOnClient;
 
-use PayPal\Api\Amount;
-use PayPal\Api\Details;
-use PayPal\Api\Item;
-use PayPal\Api\ItemList;
-use PayPal\Api\Payer;
-use PayPal\Api\Payment;
-use PayPal\Api\RedirectUrls;
-use PayPal\Api\Transaction;
-
 use Stripe\Stripe;
+use Stripe\Token;
 use Stripe\Charge;
 
 class BookingController extends Controller
@@ -45,22 +37,6 @@ class BookingController extends Controller
         $this->bookingRepository = $bookingRepository;
     }
 
-        // if(config('paypal.settings.mode') == 'live'){
-            // $this->client_id = config('paypal.live_client_id');
-            // $this->secret = config('paypal.live_secret');
-        // } else {
-        //     $this->client_id = config('paypal.client_id');
-        //     $this->secret = config('paypal.secret');
-        // // }
-
-        // // Set the Paypal API Context/Credentials
-        // $this->apiContext = new ApiContext(new OAuthTokenCredential($this->client_id, $this->secret));
-        // $this->apiContext->setConfig(config('paypal.settings'));
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index($id)
     {
         if (!Session::has('adults') || !Session::has('children')) {
@@ -208,23 +184,33 @@ class BookingController extends Controller
             $infoCard['exp_month'] = $request->month;
             $infoCard['exp_year'] = $request->year;
             $infoCard['cvv'] = $request->cvv;
-            $infoCard['description'] = 'Payment online for tour ' . $request->tour_name;
+            $infoCard['description'] = 'Thanh toán trực tuyến tour ' . $request->tour_name;
             $amount = $request->tour_debt;
             $tourId = $request->tour_id;
             $bookingId = $request->booking_id;
 
             try {
                 Stripe::setApiKey(env('STRIPE_SECRET'));
-
+// $myCard = array('number' => '371449635398431', 'exp_month' => 6, 'exp_year' => 2020);
                 $charge = Charge::create([
-                    // 'card' => $card ,
+                    // 'card' => $myCard ,
                     'amount' => $amount,
                     'currency' => 'usd',
                     'source' => env('SOURCE_CARD_STRIPE'),
-                    // 'source' => $infoCard['number'],
                 ]);
+                // $card = Token::create([
+                //           'card' => [
+                //             'number' => '4242424242424242',
+                //             'exp_month' => 6,
+                //             'exp_year' => 2020,
+                //             'cvc' => '314'
+                //           ]
+                //         ]);
+                // $token = $card['id'];
+                Session::flash('pay_success', 'Thanh toán thành công!');
             } catch (\Stripe\Error\Card $e) {
                 report($e);
+                Session::flash('pay_error', 'Thanh toán thất bại!');
 
                 return false;
             }
@@ -238,6 +224,7 @@ class BookingController extends Controller
             return redirect()->route('paymentSuccess', ['booking' => $bookingId, 'tour' => $tourId]);
         } catch (Exception $e) {
             report($e);
+            Session::flash('pay_error', 'Thanh toán thất bại!');
 
             return false;
         }
@@ -255,88 +242,3 @@ class BookingController extends Controller
         return view('bookingtour.tour-booking-success', compact(['data']));
     }
 }
-
-        //pay with paypal
-        // Create a new billing plan
-        // $plan = new Plan();
-        // $plan->setName('App Name Monthly Billing')
-        //   ->setDescription('Monthly Subscription to the App Name')
-        //   ->setType('infinite');
-
-        // // Set billing plan definitions
-        // $paymentDefinition = new PaymentDefinition();
-        // $paymentDefinition->setName('Regular Payments')
-        //   ->setType('REGULAR')
-        //   ->setFrequency('Month')
-        //   ->setFrequencyInterval('1')
-        //   ->setCycles('0')
-        //   ->setAmount(new Currency(array('value' => 9, 'currency' => 'USD')));
-
-        // // Set merchant preferences
-        // $merchantPreferences = new MerchantPreferences();
-        // $merchantPreferences->setReturnUrl('https://website.dev/subscribe/paypal/return')
-        //   ->setCancelUrl('https://website.dev/subscribe/paypal/return')
-        //   ->setAutoBillAmount('yes')
-        //   ->setInitialFailAmountAction('CONTINUE')
-        //   ->setMaxFailAttempts('0');
-
-        // $plan->setPaymentDefinitions(array($paymentDefinition));
-        // $plan->setMerchantPreferences($merchantPreferences);
-
-        // //create the plan
-        // try {
-        //     // dd($plan, $this->apiContext);
-        //     $createdPlan = $plan->create($this->apiContext);
-
-        //     try {
-        //         $patch = new Patch();
-        //         $value = new PayPalModel('{"state":"ACTIVE"}');
-        //         $patch->setOp('replace')
-        //           ->setPath('/')
-        //           ->setValue($value);
-        //         $patchRequest = new PatchRequest();
-        //         $patchRequest->addPatch($patch);
-        //         $createdPlan->update($patchRequest, $this->apiContext);
-        //         $plan = Plan::get($createdPlan->getId(), $this->apiContext);
-
-        //         // Output plan id
-        //         echo 'Plan ID:' . $plan->getId();
-        //     } catch (PayPal\Exception\PayPalConnectionException $ex) {
-        //         report($ex->getData());
-        //         echo $ex->getCode();
-        //         echo $ex->getData();
-        //         die($ex);
-        //     } catch (Exception $ex) {
-        //         report($ex);
-        //         die($ex);
-        //     }
-        // } catch (PayPal\Exception\PayPalConnectionException $ex) {
-        //         report($ex);
-        //     echo $ex->getCode();
-        //     echo $ex->getData();
-        //     die($ex);
-        // } catch (Exception $ex) {
-        //         report($ex);
-        //     die($ex);
-        // }
-
-    //     try {
-
-
-    //     $paypal = new PayPal;
-
-    //     $response = $paypal->purchase([
-    //         'amount' => 2500,
-    //         'transactionId' => $order->transaction_id,
-    //         'currency' => 'USD',
-    //         'cancelUrl' => $paypal->getCancelUrl($order),
-    //         'returnUrl' => $paypal->getReturnUrl($order),
-    //     ]);
-
-    //     return true;
-
-    // } catch (Exception $e) {
-    //     report($e);
-
-    //     return false;
-    // }

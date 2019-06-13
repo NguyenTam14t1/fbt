@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use DB;
 use Exception;
+use Session;
 
 class LoginController extends Controller
 {
@@ -24,10 +25,13 @@ class LoginController extends Controller
             {
                 return redirect()->route('admin.dashboard');
             } else {
+                Session::flash('error', 'Sai tài khoản hoặc mật khẩu!');
                 Auth::logout();
+
                 return view('admin.pages.login');
             }
         } else
+
             return view('admin.pages.login');
     }
 
@@ -51,7 +55,7 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        return redirect()->back()->with('errors', trans('admin/auth.login_faild'));
+        return redirect()->back()->with('error', 'Sai tài khoản hoặc mật khẩu!');
     }
 
     public function logout()

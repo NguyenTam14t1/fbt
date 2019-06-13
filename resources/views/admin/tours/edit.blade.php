@@ -47,11 +47,11 @@
           </div>
           <div class="row">
             <div class="col-md-4" id="thumbnail">
-              <p for="thumbnail">Hình ảnhDanh mục </p>
+              <p for="thumbnail">Hình ảnh </p>
               <div class="input-group">
                 <label class="input-group-btn">
                   <span class="btn btn-primary">
-                    Hình ảnhDanh mục
+                    Hình ảnh
                     <input type="file" style="display: none;" accept="image/jpeg,image/jpg,image/png" id="file-img-thumbnail">
                   </span>
                 </label>

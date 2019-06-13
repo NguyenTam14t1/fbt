@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-sm-8 col-sm-pull-4 col-xs-12">
                     @if (count($errors))
-                        <div class="alert alert-danger">      
+                        <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -93,7 +93,7 @@
                         @else
                         {{ Form::open(['route' => ['client.user.manager.store', $booking->user->id] ,'class' => 'form', 'role' => 'form', 'id' => 'send-mail-again-form']) }}
                             {{ Form::hidden('booking', $booking->id) }}
-                        @endif    
+                        @endif
                             <div class="row">
                                 <div class="form-group col-sm-6 col-xs-12">
                                     <label for="">@lang('lang.first_name')</label>

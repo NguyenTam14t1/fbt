@@ -88,8 +88,12 @@ class ManagerController extends Controller
             $data['number_of_children'] = $booking->number_of_children;
             $data['status'] = $booking->status;
             $data['debt'] = $booking->debt;
-            $data['confirm_code'] = $booking->confirm_code;
             $data['tour'] = $booking->tour;
+            if ($booking->confirm_code) {
+                $data['confirm_code'] = $booking->confirm_code;
+            } else {
+                $data['confirm_code'] = time() . uniqid(true);
+            }
 
             $this->sendingMail($data, Auth::user()->email);
             $message = trans('lang.send_mail_success_1') . str_limit(Auth::user()->email, 6, '******') . trans('lang.send_mail_success_2');

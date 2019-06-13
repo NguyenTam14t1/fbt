@@ -54,7 +54,7 @@ class Booking extends Model
     }
 
     public function getUpdatedTimeAttribute() {
-        return Carbon::parse($this->attributes['updated_at'])->format('l\, F j, Y');
+        return Carbon::parse($this->attributes['updated_at'])->format('d-m-Y');
     }
 
     public function getStatusTextAttribute() {

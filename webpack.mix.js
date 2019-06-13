@@ -39,6 +39,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
 
 //web
+   .js('resources/assets/templates/bookingtour/js/booking.js', 'public/templates/bookingtour/js/booking.js')
    .js('resources/assets/templates/bookingtour/js/custom.js', 'public/templates/bookingtour/js/custom.js')
    .js('resources/assets/templates/bookingtour/js/script.js', 'public/templates/bookingtour/js/script.js')
    .js('resources/assets/templates/bookingtour/js/activity-date.js', 'public/templates/bookingtour/js/activity-date.js')
@@ -51,9 +52,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
 //admin
    .styles('resources/assets/templates/admin/css/style.css', 'public/templates/admin/css/style.css')
    .copyDirectory('resources/assets/templates/admin/images', 'public/templates/admin/images')
-   .options({
-        processCssUrls: false,
-    })
    .sass('resources/assets/sass/admin/tour.scss', 'public/templates/admin/css/tour.css')
    .sass('resources/assets/sass/admin/hotel.scss', 'public/templates/admin/css/hotel.css')
    .sass('resources/assets/sass/admin/booking.scss', 'public/templates/admin/css/booking.css')

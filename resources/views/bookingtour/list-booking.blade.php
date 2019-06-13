@@ -12,7 +12,6 @@
                             <li><a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_cancel')]) }}" status="{{ config('setting.booking_cancel') }}">@lang('lang.tour_cancel')</a></li>
                             <li><a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_wait_confirm')]) }}" status="{{ config('setting.booking_wait_confirm') }}">@lang('lang.tour_wait_confirm')</a></li>
                             <li><a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_confirmed')]) }}" status="{{ config('setting.booking_confirmed') }}">@lang('lang.tour_confirmed')</a></li>
-                            <li><a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_paymented')]) }}" status="{{ config('setting.booking_paymented') }}">@lang('lang.tour_paymented')</a></li>
                             <li><a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_finished')]) }}" status="{{ config('setting.booking_finished') }}">@lang('lang.tour_finished')</a></li>
                         </ul>
                     </div>

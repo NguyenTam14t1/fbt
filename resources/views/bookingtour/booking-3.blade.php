@@ -97,7 +97,7 @@
                             <h2>@lang('lang.payment_info')</h2>
                         </div>
                         <div class="bookingForm">
-                            <form action="{{ route('paymentOnline') }}" method="POST" role="form" class="form">
+                            <form action="{{ route('paymentOnline') }}" method="POST" id="form-payment" role="form" class="form">
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-sm-6 col-xs-12">
@@ -128,14 +128,6 @@
                                         <label for="">@lang('lang.identity_card')</label>
                                         {{ Form::text('identity_card', str_limit($booking->identity_card, 4, '****'), ['class' => 'form-control', 'readonly' => 'readonly']) }}
                                     </div>
-                                    <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="">@lang('lang.city')</label>
-                                        {{ Form::text('city', old('city'), ['class' => 'form-control']) }}
-                                    </div>
-                                    <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="">@lang('lang.zip_code')</label>
-                                        {{ Form::text('zip_code', old('zip_code'), ['class' => 'form-control']) }}
-                                    </div>
                                     <div class="col-xs-12">
                                         <div class="infoTitle">
                                             <h2>@lang('lang.card_info')</h2>
@@ -146,27 +138,56 @@
                                         {{ Form::text('card_name', old('card_name'), ['class' => 'form-control']) }}
                                     </div>
                                     <div class="form-group col-sm-6 col-xs-12">
-                                        <label for="">@lang('lang.card_number')</label>{{ Form::text('card_number', old('card_number'), ['class' => 'form-control']) }}
+                                        <label for="">@lang('lang.card_number')</label>{{ Form::text('card_number', old('card_number'), ['class' => 'form-control', 'id' => 'card_number']) }}
                                     </div>
-                                    <div class="form-group col-sm-6 col-xs-12">
+                                    <div class="form-group col-sm-4 col-xs-12">
                                         <label for="">@lang('lang.cvv')</label>
-                                        {{ Form::text('cvv', old('cvv'), ['class' => 'form-control']) }}
+                                        {{ Form::number('cvv', old('cvv'), ['class' => 'form-control', 'id' => 'cvc']) }}
                                     </div>
 
-                                    <div class="form-group col-sm-6 col-xs-12">
+                                    <div class="form-group col-sm-4 col-xs-12 group-selectbox">
                                         <label for="" class="blankLabel">@lang('lang.expiration_date')</label>
-                                        <div class="bookingDrop">
-                                            {{ Form::select('month', ['0' => trans('lang.month'), '1' => 'July', '2' => 'August', '3' => 'September'], '', ['class' => 'select-drop form-control']) }}
+                                        <div>
+                                            {{ Form::select('month',
+                                                [
+                                                    '1' => 'Tháng 1', '2' => 'Tháng 2', '3' => 'Tháng 3', '4' => 'Tháng 4', '5' => 'Tháng 5',
+                                                    '6' => 'Tháng 6', '7' => 'Tháng 7', '8' => 'Tháng 8', '9' => 'Tháng 9', '10' => 'Tháng 10', '11' => 'Tháng 11', '12' => 'Tháng 12'
+                                                ],
+                                                '',
+                                                [
+                                                    'class' => 'selectpicker',
+                                                    'id' => 'exp_month',
+                                                    'data-live-search' => 'true',
+                                                    'multiple',
+                                                    'data-max-options' => '1',
+                                                    'title' => 'Chọn tháng'])
+                                            }}
                                         </div>
                                     </div>
-                                    <div class="form-group col-sm-6 col-xs-12">
+                                    <div class="form-group col-sm-4 col-xs-12  group-selectbox">
                                         <label for=""></label>
                                         <div class="bookingDrop">
-                                            {{ Form::select('year', ['0' => trans('lang.year'), '1' => '2018', '2' => '2019', '3' => '2020'], '', ['class' => 'select-drop form-control']) }}
+                                            @php
+                                                $years = [];
+                                                for ($year=2018; $year <= 2050; $year++) $years[$year] = $year;
+                                            @endphp
+                                            <select
+                                                name="year"
+                                                id="exp_year"
+                                                class="form-control selectpicker"
+                                                data-live-search="true"
+                                                multiple
+                                                require="required"
+                                                data-max-options="1"
+                                                title="Chọn năm">
+                                                @foreach ($years as $year)
+                                                    <option value="{{$year}}">{{ $year }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="buttonArea btn-group-mail">
-                                        <input type="submit" name="btn-payment-online" class="btn buttonTransparent" value="Payment">
+                                        <input type="submit" id="btn-payment-stripe" name="btn-payment-online" class="btn buttonTransparent" value="Payment">
                                     </div>
                                 </div>
                             </form>
@@ -176,6 +197,36 @@
             </div>
         </section>
     @else
-        <h4>Something error!</h4>
+        <h4>Có lỗi xảy ra!</h4>
     @endif
 @endsection
+@section('styles')
+    {{ Html::style('css/bootstrap-select.min.css') }}
+    {{ Html::style('css/select2.min.css') }}
+@endsection
+@section('scripts')
+    {{ Html::script('templates/bookingtour/js/tour.js') }}
+    {{ Html::script('js/bootstrap-select.min.js') }}
+    {{ Html::script('js/select2.min.js') }}
+@endsection
+<!--
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    document.getElementById("form-payment").submit(function() {
+        e.preventDefault()
+        var stripe = Stripe('pk_test_6gWjm1D4weGWS0YNMAxtPfhN00cMO6Smxp');
+        var number = $('#card_number').val() || null
+        var exp_month = $('#exp_month').val() || null
+        var exp_year = $('#exp_year').val() || null
+        var cvc = $('#cvc').val() || null
+        stripe.createToken('bank_account', {
+          number: number,
+          exp_month: exp_month,
+          exp_year: exp_year,
+          cvc: cvc,
+        }).then(function(result) {
+          alert(result);
+        });
+    })
+</script>
+ -->

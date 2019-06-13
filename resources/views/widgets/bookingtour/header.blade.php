@@ -10,18 +10,31 @@
         @routes
 
         <!-- PLUGINS CSS STYLE -->
-        {{ Html::style('css/app.css') }}
-        {{ Html::script('js/app.js') }}
-        {{ Html::style('templates/plugins/selectbox/select_option1.css') }}
-        {{ Html::style('templates/plugins/datepicker/datepicker.css') }}
-        {{ Html::style(asset('/templates/plugins/animate/animate.min.css')) }}
-
-        <!-- CUSTOM CSS -->
-        {{ Html::style('templates/bookingtour/css/style.css') }}
-        {{ Html::style('templates/bookingtour/css/activity-date.css') }}
+        @include('widgets.bookingtour.styles')
 
         <!-- FAVICON -->
         {{ Html::favicon('templates/bookingtour/img/favicon.png') }}
+        <script type="text/javascript">
+            var timer;
+
+            $(".account-dropdown").on("mouseover", function() {
+              clearTimeout(timer);
+              openSubmenu();
+            }).on("mouseleave", function() {
+              timer = setTimeout(
+                closeSubmenu
+              , 1000);
+            });
+
+            function openSubmenu() {
+              $(".account-menu").show();
+              console.log('check open')
+            }
+            function closeSubmenu() {
+              $(".account-menu").hide();
+              $(".account-menu").removeClass("open");
+            }
+    </script>
 
     </head>
     <body class="body-wrapper @yield('change-header')">
@@ -103,25 +116,4 @@
                         </div>
                     </div>
                 </nav>
-                <script type="text/javascript">
-                        var timer;
-
-                        $(".account-dropdown").on("mouseover", function() {
-                          clearTimeout(timer);
-                          openSubmenu();
-                        }).on("mouseleave", function() {
-                          timer = setTimeout(
-                            closeSubmenu
-                          , 1000);
-                        });
-
-                        function openSubmenu() {
-                          $(".account-menu").show();
-                          console.log('check open')
-                        }
-                        function closeSubmenu() {
-                          $(".account-menu").hide();
-                          $(".account-menu").removeClass("open");
-                        }
-                </script>
             </header>

@@ -18,8 +18,8 @@
     <!-- BLOCK SECTION -->
     <section class="blockSection">
         <div class="container">
-            <div class="row">
-                <div class="col-md-15 col-sm-15 col-xs-15">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-15 col-sm-15 col-xs-15" style="width: 25%;">
                     <div class="content-block">
                         <div class="media bg-red-c block-panel">
                             <div class="media-body ">
@@ -35,7 +35,7 @@
                         <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_cancel')]) }}" class="btn btn-content bg-red-b">@lang('lang.view_detail')<i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="col-md-15 col-sm-15 col-xs-15">
+                <div class="col-md-15 col-sm-15 col-xs-15" style="width: 25%;">
                     <div class="content-block">
                         <div class="media bg-blue-c block-panel">
                             <div class="media-body">
@@ -51,7 +51,7 @@
                         <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_wait_confirm')]) }}" class="btn btn-content bg-blue-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="col-md-15 col-sm-15 col-xs-15">
+                <div class="col-md-15 col-sm-15 col-xs-15" style="width: 25%;">
                     <div class="content-block">
                         <div class="media bg-green-c block-panel">
                             <div class="media-body">
@@ -67,23 +67,7 @@
                         <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_confirmed')]) }}" class="btn btn-content bg-green-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="col-md-15 col-sm-15 col-xs-15">
-                    <div class="content-block">
-                        <div class="media bg-orange-c block-panel">
-                            <div class="media-body">
-                                <h4 class="media-heading block-header">{{ count($data['tour_paymented']) }}</h4>
-                            </div>
-                            <div class="media-right">
-                                <div class="icon bg-orange-b">
-                                    <i class="fa fa-usd" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <p class="block-content">@lang('lang.tour_paymented')</p>
-                        </div>
-                        <a href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_paymented')]) }}" class="btn btn-content bg-orange-b">@lang('lang.view_detail') <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-15 col-sm1-15 col-xs-15">
+                <div class="col-md-15 col-sm1-15 col-xs-15" style="width: 25%;">
                     <div class="content-block">
                         <div class="media bg-purple-c block-panel">
                             <div class="media-body">

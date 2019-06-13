@@ -109,7 +109,6 @@
                                         <dt><i class="fa fa-map-marker" aria-hidden="true"></i> @lang('lang.place'):</dt>
                                         <dd>{{ $data['tour']->place }}</dd>
                                     </dl>
-                                    @include('bookingtour.tour-info-hotel-guide')
                                 </div>
                                 <div class="col-sm-4 col-xs-12">
                                     <dl class="dl-horizontal">
@@ -124,6 +123,9 @@
                                 <div class="col-sm-4 col-xs-12 priceTotal">
                                     <h2>@lang('lang.total'): <span><strong> ${{ $data['debt'] }}</strong></span></h2>
                                 </div>
+                            </div>
+                            <div class="row">
+                                @include('bookingtour.tour-info-hotel-guide')
                             </div>
                         </div>
                     </div>

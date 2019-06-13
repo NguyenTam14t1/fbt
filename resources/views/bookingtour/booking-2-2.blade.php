@@ -50,7 +50,7 @@
                             <div class="progress-bar"></div>
                         </div>
                         <div class="progress-wizard-dot">
-                            <i class="fa fa-user" aria-hidden="true"></i>1. @lang('lang.personnal_info')
+                            <i class="fa fa-user" aria-hidden="true"></i>1. @lang('lang.personal_info')
                         </div>
                     </div>
                     <div class="col-sm-4 col-xs-12 progress-wizard-step complete">
@@ -125,6 +125,9 @@
                                         <h2>@lang('lang.total'): <span><strong> ${{ $booking['debt'] }}</strong></span></h2>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    @include('bookingtour.tour-info-hotel-guide')
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,6 +135,6 @@
             </div>
         </section>
     @else
-        <h4>Something error!</h4>
+        <h4>Có lỗi xảy ra!</h4>
     @endif
 @endsection

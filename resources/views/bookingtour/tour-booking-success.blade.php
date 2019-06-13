@@ -40,6 +40,20 @@
     <section class="mainContentSection singlePackage" style="padding: 30px 0px">
         <div class="container">
             <div class="row">
+                @if (Session::has('pay_success'))
+                    <div class="alert alert-success alert-dismissible sending-access" role="alert">
+                        {{ Form::button('<span aria-hidden="true">x</span>', ['class' => 'close', 'data-dismiss' => 'alert']) }}
+                        {!! Session::get('pay_success') !!}
+                    </div>
+                @elseif (Session::has('pay_error'))
+                    <div class="alert alert-danger alert-dismissible sending-error" role="alert">
+                        {{ Form::button('<span aria-hidden="true">x</span>', ['class' => 'close', 'data-dismiss' => 'alert']) }}
+                        <i class="fa fa-info"></i>
+                        {{ Session::get('pay_error') }}
+                    </div>
+                @endif
+            </div>
+            <div class="row">
                 <div class="col-sm-12" style="margin-bottom: 30px">
                     <div style="font-weight: bold;font-size:18px;line-height: 22px;padding: 15px 80px 15px 15px;background:#f5f4ef;" class="tentour">
                         <h4 itemprop="name">{{ $data['tour']->name }}</h4>
