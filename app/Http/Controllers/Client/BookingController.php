@@ -194,7 +194,7 @@ class BookingController extends Controller
 // $myCard = array('number' => '371449635398431', 'exp_month' => 6, 'exp_year' => 2020);
                 $charge = Charge::create([
                     // 'card' => $myCard ,
-                    'amount' => $amount,
+                    'amount' => $amount * 100,
                     'currency' => 'usd',
                     'source' => env('SOURCE_CARD_STRIPE'),
                 ]);

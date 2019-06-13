@@ -49,7 +49,7 @@
 
             <li class="treeview {{set_active(['admin.guide.*'])}}">
                 <a href="#">
-                    <i class="fa fa-guide"></i><span>Quản lý hướng dẫn viên</span>
+                    <i class="glyphicon glyphicon-user"></i><span>Quản lý hướng dẫn viên</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -63,6 +63,29 @@
                     </li>
                     <li class="{{set_active(['admin.guide.create'])}}">
                         <a href="{{ route('admin.guide.create') }}">
+                            <i class="fa fa-cat"></i>
+                            <span>Tạo mới</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview {{set_active(['admin.user.*'])}}">
+                <a href="#">
+                    <i class="fa fa-users" aria-hidden="true"></i><span>Quản lý người dùng</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{set_active(['admin.user.index'])}}">
+                        <a href="{{ route('admin.user.index') }}">
+                            <i class="fa fa-mountains"></i>
+                            <span>Danh sách</span>
+                        </a>
+                    </li>
+                    <li class="{{set_active(['admin.user.create'])}}">
+                        <a href="{{ route('admin.user.create') }}">
                             <i class="fa fa-cat"></i>
                             <span>Tạo mới</span>
                         </a>

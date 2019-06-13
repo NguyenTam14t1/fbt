@@ -62,6 +62,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/templates/admin/js/tour.js', 'public/templates/admin/js/tour.js')
    .js('resources/assets/templates/admin/js/hotel.js', 'public/templates/admin/js/hotel.js')
    .js('resources/assets/templates/admin/js/guide.js', 'public/templates/admin/js/guide.js')
+   .js('resources/assets/templates/admin/js/user.js', 'public/templates/admin/js/user.js')
    .js('resources/assets/templates/admin/js/booking.js', 'public/templates/admin/js/booking.js')
    .js('resources/assets/templates/admin/js/dashboard.js', 'public/templates/admin/js/dashboard.js')
    .js('resources/assets/templates/admin/js/plugins.js', 'public/templates/admin/js/plugins.js');

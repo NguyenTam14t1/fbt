@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Auth;
 
-class ProfileRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +23,22 @@ class ProfileRequest extends FormRequest
      */
     public function rules()
     {
-        $this->user = $this->user ? $this->user : Auth::user()->id;
-        // dd($this->user);
-        return [
+        $validate = [
             'name' => 'required',
-            'email' => 'required|email|max:255|unique:users,email,' . $this->user . ',id|regex:' . config('setting.regex_email'),
-            'phone' => 'min:8|unique:users,phone,' . $this->user . ',id'
         ];
+
+        switch ($this->method()) {
+            case 'POST':
+                $validate['email'] = 'required|email|unique:users|max:255|regex:' . config('setting.regex_email');
+                $validate['phone'] = 'min:8|unique:users';
+                return $validate;
+            case 'PUT':
+                $validate['email'] = 'required|email|max:255|unique:users,email,' . $this->user . ',id|regex:' . config('setting.regex_email');
+
+                return $validate;
+            default:
+                return [];
+        }
     }
 
     public function messages()
@@ -40,8 +48,6 @@ class ProfileRequest extends FormRequest
             'email.required' => 'Trường email không được để trống!',
             'email.email' => 'Trường email sai định dạng!',
             'email.regex' => 'Trường email sai định dạng!',
-            'phone.min' => 'Trường số điện thoại sai định dạng!',
-            'phone.unique' => 'Số điện thoại đã tồn tại!',
         ];
     }
 }

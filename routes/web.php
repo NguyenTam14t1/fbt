@@ -93,13 +93,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.admin']], function () 
     Route::get('logout', 'Admin\LoginController@logout')->name('admin.auth.logout');
     Route::get('dashboard/chart-count-booking', 'Admin\DashboardController@getChartCountBooking')->name('admin.dashboard.getChartCountViewLesson');
     Route::get('dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
+
+    Route::resource('/profile', 'Admin\ProfileController', [
+        'as' => 'admin',
+    ]);
+
+    Route::get('change-password', '\App\Http\Controllers\Auth\ChangePasswordController@showChangePasswordAdmin')->name('admin.changepass');
+
+    Route::post('change-password', '\App\Http\Controllers\Auth\ChangePasswordController@saveNewPassword')->name('post.changepass');
+
     Route::resource('/tour', 'Admin\TourController', [
         'as' => 'admin',
     ]);
 
+
     Route::resource('/guide', 'Admin\GuideController', [
         'as' => 'admin',
     ]);
+
+    Route::resource('/user', 'Admin\UserController', [
+            'as' => 'admin',
+        ]);
 
     Route::post('/tour/import', [
         'uses' => 'Admin\TourController@importTour',

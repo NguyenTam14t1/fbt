@@ -47,9 +47,9 @@ class EloquentUserRepository extends EloquentRepository implements UserInterface
     public function update($input, $id)
     {
         try {
-            $guide = $this->model->findOrFail($id);
+            $user = $this->model->findOrFail($id);
 
-            $guide->update($input);
+            $user->update($input);
 
             return true;
         } catch (Exception $e) {

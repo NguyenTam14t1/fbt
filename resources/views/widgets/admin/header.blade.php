@@ -25,12 +25,12 @@
                         <li>
                             <ul class="menu">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('admin.profile.index') }}">
                                         <i class="fa fa-user"></i> <span>Tài khoản</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('admin.changepass') }}">
                                         <i class="fa fa-key"></i> <span>Đổi mật khẩu</span>
                                     </a>
                                 </li>

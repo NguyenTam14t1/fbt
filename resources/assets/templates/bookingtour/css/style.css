@@ -7,7 +7,7 @@ body {
     font-family: montserrat, sans-serif;
     font-size: 14px;
     line-height: 21px;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     overflow-x: hidden;
 }
@@ -20,7 +20,7 @@ ul li {
 }
 p {
     font-size: 14px;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     line-height: 21px;
 }
@@ -186,7 +186,7 @@ a:focus {
     border-radius: 4px;
     border-color: #dedede;
     padding: 0 20px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: uppercase;
     outline: 0;
 }
@@ -249,7 +249,7 @@ a:focus {
     z-index: 1;
 }
 .sectionTitle p {
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     text-transform: capitalize;
     margin-bottom: 0;
@@ -327,7 +327,7 @@ a:focus {
     background-color: #f5f5f5;
     box-shadow: none;
     border-color: #e5e5e5;
-    color: #545454;
+    color: #1b1b1b;
     font-family: montserrat, sans-serif;
     font-size: 12px;
 }
@@ -438,7 +438,7 @@ a:focus {
     padding: 15px;
     text-transform: uppercase;
     font-size: 15px;
-    color: #545454;
+    color: #1b1b1b;
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid #eee;
@@ -539,7 +539,7 @@ a:focus {
     box-shadow: none!important;
 }
 .ed-datepicker.filterDate .form-control {
-    color: #545454;
+    color: #1b1b1b;
 }
 .ed-datepicker .form-control::-webkit-input-placeholder {
     font-size: 12px;
@@ -598,22 +598,22 @@ a:focus {
 .ed-datepicker.filterDate .form-control::-webkit-input-placeholder {
     font-size: 12px;
     font-weight: 400;
-    color: #545454;
+    color: #1b1b1b;
 }
 .ed-datepicker.filterDate .form-control::-moz-placeholder {
     font-size: 12px;
     font-weight: 400;
-    color: #545454;
+    color: #1b1b1b;
 }
 .ed-datepicker.filterDate .form-control:-ms-input-placeholder {
     font-size: 12px;
     font-weight: 400;
-    color: #545454;
+    color: #1b1b1b;
 }
 .ed-datepicker.filterDate .form-control:-moz-placeholder {
     font-size: 12px;
     font-weight: 400;
-    color: #545454;
+    color: #1b1b1b;
 }
 .ed-datepicker .input-group-addon {
     height: 45px;
@@ -640,7 +640,7 @@ a:focus {
     color: #fff;
 }
 .datepicker table tr td.day {
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     border-radius: 0!important;
     background: 0 0;
@@ -928,7 +928,7 @@ a:focus {
 }
 .thumbnail.deals .caption .detailsInfo h5 span {
     font-size: 14px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: capitalize;
 }
 @media(min-width:768px) {
@@ -1133,7 +1133,7 @@ a:focus {
 }
 .thumbnail.blogPostItem .caption .detailsInfo h4 span {
     font-size: 14px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: capitalize;
 }
 @media(min-width:768px) {
@@ -1280,13 +1280,13 @@ a:focus {
 .blogInfo li {
     font-size: 12px;
     line-height: 18px;
-    color: #545454;
+    color: #1b1b1b;
 }
 .blogInfo li i {
     margin-right: 6px;
 }
 .blogInfo li a {
-    color: #545454;
+    color: #1b1b1b;
 }
 .blogInfo li a:hover {
     color: #ff891e;
@@ -1350,7 +1350,7 @@ a:focus {
     padding: 0;
 }
 .detailsBtn li .buttonTransparent, .detailsBtn .paginationCenter .pagination li:first-child a, .paginationCenter .pagination .detailsBtn li:first-child a, .detailsBtn .paginationCenter .pagination li:last-child a, .paginationCenter .pagination .detailsBtn li:last-child a, .detailsBtn .isotopeFilters ul.filter>li a, .isotopeFilters .detailsBtn ul.filter>li a {
-    color: #545454;
+    color: #1b1b1b;
 }
 .detailsBtn li .buttonTransparent:hover, .detailsBtn .paginationCenter .pagination li:first-child a:hover, .paginationCenter .pagination .detailsBtn li:first-child a:hover, .detailsBtn .paginationCenter .pagination li:last-child a:hover, .paginationCenter .pagination .detailsBtn li:last-child a:hover, .detailsBtn .isotopeFilters ul.filter>li a:hover, .isotopeFilters .detailsBtn ul.filter>li a:hover {
     color: #fff;
@@ -1397,7 +1397,7 @@ a:focus {
     padding-top: 0;
 }
 .packagesFilter .panel-body .buttonTransparent, .packagesFilter .panel-body .paginationCenter .pagination li:first-child a, .paginationCenter .pagination li:first-child .packagesFilter .panel-body a, .packagesFilter .panel-body .paginationCenter .pagination li:last-child a, .paginationCenter .pagination li:last-child .packagesFilter .panel-body a, .packagesFilter .panel-body .isotopeFilters ul.filter>li a, .isotopeFilters ul.filter>li .packagesFilter .panel-body a {
-    color: #545454;
+    color: #1b1b1b;
 }
 .packagesFilter .panel-body .buttonTransparent:hover, .packagesFilter .panel-body .paginationCenter .pagination li:first-child a:hover, .paginationCenter .pagination li:first-child .packagesFilter .panel-body a:hover, .packagesFilter .panel-body .paginationCenter .pagination li:last-child a:hover, .paginationCenter .pagination li:last-child .packagesFilter .panel-body a:hover, .packagesFilter .panel-body .isotopeFilters ul.filter>li a:hover, .isotopeFilters ul.filter>li .packagesFilter .panel-body a:hover {
     color: #fff;
@@ -1574,7 +1574,7 @@ a:focus {
     border-bottom: 0;
 }
 .searchTour .sbOptions a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-family: montserrat, sans-serif;
     font-size: 12px;
     padding: 11px 17px;
@@ -1595,7 +1595,7 @@ a:focus {
     margin: 4px 0 20px;
 }
 .searchFilter .sbSelector:link, .searchFilter .sbSelector:visited, .searchFilter .sbSelector:hover {
-    color: #545454!important;
+    color: #1b1b1b!important;
     text-transform: uppercase;
 }
 .searchFilter .sbSelector {
@@ -1627,7 +1627,7 @@ a:focus {
     border-bottom: 0;
 }
 .searchFilter .sbOptions a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-family: montserrat, sans-serif;
     font-size: 12px;
     padding: 11px 17px;
@@ -1648,7 +1648,7 @@ a:focus {
     border-radius: 4px;
 }
 .bookingDrop .sbSelector:link, .bookingDrop .sbSelector:visited, .bookingDrop .sbSelector:hover {
-    color: #545454!important;
+    color: #1b1b1b!important;
     text-transform: capitalize;
 }
 .bookingDrop .sbSelector {
@@ -1680,7 +1680,7 @@ a:focus {
     border-bottom: 0;
 }
 .bookingDrop .sbOptions a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-family: montserrat, sans-serif;
     font-size: 12px;
     padding: 11px 17px;
@@ -1733,7 +1733,7 @@ a:focus {
     border-bottom: 0;
 }
 .primaryDrop .sbOptions a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-family: montserrat, sans-serif;
     font-size: 12px;
     padding: 11px 17px;
@@ -1786,7 +1786,7 @@ a:focus {
     border-bottom: 0;
 }
 .lightDrop .sbOptions a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-family: montserrat, sans-serif;
     font-size: 12px;
     padding: 11px 17px;
@@ -1840,7 +1840,7 @@ a:focus {
     border-bottom: 0;
 }
 .transparentDrop .sbOptions a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-family: montserrat, sans-serif;
     font-size: 12px;
     padding: 11px 17px;
@@ -1873,7 +1873,7 @@ a:focus {
     text-transform: uppercase;
     width: 100%}
 .searchHotel .sbHolder .sbSelector li a {
-    color: #545454;
+    color: #1b1b1b;
     font-size: 12px;
     float: none;
     width: 100%;
@@ -1887,7 +1887,7 @@ a:focus {
     top: 44px!important;
 }
 .searchHotel .sbHolder .sbOptions li a {
-    color: #545454;
+    color: #1b1b1b;
     font-size: 12px;
     float: none;
     width: 100%;
@@ -2356,7 +2356,7 @@ header {
     padding: 10px 12px;
 }
 }.navbar-nav>li.dropdown.megaDropMenu .dropdown-menu .list-unstyled li a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-size: 12px;
     float: left;
     width: 100%;
@@ -2379,7 +2379,7 @@ header {
     min-width: 270px;
 }
 .navbar-nav>li.dropdown.singleDrop .dropdown-menu li a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-size: 12px;
     float: none;
     width: 100%;
@@ -2609,7 +2609,7 @@ header {
     display: none;
     background-color: #f5f5f5;
     height: 40px;
-    color: #545454;
+    color: #1b1b1b;
 }
 @media(min-width:768px) {
     .headerTop {
@@ -2626,7 +2626,7 @@ header {
     padding: 0 15px;
 }
 .headerTop .headerTopNav .headerTopNavbar li a {
-    color: #545454;
+    color: #1b1b1b;
     font-family: roboto, sans-serif;
     font-size: 13px;
     line-height: 21px;
@@ -2949,8 +2949,8 @@ header {
     color: #222;
 }
 .footer-light .footerContent .list-inline li a {
-    color: #545454;
-    border-color: #545454;
+    color: #1b1b1b;
+    border-color: #1b1b1b;
 }
 .footer-light .footerContent .list-inline li a:hover {
     color: #fff;
@@ -2960,7 +2960,7 @@ header {
     margin-bottom: 17px;
 }
 .footer-light .footerContent .list-item li a {
-    color: #545454;
+    color: #1b1b1b;
 }
 .footer-light .footerContent .list-item li a:hover {
     color: #ff891e;
@@ -3584,7 +3584,7 @@ header {
     padding: 10px 12px;
 }
 }.navbar-nav>li.dropdown.megaDropMenu .dropdown-menu .list-unstyled li a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-size: 12px;
     float: left;
     width: 100%;
@@ -3607,7 +3607,7 @@ header {
     min-width: 270px;
 }
 .navbar-nav>li.dropdown.singleDrop .dropdown-menu li a {
-    color: #545454!important;
+    color: #1b1b1b!important;
     font-size: 12px;
     float: none;
     width: 100%;
@@ -3837,7 +3837,7 @@ header {
     display: none;
     background-color: #f5f5f5;
     height: 40px;
-    color: #545454;
+    color: #1b1b1b;
 }
 @media(min-width:768px) {
     .headerTop {
@@ -3854,7 +3854,7 @@ header {
     padding: 0 15px;
 }
 .headerTop .headerTopNav .headerTopNavbar li a {
-    color: #545454;
+    color: #1b1b1b;
     font-family: roboto, sans-serif;
     font-size: 13px;
     line-height: 21px;
@@ -4177,8 +4177,8 @@ header {
     color: #222;
 }
 .footer-light .footerContent .list-inline li a {
-    color: #545454;
-    border-color: #545454;
+    color: #1b1b1b;
+    border-color: #1b1b1b;
 }
 .footer-light .footerContent .list-inline li a:hover {
     color: #fff;
@@ -4188,7 +4188,7 @@ header {
     margin-bottom: 17px;
 }
 .footer-light .footerContent .list-item li a {
-    color: #545454;
+    color: #1b1b1b;
 }
 .footer-light .footerContent .list-item li a:hover {
     color: #ff891e;
@@ -4554,7 +4554,7 @@ header {
     font-size: 13px;
     line-height: 15px;
     margin-top: 5px;
-    color: #545454;
+    color: #1b1b1b;
 }
 .textInfo {
     height: 35px;
@@ -4562,7 +4562,7 @@ header {
     border-radius: 4px;
     border: 1px solid #dedede;
     padding: 0 15px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: uppercase;
     margin-bottom: 10px;
     font-size: 13px;
@@ -4923,7 +4923,7 @@ header {
     padding: 15px;
     text-transform: uppercase;
     font-size: 18px;
-    color: #545454;
+    color: #1b1b1b;
     background-color: #f5f5f5;
     border-color: #eee;
 }
@@ -5224,7 +5224,7 @@ header {
 }
 .countryTabs .nav-tabs>li.pull-right .list-inline li a {
     line-height: 43px;
-    color: #545454;
+    color: #1b1b1b;
 }
 .countryTabs .nav-tabs>li.pull-right .list-inline li a:hover {
     color: #ff891e;
@@ -5666,7 +5666,7 @@ header {
 }
 .foodDrinkSection .foodDrinkContent .FoodDrinkList .item-list a {
     font-size: 13px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: uppercase;
 }
 .foodDrinkSection .foodDrinkContent .FoodDrinkList .item-list span {
@@ -5705,7 +5705,7 @@ header {
 }
 }.sightInCity .sightContent .media .media-body a {
     font-size: 13px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: uppercase;
 }
 .sightInCity .sightContent .media .media-body a:focus {
@@ -5756,7 +5756,7 @@ header {
     margin-bottom: 25px;
 }
 .planToureCitySection .planToureContent .content a {
-    color: #545454;
+    color: #1b1b1b;
     text-decoration: underline;
     font-size: 13px;
     text-transform: uppercase;
@@ -5891,7 +5891,7 @@ header {
 }
 .travelGuideSection .sectionTitleHomeCity h4 {
     font-weight: 400;
-    color: #545454;
+    color: #1b1b1b;
 }
 .travelGuideSection .sectionTitleHomeCity h4 span {
     color: #ff891e;
@@ -5949,7 +5949,7 @@ header {
 }
 .travelTipsSection .travelTipsContent .meta-content a {
     margin-right: 15px;
-    color: #545454;
+    color: #1b1b1b;
     font-size: 14px;
     line-height: 24px;
 }
@@ -5960,7 +5960,7 @@ header {
 .travelTipsSection .travelTipsContent .readMoreBtn {
     text-transform: uppercase;
     text-decoration: underline;
-    color: #545454;
+    color: #1b1b1b;
     font-size: 14px;
 }
 .travelTipsSection .travelTipsContent .readMoreBtn:hover {
@@ -5968,7 +5968,7 @@ header {
 }
 .travelTipsSection .buttonCustomPrimary {
     background-color: #fff;
-    color: #545454!important;
+    color: #1b1b1b!important;
     border: 1px solid #dedede;
     font-size: 15px;
     padding: 0 30px;
@@ -6105,7 +6105,7 @@ header {
     text-align: center!important;
     border: 0;
     margin: 0!important;
-    color: #545454;
+    color: #1b1b1b;
     height: 70px;
     padding: 15px 7px;
 }
@@ -6213,7 +6213,7 @@ header {
     background-repeat: no-repeat;
 }
 .searchDestinationSection .searchDestination .tab-content .tab-pane .searchHotel .sbHolder .sbSelector {
-    color: #545454!important;
+    color: #1b1b1b!important;
     text-transform: capitalize;
 }
 @media(min-width:768px) {
@@ -6241,7 +6241,7 @@ header {
     padding: 4px 12px;
 }
 .searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .form-control:active, .searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .form-control:focus {
-    border-color: #545454;
+    border-color: #1b1b1b;
 }
 .searchDestinationSection .searchDestination .tab-content .tab-pane .input-group.date.ed-datepicker.filterDate .input-group-addon {
     position: absolute;
@@ -6505,7 +6505,7 @@ header {
 }
 .travelTipsThumbanail .thumbnail .caption .meta-content a {
     margin-right: 15px;
-    color: #545454;
+    color: #1b1b1b;
 }
 .travelTipsThumbanail .thumbnail .caption .meta-content a i {
     margin-right: 10px;
@@ -6518,7 +6518,7 @@ header {
 }
 .travelTipsThumbanail .thumbnail .caption .readMoreBtn {
     text-transform: uppercase;
-    color: #545454;
+    color: #1b1b1b;
 }
 .travelTipsThumbanail .thumbnail .caption .readMoreBtn:hover {
     color: #ff891e;
@@ -6628,7 +6628,7 @@ header {
     margin-right: 20px;
 }
 .rooms-types-aria .roomCategory .roomAdvantage li a {
-    color: #545454;
+    color: #1b1b1b;
     display: block;
     font-size: 14px;
 }
@@ -6726,7 +6726,7 @@ header {
 }
 .hotelListSidebar .panel-heading .panel-title a {
     font-size: 13px;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 700;
     display: block;
 }
@@ -6766,7 +6766,7 @@ header {
     margin-bottom: 10px;
     font-size: 13px;
     cursor: default;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     width: 100%}
 .hotelListSidebar .panel-body .check-box-list .checkbox-custom+.checkbox-custom-label:before {
@@ -6793,7 +6793,7 @@ header {
 }
 .hotelListSidebar .control-label {
     padding: 12px 0 0;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     text-transform: uppercase;
     font-size: 12px;
@@ -6943,7 +6943,7 @@ header {
 }
 }.sort-by-section .icon-right .icon a {
     display: block;
-    color: #545454;
+    color: #1b1b1b;
     text-align: center;
     line-height: 47px;
     font-size: 20px;
@@ -7202,7 +7202,7 @@ header {
 }
 .blogSinglePost .well .list-inline li a {
     font-size: 14px;
-    color: #545454;
+    color: #1b1b1b;
 }
 .blogSinglePost .well .list-inline li a:hover {
     color: #ff891e;
@@ -7266,14 +7266,14 @@ header {
     display: block;
 }
 .commentsArea .media .media-body h4 span, .commentsArea .media .media-body p span {
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
 }
 .commentsArea .media .media-body h4 span i, .commentsArea .media .media-body p span i {
     margin-right: 14px;
 }
 .commentsArea .media .media-body p {
-    color: #545454;
+    color: #1b1b1b;
     line-height: 22px;
 }
 .commentsArea .media .media-body .btn-link {
@@ -7396,7 +7396,7 @@ header {
     margin-bottom: 0;
 }
 .contactInfo .media p a {
-    color: #545454;
+    color: #1b1b1b;
 }
 .contactInfo .media .media-body h4 {
     font-weight: 400;
@@ -7414,7 +7414,7 @@ header {
 }
 .aboutTitle h4 {
     text-transform: capitalize;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
     text-align: center;
     line-height: 24px;
@@ -7707,7 +7707,7 @@ header {
 }
 .progress-wizard>.progress-wizard-step.disabled>.progress-wizard-dot {
     border-color: #dedede;
-    color: #545454;
+    color: #1b1b1b;
 }
 .progress-wizard>.progress-wizard-step.complete>.progress-wizard-dot {
     background-color: #ff891e;
@@ -7780,7 +7780,7 @@ header {
     margin-right: 5px;
 }
 .infoArea .list-unstyled li span {
-    color: #545454;
+    color: #1b1b1b;
 }
 .infoArea h2 {
     font-size: 20px;
@@ -8144,7 +8144,7 @@ header {
 }
 .priceTable .panel .priceCircle h3 small {
     display: block;
-    color: #545454;
+    color: #1b1b1b;
     font-size: 14px;
     text-transform: lowercase;
 }
@@ -8154,7 +8154,7 @@ header {
 .priceTable .panel .list-unstyled li {
     text-align: left;
     margin-bottom: 25px;
-    color: #545454;
+    color: #1b1b1b;
     font-size: 16px;
 }
 .priceTable .panel .list-unstyled li i {
@@ -8226,7 +8226,7 @@ header {
     line-height: 35px;
     border-radius: 4px;
     padding: 0 15px;
-    color: #545454;
+    color: #1b1b1b;
     text-transform: uppercase;
     outline: 0;
     border: 1px solid #dedede;
@@ -8902,7 +8902,7 @@ header {
     margin-bottom: 9px;
 }
 .recentOfferSection .recentOfferContent .benefitsAria .benifitsContent ul li a {
-    color: #545454;
+    color: #1b1b1b;
 }
 @media(min-width:768px) {
     .recentOfferSection .recentOfferContent .benefitsAria .benifitsContent ul li a {
@@ -9201,7 +9201,7 @@ header {
     margin-bottom: 10px;
     font-size: 13px;
     cursor: default;
-    color: #545454;
+    color: #1b1b1b;
     font-weight: 400;
 }
 .settingSection .settingContent .changeSetting .form-check .checkbox-custom+.checkbox-custom-label:before {

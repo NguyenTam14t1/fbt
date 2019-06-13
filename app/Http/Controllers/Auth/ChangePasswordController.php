@@ -18,6 +18,11 @@ class ChangePasswordController extends Controller
         return view('bookingtour.changepass', compact('data'));
     }
 
+    public function showChangePasswordAdmin(Request $request)
+    {
+        return view('admin.changepass');
+    }
+
     public function saveNewPassword(ChangePasswordRequest $request)
     {
         $user = Auth::user();

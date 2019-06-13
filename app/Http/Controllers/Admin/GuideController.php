@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\GuideInterface;
+use App\Http\Requests\GuideRequest;
 
 class GuideController extends Controller
 {
@@ -41,7 +42,7 @@ class GuideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GuideRequest $request)
     {
         $data = $request->only([
             'name',
@@ -96,7 +97,7 @@ class GuideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GuideRequest $request, $id)
     {
         $data = $request->only(['name', 'address', 'phone', 'category_id']);
 

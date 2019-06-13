@@ -16,7 +16,7 @@
                                 {{ Html::image($tour->picture_path , 'slide', ['class' => 'd-block w-100']) }}
                                 <div class="carousel-caption d-none d-md-block slide-content animated bounceInDown">
                                     <h1>{{ $tour->name }}</h1>
-                                    <p>{{ str_limit($tour->description) }}</p>
+                                    <p style="background-color: #000000ad;">{{ str_limit($tour->description) }}</p>
                                 </div>
                             </a>
                         </div>

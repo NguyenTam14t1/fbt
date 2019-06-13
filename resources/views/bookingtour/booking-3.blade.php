@@ -195,12 +195,17 @@
                     </div>
                 </div>
             </div>
+            {{ Html::style('css/bootstrap-select.min.css') }}
+            {{ Html::style('css/select2.min.css') }}
+            {{ Html::script('templates/bookingtour/js/tour.js') }}
+            {{ Html::script('js/bootstrap-select.min.js') }}
+            {{ Html::script('js/select2.min.js') }}
         </section>
     @else
         <h4>Có lỗi xảy ra!</h4>
     @endif
 @endsection
-@section('styles')
+<!-- @section('styles')
     {{ Html::style('css/bootstrap-select.min.css') }}
     {{ Html::style('css/select2.min.css') }}
 @endsection
@@ -208,7 +213,7 @@
     {{ Html::script('templates/bookingtour/js/tour.js') }}
     {{ Html::script('js/bootstrap-select.min.js') }}
     {{ Html::script('js/select2.min.js') }}
-@endsection
+@endsection -->
 <!--
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript">

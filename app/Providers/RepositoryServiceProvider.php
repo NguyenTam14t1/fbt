@@ -59,6 +59,11 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'App\Repositories\Contracts\ManaUserInterface',
+            'App\Repositories\Eloquents\EloquentManaUserRepository'
+        );
+
+        $this->app->bind(
             'App\Repositories\Contracts\DashboardInterface',
             'App\Repositories\Eloquents\EloquentDashboardRepository'
         );

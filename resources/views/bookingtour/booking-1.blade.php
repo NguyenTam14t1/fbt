@@ -117,11 +117,11 @@
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
                                     <label for="">@lang('lang.address')</label>
-                                    {{ Form::text('address', old('address'), ['class' => 'form-control', 'required' => 'required']) }}
+                                    <input type="text" name="address" value="{{ Auth::user()->address }}" required="required" class="form-control">
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
                                     <label for="">@lang('lang.phone')</label>
-                                    {{ Form::text('phone', old('phone'), ['class' => 'form-control', 'required' => 'required']) }}
+                                    <input type="text" name="phone" value="{{ Auth::user()->phone }}" required="required" class="form-control">
                                 </div>
                                 <div class="form-group col-sm-6 col-xs-12">
                                     <label for="">@lang('lang.email_confirm')</label>

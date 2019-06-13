@@ -26,21 +26,25 @@
                   maxlength="{{config('setting.hotel.maxlength_name')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
                   placeholder="Tên..."
-                  value="">
-                  <span class="text-danger name-error" role="alert"></span>
+                  value="{{ old('name') }}">
+                  @if ($errors->has('name'))
+                      <span class="input-error">{{ $errors->first('name') }}</span>
+                  @endif
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="name">Số điên thoại </label><span class="field-required">*</span>
+                <label for="name">Số điện thoại </label><span class="field-required">*</span>
                 <input class="form-control" name="phone"
                   id="name"
                   required="required"
                   maxlength="{{config('setting.hotel.length_phone')}}"
                   minlength="{{config('setting.hotel.length_phone')}}"
-                  placeholder="Số điên thoại..."
-                  value="">
-                  <span class="text-danger name-error" role="alert"></span>
+                  placeholder="Số điện thoại..."
+                  value="{{ old('phone') }}">
+                  @if ($errors->has('phone'))
+                      <span class="input-error">{{ $errors->first('phone') }}</span>
+                  @endif
               </div>
             </div>
             <div class="col-md-3">
@@ -59,7 +63,9 @@
                           <option value="{{$category->id}}">{{ $category->name }}</option>
                       @endforeach
                     </select>
-                  <span class="text-danger category_id" role="alert"></span>
+                  @if ($errors->has('category_id'))
+                      <span class="input-error">{{ $errors->first('category_id') }}</span>
+                  @endif
                 </div>
               </div>
             </div>
@@ -74,9 +80,11 @@
                   placeholder="Địa chỉ..."
                   maxlength="{{config('setting.hotel.maxlength_address')}}"
                   minlength="{{config('setting.hotel.minlength_name')}}"
-                  value=""
+                  value="{{ old('address') }}"
                   required="required">
-                  <span class="text-danger place-error" role="alert"></span>
+                  @if ($errors->has('address'))
+                      <span class="input-error">{{ $errors->first('address') }}</span>
+                  @endif
               </div>
             </div>
 
@@ -88,8 +96,10 @@
                   required="required"
                   minlength="{{config('setting.guide.length_phone')}}"
                   placeholder="Email..."
-                  value="">
-                  <span class="text-danger name-error" role="alert"></span>
+                  value="{{ old('mail') }}">
+                  @if ($errors->has('mail'))
+                      <span class="input-error">{{ $errors->first('mail') }}</span>
+                  @endif
               </div>
             </div>
           </div>
