@@ -18,7 +18,7 @@ class LoginRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 $validationRules = [
-                    'email' => 'email',
+                    'email' => 'required|email',
                     'password' => 'required|min:3',
                 ];
                 break;

@@ -32,4 +32,30 @@ class EloquentUserRepository extends EloquentRepository implements UserInterface
 
         return $user->bookings()->where('status', $status)->orderBy('updated_at', 'desc')->paginate($limit);
     }
+
+    public function findOrFail($id)
+    {
+        try {
+            return $this->model->findOrFail($id);
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
+
+    public function update($input, $id)
+    {
+        try {
+            $guide = $this->model->findOrFail($id);
+
+            $guide->update($input);
+
+            return true;
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
+    }
 }

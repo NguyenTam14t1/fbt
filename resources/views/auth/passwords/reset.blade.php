@@ -1,6 +1,7 @@
 @extends('widgets.bookingtour.master')
 
-@section('change-header', 'changeHeader')
+@section('change-header', 'changeHeader1')
+@section('header-type', 'lightHeader lightHeader1')
 
 @section('content')
     <div class="signupLoging">

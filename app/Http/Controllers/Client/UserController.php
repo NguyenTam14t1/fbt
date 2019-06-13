@@ -9,6 +9,7 @@ use App\Repositories\Contracts\BookingInterface;
 use Auth;
 use Exception;
 use App\Traits\ProcessOnClient;
+use App\Http\Requests\ProfileRequest;
 
 class UserController extends Controller
 {
@@ -94,7 +95,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['user'] = Auth::user();
+
+        return view('bookingtour.profile', compact('data'));
     }
 
     /**
@@ -104,9 +107,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfileRequest $request, $id)
     {
-        //
+        $data = $request->only(['name', 'address', 'phone', 'email']);
+
+        $result = $this->userRepository->update($data, $id);
+
+        if ($result) {
+            return redirect()->back()->with('message', 'Cập nhật tài khoản thành công!');
+        }
+
+        Session::flash('error', 'Cập nhật tài khoản thất bại!');
+
+        return redirect()->back();
     }
 
     /**

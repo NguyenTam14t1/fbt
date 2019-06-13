@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Models\Category;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
+use Validator;
+use Auth;
+use Hash;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +31,12 @@ class AppServiceProvider extends ServiceProvider
         $subCategories = Category::where('parent_id', '<>', config('setting.parent_id'))
             ->get();
         View::share(compact('menuCategories', 'subCategories'));
+
+        Validator::extend('current_password', function ($attribute, $value, $parameters, $validator) {
+            $password = Auth::user()->password;
+
+            return $password && \Hash::check($value, $password);
+        });
     }
 
     /**

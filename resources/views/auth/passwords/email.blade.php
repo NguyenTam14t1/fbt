@@ -1,9 +1,12 @@
 @extends('widgets.bookingtour.master')
 
+@section('change-header', 'changeHeader1')
+@section('header-type', 'lightHeader lightHeader1')
+
 @section('content')
     <div class="signupLoging">
         <div class="modal-dialog modal-reset" role="document">
-            <div class="modal-content modalContentCustom">
+            <div class="modal-content modalContentCustom" style="margin-top: 180px;">
                 <div class="modal-header reset-header">
                     <h4>@lang('lang.reset_password')</h4>
                 </div>

@@ -25,6 +25,8 @@ class User extends Authenticatable
         'group_id',
         'provider',
         'provider_id',
+        'address',
+        'phone',
     ];
 
     /**

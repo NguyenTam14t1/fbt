@@ -58,6 +58,10 @@ Route::get('/', 'HomeController@index')->name('home');
             'as' => 'client',
         ]);
 
+        Route::get('change-password', '\App\Http\Controllers\Auth\ChangePasswordController@showChangePassword')->name('changepass');
+
+        Route::post('change-password', '\App\Http\Controllers\Auth\ChangePasswordController@saveNewPassword')->name('post.changepass');
+
         Route::resource('user.manager', 'Client\ManagerController', [
             'as' => 'client',
         ]);

@@ -20,8 +20,8 @@
                     <ul class="nav navbar-nav dashboardNavLeft">
                         <li><a class="@yield('active-1')" href="{{ route('client.user.index') }}"><i class="fa fa-tachometer" aria-hidden="true"></i>@lang('lang.dashboard')</a></li>
                         <li><a class="@yield('active-2')" href="{{ route('client.user.manager.show', [$data['user']->id, config('setting.booking_all')]) }}"><i class="fa fa-cube" aria-hidden="true"></i>@lang('lang.booking')</a></li>
-                        <li><a class="@yield('active-3')" href="" class="@yield('content-3')"><i class="fa fa-user" aria-hidden="true"></i>@lang('lang.profile')</a></li>
-                        <li><a class="@yield('active-3')" href=""><i class="fa fa-cogs" aria-hidden="true"></i>@lang('lang.setting')</a></li>
+                        <li><a class="@yield('active-3')" href="{{ route('client.user.edit', $data['user']->id) }}" class="@yield('content-3')"><i class="fa fa-user" aria-hidden="true"></i>@lang('lang.profile')</a></li>
+                        <li><a class="@yield('active-3')" href="{{ route('changepass') }}"><i class="fa fa-cogs" aria-hidden="true"></i>Đổi mật khẩu</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->

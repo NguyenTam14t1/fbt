@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'regex_email' => '/^((?![!@#$%^&*()_+.]{2}).)*$/|regex:/^[a-zA-Z0-9][a-zA-Z0-9!@#$%^&*()_+.-]+$/',
     'tour' => [
         'maxlength_description' => 1000 * 5,
         'maxlength_name' => 255,

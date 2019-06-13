@@ -22,10 +22,12 @@
     "dependencies": {
         "admin-lte": "^2.4.10",
         "bootstrap-sass": "^3.3.7",
+        "chart.js": "^2.8.0",
         "datatables.net-bs": "^1.10.19",
         "font-awesome": "^4.7.0",
         "moment": "^2.24.0",
         "npm": "^5.7.1",
+        "stripe": "^7.1.0",
         "to": "^0.2.9",
         "update": "^0.7.4"
     }

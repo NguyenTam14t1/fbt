@@ -53,7 +53,7 @@ class GuideController extends Controller
 
         $response = $this->guideRepository->store($data);
         if ($response) {
-            return redirect()->route('admin.guide.index')->with('mesage', 'Thêm mới hướng dẫn viên thành công!');
+            return redirect()->route('admin.guide.index')->with('message', 'Thêm mới hướng dẫn viên thành công!');
         }
 
         Session::flash('error', 'Thêm mới hướng dẫn viên thất bại!');

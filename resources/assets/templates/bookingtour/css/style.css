@@ -10296,3 +10296,6 @@ label.star-service:before {
     background-position: center;
     margin: -100px 0 0 -100px;
 }
+.input-error {
+    color: red;
+}
